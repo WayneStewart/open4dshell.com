@@ -11,9 +11,15 @@ adds what an agent needs to work here safely.
 ## Working rules
 
 - Australian spelling: licence, organisation, colour, behaviour.
-- Plain semantic HTML5, one stylesheet per folder, no JavaScript, no
-  frameworks, no CDNs, no external fonts. Light and dark via
-  `prefers-color-scheme`. Understated tone, no marketing copy.
+- Plain semantic HTML5, one stylesheet per folder, no frameworks, no
+  CDNs, no external fonts. Light and dark via `prefers-color-scheme`.
+  Understated tone, no marketing copy.
+- No JavaScript in the hand-written pages (`www/`, `foundation/*.html`).
+  Every page must read and navigate fully without it. The generated
+  reference under `foundation/docs/` carries a small inline script for
+  search filtering and hash reveal; that comes from the Foundation
+  generator, is self-contained, makes no network requests, and degrades
+  to a plain page when scripts are off. It is acceptable as is.
 - Contact address everywhere is `wayne@open4dshell.com`.
 - Never hand-edit anything under `foundation/docs/`. It is generated in the
   Foundation repository and copied here; see README and
@@ -42,6 +48,28 @@ served HTML; the source stays plain.
 
 A new subdomain = a new top-level folder here + a new Pages project with
 that folder as root directory + a custom domain on the project.
+
+A smaller project needs none of that: a folder under `www/` (for
+example `www/kvp/`) is served at `www.open4dshell.com/kvp/` on the next
+push. Promote to a subdomain later only if the project grows its own
+docs and identity.
+
+## Candidate projects (as at 2026-09-15, documented only, no work started)
+
+All are Wayne's own components in private repositories, each still
+without a licence file. Adding one (MIT, matching Foundation) is the
+first step for any of them. None has a provenance question comparable
+to Foundation's, except the logging component, which descends from Dave
+Batton's free Foundation 4 Logging component with the author's
+permission; its page should say so.
+
+| Project | What it is | Suggested tier | Readiness |
+|---|---|---|---|
+| nativeObjectTools (OTr) | Native 4D replacement for the ObjectTools plugin API, ~900 methods, extensive specs and a README | Subdomain | Most advanced: public GitHub repository already exists; docs are markdown, not yet built as HTML |
+| kvp | Key-value pair component, successor to the 2010-era KVP for 4D v11–v13 | Path under www | Method docs exist; no README |
+| logging | Modern logging component: named logs, levels, routing, PostgreSQL delivery; lineage from Foundation 4 Logging | Path under www, possibly subdomain later | Feature document and method docs exist; no README |
+| process-viewer | Small process-list viewer utility (~18 methods) | Path under www | Method docs only; last touched January 2025 |
+| select | Small selection example/utility component | Path under www | One-line README; last touched January 2025 |
 
 ## Verifying a deploy
 
