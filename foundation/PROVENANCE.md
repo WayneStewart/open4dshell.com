@@ -49,4 +49,4 @@ The signed deed is held privately by Wayne Stewart and is not committed to
 this repository. It is available on request to anyone with a legitimate need
 to verify title, for example a downstream adopter's legal review.
 
-Contact: wayne.b.stewart@gmail.com
+Contact: wayne@open4dshell.com
