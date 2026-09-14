@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Hook_IO_InputFormButton - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Hook_IO_InputFormButton</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Input/Output Component</p>
+      <h1>Fnd_Hook_IO_InputFormButton</h1>
+      <p class="signature">Fnd_Hook_IO_InputFormButton ({button}) -&gt; Boolean</p>
+      <p class="meta">Legacy manual page 124</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>enable</td><td>Boolean</td><td>True to enable adding multiple records (optional)</td></tr><tr><td>Function result</td><td>Boolean</td><td>True if this feature is enabled</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This hook is called when a button on the inherited form named Fnd_IO_InputForm is clicked. It receives as the a parameter the name of the button that was clicked. The name will be one of these text values: Button Names save cancel first previous next last</p>
+<p>Return True in $0 to allow Foundation to handle the click and perform the standard action. Return False to prevent Foundation from acting on the click. C_BOOLEAN($0;$allow) C_TEXT($1;$action)</p>
+<pre class="code"><code>$action:=$1
+$allow:=True</code></pre>
+<p>Case of</p>
+<pre class="code"><code>: (Fnd_Gen_CurrentTable =(-&gt;[Invoices]))</code></pre>
+<p>Case of : ($action=&quot;save&quot;) If(Not(User in group(Current user;&quot;Accounting&quot;))</p>
+<pre class="code"><code>Fnd_Dlg_Alert (&quot;You are not authorized to modify invoice records.&quot;)
+$allow:=False</code></pre>
+<p>End if End case End case</p>
+<pre class="code"><code>$0:=$allow</code></pre>
+<p>Use the Fnd_Gen_CurrentTable method to determine the current table.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Hook_IO_InputFormButton ({button}) ➔ Boolean
+
+              Parameter               Type              Description
+              enable                  Boolean           True to enable adding multiple records (optional)
+              Function result         Boolean           True if this feature is enabled
+
+            This hook is called when a button on the inherited form named Fnd_IO_InputForm is clicked. It
+            receives as the a parameter the name of the button that was clicked. The name will be one of these text
+            values:
+              Button Names
+              save
+              cancel
+              first
+              previous
+              next
+              last
+
+            Return True in $0 to allow Foundation to handle the click and perform the standard action. Return
+            False to prevent Foundation from acting on the click.
+              C_BOOLEAN($0;$allow)
+              C_TEXT($1;$action)
+
+              $action:=$1
+              $allow:=True
+              Case of
+                : (Fnd_Gen_CurrentTable =(-&gt;[Invoices]))
+              		Case of
+              			: ($action=&quot;save&quot;)
+              				If(Not(User in group(Current user;&quot;Accounting&quot;))
+              					Fnd_Dlg_Alert (&quot;You are not authorized to modify invoice records.&quot;)
+              					$allow:=False
+              				End if
+              		End case
+              End case
+
+              $0:=$allow
+
+            Use the Fnd_Gen_CurrentTable method to determine the current table.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

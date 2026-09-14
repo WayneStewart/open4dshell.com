@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Dlg_SetButtons - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Dlg_SetButtons</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Dialogs Component</p>
+      <h1>Fnd_Dlg_SetButtons</h1>
+      <p class="signature">Fnd_Dlg_SetButtons ({button 1{; button 2{; button 3}}})</p>
+      <p class="meta">Legacy manual page 94</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>button 1</td><td>Text</td><td>OK button text “or “*” for localized “OK” (optional)</td></tr><tr><td>button 2</td><td>Text</td><td>Cancel button text or “*” for localized “Cancel” (optional)</td></tr><tr><td>button 3</td><td>Text</td><td>Third button text (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Dlg_SetButtons routine sets the button texts for the upcoming alerts that will be opened by using the routines in this component. The third button is the “Don’t Save” button. Pass values for the OK and Cancel buttons in the button 1 and button 2 parameters. If you pass “*”, the localized version for these buttons will be used. The button 3 parameter sets the text of the third button. If you do not pass a value to button 2 or button 3, these buttons will not be displayed. So, you can create a dialog with one, two, or three buttons. See the Fnd_Dlg_Display routine for a code example.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Dlg_SetButtons ({button 1{; button 2{; button 3}}})
+
+              Parameter                Type            Description
+              button 1                 Text            OK button text “or “*” for localized “OK” (optional)
+              button 2                 Text            Cancel button text or “*” for localized “Cancel” (optional)
+              button 3                 Text            Third button text (optional)
+
+            The Fnd_Dlg_SetButtons routine sets the button texts for the upcoming alerts that will be opened by
+            using the routines in this component. The third button is the “Don’t Save” button.
+            Pass values for the OK and Cancel buttons in the button 1 and button 2 parameters. If you pass “*”, the
+            localized version for these buttons will be used. The button 3 parameter sets the text of the third button.
+            If you do not pass a value to button 2 or button 3, these buttons will not be displayed. So, you can create a
+            dialog with one, two, or three buttons.
+            See the Fnd_Dlg_Display routine for a code example.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

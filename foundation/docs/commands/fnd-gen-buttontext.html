@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_ButtonText - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_ButtonText</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_ButtonText</h1>
+      <p class="signature">Fnd_Gen_ButtonText (button; label; alignment{; -&gt;obj1..-&gt;objN}) -&gt; Number</p>
+      <p class="meta">Legacy manual page 108</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>button</td><td>Pointer</td><td>A pointer to the button</td></tr><tr><td>label</td><td>Text</td><td>New button text</td></tr><tr><td>alignment</td><td>Longint</td><td>Which end to keep stationary</td></tr><tr><td>obj1..objN</td><td>Pointer</td><td>Other form objects to move (optional)</td></tr><tr><td>Function result</td><td>Number</td><td>The increase in the button size</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Sets the button text and resizes the button if necessary. The side passed as the alignment parameter remains stationary, while the other side will be modified if necessary to allow the text to fit. The button will only be enlarged if necessary, never made smaller than its original form size. 4D Constant              Type               Value Align Left               Longint            2 Center                   Longint            3 Align Right              Longint            4</p>
+<p>You can optionally pass pointers to other form objects. If the button is resized, these objects will be moved an equal amount so that they maintain an equal distance from the resized button. If you pass Align Left as the alignment, then pass pointers to the objects located directly to the right side of the button (the side that might be moved). The amount of the increase in the button size is returned as the result of this function. This value can be used if you need to procedurally modify aspects of other form objects. For example, imagine we have a Find and Cancel button set located in the lower-right portion of a dialog. If we localize the button text using 4D’s BUTTON TEXT command, the button labels change, but the buttons remain the same size. BUTTON TEXT(bFind;&quot;Rechercher&quot;) BUTTON TEXT(bCancel;&quot;Annuler&quot;)</p>
+<p>By replacing 4D’s BUTTON TEXT command with the Fnd_Gen_ButtonText method, the buttons are now resized to fit the new labels.</p>
+<pre class="code"><code>Fnd_Gen_ButtonText (-&gt;bFind;&quot;Rechercher&quot;;Align Right )
+Fnd_Gen_ButtonText (-&gt;bCancel;&quot;Annuler&quot;;Align Right )</code></pre>
+<p>However, now the Find button has expanded so that the Cancel button is no longer properly positioned. So we can pass a pointer to the Cancel button to Fnd_Gen_ButtonText when we move the Find button. This tells the Fnd_Gen_ButtonText method to shift the Cancel button so that it retains its original relationship with the Find button.</p>
+<pre class="code"><code>Fnd_Gen_ButtonText (-&gt;bFind;&quot;Rechercher&quot;;Align Right ;-&gt;bCancel)
+Fnd_Gen_ButtonText (-&gt;bCancel;&quot;Annuler&quot;;Align Right )</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_ButtonText (button; label; alignment{; -&gt;obj1..-&gt;objN}) ➔ Number
+
+              Parameter                Type               Description
+              button                   Pointer            A pointer to the button
+              label                    Text               New button text
+              alignment                Longint            Which end to keep stationary
+              obj1..objN               Pointer            Other form objects to move (optional)
+              Function result          Number             The increase in the button size
+
+            Sets the button text and resizes the button if necessary. The side passed as the alignment parameter
+            remains stationary, while the other side will be modified if necessary to allow the text to fit. The button
+            will only be enlarged if necessary, never made smaller than its original form size.
+              4D Constant              Type               Value
+              Align Left               Longint            2
+              Center                   Longint            3
+              Align Right              Longint            4
+
+            You can optionally pass pointers to other form objects. If the button is resized, these objects will be
+            moved an equal amount so that they maintain an equal distance from the resized button. If you pass
+            Align Left as the alignment, then pass pointers to the objects located directly to the right side of the
+            button (the side that might be moved).
+            The amount of the increase in the button size is returned as the result of this function. This value can be
+            used if you need to procedurally modify aspects of other form objects.
+            For example, imagine we have a Find and Cancel button set located in the lower-right portion of a
+            dialog. If we localize the button text using 4D’s BUTTON TEXT command, the button labels change,
+            but the buttons remain the same size.
+              BUTTON TEXT(bFind;&quot;Rechercher&quot;)
+              BUTTON TEXT(bCancel;&quot;Annuler&quot;)
+
+            By replacing 4D’s BUTTON TEXT command with the Fnd_Gen_ButtonText method, the buttons are
+            now resized to fit the new labels.
+              Fnd_Gen_ButtonText (-&gt;bFind;&quot;Rechercher&quot;;Align Right )
+              Fnd_Gen_ButtonText (-&gt;bCancel;&quot;Annuler&quot;;Align Right )
+
+            However, now the Find button has expanded so that the Cancel button is no longer properly positioned.
+            So we can pass a pointer to the Cancel button to Fnd_Gen_ButtonText when we move the Find
+            button. This tells the Fnd_Gen_ButtonText method to shift the Cancel button so that it retains its
+            original relationship with the Find button.
+              Fnd_Gen_ButtonText (-&gt;bFind;&quot;Rechercher&quot;;Align Right ;-&gt;bCancel)
+              Fnd_Gen_ButtonText (-&gt;bCancel;&quot;Annuler&quot;;Align Right )
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

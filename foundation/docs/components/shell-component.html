@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shell Component - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../components.html">Components</a><span class="sep">/</span><span aria-current="page">Shell Component</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html" aria-current="page">Components</a><a href="../commands.html">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page wide">
+      <p class="eyebrow">Component</p>
+      <h1>Shell Component</h1>
+      <p class="lead">20 language-reference entries were extracted for this component.</p>
+      <ul class="command-list"><li><a href="../commands/fnd-hook-shell-administration.html">Fnd_Hook_Shell_Administration</a> <span class="muted">This hook is called to display the shell's Administration Dialog. We have preconfigured it to display 4D's Password Editor, Foundation's List Editor and Sequence Number Editor,...</span></li>
+<li><a href="../commands/fnd-hook-shell-setup.html">Fnd_Hook_Shell_Setup</a> <span class="muted">Here is where the developer sets up information about this particular database. Fnd_Gen_SetDatabaseInfo (&quot;NAME&quot;;&quot;Super Accounting Program&quot;) Fnd_Gen_SetDatabaseInfo...</span></li>
+<li><a href="../commands/fnd-hook-shell-find.html">Fnd_Hook_Shell_Find</a> <span class="muted">This hook gives you a place to configure Foundation's Find Dialog if you want to alter the default configuration. You can call the Fnd_Gen_CurrentTable method to determine the...</span></li>
+<li><a href="../commands/fnd-hook-shell-initializeplugins.html">Fnd_Hook_Shell_InitializePlugIns</a> <span class="muted">Use this method to initialize any plugins by calling their activation routines. This hook is called in the On Startup method for single-user and 4D Client, and also from the On...</span></li>
+<li><a href="../commands/fnd-hook-shell-navpalette.html">Fnd_Hook_Shell_NavPalette</a> <span class="muted">Fnd_Hook_Shell_Print Fnd_Hook_Shell_Print</span></li>
+<li><a href="../commands/fnd-hook-shell-opentable.html">Fnd_Hook_Shell_OpenTable</a> <span class="muted">This hook sets up Foundation's Open Table dialog before it is displayed. Call Fnd_Shell_OpenTableAdd to specify the table names to display.</span></li>
+<li><a href="../commands/fnd-hook-shell-sort.html">Fnd_Hook_Shell_Sort</a> <span class="muted">This hook gives you a place to configure Foundation's Sort dialog if you want to alter the default configuration. You can call the Fnd_Gen_CurrentTable method to determine the...</span></li>
+<li><a href="../commands/fnd-hook-shell-specialfunctions.html">Fnd_Hook_Shell_SpecialFunctions</a> <span class="muted">This hook is called to display the shell's Special Functions Dialog. Routines in this dialog are available to all database users. By default, there are no options set up in...</span></li>
+<li><a href="../commands/fnd-hook-shell-startup.html">Fnd_Hook_Shell_Startup</a> <span class="muted">Place any startup code here that you want to run while the startup dialog is displayed. You can also call your startup stuff before or after Fnd_Shell_OnStartup is called from...</span></li>
+<li><a href="../commands/fnd-shell-administration.html">Fnd_Shell_Administration</a> <span class="muted"></span></li>
+<li><a href="../commands/fnd-shell-excludefromquit.html">Fnd_Shell_ExcludeFromQuit</a> <span class="muted">Normally when the user selects Quit from the File menu, Foundation does a call process to each process that was procedurally created and waits for all of these processes to...</span></li>
+<li><a href="../commands/fnd-shell-info.html">Fnd_Shell_Info</a> <span class="muted">Returns the requested information about the component. $version_t:=Fnd_Shell_Info (&quot;version&quot;)</span></li>
+<li><a href="../commands/fnd-shell-isrunning.html">Fnd_Shell_IsRunning</a> <span class="muted">This function returns True if the shell is running. This method is only needed during development. It will return False if you have selected Quit from the File menu, and the...</span></li>
+<li><a href="../commands/fnd-shell-navigationpalette.html">Fnd_Shell_NavigationPalette</a> <span class="muted">Fnd_Shell_NavigationPallette</span></li>
+<li><a href="../commands/fnd-shell-onexit.html">Fnd_Shell_OnExit</a> <span class="muted">This method must be called from the database's On Exit and On Server Shutdown database methods.</span></li>
+<li><a href="../commands/fnd-shell-onstartup.html">Fnd_Shell_OnStartup</a> <span class="muted">The startup routine for the Foundation Shell. This method must be called from the database's On Startup and On Server Startup database methods.</span></li>
+<li><a href="../commands/fnd-shell-opentabledialog.html">Fnd_Shell_OpenTableDialog</a> <span class="muted">Displays a dialog with the names of all visible tables. If the user selects one and clicks the OK button the table is displayed in a new window (even if that table is already...</span></li>
+<li><a href="../commands/fnd-shell-print.html">Fnd_Shell_Print</a> <span class="muted">Call this method to display the shell's Print Dialog. Configure the contents of the dialog using the Fnd_Hook_Shell_Print hook.</span></li>
+<li><a href="../commands/fnd-shell-show4dsplashscreen.html">Fnd_Shell_Show4DSplashScreen</a> <span class="muted">Allows the developer to display the 4D splash screen, or default window, so the database can be used in the User environment. No longer necessary in 4D v11, as there is no User...</span></li>
+<li><a href="../commands/fnd-shell-specialfunctions.html">Fnd_Shell_SpecialFunctions</a> <span class="muted"></span></li></ul>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

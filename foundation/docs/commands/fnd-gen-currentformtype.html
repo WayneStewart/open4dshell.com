@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_CurrentFormType - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_CurrentFormType</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_CurrentFormType</h1>
+      <p class="signature">Fnd_Gen_CurrentFormType ({form type}) -&gt; Number</p>
+      <p class="meta">Legacy manual page 113</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>form type</td><td>Longint</td><td>Form type constant</td></tr><tr><td>Function result</td><td>Number</td><td>Form type constant</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>If no parameters are passed, Fnd_Gen_CurrentFormType returns the type of the currently displayed form. Here are the values that this routine might return: Value              Constant                                       Description 0                  Fnd_Gen_NoForm                                 No window 1                  Fnd_Gen_UnknownForm                            Unknown form type 2                  Fnd_Gen_OutputForm                             An output form 3                  Fnd_Gen_InputForm                              An input form 4                  Fnd_Gen_PreferencesForm                        The Preferences window 5                  Fnd_Gen_AboutForm                              The About box</p>
+<p>Use this method to determine the contents of the front most window. This gives you a way to determine if an input form or an output form is front most. Constants are also included to determine if other Foundation windows are front most. Use this routine from methods called from the Administration dialog, the Print dialog, and the Special Functions dialog to determine if the user is viewing a record or selection of records. For example, it may be important to a printing routine to know at runtime if the user is viewing an input form or an output form. You can pass a number to this routine from your own non-modal windows if you want to later be able to determine if they are front most.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_CurrentFormType ({form type}) ➔ Number
+
+              Parameter                     Type           Description
+              form type                     Longint        Form type constant
+              Function result               Number         Form type constant
+
+            If no parameters are passed, Fnd_Gen_CurrentFormType returns the type of the currently displayed
+            form. Here are the values that this routine might return:
+              Value              Constant                                       Description
+              0                  Fnd_Gen_NoForm                                 No window
+              1                  Fnd_Gen_UnknownForm                            Unknown form type
+              2                  Fnd_Gen_OutputForm                             An output form
+              3                  Fnd_Gen_InputForm                              An input form
+              4                  Fnd_Gen_PreferencesForm                        The Preferences window
+              5                  Fnd_Gen_AboutForm                              The About box
+
+            Use this method to determine the contents of the front most window. This gives you a way to determine
+            if an input form or an output form is front most. Constants are also included to determine if other
+            Foundation windows are front most.
+            Use this routine from methods called from the Administration dialog, the Print dialog, and the Special
+            Functions dialog to determine if the user is viewing a record or selection of records. For example, it may
+            be important to a printing routine to know at runtime if the user is viewing an input form or an output
+            form.
+            You can pass a number to this routine from your own non-modal windows if you want to later be able to
+            determine if they are front most.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

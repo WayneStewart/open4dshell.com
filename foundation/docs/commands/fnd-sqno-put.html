@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_SqNo_Put - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_SqNo_Put</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Sequence Numbers Component</p>
+      <h1>Fnd_SqNo_Put</h1>
+      <p class="signature">Fnd_SqNo_Put (group name; number to return)</p>
+      <p class="meta">Legacy manual page 233</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>group name</td><td>Text</td><td>The sequence number group name</td></tr><tr><td>number to return</td><td>Longint</td><td>The number to reuse</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Call this method to return a number to the specified sequence number group. If the number is higher than the current next number, it will be ignored. It will also be ignored if it is already in the list of numbers to reuse, or if the group name does not already exist.</p>
+<pre class="code"><code>Fnd_SqNo_Put (&quot;Invoice Numbers&quot;;1005)</code></pre>
+<p>This method always starts a new process to return the sequence number so the calling process does not have to wait for it to finish.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_SqNo_Put (group name; number to return)
+
+              Parameter                 Type               Description
+              group name                Text               The sequence number group name
+              number to return          Longint            The number to reuse
+
+            Call this method to return a number to the specified sequence number group. If the number is higher
+            than the current next number, it will be ignored. It will also be ignored if it is already in the list of numbers
+            to reuse, or if the group name does not already exist.
+              Fnd_SqNo_Put (&quot;Invoice Numbers&quot;;1005)
+
+            This method always starts a new process to return the sequence number so the calling process does not
+            have to wait for it to finish.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

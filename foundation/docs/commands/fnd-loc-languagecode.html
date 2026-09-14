@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Loc_LanguageCode - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Loc_LanguageCode</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Localization Component</p>
+      <h1>Fnd_Loc_LanguageCode</h1>
+      <p class="signature">Fnd_Loc_LanguageCode ({code}) -&gt; Text</p>
+      <p class="meta">Legacy manual page 152</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>code</td><td>Text</td><td>The language code to use (optional)</td></tr><tr><td>Function Result</td><td>Text</td><td>The current language code</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>If no parameters are passed, this routine returns the current language code that Foundation is using for localization.</p>
+<pre class="code"><code>$languageCode:=Fnd_Loc_LanguageCode</code></pre>
+<p>If a language code is passed to this routine, it is set as the new localization code.</p>
+<pre class="code"><code>Fnd_Loc_LanguageCode (&quot;FR&quot;)</code></pre>
+<p>If you are working with a database that may not have the Foundation Language component installed, you can just call the Fnd_Gen_ComponentInfo routine like this:</p>
+<pre class="code"><code>$languageCode:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)</code></pre>
+<p>The Foundation General component will then test to see if the Localization component is installed, and if so, return the current language code. If the Localization component is not installed, “Component Not Available” will be returned.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Loc_LanguageCode ({code}) ➜ Text
+
+              Parameter                      Type                       Description
+              code                           Text                       The language code to use (optional)
+              Function Result                Text                       The current language code
+
+            If no parameters are passed, this routine returns the current language code that Foundation is using for
+            localization.
+              $languageCode:=Fnd_Loc_LanguageCode
+
+            If a language code is passed to this routine, it is set as the new localization code.
+              Fnd_Loc_LanguageCode (&quot;FR&quot;)
+
+            If you are working with a database that may not have the Foundation Language component installed, you
+            can just call the Fnd_Gen_ComponentInfo routine like this:
+              $languageCode:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)
+
+            The Foundation General component will then test to see if the Localization component is installed, and
+            if so, return the current language code. If the Localization component is not installed, “Component Not
+            Available” will be returned.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

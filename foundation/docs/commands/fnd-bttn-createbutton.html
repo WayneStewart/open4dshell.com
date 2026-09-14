@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Bttn_CreateButton - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Bttn_CreateButton</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Buttons Component</p>
+      <h1>Fnd_Bttn_CreateButton</h1>
+      <p class="signature">Fnd_Bttn_CreateButton (-&gt;button object; -&gt;picture; icon name; label)</p>
+      <p class="meta">Legacy manual page 53</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>button object</td><td>Pointer</td><td>A picture button form object</td></tr><tr><td>picture</td><td>Pointer</td><td>A picture variable</td></tr><tr><td>icon name</td><td>Text</td><td>Name of the icon to use from the 4D picture library</td></tr><tr><td>label</td><td>Text</td><td>Label for the button</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Use this routine in the On Load phase to quickly set up a picture button on a 4D form. Pass this routine a pointer to a picture button form object, a picture variable to hold the button image, the icon name to use and a label to use. Case of : (Form event=On Load ) C_PICTURE(myPicture)</p>
+<pre class="code"><code>Fnd_Bttn_Style (&quot;Small2&quot;)
+Fnd_Bttn_CreateButton (-&gt;myButton;-&gt;myPicture;&quot;Button_Home&quot;;&quot;Home&quot;)</code></pre>
+<p>End case</p>
+<p>The style of the button created will depend on the current button settings set by the Fnd_Bttn_Platform and Fnd_Bttn_Style commands. The first parameter is a pointer to a Picture Button form object. The size of this form object is unimportant, as it will be resized by this call. The object’s attributes do not need to be specified — this routine will set them to properly display a rollover picture button. The picture variable is used as storage space for the picture button’s image. It must be declared as a picture variable before calling this method. You will not need to access this variable to use the button, however, you may clear the contents of this variable when the button is no longer needed. After this call, the picture button will be resized to properly fit the button image. This varies depending on the current button style, the size of the icon, and the width of the button label. If necessary, you can procedurally move the button using 4D’s MOVE OBJECT command. You can control the button’s attributes using 4D’s ENABLE BUTTON and DISABLE BUTTON commands: DISABLE BUTTON(myButton)</p>
+<p>Use the form object’s method to detect a click on the button: Case of : (Form event=On Clicked )</p>
+<pre class="code"><code>` Put your code here to handle the click.</code></pre>
+<p>End case</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Bttn_CreateButton (-&gt;button object; -&gt;picture; icon name; label)
+
+              Parameter                  Type             Description
+              button object              Pointer          A picture button form object
+              picture                    Pointer          A picture variable
+              icon name                  Text             Name of the icon to use from the 4D picture library
+              label                      Text             Label for the button
+
+            Use this routine in the On Load phase to quickly set up a picture button on a 4D form. Pass this routine
+            a pointer to a picture button form object, a picture variable to hold the button image, the icon name to
+            use and a label to use.
+              Case of
+               : (Form event=On Load )
+              		C_PICTURE(myPicture)
+              		Fnd_Bttn_Style (&quot;Small2&quot;)
+              		Fnd_Bttn_CreateButton (-&gt;myButton;-&gt;myPicture;&quot;Button_Home&quot;;&quot;Home&quot;)
+              End case
+
+            The style of the button created will depend on the current button settings set by the Fnd_Bttn_Platform
+            and Fnd_Bttn_Style commands.
+            The first parameter is a pointer to a Picture Button form object. The size of this form object is
+            unimportant, as it will be resized by this call. The object’s attributes do not need to be specified — this
+            routine will set them to properly display a rollover picture button.
+            The picture variable is used as storage space for the picture button’s image. It must be declared as a
+            picture variable before calling this method. You will not need to access this variable to use the button,
+            however, you may clear the contents of this variable when the button is no longer needed.
+            After this call, the picture button will be resized to properly fit the button image. This varies depending
+            on the current button style, the size of the icon, and the width of the button label. If necessary, you can
+            procedurally move the button using 4D’s MOVE OBJECT command.
+            You can control the button’s attributes using 4D’s ENABLE BUTTON and DISABLE BUTTON
+            commands:
+              DISABLE BUTTON(myButton)
+
+            Use the form object’s method to detect a click on the button:
+              Case of
+               : (Form event=On Clicked )
+              		 ` Put your code here to handle the click.
+              End case
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

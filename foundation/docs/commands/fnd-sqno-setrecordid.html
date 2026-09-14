@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_SqNo_SetRecordID - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_SqNo_SetRecordID</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Sequence Numbers Component</p>
+      <h1>Fnd_SqNo_SetRecordID</h1>
+      <p class="signature">Fnd_SqNo_SetRecordID ({-&gt;table})</p>
+      <p class="meta">Legacy manual page 234</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>table</td><td>Pointer</td><td>The table for which to return a number (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Although you can use the Fnd_SqNo_Get function to get sequence numbers to be used as record IDs, we would like to suggest another method. The Fnd_SqNo_SetRecordID method is designed specifically to assign a value for a table. Pass it a pointer to the table for which you want it to assign a new number, and it will assign a unique value to the key field. Pass this routine a pointer to the table for which you want it to set the unique record ID number. If no table is specified, either the current form table or the trigger table will be used. This method will check to see if the record already has an ID number. If it does not, this routine will assign it a number. Case of : (Form event=On Load ) Fnd_SqNo_SetRecordID End case</p>
+<p>This routine will call the Fnd_Hook_SqNo_SetIDField hook to determine which field is the key field for the table. It assumes you are using a long integer key field. One of the benefits of using this routine rather than the Fnd_SqNo_Get function is this routine tracks the unique numbers by the table number, not by the table’s name. So you can safely change the name of a table without updating any calls to this method. Sequence numbers assigned using this function can also be “fixed” using the Fix button in the Sequence Number Editor or by calling the Fnd_SqNo_Fix method. You cannot return an unused ID number for reuse, since ID fields should not contain data that will be important to the end-users. By not returning numbers to the sequence number for reuse, there is less need to worry about causing delays for other users and processes wishing to access this function for the same table.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_SqNo_SetRecordID ({-&gt;table})
+
+              Parameter                 Type               Description
+              table                     Pointer            The table for which to return a number (optional)
+
+            Although you can use the Fnd_SqNo_Get function to get sequence numbers to be used as record
+            IDs, we would like to suggest another method. The Fnd_SqNo_SetRecordID method is designed
+            specifically to assign a value for a table. Pass it a pointer to the table for which you want it to assign a new
+            number, and it will assign a unique value to the key field.
+            Pass this routine a pointer to the table for which you want it to set the unique record ID number. If no
+            table is specified, either the current form table or the trigger table will be used. This method will check to
+            see if the record already has an ID number. If it does not, this routine will assign it a number.
+              Case of
+               : (Form event=On Load )
+              		Fnd_SqNo_SetRecordID
+              End case
+
+            This routine will call the Fnd_Hook_SqNo_SetIDField hook to determine which field is the key field
+            for the table. It assumes you are using a long integer key field.
+            One of the benefits of using this routine rather than the Fnd_SqNo_Get function is this routine tracks
+            the unique numbers by the table number, not by the table’s name. So you can safely change the name
+            of a table without updating any calls to this method. Sequence numbers assigned using this function can
+            also be “fixed” using the Fix button in the Sequence Number Editor or by calling the Fnd_SqNo_Fix
+            method.
+            You cannot return an unused ID number for reuse, since ID fields should not contain data that will be
+            important to the end-users. By not returning numbers to the sequence number for reuse, there is less
+            need to worry about causing delays for other users and processes wishing to access this function for the
+            same table.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

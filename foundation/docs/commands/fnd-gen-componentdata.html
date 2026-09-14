@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_ComponentData - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_ComponentData</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_ComponentData</h1>
+      <p class="signature">Fnd_Gen_ComponentData (-&gt;codes array{; -&gt;inst vers {; -&gt;cur vers}})</p>
+      <p class="meta">Legacy manual page 111</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>codes array</td><td>Pointer</td><td>A text array to receive the component prefixes</td></tr><tr><td>inst vers</td><td>Pointer</td><td>A text array to receive the installed version numbers (optional)</td></tr><tr><td>cur vers</td><td>Pointer</td><td>A text array to receive the current version numbers (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This method returns in the passed arrays information about the Foundation components. All known Foundation components are returned in the arrays, even if the component is not currently installed. If a component is not installed, empty text strings are returned in the current versions array. ARRAY TEXT(aComponentsPrefixes;0) ARRAY TEXT(aInstalledVers;0) ARRAY TEXT(aCurrentVers;0)</p>
+<pre class="code"><code>Fnd_Gen_ComponentData (-&gt;aComponentsPrefixes;-&gt;aInstalledVers;-&gt;aCurrentVers)</code></pre>
+<p>To get a component’s full name from the prefix, call the component’s _Info method: ARRAY TEXT(aComponentsPrefixes;0)</p>
+<pre class="code"><code>Fnd_Gen_ComponentData (-&gt;aComponentsPrefixes)</code></pre>
+<p>ARRAY TEXT(aComponentNames;Size of array(aComponentsPrefixes)) For($i;1;Size of array(aComponentNames))</p>
+<pre class="code"><code>aComponentNames{$i}:=Fnd_Gen_ComponentInfo (aComponentsPrefixes{$i};”name”)</code></pre>
+<p>End for</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_ComponentData (-&gt;codes array{; -&gt;inst vers {; -&gt;cur vers}})
+
+              Parameter             Type           Description
+              codes array           Pointer        A text array to receive the component prefixes
+              inst vers             Pointer        A text array to receive the installed version numbers (optional)
+              cur vers              Pointer        A text array to receive the current version numbers (optional)
+
+            This method returns in the passed arrays information about the Foundation components. All known
+            Foundation components are returned in the arrays, even if the component is not currently installed. If a
+            component is not installed, empty text strings are returned in the current versions array.
+              ARRAY TEXT(aComponentsPrefixes;0)
+              ARRAY TEXT(aInstalledVers;0)
+              ARRAY TEXT(aCurrentVers;0)
+              Fnd_Gen_ComponentData (-&gt;aComponentsPrefixes;-&gt;aInstalledVers;-&gt;aCurrentVers)
+
+            To get a component’s full name from the prefix, call the component’s _Info method:
+              ARRAY TEXT(aComponentsPrefixes;0)
+              Fnd_Gen_ComponentData (-&gt;aComponentsPrefixes)
+              ARRAY TEXT(aComponentNames;Size of array(aComponentsPrefixes))
+              For($i;1;Size of array(aComponentNames))
+                aComponentNames{$i}:=Fnd_Gen_ComponentInfo (aComponentsPrefixes{$i};”name”)
+              End for</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

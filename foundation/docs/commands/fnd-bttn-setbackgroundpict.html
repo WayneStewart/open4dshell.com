@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Bttn_SetBackgroundPict - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Bttn_SetBackgroundPict</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Buttons Component</p>
+      <h1>Fnd_Bttn_SetBackgroundPict</h1>
+      <p class="signature">Fnd_Bttn_SetBackgroundPict (left; middle; right)</p>
+      <p class="meta">Legacy manual page 56</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>left</td><td>Picture</td><td>Left edge of the button</td></tr><tr><td>middle</td><td>Picture</td><td>Middle of the button (generally 1 pixel wide)</td></tr><tr><td>right</td><td>Picture</td><td>Right edge of the button</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>If you would like to design your own artwork to be used as a button background, pass images to these button parts using this method. GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundLeft&quot;;$leftImage) GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundMiddle&quot;;$middleImage) GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundRight&quot;;$rightImage)</p>
+<pre class="code"><code>Fnd_Bttn_SetBackgroundPict ($leftImage;$middleImage;$rightImage)</code></pre>
+<p>For example these images are used to create the Small1 button for Macintosh (enlarged):</p>
+<p>Left            Middle   Right</p>
+<p>All three images must be exactly the same height. The middle image must be exactly 1 pixel wide. It will be replicated as needed to provide a final button background image wide enough for the specified icon and text. The middle image is required, but the outer images (left and right) are optional. For example, the Macintosh style Large button uses only a middle image to create the button background. No left or right ends to the button are used.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Bttn_SetBackgroundPict (left; middle; right)
+
+              Parameter                   Type           Description
+              left                        Picture        Left edge of the button
+              middle                      Picture        Middle of the button (generally 1 pixel wide)
+              right                       Picture        Right edge of the button
+
+            If you would like to design your own artwork to be used as a button background, pass images to these
+            button parts using this method.
+              GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundLeft&quot;;$leftImage)
+              GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundMiddle&quot;;$middleImage)
+              GET PICTURE FROM LIBRARY(&quot;MyButtonBackgroundRight&quot;;$rightImage)
+              Fnd_Bttn_SetBackgroundPict ($leftImage;$middleImage;$rightImage)
+
+            For example these images are used to create the Small1 button for Macintosh (enlarged):
+
+                 Left            Middle   Right
+
+            All three images must be exactly the same height. The middle image must be exactly 1 pixel wide. It will
+            be replicated as needed to provide a final button background image wide enough for the specified icon
+            and text.
+            The middle image is required, but the outer images (left and right) are optional. For example, the
+            Macintosh style Large button uses only a middle image to create the button background. No left or right
+            ends to the button are used.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Reg_Reset - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Reg_Reset</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Registration Component</p>
+      <h1>Fnd_Reg_Reset</h1>
+      <p class="signature">Fnd_Reg_Reset ({feature code})</p>
+      <p class="meta">Legacy manual page 212</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>feature code</td><td>Text</td><td>A registration feature code or “” (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Call this to clear any existing registration information for the specified feature:</p>
+<pre class="code"><code>Fnd_Reg_Reset (&quot;webserver&quot;)</code></pre>
+<p>If called with no parameters, this routine will clear the registration information for the application. In addition to removing a previously entered user name and unlock code, this routine clears the start date set by calling Fnd_Reg_Init.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Reg_Reset ({feature code})
+
+              Parameter                 Type               Description
+              feature code              Text               A registration feature code or “” (optional)
+
+            Call this to clear any existing registration information for the specified feature:
+              Fnd_Reg_Reset (&quot;webserver&quot;)
+
+            If called with no parameters, this routine will clear the registration information for the application.
+            In addition to removing a previously entered user name and unlock code, this routine clears the start date
+            set by calling Fnd_Reg_Init.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

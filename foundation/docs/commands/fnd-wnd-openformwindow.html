@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Wnd_OpenFormWindow - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Wnd_OpenFormWindow</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Windows Component</p>
+      <h1>Fnd_Wnd_OpenFormWindow</h1>
+      <p class="signature">Fnd_Wnd_OpenFormWindow (-&gt;table; form name) -&gt; Number</p>
+      <p class="meta">Legacy manual page 264</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>table</td><td>Pointer</td><td>Pointer to the form’s table</td></tr><tr><td>form name</td><td>Text</td><td>Name of the form</td></tr><tr><td>Function result</td><td>Number</td><td>The new window’s reference number</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Pass this method a pointer to a table and a form name from that table, and it will open a new window using the specified form’s width and height. You can use other Windows component routines to set the window’s type, title, and close box before calling this routine. Unless the new window uses a previously saved position (see the Fnd_Wnd_UseSavedPosition method), the new window will use the position set by the Fnd_Wnd_Position method.</p>
+<pre class="code"><code>Fnd_Wnd_Title (&quot;New Invoice for &quot;+[Customers]Name)
+Fnd_Wnd_Type (Movable form dialog box )
+Fnd_Wnd_Position (Fnd_Wnd_CenterOnWindow )
+Fnd_Wnd_OpenFormWindow (-&gt;[Invoices];&quot;Invoice&quot;)
+DIALOG([Invoices];&quot;Invoice&quot;)</code></pre>
+<p>CLOSE WINDOW</p>
+<p>If you do not need the new window’s reference number you can safely call this method as a command, rather than as a function.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Wnd_OpenFormWindow (-&gt;table; form name) ➜ Number
+
+              Parameter               Type              Description
+              table                   Pointer           Pointer to the form’s table
+              form name               Text              Name of the form
+              Function result         Number            The new window’s reference number
+
+            Pass this method a pointer to a table and a form name from that table, and it will open a new window
+            using the specified form’s width and height. You can use other Windows component routines to set the
+            window’s type, title, and close box before calling this routine. Unless the new window uses a previously
+            saved position (see the Fnd_Wnd_UseSavedPosition method), the new window will use the position
+            set by the Fnd_Wnd_Position method.
+              Fnd_Wnd_Title (&quot;New Invoice for &quot;+[Customers]Name)
+              Fnd_Wnd_Type (Movable form dialog box )
+              Fnd_Wnd_Position (Fnd_Wnd_CenterOnWindow )
+              Fnd_Wnd_OpenFormWindow (-&gt;[Invoices];&quot;Invoice&quot;)
+              DIALOG([Invoices];&quot;Invoice&quot;)
+              CLOSE WINDOW
+
+            If you do not need the new window’s reference number you can safely call this method as a command,
+            rather than as a function.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_BugAlert - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_BugAlert</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_BugAlert</h1>
+      <p class="signature">Fnd_Gen_BugAlert (method{; details})</p>
+      <p class="meta">Legacy manual page 107</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>method</td><td>Text</td><td>Method name</td></tr><tr><td>details</td><td>Text</td><td>Details about the problem (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Gen_BugAlert method provides a simple method for the developer to notify the end-user of a problem that can happen only as a result of a programming error. For example, if you create a method that requires two parameters, you can use 4D’s Count parameters function to determine if two parameters have been passed. If the wrong number of parameters has been passed, you would use the Fnd_Gen_BugAlert method to alert the end-user to the problem. The Fnd_Gen_BugAlert method will describe the problem and ask the user to notify the database developer. If(Count parameters&lt;2)</p>
+<pre class="code"><code>Fnd_Gen_BugAlert (Current method name;&quot;Too few parameters were passed.&quot;)</code></pre>
+<p>End if</p>
+<p>If you want to provide a more specific error message, pass a complete sentence as the second parameter. This sentence will be displayed following the first sentence in the error message as shown below.</p>
+<p>Do not use 4D’s Current method name function as the first parameter to this method if you are calling it from a 4D component designed for 4D 2003.2 or earlier. With these earlier versions of 4D 2003, 4D does not return the method’s name if Current method name is called from a method in a component. Instead, you must hard-code the current method name. This method is intended to display errors in the code, not runtime errors that occur because a file is not where you expect it to be, or a value is not entered properly. Put this method only in places where you assume it will never be called. After displaying the alert, this routine calls 4D’s TRACE command to help you debug the error. The TRACE command is ignored if the database is compiled.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_BugAlert (method{; details})
+
+              Parameter                 Type             Description
+              method                    Text             Method name
+              details                   Text             Details about the problem (optional)
+
+            The Fnd_Gen_BugAlert method provides a simple method for the developer to notify the end-user of a
+            problem that can happen only as a result of a programming error.
+            For example, if you create a method that requires two parameters, you can use 4D’s
+            Count parameters function to determine if two parameters have been passed. If the wrong number
+            of parameters has been passed, you would use the Fnd_Gen_BugAlert method to alert the end-user to
+            the problem. The Fnd_Gen_BugAlert method will describe the problem and ask the user to notify the
+            database developer.
+              If(Count parameters&lt;2)
+                Fnd_Gen_BugAlert (Current method name;&quot;Too few parameters were passed.&quot;)
+              End if
+
+            If you want to provide a more specific error message, pass a complete sentence as the second parameter.
+            This sentence will be displayed following the first sentence in the error message as shown below.
+
+            Do not use 4D’s Current method name function as the first parameter to this method if you are
+            calling it from a 4D component designed for 4D 2003.2 or earlier. With these earlier versions of 4D
+            2003, 4D does not return the method’s name if Current method name is called from a method in a
+            component. Instead, you must hard-code the current method name.
+            This method is intended to display errors in the code, not runtime errors that occur because a file is not
+            where you expect it to be, or a value is not entered properly. Put this method only in places where you
+            assume it will never be called.
+            After displaying the alert, this routine calls 4D’s TRACE command to help you debug the error. The
+            TRACE command is ignored if the database is compiled.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

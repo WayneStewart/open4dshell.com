@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_VS_CreateNameLists - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_VS_CreateNameLists</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Virtual Structure Component</p>
+      <h1>Fnd_VS_CreateNameLists</h1>
+      <p class="signature">Fnd_VS_CreateNameLists</p>
+      <p class="meta">Legacy manual page 255</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>No parameters required</td><td></td><td></td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This routine will create a set of 4D lists that can be used by the virtual structure routines. This routine is called from Foundation’s developer menu. After calling this method, you will see a confirmation dialog: Click the Continue button, and a dialog will ask you to enter a two-character language code for the new lists: Enter the language code of your choice, and then Foundation will generate a 4D list for each table in the database. The lists will be named VS_Table001_XX, VS_Table002_XX, VS_Table003_XX, etc. The “XX” will actually be the code you entered in the dialog. The numeric part of the name represents the table number in the structure. So VS_Table001_XX contains the table and field names for the first table, the list named VS_Table002_XX contains the table and field names for the second table, and so on. By referencing the list names by number rather than by name, you can safely change the name of a 4D table without affecting these lists. Once the lists are created, you can edit any of the table or field names by editing the lists using the 4D List editor. Then, add a call to the Fnd_VS_UseNameLists method in your startup routine. This will cause the modified table and field names to be used by the other routines in this component. The new names will also be passed to 4D’s SET TABLE TITLES and SET FIELD TITLES commands, so the new names will be used in the 4D editors. When you add new tables or fields to the structure, you can call this command again to update these lists. Your existing changes will not be touched, so it is safe to run this command at any time. The routine will only add missing table or field names. You can safely delete any of these lists - if they are not found when the Fnd_VS_UseNameLists method is called, then the actual 4D list names will be used instead.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_VS_CreateNameLists
+
+              Parameter                 Type               Description
+              No parameters required.
+
+            This routine will create a set of 4D lists that can be used by the virtual structure routines. This routine is
+            called from Foundation’s developer menu.
+            After calling this method, you will see a confirmation dialog:
+            Click the Continue button, and a dialog will ask you to enter a two-character language code for the new
+            lists:
+            Enter the language code of your choice, and then Foundation will generate a 4D list for each table in
+            the database. The lists will be named VS_Table001_XX, VS_Table002_XX, VS_Table003_XX, etc. The
+            “XX” will actually be the code you entered in the dialog. The numeric part of the name represents the
+            table number in the structure. So VS_Table001_XX contains the table and field names for the first table,
+            the list named VS_Table002_XX contains the table and field names for the second table, and so on. By
+            referencing the list names by number rather than by name, you can safely change the name of a 4D table
+            without affecting these lists.
+            Once the lists are created, you can edit any of the table or field names by editing the lists using the 4D
+            List editor. Then, add a call to the Fnd_VS_UseNameLists method in your startup routine. This will
+            cause the modified table and field names to be used by the other routines in this component. The new
+            names will also be passed to 4D’s SET TABLE TITLES and SET FIELD TITLES commands, so the
+            new names will be used in the 4D editors.
+            When you add new tables or fields to the structure, you can call this command again to update these
+            lists. Your existing changes will not be touched, so it is safe to run this command at any time. The
+            routine will only add missing table or field names.
+            You can safely delete any of these lists - if they are not found when the Fnd_VS_UseNameLists
+            method is called, then the actual 4D list names will be used instead.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

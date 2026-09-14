@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Text_EncodeBase64Blob - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Text_EncodeBase64Blob</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Text Component</p>
+      <h1>Fnd_Text_EncodeBase64Blob</h1>
+      <p class="signature">Fnd_Text_EncodeBase64Blob (-&gt;blob{; line breaks?{; line break character(s)}})</p>
+      <p class="meta">Legacy manual page 237</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>blob</td><td>Pointer</td><td>Pointer to a blob containing ASCII text</td></tr><tr><td>line breaks?</td><td>Boolean</td><td>Add line breaks (optional)</td></tr><tr><td>line break character</td><td>Text</td><td>2 characters for line break (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Text_EncodeBase64Blob method converts a blob from ASCII text to Base64. If the optional line breaks is true, line breaks will be added to the blob. If the optional line break character is passed, it will be used as the line break character in the blob.</p>
+<pre class="code"><code>Fnd_Text_EncodeBase64Blob (-&gt;blob; true; &quot;LF&quot;)</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Text_EncodeBase64Blob (-&gt;blob{; line breaks?{; line break character(s)}})
+
+              Parameter                Type               Description
+              blob                     Pointer            Pointer to a blob containing ASCII text
+              line breaks?             Boolean            Add line breaks (optional)
+              line break character     Text               2 characters for line break (optional)
+
+            The Fnd_Text_EncodeBase64Blob method converts a blob from ASCII text to Base64. If the optional
+            line breaks is true, line breaks will be added to the blob. If the optional line break character is passed, it
+            will be used as the line break character in the blob.
+
+              Fnd_Text_EncodeBase64Blob (-&gt;blob; true; &quot;LF&quot;)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

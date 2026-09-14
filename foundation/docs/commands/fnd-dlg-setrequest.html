@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Dlg_SetRequest - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Dlg_SetRequest</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Dialogs Component</p>
+      <h1>Fnd_Dlg_SetRequest</h1>
+      <p class="signature">Fnd_Dlg_SetRequest ({default})</p>
+      <p class="meta">Legacy manual page 96</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>default</td><td>Text</td><td>Default value (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Dlg_SetRequest routine sets up the dialog to allow the user to enter a value when calling the Fnd_Dlg_Display routine. Call this method with no parameters to cause the request area to be displayed in the dialog:</p>
+<pre class="code"><code>Fnd_Dlg_SetText (&quot;Enter your password:&quot;)</code></pre>
+<p>Fnd_Dlg_SetRequest Fnd_Dlg_Display If(OK=1)</p>
+<pre class="code"><code>$password_t:=Fnd_Dlg_GetRequest</code></pre>
+<p>End if</p>
+<p>Or pass a text value to display in the request field:</p>
+<pre class="code"><code>Fnd_Dlg_SetText (&quot;Enter the preferred date:&quot;)
+Fnd_Dlg_SetRequest (String(Current date))</code></pre>
+<p>Fnd_Dlg_Display If(OK=1)</p>
+<pre class="code"><code>$date_d:=Fnd_Dlg_GetRequest</code></pre>
+<p>End if</p>
+<p>If you pass “*” to the default parameter, the entry area displays bullets rather than text. This feature is useful for entering passwords.</p>
+<pre class="code"><code>Fnd_Dlg_SetText (&quot;Enter your password:&quot;)
+Fnd_Dlg_SetRequest (&quot;*&quot;)</code></pre>
+<p>Fnd_Dlg_Display If(OK=1)</p>
+<pre class="code"><code>$password_t:=Fnd_Dlg_GetRequest</code></pre>
+<p>End if</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Dlg_SetRequest ({default})
+
+              Parameter                 Type               Description
+              default                   Text               Default value (optional)
+
+            The Fnd_Dlg_SetRequest routine sets up the dialog to allow the user to enter a value when calling
+            the Fnd_Dlg_Display routine. Call this method with no parameters to cause the request area to be
+            displayed in the dialog:
+              Fnd_Dlg_SetText (&quot;Enter your password:&quot;)
+              Fnd_Dlg_SetRequest
+              Fnd_Dlg_Display
+              If(OK=1)
+                $password_t:=Fnd_Dlg_GetRequest
+              End if
+
+            Or pass a text value to display in the request field:
+              Fnd_Dlg_SetText (&quot;Enter the preferred date:&quot;)
+              Fnd_Dlg_SetRequest (String(Current date))
+              Fnd_Dlg_Display
+              If(OK=1)
+                $date_d:=Fnd_Dlg_GetRequest
+              End if
+
+            If you pass “*” to the default parameter, the entry area displays bullets rather than text. This feature is
+            useful for entering passwords.
+              Fnd_Dlg_SetText (&quot;Enter your password:&quot;)
+              Fnd_Dlg_SetRequest (&quot;*&quot;)
+              Fnd_Dlg_Display
+              If(OK=1)
+                $password_t:=Fnd_Dlg_GetRequest
+              End if
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

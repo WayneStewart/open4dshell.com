@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Dlg_SetText - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Dlg_SetText</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Dialogs Component</p>
+      <h1>Fnd_Dlg_SetText</h1>
+      <p class="signature">Fnd_Dlg_SetText (text 1{; text 2})</p>
+      <p class="meta">Legacy manual page 97</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>text 1</td><td>Text</td><td>Primary alert text</td></tr><tr><td>text 2</td><td>Text</td><td>Smaller alert text (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Dlg_SetText routine sets the message texts for the upcoming dialogs opened with the Fnd_Dlg_Display and Fnd_Dlg_MessageOpen routines.</p>
+<p>See the Fnd_Dlg_Display routine for a code example. You can define a smaller alert text as on Macintosh OS X in the text 2 parameter as shown in the dialog below:</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Dlg_SetText (text 1{; text 2})
+
+              Parameter                Type             Description
+              text 1                   Text             Primary alert text
+              text 2                   Text             Smaller alert text (optional)
+
+            The Fnd_Dlg_SetText routine sets the message texts for the upcoming dialogs opened with the
+            Fnd_Dlg_Display and Fnd_Dlg_MessageOpen routines.
+
+            See the Fnd_Dlg_Display routine for a code example.
+            You can define a smaller alert text as on Macintosh OS X in the text 2 parameter as shown in the dialog
+            below:</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Nav_AddButtonTable - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Nav_AddButtonTable</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Navigation Component</p>
+      <h1>Fnd_Nav_AddButtonTable</h1>
+      <p class="signature">Fnd_Nav_AddButtonTable (-&gt;table{; label{; foreground color; background color}})</p>
+      <p class="meta">Legacy manual page 167</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>table</td><td>Pointer</td><td>Table</td></tr><tr><td>label</td><td>Text</td><td>Button label (optional)</td></tr><tr><td>foreground color</td><td>Longint</td><td>Text color (optional)</td></tr><tr><td>background color</td><td>Longint</td><td>Background color (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This method adds a new button to the palette and assigns the specified table to it.</p>
+<pre class="code"><code>Fnd_Nav_AddButtonTable (-&gt;[Invoices])
+Fnd_Nav_AddButtonTable (-&gt;[People];&quot;Customers&quot;)</code></pre>
+<p>This routine calls Foundation’s IO component to display the table. If the IO component is not available, an error will occur when the button is clicked. If the Foundation Virtual Structure component is available, it will be used to determine the table name if no label is specified. Otherwise the actual table name will be used. Buttons are always added to the palette after existing palette buttons. To add a button in any other position, just use the Fnd_Nav_Delete to delete all of the existing palette buttons, then recreate the palette using Fnd_Nav_AddButtonMethod and Fnd_Nav_AddButtonTable. See the Fnd_Nav_AddButtonMethod routine for an example.</p>
+<p>You can optionally specify the text color and background color to use for the new button. See 4D’s SET RGB COLORS command documentation for more information about specifying colors. Pass the 4D constant Default foreground color and Default background color to restore the palette’s default colors.</p>
+<pre class="code"><code>` Add a button with blue text and a light blue background color.
+Fnd_Nav_AddButtonTable (-&gt;[Invoices];&quot;&quot;;0x00FF;0x00C6D4FC)</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Nav_AddButtonTable (-&gt;table{; label{; foreground color; background color}})
+
+              Parameter                Type              Description
+              table                    Pointer           Table
+              label                    Text              Button label (optional)
+              foreground color         Longint           Text color (optional)
+              background color         Longint           Background color (optional)
+
+            This method adds a new button to the palette and assigns the specified table to it.
+              Fnd_Nav_AddButtonTable (-&gt;[Invoices])
+              Fnd_Nav_AddButtonTable (-&gt;[People];&quot;Customers&quot;)
+
+            This routine calls Foundation’s IO component to display the table. If the IO component is not available,
+            an error will occur when the button is clicked.
+            If the Foundation Virtual Structure component is available, it will be used to determine the table name if
+            no label is specified. Otherwise the actual table name will be used.
+            Buttons are always added to the palette after existing palette buttons. To add a button in any other
+            position, just use the Fnd_Nav_Delete to delete all of the existing palette buttons, then recreate
+            the palette using Fnd_Nav_AddButtonMethod and Fnd_Nav_AddButtonTable. See the
+            Fnd_Nav_AddButtonMethod routine for an example.
+
+            You can optionally specify the text color and background color to use for the new button. See 4D’s
+            SET RGB COLORS command documentation for more information about specifying colors. Pass the
+            4D constant Default foreground color and Default background color to restore the palette’s default
+            colors.
+                ` Add a button with blue text and a light blue background color.
+              Fnd_Nav_AddButtonTable (-&gt;[Invoices];&quot;&quot;;0x00FF;0x00C6D4FC)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

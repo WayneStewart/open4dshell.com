@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Wnd_UseSavedPosition - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Wnd_UseSavedPosition</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Windows Component</p>
+      <h1>Fnd_Wnd_UseSavedPosition</h1>
+      <p class="signature">Fnd_Wnd_UseSavedPosition ({pref name})</p>
+      <p class="meta">Legacy manual page 269</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>pref name</td><td>Text</td><td>Name of the saved position (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This method tells the window routines we want to try to use a saved position. Pass a window name you have previously added to the user’s preferences by calling the Fnd_Wnd_SavePosition or Fnd_Pref_SetWindow methods. If the preference is available, the saved position will be used rather than the position specified by a call to the Fnd_Wnd_Position method. Your method will look something like this:</p>
+<pre class="code"><code>Fnd_Wnd_UseSavedPosition (&quot;My Saved Window Position&quot;)
+Fnd_Wnd_Position (Fnd_Wnd_CenterOnScreen ) ` In case no preference exists.
+Fnd_Wnd_OpenFormWindow (-&gt;[Invoices];&quot;Invoice&quot;)
+DIALOG([Invoices];&quot;Invoice&quot;)
+Fnd_Wnd_SavePosition (&quot;My Saved Window Position&quot;) ` Save the position.</code></pre>
+<p>CLOSE WINDOW</p>
+<p>If no preference name is specified, the current process name is used as the preference name to retrieve the saved window position.</p>
+<p>Additional Credits Thanks to Jack Delay of Island Reflections for updating the Fnd_Wnd_MoveOnScreen method so that it can properly handle multiple monitors. Constants F  oundation has created a few internal constants that are used by different methods.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Wnd_UseSavedPosition ({pref name})
+
+              Parameter               Type               Description
+              pref name               Text               Name of the saved position (optional)
+
+            This method tells the window routines we want to try to use a saved position. Pass a window name
+            you have previously added to the user’s preferences by calling the Fnd_Wnd_SavePosition or
+            Fnd_Pref_SetWindow methods. If the preference is available, the saved position will be used rather
+            than the position specified by a call to the Fnd_Wnd_Position method.
+            Your method will look something like this:
+              Fnd_Wnd_UseSavedPosition (&quot;My Saved Window Position&quot;)
+              Fnd_Wnd_Position (Fnd_Wnd_CenterOnScreen ) ` In case no preference exists.
+              Fnd_Wnd_OpenFormWindow (-&gt;[Invoices];&quot;Invoice&quot;)
+              DIALOG([Invoices];&quot;Invoice&quot;)
+              Fnd_Wnd_SavePosition (&quot;My Saved Window Position&quot;) ` Save the position.
+              CLOSE WINDOW
+
+            If no preference name is specified, the current process name is used as the preference name to retrieve
+            the saved window position.
+
+Additional Credits
+            Thanks to Jack Delay of Island Reflections for updating the Fnd_Wnd_MoveOnScreen method so that
+            it can properly handle multiple monitors.
+Constants
+            F  oundation has created a few internal constants that are used by different
+            methods.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

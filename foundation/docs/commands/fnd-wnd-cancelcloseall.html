@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Wnd_CancelCloseAll - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Wnd_CancelCloseAll</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Windows Component</p>
+      <h1>Fnd_Wnd_CancelCloseAll</h1>
+      <p class="signature">Fnd_Wnd_CancelCloseAll</p>
+      <p class="meta">Legacy manual page 261</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>No parameters required</td><td></td><td></td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Call this method to end Foundation’s attempts to close all windows. For example, if the user selects Close All Windows from the Window menu, and a dialog asks if they want to save changes, and Cancel is selected, call this so no more windows are closed. If (Fnd_Gen_QuitNow)</p>
+<pre class="code"><code>Fnd_Dlg_Confirm (&quot;Are you sure you want to quit without saving?&quot;)</code></pre>
+<p>If (OK=0) Fnd_Wnd_CancelCloseAll End if End if</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Wnd_CancelCloseAll
+
+              Parameter                 Type              Description
+              No parameters required.
+
+            Call this method to end Foundation’s attempts to close all windows. For example, if the user selects Close
+            All Windows from the Window menu, and a dialog asks if they want to save changes, and Cancel is
+            selected, call this so no more windows are closed.
+              If (Fnd_Gen_QuitNow)
+                Fnd_Dlg_Confirm (&quot;Are you sure you want to quit without saving?&quot;)
+                If (OK=0)
+              		Fnd_Wnd_CancelCloseAll
+                End if
+              End if
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Tlbr_Button_Menu - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Tlbr_Button_Menu</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Toolbar Component</p>
+      <h1>Fnd_Tlbr_Button_Menu</h1>
+      <p class="signature">Fnd_Tlbr_Button_Menu (button name; -&gt;menu items)</p>
+      <p class="meta">Legacy manual page 247</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>button name</td><td>Text</td><td>The button name</td></tr><tr><td>menu items</td><td>Pointer</td><td>Text array of menu items</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Use this command to turn a toolbar button into a drop-down menu. First create the menu using the Fnd_Tlbr_Button_Add method. Then create a text array of menu items and call Fnd_Tlbr_Button_Menu.</p>
+<pre class="code"><code>$method_t:=&quot;PrintRoutine(&lt;FndMenuNumber&gt;)&quot;
+Fnd_Tlbr_Button_Add (&quot;PrintBttn&quot;;&quot;Print&quot;);&quot;Fnd_Bttn_Printer&quot;;$method_t)</code></pre>
+<p>ARRAY TEXT(PrintOptions_at;4)</p>
+<pre class="code"><code>PrintOptions_at{1}:=&quot;Sales Report&quot;
+PrintOptions_at{2}:=&quot;-&quot; ` Add a divider line.
+PrintOptions_at{3}:=&quot;Report Editor&quot;
+PrintOptions_at{4}:=&quot;Label Editor&quot;
+Fnd_Tlbr_Button_Menu (&quot;PrintBttn&quot;;-&gt;PrintOptions_at)</code></pre>
+<p>You will need to use a process array with 4D 2003. A local array can be used with 4D 2004. The array can be cleared immediately after the call. In the example above, “&lt;FndMenuNumber&gt;” will be replaced with the selected menu item number, then the entire value of the $method_t variable will be executed. So if the Report Editor menu item is selected, the PrintRoutine method will be passed a value of 3 as the first parameter. Then, in the PrintRoutine method, we should use a compiler directive to indicate that the first parameter is a number:</p>
+<pre class="code"><code>` Project Method: PrintRoutine (menu item)</code></pre>
+<p>C_LONGINT($1;$selectedMenuItem_i)</p>
+<pre class="code"><code>$selectedMenuItem_i:=$1</code></pre>
+<p>...</p>
+<p>The following strings are automatically replaced at runtime with the appropriate values: String                          Value &lt;FndButtonName&gt;                 The name of the button &lt;FndButtonLabel&gt;               The button's label &lt;FndMenuNumber&gt;                The selected menu item number &lt;FndMenuLabel&gt;                 The selected menu item label</p>
+<p>Note that when using the name or label strings, you will need to include the quotation marks to pass the value as a text value to your button method. This is easily done using the \&quot; escape sequence. For example:</p>
+<pre class="code"><code>$method_t:=&quot;PrintRoutine(\&quot;&lt;FndMenuLabel&gt;\&quot;)&quot;
+Fnd_Tlbr_Button_Add (&quot;PrintBttn&quot;;&quot;Print&quot;);&quot;Fnd_Bttn_Printer&quot;;$method_t)</code></pre>
+<p>You can pass any combination of these values and other values to your button method. The “&lt;FndButtonName&gt;” and “&lt;FndButtonLabel&gt;” strings can be used for any toolbar button style. The “&lt;FndMenuNumber&gt;” and “&lt;FndMenuLabel&gt;” strings will be converted only for menu buttons.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Tlbr_Button_Menu (button name; -&gt;menu items)
+
+              Parameter                Type                    Description
+              button name              Text                    The button name
+              menu items               Pointer                 Text array of menu items
+
+            Use this command to turn a toolbar button into a drop-down menu. First create the menu
+            using the Fnd_Tlbr_Button_Add method. Then create a text array of menu items and call
+            Fnd_Tlbr_Button_Menu.
+              $method_t:=&quot;PrintRoutine(&lt;FndMenuNumber&gt;)&quot;
+              Fnd_Tlbr_Button_Add (&quot;PrintBttn&quot;;&quot;Print&quot;);&quot;Fnd_Bttn_Printer&quot;;$method_t)
+              ARRAY TEXT(PrintOptions_at;4)
+              PrintOptions_at{1}:=&quot;Sales Report&quot;
+              PrintOptions_at{2}:=&quot;-&quot; ` Add a divider line.
+              PrintOptions_at{3}:=&quot;Report Editor&quot;
+              PrintOptions_at{4}:=&quot;Label Editor&quot;
+              Fnd_Tlbr_Button_Menu (&quot;PrintBttn&quot;;-&gt;PrintOptions_at)
+
+            You will need to use a process array with 4D 2003. A local array can be used with 4D 2004. The array can
+            be cleared immediately after the call.
+            In the example above, “&lt;FndMenuNumber&gt;” will be replaced with the selected menu item number, then
+            the entire value of the $method_t variable will be executed. So if the Report Editor menu item is selected,
+            the PrintRoutine method will be passed a value of 3 as the first parameter.
+            Then, in the PrintRoutine method, we should use a compiler directive to indicate that the first
+            parameter is a number:
+                ` Project Method: PrintRoutine (menu item)
+              C_LONGINT($1;$selectedMenuItem_i)
+              $selectedMenuItem_i:=$1
+              ...
+
+            The following strings are automatically replaced at runtime with the appropriate values:
+              String                          Value
+              &lt;FndButtonName&gt;                 The name of the button
+              &lt;FndButtonLabel&gt;               The button's label
+              &lt;FndMenuNumber&gt;                The selected menu item number
+              &lt;FndMenuLabel&gt;                 The selected menu item label
+
+            Note that when using the name or label strings, you will need to include the quotation marks to pass
+            the value as a text value to your button method. This is easily done using the \&quot; escape sequence. For
+            example:
+              $method_t:=&quot;PrintRoutine(\&quot;&lt;FndMenuLabel&gt;\&quot;)&quot;
+              Fnd_Tlbr_Button_Add (&quot;PrintBttn&quot;;&quot;Print&quot;);&quot;Fnd_Bttn_Printer&quot;;$method_t)
+
+            You can pass any combination of these values and other values to your button method.
+            The “&lt;FndButtonName&gt;” and “&lt;FndButtonLabel&gt;” strings can be used for any toolbar button style. The
+            “&lt;FndMenuNumber&gt;” and “&lt;FndMenuLabel&gt;” strings will be converted only for menu buttons.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

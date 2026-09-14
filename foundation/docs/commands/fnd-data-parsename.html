@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Data_ParseName - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Data_ParseName</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Data Component</p>
+      <h1>Fnd_Data_ParseName</h1>
+      <p class="signature">Fnd_Data_ParseName (fullname; -&gt;first name{; -&gt;last name{; -&gt;middle initial}})</p>
+      <p class="meta">Legacy manual page 62</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>fullname</td><td>Text</td><td>fullname to parse</td></tr><tr><td>first name</td><td>Pointer</td><td>pointer to person's first name</td></tr><tr><td>last name</td><td>Pointer</td><td>pointer to person's last name (optional)</td></tr><tr><td>middle initial</td><td>Pointer</td><td>pointer to person's middle initial (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Data_ParseName command parse text of a person's name. The command attempts to split the person's full name into separate parts while removing titles such as Mr. Mrs. Jr. Sr. and M.D.</p>
+<pre class="code"><code>Fnd_Data_ParseName (Self-&gt;;-&gt;[Contact]FirstName;-&gt;[Contact]LastName)</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Data_ParseName (fullname; -&gt;first name{; -&gt;last name{; -&gt;middle initial}})
+
+              Parameter               Type              Description
+              fullname                Text              fullname to parse
+              first name              Pointer           pointer to person's first name
+              last name               Pointer           pointer to person's last name (optional)
+              middle initial          Pointer           pointer to person's middle initial (optional)
+
+            The Fnd_Data_ParseName command parse text of a person's name. The command attempts to split
+            the person's full name into separate parts while removing titles such as Mr. Mrs. Jr. Sr. and M.D.
+              Fnd_Data_ParseName (Self-&gt;;-&gt;[Contact]FirstName;-&gt;[Contact]LastName)</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

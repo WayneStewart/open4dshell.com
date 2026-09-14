@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Tlbr_Redraw - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Tlbr_Redraw</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Toolbar Component</p>
+      <h1>Fnd_Tlbr_Redraw</h1>
+      <p class="signature">Fnd_Tlbr_Redraw</p>
+      <p class="meta">Legacy manual page 251</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>No parameters required</td><td></td><td></td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This command updates the toolbar. It should be called after making any changes to the toolbar.</p>
+<pre class="code"><code>Fnd_Tlbr_Button_Add (&quot;UnlockButton&quot;;&quot;Unlock&quot;;&quot;Fnd_Bttn_Unlock&quot;;&quot;UnlockMethod&quot;)</code></pre>
+<p>Fnd_Tlbr_Redraw</p>
+<p>The Toolbar component does not update the toolbar immediately when buttons are added or modified. Instead, it waits until this command is called so that multiple objects can be added or modified before the form update. This command does not need to be called in the form’s On Load event. It only needs to be called when updating the toolbar after it has been displayed. It is also not necessary to call this command after using the Fnd_Tlbr_StatusMessage or Fnd_Tlbr_Button_Enabled routines.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Tlbr_Redraw
+
+              Parameter                Type               Description
+              No parameters required.
+
+            This command updates the toolbar. It should be called after making any changes to the toolbar.
+              Fnd_Tlbr_Button_Add (&quot;UnlockButton&quot;;&quot;Unlock&quot;;&quot;Fnd_Bttn_Unlock&quot;;&quot;UnlockMethod&quot;)
+              Fnd_Tlbr_Redraw
+
+            The Toolbar component does not update the toolbar immediately when buttons are added or modified.
+            Instead, it waits until this command is called so that multiple objects can be added or modified before the
+            form update.
+            This command does not need to be called in the form’s On Load event. It only needs to be called when
+            updating the toolbar after it has been displayed. It is also not necessary to call this command after using
+            the Fnd_Tlbr_StatusMessage or Fnd_Tlbr_Button_Enabled routines.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

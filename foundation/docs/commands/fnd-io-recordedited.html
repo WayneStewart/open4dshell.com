@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_IO_RecordEdited - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_IO_RecordEdited</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Input/Output Component</p>
+      <h1>Fnd_IO_RecordEdited</h1>
+      <p class="signature">Fnd_IO_RecordEdited ({-&gt;table; calling process}) -&gt; Longint</p>
+      <p class="meta">Legacy manual page 131</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>table</td><td>Pointer</td><td>A pointer to the new record’s table</td></tr><tr><td>calling process</td><td>Longint</td><td>The process number of the output form</td></tr><tr><td>Function result</td><td>Longint</td><td>The record number that should be added</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This command is designed primarily for Foundation’s internal use, but it has been made available for use by replacements for Foundation’s default input and output handling routines. Call this when a new record has been added or modified. Pass it the new record number and the number of the process that should be notified about this updated record. This method will call the other process, which can then get the value by calling this method without any parameters. When this method is called without any parameters (due to an On Outside Call event usually), it will clear the value, so another outside call will not return the same number again. If no record has been added, this routine will return -1, which is 4D’s No Current Record constant.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_IO_RecordEdited ({-&gt;table; calling process}) ➔ Longint
+
+              Parameter               Type              Description
+              table                   Pointer           A pointer to the new record’s table
+              calling process         Longint           The process number of the output form
+              Function result         Longint           The record number that should be added
+
+            This command is designed primarily for Foundation’s internal use, but it has been made available for use
+            by replacements for Foundation’s default input and output handling routines.
+            Call this when a new record has been added or modified. Pass it the new record number and the number
+            of the process that should be notified about this updated record. This method will call the other process,
+            which can then get the value by calling this method without any parameters.
+            When this method is called without any parameters (due to an On Outside Call event usually), it will
+            clear the value, so another outside call will not return the same number again.
+            If no record has been added, this routine will return -1, which is 4D’s No Current Record constant.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

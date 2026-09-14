@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Classes &amp; functions — Foundation 6 Developer Reference</title><style>:root{font:16px/1.6 system-ui,sans-serif;color:#18303b;background:#f3f6f7}body{margin:0}header{background:#18303b;color:white;padding:24px max(24px,calc((100vw - 1120px)/2))}header strong{font-size:22px}nav{display:flex;gap:24px;flex-wrap:wrap}nav a{color:#c2e8e5}main{max-width:1120px;margin:32px auto;padding:0 24px}a{color:#12635f}h1{font-size:36px;line-height:1.2}h2{margin-top:32px}input{box-sizing:border-box;width:100%;padding:14px;font:inherit;border:1px solid #8caaae;border-radius:6px;margin:12px 0 24px}article,details,.card{background:white;border:1px solid #d5e1e3;border-radius:8px;padding:20px;margin:12px 0}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.prose{white-space:pre-wrap;font:inherit;margin:12px 0;overflow-wrap:anywhere}code{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}small,.meta{color:#526a73}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.badge{font-size:12px;font-weight:normal;margin-left:12px}section[id],details[id]{scroll-margin-top:24px}[hidden]{display:none!important}footer.site-footer{max-width:1120px;margin:48px auto 24px;padding:16px 24px 0;border-top:1px solid #d5e1e3;color:#526a73;font-size:13px}footer.site-footer a{color:#12635f}</style></head>
+<body><header><strong>Foundation 6 Developer Reference</strong><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="history.html">History &amp; acknowledgements</a><a href="methods.html">Methods</a><a href="classes.html">Classes &amp; functions</a><a href="legacy.html">Legacy manual</a></nav></header><main><h1>Classes &amp; functions</h1><label for="search">Filter by name, signature or description</label><input id="search" type="search" placeholder="Search this reference…"><p id="matches" role="status"></p><p>10 classes and 99 declared functions. Names beginning with an underscore are hidden. Inherited functions are documented on their declaring class.</p><article data-entry id="Fnd_Pref"><h2>cs.fnd.Fnd_Pref</h2><pre class="prose">Fnd_Pref
+ Created by: Wayne Stewart, Created: 2026-04-28
+ ------------------
+ DataClass extension for [Fnd_Pref].
+
+ Provides a typed, thread-safe getter and setter for the preferences held in
+ the data file. Replaces the pointer-based v4_FndPrefGetSharedValue reader and
+ the classic-record v4_FndPrefSaveServerPreference writer.
+
+ The Owner column is the namespace. Three conventions live in it: the string
+ Fnd_Pref_SharedName for preferences everyone shares, a user name for the ones
+ that follow a user between machines, and any other label the caller chooses.
+ getNamed and setNamed take the owner; getShared and setShared are those two
+ with Fnd_Pref_SharedName filled in.
+
+ Numeric type matching: Is longint and Is real are treated as a single
+ numeric bucket so that an integer-stored value and a real default (or vice
+ versa) do not silently fall back to default. The classic reader
+ Fnd_Pref_GetSharedValue matches the two types exactly, so it is stricter than
+ this is; that difference is deliberate and stays.</pre><p><code>Class extends DataClass</code></p><p><a href="#Fnd_Pref-0">getShared</a> · <a href="#Fnd_Pref-1">setShared</a> · <a href="#Fnd_Pref-2">getNamed</a> · <a href="#Fnd_Pref-3">setNamed</a> · <a href="#Fnd_Pref-4">removeNamed</a> · <a href="#Fnd_Pref-5">namesFor</a> · <a href="#Fnd_Pref-6">owners</a></p><section id="Fnd_Pref-0"><h3>getShared</h3><code>exposed Function getShared($name : Text; $default : Variant) : Variant</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-1"><h3>setShared</h3><code>exposed Function setShared($name : Text; $value : Variant)</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-2"><h3>getNamed</h3><code>exposed Function getNamed($owner : Text; $name : Text; $default : Variant) : Variant</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-3"><h3>setNamed</h3><code>exposed Function setNamed($owner : Text; $name : Text; $value : Variant)</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-4"><h3>removeNamed</h3><code>exposed Function removeNamed($owner : Text; $name : Text) : Boolean</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-5"><h3>namesFor</h3><code>exposed Function namesFor($owner : Text) : Collection</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_Pref-6"><h3>owners</h3><code>exposed Function owners() : Collection</code><pre class="prose">No function description is available in the source.</pre></section></article>
+<article data-entry id="Fnd_PrefEntity"><h2>cs.fnd.Fnd_PrefEntity</h2><pre class="prose">Fnd_PrefEntity
+ Created by: Wayne Stewart, Created: 2026-04-28
+ ------------------
+ Entity extension for the [Fnd_Pref] dataclass.
+
+ Adds typed value access on top of the (Type, Value) column pair.
+ Value is stored as text; Type records the original 4D type so it can
+ be decoded on read. Supported types: Is text, Is longint, Is real,
+ Is boolean, Is object.</pre><p><code>Class extends Entity</code></p><p><a href="#Fnd_PrefEntity-0">typedValue</a> · <a href="#Fnd_PrefEntity-1">setTypedValue</a></p><section id="Fnd_PrefEntity-0"><h3>typedValue</h3><code>Function typedValue() : Variant</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="Fnd_PrefEntity-1"><h3>setTypedValue</h3><code>Function setTypedValue($value : Variant)</code><pre class="prose">No function description is available in the source.</pre></section></article>
+<article data-entry id="date"><h2>cs.fnd.date</h2><pre class="prose">date
+ Created by: Wayne Stewart (Claude Opus 5) (2026-08-14)
+ ------------------
+The Fnd_Date module as a class, so a host can reach it through the class store
+instead of the method names.
+
+ In a host:         cs.fnd.date.new().toISO(Current date; Current time)
+ Inside Foundation: cs.date.new().toISO(Current date; Current time)
+
+The namespace is the &quot;Component namespace in the class store&quot; setting, which is
+&quot;fnd&quot; here. It governs how the host sees these classes; inside the component
+they are plain cs.&lt;name&gt;.
+
+Design decisions and assumptions:
+- Every function delegates to the Fnd_Date_ method of the same behaviour. The
+  methods remain the implementation, so the class cannot drift from them and
+  adds no behavioural risk.
+- Stateless, so new() is cheap and instances are interchangeable. What little
+  module state there is lives in Storage.Fnd.Date and Fnd.Date.
+- Named for what they do rather than transcribing the method names, so
+  Fnd_Date_DateAndTimeToISO becomes toISO and Fnd_Date_ISOtoDate becomes
+  dateFromISO.
+- Fnd_Date_Calendar and Fnd_Date_EntryFilter are not here. Both take a pointer
+  to a form object and only mean anything inside a running form, which is not
+  what a class store instance is for.</pre><p><a href="#date-0">info</a> · <a href="#date-1">toISO</a> · <a href="#date-2">dateFromISO</a> · <a href="#date-3">timeFromISO</a> · <a href="#date-4">localTimestamp</a> · <a href="#date-5">fromParts</a> · <a href="#date-6">fromString</a> · <a href="#date-7">toString</a> · <a href="#date-8">endOfMonth</a> · <a href="#date-9">monthName</a> · <a href="#date-10">systemDateFormat</a> · <a href="#date-11">roundTime</a> · <a href="#date-12">roundTimeDown</a> · <a href="#date-13">roundTimeNear</a></p><section id="date-0"><h3>info</h3><code>Function info($infoRequested_t : Text)-&gt;$result_t : Text</code><pre class="prose">The module's own labels — &quot;name&quot; and &quot;version&quot;.</pre></section>
+<section id="date-1"><h3>toISO</h3><code>Function toISO($date_d : Date; $time_h : Time)-&gt;$result_t : Text</code><pre class="prose">A date alone gives YYYY-MM-DD, a date and time the joined form. A null
+  date with a time gives the time alone; a null date alone gives &quot;&quot;.</pre></section>
+<section id="date-2"><h3>dateFromISO</h3><code>Function dateFromISO($isoDate_t : Text)-&gt;$result_d : Date</code><pre class="prose">Reads YYYY-MM-DD and YYYY-MM-DDThh:mm:ss alike. 4D's own Date() will not
+  take the first of those, which is why this is not a wrapper over it.</pre></section>
+<section id="date-3"><h3>timeFromISO</h3><code>Function timeFromISO($isoDateTime_t : Text)-&gt;$result_h : Time</code><pre class="prose">Reads the time out of a stamp, including one carrying milliseconds or a
+  zone suffix. The suffix is dropped rather than applied, so no silent
+  conversion from UTC happens.</pre></section>
+<section id="date-4"><h3>localTimestamp</h3><code>Function localTimestamp()-&gt;$result_t : Text</code><pre class="prose">Local wall-clock time, YYYY-MM-DDThh:mm:ss.mmm, with no zone suffix.
+  Comparable with other stamps from here, not with a UTC one.</pre></section>
+<section id="date-5"><h3>fromParts</h3><code>Function fromParts($year_i : Integer; $month_i : Integer; $day_i : Integer)-&gt;$result_d : Date</code><pre class="prose">Out of range parts roll over rather than being refused: month 13 is
+  January of the next year, day 0 the last day of the previous month.</pre></section>
+<section id="date-6"><h3>fromString</h3><code>Function fromString($theDate_t : Text; $dateFormat_t : Text)-&gt;$result_d : Date</code><pre class="prose">Unlike fromParts, this refuses a month above 12 or a day above 31, and
+  gives the null date instead. Pass a format such as &quot;D/M/Y&quot; to read the
+  string as something other than the machine's own setting.</pre></section>
+<section id="date-7"><h3>toString</h3><code>Function toString($theDate_t : Date; $relativeTo_d : Date; $dateFormat_t : Text)-&gt;$result_t : Text</code><pre class="prose">&quot;Today&quot;, &quot;Tomorrow&quot; or &quot;Yesterday&quot; where they apply, localized; the null
+  date gives &quot;&quot;. Everything else is formatted to the given format.</pre></section>
+<section id="date-8"><h3>endOfMonth</h3><code>Function endOfMonth($theDate_d : Date)-&gt;$result_d : Date</code><pre class="prose">The last day of the month the date falls in.</pre></section>
+<section id="date-9"><h3>monthName</h3><code>Function monthName($monthNumber_i : Integer)-&gt;$result_t : Text</code><pre class="prose">Localized. Anything outside 1 to 12 gives &quot;Error&quot;.</pre></section>
+<section id="date-10"><h3>systemDateFormat</h3><code>Function systemDateFormat()-&gt;$result_t : Text</code><pre class="prose">&quot;M/D/Y&quot; or &quot;D/M/Y&quot; and so on, for the machine this is running on.</pre></section>
+<section id="date-11"><h3>roundTime</h3><code>Function roundTime($theTime_h : Time; $option_h : Time)-&gt;$result_h : Time</code><pre class="prose">No option, or 1, rounds to the nearest quarter hour; 2 rounds down.</pre></section>
+<section id="date-12"><h3>roundTimeDown</h3><code>Function roundTimeDown($theTime_h : Time)-&gt;$result_h : Time</code><pre class="prose">Down to the quarter hour, however close the next one is.</pre></section>
+<section id="date-13"><h3>roundTimeNear</h3><code>Function roundTimeNear($theTime_h : Time)-&gt;$result_h : Time</code><pre class="prose">The quarter is held for ten minutes past it before the next is reached,
+  and the last five minutes of the day give 23:59 rather than midnight.</pre></section></article>
+<article data-entry id="fnd"><h2>cs.fnd.fnd</h2><pre class="prose">Base Foundation Class - cs.fnd</pre><p><a href="#fnd-0">info</a> · <a href="#fnd-1">getCurrentTable</a> · <a href="#fnd-2">setCurrentTable</a> · <a href="#fnd-3">getCurrentFormType</a> · <a href="#fnd-4">setComponentInfo</a> · <a href="#fnd-5">getComponentInfo</a> · <a href="#fnd-6">componentCheck</a></p><section id="fnd-0"><h3>info</h3><code>Function info($infoRequested_t : Text)-&gt;$result_t : Text</code><pre class="prose">The component's own labels — &quot;name&quot; and &quot;version&quot;. Anything else answers
+  &quot;Component Did Not Recognize Request&quot;.</pre></section>
+<section id="fnd-1"><h3>getCurrentTable</h3><code>Function getCurrentTable-&gt;$result_ptr : Pointer</code><pre class="prose">The table this instance was told to work on, or Null if it was never set.</pre></section>
+<section id="fnd-2"><h3>setCurrentTable</h3><code>Function setCurrentTable($table_ptr : Pointer)-&gt;$result_ptr : Pointer</code><pre class="prose">Records the table to work on, and returns it.</pre></section>
+<section id="fnd-3"><h3>getCurrentFormType</h3><code>Function getCurrentFormType-&gt;$result_i : Integer</code><pre class="prose">The form type this instance was told to work on. Fnd_Gen_NoForm when none.</pre></section>
+<section id="fnd-4"><h3>setComponentInfo</h3><code>Function setComponentInfo($key_t : Text; $value_t : Text)-&gt;$result_t : Text</code><pre class="prose">Publishes one label for another component to read. The store lives on the
+  Form object, so this only works while a form is loaded.</pre></section>
+<section id="fnd-5"><h3>getComponentInfo</h3><code>Function getComponentInfo($key_t : Text)-&gt;$result_t : Text</code><pre class="prose">Reads back a label another component published. Empty when there is none,
+  or when no form is loaded.</pre></section>
+<section id="fnd-6"><h3>componentCheck</h3><code>Function componentCheck($calling_t : Text; $required_t : Text)-&gt;$result_b : Boolean</code><pre class="prose">True when the required component answers. False alerts the developer first,
+  and does not stop the caller — test the result and decide.</pre></section></article>
+<article data-entry id="log"><h2>cs.fnd.log</h2><pre class="prose">log
+ Created by WBS, 2026-09-12 (FND-26)
+ Logging access for hosts: cs.fnd.log.new(). No shared singleton syntax.
+ Delegates to methods; enabled/selection remain in the calling process.
+ A future 21 singleton can use the same functions without sharing process state.</pre><p><a href="#log-0">enable</a> · <a href="#log-1">config</a> · <a href="#log-2">declareLog</a> · <a href="#log-3">useLog</a> · <a href="#log-4">label</a> · <a href="#log-5">overrideLevel</a> · <a href="#log-6">addEntry</a> · <a href="#log-7">flush</a> · <a href="#log-8">closeLog</a> · <a href="#log-9">createTable</a> · <a href="#log-10">shutdown</a> · <a href="#log-11">extension</a> · <a href="#log-12">fileName</a> · <a href="#log-13">path</a> · <a href="#log-14">maximumSize</a> · <a href="#log-15">info</a></p><section id="log-0"><h3>enable</h3><code>Function enable($enabled_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">Read or set the current process enable flag.</pre></section>
+<section id="log-1"><h3>config</h3><code>Function config($options_o : Object)-&gt;$result_o : Object</code><pre class="prose">Read or update application defaults; declared logs keep their settings.</pre></section>
+<section id="log-2"><h3>declareLog</h3><code>Function declareLog($label_t : Text; $file_t : Text; $folder_t : Text; $options_o : Object; $dedicated_b : Boolean)</code><pre class="prose">Declare once; optional dedicated writer defaults to False.</pre></section>
+<section id="log-3"><h3>useLog</h3><code>Function useLog($label_t : Text)</code><pre class="prose">Empty/omitted selects default; does not alter enable state.</pre></section>
+<section id="log-4"><h3>label</h3><code>Function label()-&gt;$result_t : Text</code><pre class="prose">Current process log label.</pre></section>
+<section id="log-5"><h3>overrideLevel</h3><code>Function overrideLevel($level_i : Integer; $application_b : Boolean)-&gt;$result_i : Integer</code><pre class="prose">No arguments reads effective threshold. Optional True sets application scope.</pre></section>
+<section id="log-6"><h3>addEntry</h3><code>Function addEntry($message_v : Variant; $options_o : Object)</code><pre class="prose">Text or a collection of text columns, plus optional entry metadata.</pre></section>
+<section id="log-7"><h3>flush</h3><code>Function flush($label_t : Text)</code><pre class="prose">Queue a flush; no completion acknowledgement.</pre></section>
+<section id="log-8"><h3>closeLog</h3><code>Function closeLog($label_t : Text)</code><pre class="prose">Flush and close a label, or all logs when omitted.</pre></section>
+<section id="log-9"><h3>createTable</h3><code>Function createTable()-&gt;$result_o : Object</code><pre class="prose">Explicit only; interpreted host required. Inspect restartRequired.</pre></section>
+<section id="log-10"><h3>shutdown</h3><code>Function shutdown()</code><pre class="prose">Call after producers finish, outside a logger worker.</pre></section>
+<section id="log-11"><h3>extension</h3><code>Function extension($value_t : Text)-&gt;$result_t : Text</code><pre class="prose">Omit to read; pass text to update through Fnd_Log_Extension.</pre></section>
+<section id="log-12"><h3>fileName</h3><code>Function fileName($value_t : Text)-&gt;$result_t : Text</code><pre class="prose">Omit to read; pass text to update through Fnd_Log_FileName.</pre></section>
+<section id="log-13"><h3>path</h3><code>Function path($value_t : Text)-&gt;$result_t : Text</code><pre class="prose">Omit to read; pass text to update through Fnd_Log_Path.</pre></section>
+<section id="log-14"><h3>maximumSize</h3><code>Function maximumSize($bytes_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">Get/set rollover size; zero disables rollover.</pre></section>
+<section id="log-15"><h3>info</h3><code>Function info($request_t : Text)-&gt;$result_t : Text</code><pre class="prose">Existing module name/version/logging query API.</pre></section></article>
+<article data-entry id="out"><h2>cs.fnd.out</h2><pre class="prose"></pre><p>No public function declarations in this class.</p></article>
+<article data-entry id="pref"><h2>cs.fnd.pref</h2><pre class="prose">pref
+ Created by: Wayne Stewart (Claude Opus 5) (2026-08-14)
+ ------------------
+The Fnd_Pref module as a class, so a host can reach it through the class store
+instead of the method names.
+
+ In a host:         cs.fnd.pref.new().getText(&quot;Report: Last Folder&quot;; &quot;&quot;)
+ Inside Foundation: cs.pref.new().getText(&quot;Report: Last Folder&quot;; &quot;&quot;)
+
+The namespace is the &quot;Component namespace in the class store&quot; setting, which is
+&quot;fnd&quot; here. It governs how the host sees these classes; inside the component
+they are plain cs.&lt;name&gt;.
+
+Not to be confused with cs.Fnd_Pref, which is the DataClass extension for the
+[Fnd_Pref] table and belongs to the host that owns the table. This one is the
+module's API and belongs to the component.
+
+Design decisions and assumptions:
+- Every function delegates to the Fnd_Pref_ method of the same behaviour. The
+  methods remain the implementation, so the class cannot drift from them and
+  adds no behavioural risk.
+- Stateless, so new() is cheap and instances are interchangeable. Module state
+  lives in Storage.Fnd.Pref, shared by both routes.
+- getWindow is the one place the shape changes rather than passing through. The
+  method writes through four pointers, which is not something to publish on a
+  modern API, so this returns {left; top; right; bottom} - or Null when nothing
+  is stored, which the pointer form signals by leaving the caller's variables
+  alone.
+- The scope argument is a constant or a label, the same Variant the methods
+  take. On a getter it only says where to store a default it has to create; on
+  remove it says where to delete from. See the method headers.
+- 4D 20 LTS has no singletons, so a host instantiates: cs.fnd.pref.new(). From
+  21 a shared singleton would allow cs.fnd.pref.me, and the functions below
+  would not change.</pre><p><a href="#pref-0">info</a> · <a href="#pref-1">path</a> · <a href="#pref-2">userName</a> · <a href="#pref-3">save</a> · <a href="#pref-4">getText</a> · <a href="#pref-5">getBoolean</a> · <a href="#pref-6">getLongInt</a> · <a href="#pref-7">getReal</a> · <a href="#pref-8">getObject</a> · <a href="#pref-9">getWindow</a> · <a href="#pref-10">setText</a> · <a href="#pref-11">setBoolean</a> · <a href="#pref-12">setLongInt</a> · <a href="#pref-13">setReal</a> · <a href="#pref-14">setObject</a> · <a href="#pref-15">setWindow</a> · <a href="#pref-16">remove</a></p><section id="pref-0"><h3>info</h3><code>Function info($infoRequested_t : Text)-&gt;$result_t : Text</code><pre class="prose">The module's own labels — &quot;name&quot; and &quot;version&quot;.</pre></section>
+<section id="pref-1"><h3>path</h3><code>Function path()-&gt;$result_t : Text</code><pre class="prose">Where the local preferences file is, or would be.</pre></section>
+<section id="pref-2"><h3>userName</h3><code>Function userName($name_t : Text)-&gt;$result_t : Text</code><pre class="prose">The name the server preferences are owned by. Setting it reloads.</pre></section>
+<section id="pref-3"><h3>save</h3><code>Function save()</code><pre class="prose">Writes the local file and the user's server preferences. Called on quit.</pre></section>
+<section id="pref-4"><h3>getText</h3><code>Function getText($name_t : Text; $default_t : Text; $scope_v : Variant)-&gt;$result_t : Text</code><pre class="prose">The stored text, or the default. Passing a default stores it when the
+  preference does not exist yet; the scope says where.</pre></section>
+<section id="pref-5"><h3>getBoolean</h3><code>Function getBoolean($name_t : Text; $default_b : Boolean; $scope_v : Variant)-&gt;$result_b : Boolean</code><pre class="prose">As getText, for a Boolean.</pre></section>
+<section id="pref-6"><h3>getLongInt</h3><code>Function getLongInt($name_t : Text; $default_i : Integer; $scope_v : Variant)-&gt;$result_i : Integer</code><pre class="prose">As getText, for an Integer.</pre></section>
+<section id="pref-7"><h3>getReal</h3><code>Function getReal($name_t : Text; $default_r : Real; $scope_v : Variant)-&gt;$result_r : Real</code><pre class="prose">As getText, for a Real.</pre></section>
+<section id="pref-8"><h3>getObject</h3><code>Function getObject($name_t : Text; $default_o : Object; $scope_v : Variant)-&gt;$result_o : Object</code><pre class="prose">As getText, for an Object.</pre></section>
+<section id="pref-9"><h3>getWindow</h3><code>Function getWindow($name_t : Text)-&gt;$result_o : Object</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="pref-10"><h3>setText</h3><code>Function setText($name_t : Text; $value_t : Text; $scope_v : Variant)</code><pre class="prose">Stores the value. The scope decides local or server; the default is the
+  module's, see the method header.</pre></section>
+<section id="pref-11"><h3>setBoolean</h3><code>Function setBoolean($name_t : Text; $value_b : Boolean; $scope_v : Variant)</code><pre class="prose">As setText, for a Boolean.</pre></section>
+<section id="pref-12"><h3>setLongInt</h3><code>Function setLongInt($name_t : Text; $value_i : Integer; $scope_v : Variant)</code><pre class="prose">As setText, for an Integer.</pre></section>
+<section id="pref-13"><h3>setReal</h3><code>Function setReal($name_t : Text; $value_r : Real; $scope_v : Variant)</code><pre class="prose">As setText, for a Real.</pre></section>
+<section id="pref-14"><h3>setObject</h3><code>Function setObject($name_t : Text; $value_o : Object; $scope_v : Variant)</code><pre class="prose">As setText, for an Object.</pre></section>
+<section id="pref-15"><h3>setWindow</h3><code>Function setWindow($name_t : Text; $rect_o : Object)</code><pre class="prose">Pass {left; top; right; bottom}, or nothing for the frontmost window of
+  the current process.</pre></section>
+<section id="pref-16"><h3>remove</h3><code>Function remove($name_t : Text; $scope_v : Variant)-&gt;$result_b : Boolean</code><pre class="prose">True if there was one to delete. The scope says where to delete from.</pre></section></article>
+<article data-entry id="pswd"><h2>cs.fnd.pswd</h2><pre class="prose">pswd
+ Created by: Wayne Stewart (Claude Opus 5) (2026-08-14)
+ ------------------
+The Fnd_Pswd module as a class, so a host can reach it through the class store
+instead of the method names.
+
+ In a host:         cs.fnd.pswd.new().generate({length: 16})
+ Inside Foundation: cs.pswd.new().generate({length: 16})
+
+The namespace is the &quot;Component namespace in the class store&quot; setting, which is
+&quot;fnd&quot; here. It governs how the host sees these classes; inside the component
+they are plain cs.&lt;name&gt;.
+
+Design decisions and assumptions:
+- Every function delegates to the Fnd_Pswd_ method of the same behaviour. The
+  methods remain the implementation, so the class cannot drift from them and
+  adds no behavioural risk.
+- Stateless, so new() is cheap and instances are interchangeable. Module state
+  lives in Storage.Fnd.Pswd, shared by both routes.
+- generate() taking an options object is the one to reach for: it touches no
+  shared state, so it is safe from a worker and from two processes at once.
+  The setters below change the stored defaults and are not.
+- 4D 20 LTS has no singletons, so a host instantiates: cs.fnd.pswd.new(). From
+  21 a shared singleton would allow cs.fnd.pswd.me, and the functions below
+  would not change.</pre><p><a href="#pswd-0">info</a> · <a href="#pswd-1">generate</a> · <a href="#pswd-2">validCharacters</a> · <a href="#pswd-3">strength</a> · <a href="#pswd-4">dialog</a> · <a href="#pswd-5">useUppercase</a> · <a href="#pswd-6">useLowercase</a> · <a href="#pswd-7">useNumbers</a> · <a href="#pswd-8">useSymbols</a> · <a href="#pswd-9">customCharacters</a> · <a href="#pswd-10">excludeCharacters</a> · <a href="#pswd-11">minLength</a> · <a href="#pswd-12">maxLength</a></p><section id="pswd-0"><h3>info</h3><code>Function info($infoRequested_t : Text)-&gt;$result_t : Text</code><pre class="prose">The module's own labels — &quot;name&quot; and &quot;version&quot;.</pre></section>
+<section id="pswd-1"><h3>generate</h3><code>Function generate($options_o : Object)-&gt;$result_t : Text</code><pre class="prose">Pass nothing for the stored settings, or an object to override them for
+  this call only: {type; length; minLength; maxLength; useUppercase;
+  useLowercase; useNumbers; useSymbols; customCharacters;
+  excludedCharacters; requireEachClass}</pre></section>
+<section id="pswd-2"><h3>validCharacters</h3><code>Function validCharacters($options_o : Object)-&gt;$result_t : Text</code><pre class="prose">The alphabet a generation would draw from, under the same options.</pre></section>
+<section id="pswd-3"><h3>strength</h3><code>Function strength($password_t : Text; $options_o : Object)-&gt;$result_o : Object</code><pre class="prose">{ length ; poolSize ; bits ; rating }. Pass {type} when it is known, or a
+  pronounceable password is weighed on its characters and overstated.</pre></section>
+<section id="pswd-4"><h3>dialog</h3><code>Function dialog()-&gt;$result_t : Text</code><pre class="prose">Shows the generator dialog. Returns &quot;&quot; if it was cancelled.</pre></section>
+<section id="pswd-5"><h3>useUppercase</h3><code>Function useUppercase($use_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">Reads the stored default, or sets it when passed a value.</pre></section>
+<section id="pswd-6"><h3>useLowercase</h3><code>Function useLowercase($use_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">Reads the stored default, or sets it when passed a value.</pre></section>
+<section id="pswd-7"><h3>useNumbers</h3><code>Function useNumbers($use_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">Reads the stored default, or sets it when passed a value.</pre></section>
+<section id="pswd-8"><h3>useSymbols</h3><code>Function useSymbols($use_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">Reads the stored default, or sets it when passed a value.</pre></section>
+<section id="pswd-9"><h3>customCharacters</h3><code>Function customCharacters($characters_t : Text)-&gt;$result_t : Text</code><pre class="prose">Setting characters turns the custom set on; setting none turns it off.</pre></section>
+<section id="pswd-10"><h3>excludeCharacters</h3><code>Function excludeCharacters($characters_t : Text)-&gt;$result_t : Text</code><pre class="prose">Matched exactly, so excluding &quot;o&quot; leaves &quot;O&quot; alone.</pre></section>
+<section id="pswd-11"><h3>minLength</h3><code>Function minLength($characters_i : Integer; $limit_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">Carries the maximum up with it rather than leaving the pair inverted.</pre></section>
+<section id="pswd-12"><h3>maxLength</h3><code>Function maxLength($characters_i : Integer; $limit_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">Carries the minimum down with it, the mirror of minLength.</pre></section></article>
+<article data-entry id="text"><h2>cs.fnd.text</h2><pre class="prose">text
+ Created by: Wayne Stewart (Claude Opus 5) (2026-08-13)
+ WBS, 2026-09-12 - Expose existing whitespace trim through the class.
+ ------------------
+The Fnd_Text module as a class, so a host can reach it through the class store
+instead of the method names.
+
+ In a host:        cs.fnd.text.new().capitalize(&quot;hello world&quot;)
+ Inside Foundation: cs.text.new().capitalize(&quot;hello world&quot;)
+
+The namespace is the &quot;Component namespace in the class store&quot; setting, which is
+&quot;fnd&quot; here. It governs how the host sees these classes; inside the component
+they are plain cs.&lt;name&gt;.
+
+Design decisions and assumptions:
+- Every function delegates to the Fnd_Text_ method of the same behaviour. The
+  methods remain the implementation, so the class cannot drift from them and
+  adds no behavioural risk. The direction can invert later, one function at a
+  time, without either API changing.
+- Stateless, so new() is cheap and instances are interchangeable. Module state
+  lives in Storage.Fnd.Text, shared by both routes.
+- 4D 20 LTS has no singletons, so a host instantiates: cs.fnd.text.new(). From
+  21 a shared singleton would allow cs.fnd.text.me, and the functions below
+  would not change.
+- Named for what they do rather than transcribing the method names, so
+  Fnd_Text_TextToMD5 becomes toMD5 and Fnd_Text_Base64ToText becomes fromBase64.</pre><p><a href="#text-0">info</a> · <a href="#text-1">capitalize</a> · <a href="#text-2">capitalizeExclude</a> · <a href="#text-3">padSpaces</a> · <a href="#text-4">stripSpaces</a> · <a href="#text-5">trim</a> · <a href="#text-6">wrap</a> · <a href="#text-7">equalStrings</a> · <a href="#text-8">formatNumber</a> · <a href="#text-9">toMD5</a> · <a href="#text-10">md5Encoding</a> · <a href="#text-11">toBase64</a> · <a href="#text-12">fromBase64</a> · <a href="#text-13">encodeBase64</a> · <a href="#text-14">decodeBase64</a></p><section id="text-0"><h3>info</h3><code>Function info($infoRequested_t : Text)-&gt;$result_t : Text</code><pre class="prose">The module's own labels — &quot;name&quot; and &quot;version&quot;.</pre></section>
+<section id="text-1"><h3>capitalize</h3><code>Function capitalize($theText_t : Text; $options_i : Integer)-&gt;$result_t : Text</code><pre class="prose">Book title capitalisation. Option 4 skips the exclude word list.</pre></section>
+<section id="text-2"><h3>capitalizeExclude</h3><code>Function capitalizeExclude($words_c : Collection)-&gt;$result_c : Collection</code><pre class="prose">Pass a collection to replace the exclude word list, or nothing to read it.</pre></section>
+<section id="text-3"><h3>padSpaces</h3><code>Function padSpaces($theText_t : Text; $length_i : Integer)-&gt;$result_t : Text</code><pre class="prose">Pads with spaces, or truncates, to exactly $length_i characters.</pre></section>
+<section id="text-4"><h3>stripSpaces</h3><code>Function stripSpaces($theText_t : Text; $options_i : Integer; $altSpaces_t : Text)-&gt;$result_t : Text</code><pre class="prose">1 leading, 2 trailing, 4 doubles, added together. Default is 1+2.</pre></section>
+<section id="text-5"><h3>trim</h3><code>Function trim($theText_t : Text)-&gt;$result_t : Text</code><pre class="prose">Trim both ends using Fnd_Text_Trim's whitespace set; preserve NBSP.</pre></section>
+<section id="text-6"><h3>wrap</h3><code>Function wrap($theText_t : Text; $lineLength_i : Integer)-&gt;$result_t : Text</code><pre class="prose">Wraps at the last space before the limit, joined by carriage returns.</pre></section>
+<section id="text-7"><h3>equalStrings</h3><code>Function equalStrings($stringOne_t : Text; $stringTwo_t : Text)-&gt;$result_b : Boolean</code><pre class="prose">Case and diacritic sensitive, unlike 4D's = operator.</pre></section>
+<section id="text-8"><h3>formatNumber</h3><code>Function formatNumber($theNumber_t : Text; $theFormat_t : Text)-&gt;$result_t : Text</code><pre class="prose">Strips punctuation from the number, then applies the 4D number format.</pre></section>
+<section id="text-9"><h3>toMD5</h3><code>Function toMD5($theText_t : Text; $charset_t : Text)-&gt;$result_t : Text</code><pre class="prose">Defaults to ISO-8859-1, which is what Foundation has always hashed.</pre></section>
+<section id="text-10"><h3>md5Encoding</h3><code>Function md5Encoding($charset_t : Text)-&gt;$result_t : Text</code><pre class="prose">Sets the charset every later toMD5 uses, or reads it when passed nothing.</pre></section>
+<section id="text-11"><h3>toBase64</h3><code>Function toBase64($theText_t : Text)-&gt;$result_t : Text</code><pre class="prose">Base64 on one line: BASE64 ENCODE does not wrap at 76 characters.</pre></section>
+<section id="text-12"><h3>fromBase64</h3><code>Function fromBase64($theText_t : Text)-&gt;$result_t : Text</code><pre class="prose">The reverse of toBase64.</pre></section>
+<section id="text-13"><h3>encodeBase64</h3><code>Function encodeBase64($theBlob_x : Blob)-&gt;$result_x : Blob</code><pre class="prose">Takes and returns a blob, rather than the pointer the method wants.</pre></section>
+<section id="text-14"><h3>decodeBase64</h3><code>Function decodeBase64($theBlob_x : Blob)-&gt;$result_x : Blob</code><pre class="prose">Takes and returns a blob, rather than the pointer the method wants.</pre></section></article>
+<article data-entry id="wnd"><h2>cs.fnd.wnd</h2><pre class="prose"></pre><p><code>Class extends fnd  // cs.fnd.wnd</code></p><p><a href="#wnd-0">title</a> · <a href="#wnd-1">type</a> · <a href="#wnd-2">position</a> · <a href="#wnd-3">closeBox</a> · <a href="#wnd-4">openWindow</a> · <a href="#wnd-5">openFormWindow</a> · <a href="#wnd-6">useSavedPosition</a> · <a href="#wnd-7">closeNow</a></p><section id="wnd-0"><h3>title</h3><code>Function title($title_t : Text) : Text</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-1"><h3>type</h3><code>Function type($type_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-2"><h3>position</h3><code>Function position($position_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-3"><h3>closeBox</h3><code>Function closeBox($enabled_b : Boolean)-&gt;$result_b : Boolean</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-4"><h3>openWindow</h3><code>Function openWindow($width_i : Integer; $height_i : Integer)-&gt;$result_i : Integer</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-5"><h3>openFormWindow</h3><code>Function openFormWindow($table_ptr : Pointer; $formName_t : Text)-&gt;$result_i : Integer</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-6"><h3>useSavedPosition</h3><code>Function useSavedPosition($name_t : Text)-&gt;$result_b : Boolean</code><pre class="prose">No function description is available in the source.</pre></section>
+<section id="wnd-7"><h3>closeNow</h3><code>Function closeNow-&gt;$result_b : Boolean</code><pre class="prose">$result_b:=Process_IsClosing</pre></section></article></main><footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../LICENSE">LICENSE</a> and <a href="../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+<script>
+const input=document.querySelector('#search');
+if(input) input.addEventListener('input',()=>{const query=input.value.toLowerCase().trim();let count=0;document.querySelectorAll('[data-entry]').forEach(entry=>{entry.hidden=!entry.textContent.toLowerCase().includes(query);if(!entry.hidden)count++;});document.querySelector('#matches').textContent=count+' matching entries';});
+function reveal(){if(!location.hash)return;const entry=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(entry){entry.hidden=false;const parent=entry.closest('[data-entry]');if(parent)parent.hidden=false;if(entry.tagName==='DETAILS')entry.open=true;entry.scrollIntoView();}}
+addEventListener('hashchange',reveal);reveal();
+</script></body></html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_ComponentInfo - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_ComponentInfo</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_ComponentInfo</h1>
+      <p class="signature">Fnd_Gen_ComponentInfo (component name; info requested) -&gt; Text</p>
+      <p class="meta">Legacy manual page 112</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>component name</td><td>Text</td><td>A component prefix</td></tr><tr><td>info requested</td><td>Text</td><td>Desired information</td></tr><tr><td>Function result</td><td>Text</td><td>Information requested or an error message</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Many of the Foundation components include a method designed to return information about the component or the current status of the component. These information methods are named with the component’s prefix, followed by “_Info” (e.g. Fnd_Loc_Info). In most cases, you will want to call these information methods directly. However, you may want to make a component optional. In this case, you cannot call the method directly, because your structure would not compile if you include a call to a method that does not exist. You can avoid this problem by using the Fnd_Gen_ComponentInfo method. It will call another component’s _Info method, after first checking to see if the component is installed. Pass this method a component name and name for the information you want. If the component exists, Foundation will call its _Info routine, pass it the info label, and return the result. This allows you to get information from a component in a single call, rather than having to first test to see if the component is available.</p>
+<pre class="code"><code>$language:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)</code></pre>
+<p>If the component is not installed, “Component Not Available” will be returned.</p>
+<pre class="code"><code>$language_t:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)</code></pre>
+<p>If ($language_t=&quot;Component Not Available&quot;)</p>
+<pre class="code"><code>$language_t:=&quot;EN&quot;</code></pre>
+<p>End if</p>
+<p>If the component does not have an _Info routine, “Component Did Not Respond” will be returned. We recommend that if a component does not recognize a request it should return the text “Component Did Not Recognize Request”. These values will not be localized so the calling method can test for them.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_ComponentInfo (component name; info requested) ➔ Text
+
+              Parameter                 Type              Description
+              component name            Text              A component prefix
+              info requested            Text              Desired information
+              Function result           Text              Information requested or an error message
+
+            Many of the Foundation components include a method designed to return information about the
+            component or the current status of the component. These information methods are named with the
+            component’s prefix, followed by “_Info” (e.g. Fnd_Loc_Info).
+            In most cases, you will want to call these information methods directly. However, you may want to make
+            a component optional. In this case, you cannot call the method directly, because your structure would
+            not compile if you include a call to a method that does not exist. You can avoid this problem by using the
+            Fnd_Gen_ComponentInfo method. It will call another component’s _Info method, after first checking
+            to see if the component is installed.
+            Pass this method a component name and name for the information you want. If the component exists,
+            Foundation will call its _Info routine, pass it the info label, and return the result. This allows you to get
+            information from a component in a single call, rather than having to first test to see if the component is
+            available.
+              $language:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)
+
+            If the component is not installed, “Component Not Available” will be returned.
+              $language_t:=Fnd_Gen_ComponentInfo (&quot;Fnd_Loc&quot;;&quot;language&quot;)
+              If ($language_t=&quot;Component Not Available&quot;)
+                $language_t:=&quot;EN&quot;
+              End if
+
+            If the component does not have an _Info routine, “Component Did Not Respond” will be returned.
+            We recommend that if a component does not recognize a request it should return the text “Component
+            Did Not Recognize Request”. These values will not be localized so the calling method can test for them.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

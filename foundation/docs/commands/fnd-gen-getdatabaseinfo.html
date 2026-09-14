@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_GetDatabaseInfo - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_GetDatabaseInfo</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_GetDatabaseInfo</h1>
+      <p class="signature">Fnd_Gen_GetDatabaseInfo (info type) -&gt; Text</p>
+      <p class="meta">Legacy manual page 115</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>info type</td><td>Text</td><td>Info type label</td></tr><tr><td>Function result</td><td>Text</td><td>Value</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>4D’s component architecture does not allow variables to be shared between components. That is a good thing, but it requires us to find another way to share information between components. In Foundation, we do this with the Fnd_Gen_SetDatabaseInfo and Fnd_Gen_GetDatabaseInfo methods. Foundation maintains a set of text arrays to store general information about the shell. Information is added to these arrays using the Fnd_Gen_SetDatabaseInfo method, and you can get at this information using the Fnd_Gen_GetDatabaseInfo method. By default, Foundation’s General component stores just one bit of information: the version number of the Fnd_Gen component. In the Foundation Shell, the Fnd_Hook_Shell_Setup hook uses the Fnd_Gen_SetDatabaseInfo method to set up four other pieces of information:</p>
+<p>Label                      Data DatabaseName               The name of the database DatabaseVersion            The version number of the database DatabaseCopyright          The database’s copyright information DatabaseURL                The URL for the About dialog You can store any text information in these variables that you need to share between components. These routines are designed for storing hard-coded text strings for communication between components. To store user preference related text strings, use Foundation’s Preferences component.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_GetDatabaseInfo (info type) ➔ Text
+
+              Parameter                  Type                    Description
+              info type                  Text                    Info type label
+              Function result            Text                    Value
+
+            4D’s component architecture does not allow variables to be shared between components. That is a good
+            thing, but it requires us to find another way to share information between components. In Foundation,
+            we do this with the Fnd_Gen_SetDatabaseInfo and Fnd_Gen_GetDatabaseInfo methods.
+            Foundation maintains a set of text arrays to store general information about the shell. Information
+            is added to these arrays using the Fnd_Gen_SetDatabaseInfo method, and you can get at this
+            information using the Fnd_Gen_GetDatabaseInfo method.
+            By default, Foundation’s General component stores just one bit of information: the version number of the
+            Fnd_Gen component.
+            In the Foundation Shell, the Fnd_Hook_Shell_Setup hook uses the Fnd_Gen_SetDatabaseInfo
+            method to set up four other pieces of information:
+
+              Label                      Data
+              DatabaseName               The name of the database
+              DatabaseVersion            The version number of the database
+              DatabaseCopyright          The database’s copyright information
+              DatabaseURL                The URL for the About dialog
+            You can store any text information in these variables that you need to share between components. These
+            routines are designed for storing hard-coded text strings for communication between components. To
+            store user preference related text strings, use Foundation’s Preferences component.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

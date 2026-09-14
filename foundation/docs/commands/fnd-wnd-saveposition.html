@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Wnd_SavePosition - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Wnd_SavePosition</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Windows Component</p>
+      <h1>Fnd_Wnd_SavePosition</h1>
+      <p class="signature">Fnd_Wnd_SavePosition ({name{; window ref}})</p>
+      <p class="meta">Legacy manual page 266</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>name</td><td>Text</td><td>The name of the preference item (optional)</td></tr><tr><td>window ref</td><td>Longint</td><td>The window to save (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Saves the front most window of the current process in the user’s preferences file (if the Foundation Preferences component is available). See the Fnd_Wnd_UseSavedPosition command for an example. This is basically the same as calling Fnd_Pref_SetWindow, but you do not have to check first to see if the Preferences component is available.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Wnd_SavePosition ({name{; window ref}})
+
+              Parameter               Type              Description
+              name                    Text              The name of the preference item (optional)
+              window ref              Longint           The window to save (optional)
+
+            Saves the front most window of the current process in the user’s preferences file (if the Foundation
+            Preferences component is available). See the Fnd_Wnd_UseSavedPosition command for an example.
+            This is basically the same as calling Fnd_Pref_SetWindow, but you do not have to check first to see if
+            the Preferences component is available.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

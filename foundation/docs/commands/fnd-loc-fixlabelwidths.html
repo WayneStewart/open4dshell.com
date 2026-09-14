@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Loc_FixLabelWidths - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Loc_FixLabelWidths</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Localization Component</p>
+      <h1>Fnd_Loc_FixLabelWidths</h1>
+      <p class="signature">Fnd_Loc_FixLabelWidths (-&gt;form object; -&gt;enterable object{; ..repeat..})</p>
+      <p class="meta">Legacy manual page 150</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>$1, $3, $5..$N</td><td>Pointer</td><td>The label to adjust</td></tr><tr><td>$2, $4, $6..$N+1</td><td>Pointer</td><td>The field to its right</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>One of the problems with localizing field labels is that if you make the label large enough for one language, it may appear too large for other languages. And even if you resize the label object, you must also reposition the field next to it. However, if you do this for each label/field combination individually, you will end up with fields that are no longer aligned. One solution is to use multiple pages or multiple forms — one for each language. But this can be a maintenance problem for complex layouts. Another solution is to use the Fnd_Loc_FixLabelWidths method to resize multiple labels and fields in a single call. Pointers to 4D form objects are passed to this routine in sets of two. One for the label, and one for the field. This routine will move the right side of the label so that the entire label text fits. It will then adjust the left side of the field the same amount, so that the space between the label and the field remains unchanged. If multiple sets of label and field pointers are passed, the widest label is used for adjusting all of the objects. For example, imagine we have this English set of fields on a form: We start by replacing the static text labels with variables, so we can pass pointers to these objects to the Fnd_Loc_FixLabelWidths method. Then we localize the labels using Foundation’s Fnd_Loc_GetString function. Now the labels are correct, but the colon has been truncated on some of the labels. So we pass the three labels on the left, along with their associated fields, to the Fnd_Loc_FixLabelWidths method in a single call:</p>
+<pre class="code"><code>Fnd_Loc_FixLabelWidths (-&gt;vNumberLabel;-&gt;[Products]Number;
+-&gt;vNameLabel;-&gt;[Products]Name;-&gt;vDescLabel;-&gt;[Products]Desc)</code></pre>
+<p>Now the labels on the left are properly displayed. The width of the label objects has been increased slightly, and the width of the corresponding fields has been reduced by the same amount. The amount of the change is based on the content of the labels. Now we just need to apply the fix to the List Price label and field:</p>
+<pre class="code"><code>Fnd_Loc_FixLabelWidths (-&gt;vPriceLabel;-&gt;[Products]ListPrice)</code></pre>
+<p>See the Product Sales example database to see this command in action.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>       Fnd_Loc_FixLabelWidths (-&gt;form object; -&gt;enterable object{; ..repeat..})
+
+          Parameter                 Type               Description
+          $1, $3, $5..$N            Pointer            The label to adjust
+          $2, $4, $6..$N+1          Pointer            The field to its right
+
+       One of the problems with localizing field labels is that if you make the label large enough for one
+       language, it may appear too large for other languages. And even if you resize the label object, you must
+       also reposition the field next to it. However, if you do this for each label/field combination individually,
+       you will end up with fields that are no longer aligned.
+       One solution is to use multiple pages or multiple forms — one for each language. But this can be a
+       maintenance problem for complex layouts. Another solution is to use the Fnd_Loc_FixLabelWidths
+       method to resize multiple labels and fields in a single call.
+       Pointers to 4D form objects are passed to this routine in sets of two. One for the label, and one for the
+       field. This routine will move the right side of the label so that the entire label text fits. It will then adjust
+       the left side of the field the same amount, so that the space between the label and the field remains
+       unchanged.
+       If multiple sets of label and field pointers are passed, the widest label is used for adjusting all of the
+       objects.
+       For example, imagine we have this English set of fields on a form:
+       We start by replacing the static text labels with variables, so we can pass pointers to these objects
+       to the Fnd_Loc_FixLabelWidths method. Then we localize the labels using Foundation’s
+       Fnd_Loc_GetString function.
+            Now the labels are correct, but the colon has been truncated on some of the labels. So we pass the three
+            labels on the left, along with their associated fields, to the Fnd_Loc_FixLabelWidths method in a single
+            call:
+              Fnd_Loc_FixLabelWidths (-&gt;vNumberLabel;-&gt;[Products]Number;
+              						-&gt;vNameLabel;-&gt;[Products]Name;-&gt;vDescLabel;-&gt;[Products]Desc)
+
+            Now the labels on the left are properly displayed. The width of the label objects has been increased
+            slightly, and the width of the corresponding fields has been reduced by the same amount. The amount of
+            the change is based on the content of the labels.
+            Now we just need to apply the fix to the List Price label and field:
+              Fnd_Loc_FixLabelWidths (-&gt;vPriceLabel;-&gt;[Products]ListPrice)
+
+            See the Product Sales example database to see this command in action.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_IO_DisplayTable - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_IO_DisplayTable</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Input/Output Component</p>
+      <h1>Fnd_IO_DisplayTable</h1>
+      <p class="signature">Fnd_IO_DisplayTable (-&gt;table{; force new window})</p>
+      <p class="meta">Legacy manual page 127</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>table</td><td>Pointer</td><td>Pointer to the table to display</td></tr><tr><td>force new window</td><td>Boolean</td><td>Open a new window (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Pass a table pointer to the Fnd_IO_DisplayTable method whenever you want to display a new table window. If a window already exists for the specified table, it will be brought to the front. If a window is not already open to display the table, this routine will start a new process, open a new window, and display the specified table using the table’s output form:</p>
+<pre class="code"><code>Fnd_IO_DisplayTable (-&gt;[People])</code></pre>
+<p>You can optionally force the Fnd_IO_DisplayTable method to open a new table window—even if one is already open—by passing a second parameter. If the second parameter evaluates to True, then a new process will be created to display the table. Otherwise, a new process will be created only if one does not already exist:</p>
+<pre class="code"><code>Fnd_IO_DisplayTable (-&gt;[People];True)</code></pre>
+<p>If you want to open a table window at startup, call this method from the Fnd_Hook_Shell_Startup method. Foundation’s Navigation Palette buttons and the Open Table Dialog call the this method to display table windows. By default, the selection of records for the new window will contain all of the table’s records. You can change this selection before the window is displayed in the Fnd_Hook_IO_DisplayTable hook. The hook is called just after this routine launches a new process, and just before it opens a window.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_IO_DisplayTable (-&gt;table{; force new window})
+
+              Parameter                 Type               Description
+              table                     Pointer            Pointer to the table to display
+              force new window          Boolean            Open a new window (optional)
+
+            Pass a table pointer to the Fnd_IO_DisplayTable method whenever you want to display a new table
+            window. If a window already exists for the specified table, it will be brought to the front. If a window is not
+            already open to display the table, this routine will start a new process, open a new window, and display
+            the specified table using the table’s output form:
+              Fnd_IO_DisplayTable (-&gt;[People])
+
+            You can optionally force the Fnd_IO_DisplayTable method to open a new table window—even if one
+            is already open—by passing a second parameter. If the second parameter evaluates to True, then a new
+            process will be created to display the table. Otherwise, a new process will be created only if one does not
+            already exist:
+              Fnd_IO_DisplayTable (-&gt;[People];True)
+
+            If you want to open a table window at startup, call this method from the Fnd_Hook_Shell_Startup
+            method.
+            Foundation’s Navigation Palette buttons and the Open Table Dialog call the this method to display table
+            windows.
+            By default, the selection of records for the new window will contain all of the table’s records. You can
+            change this selection before the window is displayed in the Fnd_Hook_IO_DisplayTable hook. The
+            hook is called just after this routine launches a new process, and just before it opens a window.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

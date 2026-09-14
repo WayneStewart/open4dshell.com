@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Date_DateToString - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Date_DateToString</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Date Component</p>
+      <h1>Fnd_Date_DateToString</h1>
+      <p class="signature">Fnd_Date_DateToString (date{; relative to date{; format}}) -&gt; Text</p>
+      <p class="meta">Legacy manual page 64</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>date</td><td>Date</td><td>Date to convert</td></tr><tr><td>relative to date</td><td>Date</td><td>Relative date (optional)</td></tr><tr><td>format</td><td>Text</td><td>Date format (optional)</td></tr><tr><td>Function result</td><td>Text</td><td>Date converted to text This function returns &quot;Today&quot;, &quot;Tomorrow&quot;, or &quot;Yesterday&quot;, if appropriate, and is localized if the Localization component is available, otherwise returns a short date string by default. If relative to date is included, &quot;Today&quot;, &quot;Tomorrow&quot;, or &quot;Yesterday&quot; will be relative to that date. Date will be formatted as a short date string unless the date format is passed. $invoicedate_t:=Fnd_Date_DateToString ([Invoice]InvoiceDate)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Date_DateToString (date{; relative to date{; format}}) ➜ Text
+
+              Parameter                 Type               Description
+              date                      Date               Date to convert
+              relative to date          Date               Relative date (optional)
+              format                    Text               Date format (optional)
+              Function result           Text               Date converted to text
+            This function returns &quot;Today&quot;, &quot;Tomorrow&quot;, or &quot;Yesterday&quot;, if appropriate, and is localized if the
+            Localization component is available, otherwise returns a short date string by default. If relative to date is
+            included, &quot;Today&quot;, &quot;Tomorrow&quot;, or &quot;Yesterday&quot; will be relative to that date. Date will be formatted as a
+            short date string unless the date format is passed.
+              $invoicedate_t:=Fnd_Date_DateToString ([Invoice]InvoiceDate)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

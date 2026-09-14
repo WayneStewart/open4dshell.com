@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Find_AddCustom - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Find_AddCustom</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Find Component</p>
+      <h1>Fnd_Find_AddCustom</h1>
+      <p class="signature">Fnd_Find_AddCustom (label; method name{; position})</p>
+      <p class="meta">Legacy manual page 101</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>label</td><td>Text</td><td>Label to use</td></tr><tr><td>method name</td><td>Text</td><td>Method to call</td></tr><tr><td>position</td><td>Longint</td><td>Position in which to add the item (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Find_AddCustom routine lets the developer add a custom field to the search dialog. If the user selects the custom field label from the pop-up menu, Foundation will not attempt to search the database. Instead, the specified method will be called and will be passed these parameters:</p>
+<p>Parameter                Type              Description label                    Text              The label passed to the Fnd_Find_AddCustom method operator                 Text              The operator code selected in the second pop-up menu search                   Text              The text entered into the Find dialog button                   Number            The selected radio button</p>
+<p>Search Operator Options: SW = Starts With EW = Ends With C = Contains DC = Doesn't Contain &gt; = Greater Than &lt; = Less Than # = Doesn't Equal N&gt; = Number greater than N&lt; = Number less than N&gt;= = Number is Greater or equal to N&lt;= = Number is less than or equal to N= = Number equals N# = Number is not equal to T = True F = False</p>
+<p>Radio button options: 1 = Search All 2 = Search Selection 3 = Add to Selection 4 = Omit from Selection</p>
+<p>The method specified in this call must contain the following compiler declarations: C_TEXT($1;$2;$3) C_LONGINT($4)</p>
+<p>Fnd_Find_AddField</p>
+<pre class="code"><code>Fnd_Find_AddField (-&gt;field{; position})</code></pre>
+<p>Parameter                        Type        Description field                            Pointer     Pointer to the field to add position                         Longint     Position in which to add the item (optional)</p>
+<p>The Fnd_Find_AddField routine lets the developer add a field to the search dialog. If position is not specified, the field is added to the end of the list. The field can be from the current table or a related table.</p>
+<p>Fnd_Find_AddMultiField</p>
+<pre class="code"><code>Fnd_Find_AddMultiField (-&gt;array of field ptrs; label{; position})</code></pre>
+<p>Parameter                        Type        Description array of field ptrs              Pointer     Pointer to an array of pointers label                            Text        Label for the popup item position                         Longint     Position in which to add the item (optional)</p>
+<p>The Fnd_Find_AddMultiField routine lets the developer add one item for searching multiple fields to the search dialog. If position is not specified, this item is added to the end of the list. The array of field ptrs parameter must be an array of pointers, each of which points to a text or alpha field. After calling Fnd_Find_Display, you should reset the array to zero elements to release the memory used by the array. This routine is ideal for allowing users to search all of the names fields without having to specify a specific field each time. For example: ARRAY POINTER (aFields;3)</p>
+<pre class="code"><code>aFields{1}:=-&gt;[Employees]First Name
+aFields{2}:=-&gt;[Employees]Middle Name
+aFields{3}:=-&gt;[Employees]Last Name
+Fnd_Find_AddMultiField (-&gt;aFields;&quot;Name&quot;)</code></pre>
+<p>Fnd_Find_Display ARRAY POINTER (aFields;0)</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Find_AddCustom (label; method name{; position})
+
+              Parameter                Type              Description
+              label                    Text              Label to use
+              method name              Text              Method to call
+              position                 Longint           Position in which to add the item (optional)
+
+            The Fnd_Find_AddCustom routine lets the developer add a custom field to the search dialog.
+            If the user selects the custom field label from the pop-up menu, Foundation will not attempt to search the
+            database. Instead, the specified method will be called and will be passed these parameters:
+
+              Parameter                Type              Description
+              label                    Text              The label passed to the Fnd_Find_AddCustom method
+              operator                 Text              The operator code selected in the second pop-up menu
+              search                   Text              The text entered into the Find dialog
+              button                   Number            The selected radio button
+
+            Search Operator Options:
+              SW = Starts With
+              EW = Ends With
+              C = Contains
+              DC = Doesn't Contain
+                 &gt; = Greater Than
+                 &lt; = Less Than
+                 # = Doesn't Equal
+                 N&gt; = Number greater than
+                 N&lt; = Number less than
+                 N&gt;= = Number is Greater or equal to
+                 N&lt;= = Number is less than or equal to
+                 N= = Number equals
+                 N# = Number is not equal to
+                 T = True
+                 F = False
+
+               Radio button options:
+                 1 = Search All
+                 2 = Search Selection
+                 3 = Add to Selection
+                 4 = Omit from Selection
+
+               The method specified in this call must contain the following compiler declarations:
+                  C_TEXT($1;$2;$3)
+                  C_LONGINT($4)
+
+   Fnd_Find_AddField
+               Fnd_Find_AddField (-&gt;field{; position})
+
+                 Parameter                        Type        Description
+                 field                            Pointer     Pointer to the field to add
+                 position                         Longint     Position in which to add the item (optional)
+
+               The Fnd_Find_AddField routine lets the developer add a field to the search dialog. If position is not
+               specified, the field is added to the end of the list.
+               The field can be from the current table or a related table.
+
+   Fnd_Find_AddMultiField
+               Fnd_Find_AddMultiField (-&gt;array of field ptrs; label{; position})
+
+                 Parameter                        Type        Description
+                 array of field ptrs              Pointer     Pointer to an array of pointers
+                 label                            Text        Label for the popup item
+                 position                         Longint     Position in which to add the item (optional)
+
+               The Fnd_Find_AddMultiField routine lets the developer add one item for searching multiple fields to
+               the search dialog. If position is not specified, this item is added to the end of the list.
+            The array of field ptrs parameter must be an array of pointers, each of which points to a text or alpha field.
+            After calling Fnd_Find_Display, you should reset the array to zero elements to release the memory used
+            by the array.
+            This routine is ideal for allowing users to search all of the names fields without having to specify a specific
+            field each time. For example:
+              ARRAY POINTER (aFields;3)
+              aFields{1}:=-&gt;[Employees]First Name
+              aFields{2}:=-&gt;[Employees]Middle Name
+              aFields{3}:=-&gt;[Employees]Last Name
+              Fnd_Find_AddMultiField (-&gt;aFields;&quot;Name&quot;)
+              Fnd_Find_Display
+              ARRAY POINTER (aFields;0)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

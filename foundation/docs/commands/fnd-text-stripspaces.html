@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Text_StripSpaces - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Text_StripSpaces</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Text Component</p>
+      <h1>Fnd_Text_StripSpaces</h1>
+      <p class="signature">Fnd_Text_StripSpaces (text{; options}) -&gt; Text</p>
+      <p class="meta">Legacy manual page 239</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>text</td><td>Text</td><td>Text to strip spaces from</td></tr><tr><td>options</td><td>Longint</td><td>Options to remove spaces (optional)</td></tr><tr><td>Function result</td><td>Text</td><td>Text with spaces stripped</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>This function returns text with spaces removed. If options = 1, the function will remove only leading spaces. If options = 2, the function will remove only trailing spaces. If options = 4, the function will remove only double spaces within the text.</p>
+<pre class="code"><code>$stripped_t:=Fnd_Text_StripSpaces (&quot; strip                  spaces &quot;)</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Text_StripSpaces (text{; options}) ➜ Text
+
+              Parameter                Type                 Description
+              text                     Text                 Text to strip spaces from
+              options                  Longint              Options to remove spaces (optional)
+              Function result          Text                 Text with spaces stripped
+
+            This function returns text with spaces removed. If options = 1, the function will remove only leading
+            spaces. If options = 2, the function will remove only trailing spaces. If options = 4, the function will
+            remove only double spaces within the text.
+              $stripped_t:=Fnd_Text_StripSpaces (&quot; strip                  spaces &quot;)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

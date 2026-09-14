@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Pref_SetWindow - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Pref_SetWindow</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Preferences Component</p>
+      <h1>Fnd_Pref_SetWindow</h1>
+      <p class="signature">Fnd_Pref_SetWindow ({{name}; window ref})</p>
+      <p class="meta">Legacy manual page 181</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>name</td><td>Pointer</td><td>Name of the preference item (optional)</td></tr><tr><td>window ref</td><td>Longint</td><td>Window to save (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <pre class="code"><code>Fnd_Pref_SetWindow (name; left; top; right; bottom)</code></pre>
+<p>Parameter               Type              Description name                    Text              Name of the preference item left                    Longint           Left coordinate top                     Longint           Top coordinate right                   Longint           Right coordinate bottom                  Longint           Bottom coordinate</p>
+<p>This routine saves the coordinates of the current window in the user’s preferences file. The values can be set either by using the window reference or the left, top, right, and bottom coordinates. To save the values using the window reference, pass a preference name and the window reference number that has been returned by one of 4D’s window opening commands. If no name is specified, the current process name is used. If no window is specified, the frontmost window of the current process is used. See the example in Fnd_Pref_GetWindow. To save the values using the left, top, right, and bottom coordinates, pass a preference name and the coordinates. There are no optional parameters when using the window coordinates.</p>
+<pre class="code"><code>$left_i:=20
+$top_i:=50
+$right_i:=320
+$bottom_i:=250
+Fnd_Pref_SetWindow (&quot;MonitorWindow&quot;;$left_i;$top_i;$right_i;$bottom_i)</code></pre>
+<p>Window coordinates are always stored locally. They cannot be stored as server or shared preferences.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Pref_SetWindow ({{name}; window ref})
+
+              Parameter               Type              Description
+              name                    Pointer           Name of the preference item (optional)
+              window ref              Longint           Window to save (optional)
+
+            Fnd_Pref_SetWindow (name; left; top; right; bottom)
+
+              Parameter               Type              Description
+              name                    Text              Name of the preference item
+              left                    Longint           Left coordinate
+              top                     Longint           Top coordinate
+              right                   Longint           Right coordinate
+              bottom                  Longint           Bottom coordinate
+
+            This routine saves the coordinates of the current window in the user’s preferences file. The values can be
+            set either by using the window reference or the left, top, right, and bottom coordinates.
+            To save the values using the window reference, pass a preference name and the window reference
+            number that has been returned by one of 4D’s window opening commands. If no name is specified, the
+            current process name is used. If no window is specified, the frontmost window of the current process is
+            used.
+            See the example in Fnd_Pref_GetWindow.
+            To save the values using the left, top, right, and bottom coordinates, pass a preference name and the
+            coordinates. There are no optional parameters when using the window coordinates.
+              $left_i:=20
+              $top_i:=50
+              $right_i:=320
+              $bottom_i:=250
+              Fnd_Pref_SetWindow (&quot;MonitorWindow&quot;;$left_i;$top_i;$right_i;$bottom_i)
+
+            Window coordinates are always stored locally. They cannot be stored as server or shared preferences.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

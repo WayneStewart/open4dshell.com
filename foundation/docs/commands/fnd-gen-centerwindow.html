@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Gen_CenterWindow - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Gen_CenterWindow</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">General Component</p>
+      <h1>Fnd_Gen_CenterWindow</h1>
+      <p class="signature">Fnd_Gen_CenterWindow (width; height{; type{; position{; title{; close}}}})</p>
+      <p class="meta">Legacy manual page 109</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>width</td><td>Longint</td><td>Width of the new window</td></tr><tr><td>height</td><td>Longint</td><td>Height of the new window</td></tr><tr><td>type</td><td>Longint</td><td>Window type (optional)</td></tr><tr><td>position</td><td>Longint</td><td>Window position (optional)</td></tr><tr><td>title</td><td>Text</td><td>Window title (optional)</td></tr><tr><td>close</td><td>Boolean</td><td>Has a close box (optional)</td></tr><tr><td>Function result</td><td>Longint</td><td>Window reference number</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Gen_CenterWindow routine opens a new window centered on the screen or over the front most window (depending on the value of position parameter). It is included primarily for use by other components that do not wish to require the presence of the Windows component. If the Foundation Windows component is installed in the database, use the Fnd_Wnd_OpenWindow or Fnd_Wnd_OpenFormWindow routine instead.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Gen_CenterWindow (width; height{; type{; position{; title{; close}}}})
+
+              Parameter                 Type               Description
+              width                     Longint            Width of the new window
+              height                    Longint            Height of the new window
+              type                      Longint            Window type (optional)
+              position                  Longint            Window position (optional)
+              title                     Text               Window title (optional)
+              close                     Boolean            Has a close box (optional)
+              Function result           Longint            Window reference number
+
+            The Fnd_Gen_CenterWindow routine opens a new window centered on the screen or over the
+            front most window (depending on the value of position parameter). It is included primarily for use
+            by other components that do not wish to require the presence of the Windows component. If the
+            Foundation Windows component is installed in the database, use the Fnd_Wnd_OpenWindow or
+            Fnd_Wnd_OpenFormWindow routine instead.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

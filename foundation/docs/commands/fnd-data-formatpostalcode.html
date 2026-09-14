@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Data_FormatPostalCode - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Data_FormatPostalCode</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Data Component</p>
+      <h1>Fnd_Data_FormatPostalCode</h1>
+      <p class="signature">Fnd_Data_FormatPostalCode (postal code) -&gt; Text</p>
+      <p class="meta">Legacy manual page 60</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>postal code</td><td>Text</td><td>postal code to format</td></tr><tr><td>Function result</td><td>Text</td><td>formatted postal code</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>The Fnd_Data_FormatPostalCode function formats text of a postal code. Function returns the formatted postal code as 00000 or 00000-0000 depending on the length of the postal code.</p>
+<pre class="code"><code>Self-&gt;:=Fnd_Data_FormatPostalCode (Self-&gt;)</code></pre>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Data_FormatPostalCode (postal code) ➜ Text
+
+              Parameter                Type              Description
+              postal code              Text              postal code to format
+              Function result          Text              formatted postal code
+
+            The Fnd_Data_FormatPostalCode function formats text of a postal code. Function returns the
+            formatted postal code as 00000 or 00000-0000 depending on the length of the postal code.
+              Self-&gt;:=Fnd_Data_FormatPostalCode (Self-&gt;)
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

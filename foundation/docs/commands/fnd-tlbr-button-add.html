@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Tlbr_Button_Add - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Tlbr_Button_Add</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Toolbar Component</p>
+      <h1>Fnd_Tlbr_Button_Add</h1>
+      <p class="signature">Fnd_Tlbr_Button_Add (name; button text; icon name; method{; keystroke})</p>
+      <p class="meta">Legacy manual page 244</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>name</td><td>Text</td><td>Unique name for the button object</td></tr><tr><td>button text</td><td>Text</td><td>Button label</td></tr><tr><td>icon name</td><td>Text</td><td>Picture Library name for the icon</td></tr><tr><td>method</td><td>Text</td><td>The method to call when the button is clicked</td></tr><tr><td>keystroke</td><td>Text</td><td>Command/Ctrl keyboard equivalent (optional)</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Fnd_Tlbr_Button_Add adds a new button to the toolbar. The button is always appended to the right of any existing toolbar buttons or dividers. The button name is used to identify the button when calling other Toolbar component methods. It should be a unique string of up to 31 characters. The second parameter is the text label to be displayed with the button. This label can later be changed on- the-fly by calling the Fnd_Tlbr_Button_Label function. This label is limited to 80 characters. The third parameter is the name of an icon for the new button. Any of the icons built into the Foundation Buttons component can be used. Your own custom icons can also be used. See the Buttons Component (Fnd_Bttn) chapter for the complete list of built-in icons and instructions for using custom icons. The fourth parameter is the name of a method or any string that will work properly with 4D’s EXECUTE command. This string will be executed if the button is clicked. For example, this code will add a button to the toolbar with a label of “Delete” and the Red X icon from the Buttons component. It will call the DeleteRecords method when clicked:</p>
+<pre class="code"><code>Fnd_Tlbr_Button_Add (&quot;Button1&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DeleteRecords&quot;)</code></pre>
+<p>This line will have the same appearance, but will call 4D’s DELETE RECORDS command directly:</p>
+<pre class="code"><code>Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DELETE RECORDS([Invoices])&quot;)</code></pre>
+<p>Note that although the example above may work, it is best to use 4D’s Command name function to get the localized command name, and to get the table name dynamically, rather than hard-coding it:</p>
+<pre class="code"><code>$execute_t:=Command name(58)+&quot;(&quot;+Table name(-&gt;[Invoices])+&quot;])&quot;
+Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;$execute_t)</code></pre>
+<p>You can optionally assign a key equivalent to the button. The user can then use this keyboard equivalent rather than use the mouse to click the button. On Macintosh, the user will hold down the Command key and press the specified key. On Windows, the Control key is used. This key can be any letter A-Z, any number 0-9, or one of these special values: Backspace Delete Period UpArrow DownArrow RightArrow LeftArrow For example, this line lets the user run the DuplicateRecord method by typing Command-D on Macintosh or Control-D on Windows:</p>
+<pre class="code"><code>Fnd_Tlbr_Button_Add (&quot;DupBttn&quot;;&quot;Dupe Rec&quot;;&quot;Fnd_Bttn_Duplicate&quot;;&quot;DuplicateRecord&quot;;&quot;D&quot;)</code></pre>
+<p>This line lets the user delete records by typing Command-Backspace on Macintosh or Control-Backspace on Windows:</p>
+<pre class="code"><code>Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DeleteRecords&quot;;&quot;Backspace&quot;)</code></pre>
+<p>After calling this command, the Fnd_Tlbr_Redraw command should be called to update the toolbar.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Tlbr_Button_Add (name; button text; icon name; method{; keystroke})
+
+              Parameter                Type             Description
+              name                     Text             Unique name for the button object
+              button text              Text             Button label
+              icon name                Text             Picture Library name for the icon
+              method                   Text             The method to call when the button is clicked
+              keystroke                Text             Command/Ctrl keyboard equivalent (optional)
+
+            Fnd_Tlbr_Button_Add adds a new button to the toolbar. The button is always appended to the right of
+            any existing toolbar buttons or dividers.
+            The button name is used to identify the button when calling other Toolbar component methods. It
+            should be a unique string of up to 31 characters.
+            The second parameter is the text label to be displayed with the button. This label can later be changed on-
+            the-fly by calling the Fnd_Tlbr_Button_Label function. This label is limited to 80 characters.
+            The third parameter is the name of an icon for the new button. Any of the icons built into the Foundation
+            Buttons component can be used. Your own custom icons can also be used. See the Buttons Component
+            (Fnd_Bttn) chapter for the complete list of built-in icons and instructions for using custom icons.
+            The fourth parameter is the name of a method or any string that will work properly with 4D’s EXECUTE
+            command. This string will be executed if the button is clicked.
+            For example, this code will add a button to the toolbar with a label of “Delete” and the Red X icon from
+            the Buttons component. It will call the DeleteRecords method when clicked:
+              Fnd_Tlbr_Button_Add (&quot;Button1&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DeleteRecords&quot;)
+
+            This line will have the same appearance, but will call 4D’s DELETE RECORDS command directly:
+              Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DELETE RECORDS([Invoices])&quot;)
+
+            Note that although the example above may work, it is best to use 4D’s Command name function to get
+            the localized command name, and to get the table name dynamically, rather than hard-coding it:
+              $execute_t:=Command name(58)+&quot;(&quot;+Table name(-&gt;[Invoices])+&quot;])&quot;
+              Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;$execute_t)
+
+            You can optionally assign a key equivalent to the button. The user can then use this keyboard equivalent
+            rather than use the mouse to click the button. On Macintosh, the user will hold down the Command key
+            and press the specified key. On Windows, the Control key is used. This key can be any letter A-Z, any
+            number 0-9, or one of these special values:
+              Backspace
+              Delete
+              Period
+              UpArrow
+              DownArrow
+              RightArrow
+              LeftArrow
+            For example, this line lets the user run the DuplicateRecord method by typing Command-D on
+            Macintosh or Control-D on Windows:
+              Fnd_Tlbr_Button_Add (&quot;DupBttn&quot;;&quot;Dupe Rec&quot;;&quot;Fnd_Bttn_Duplicate&quot;;&quot;DuplicateRecord&quot;;&quot;D&quot;)
+
+            This line lets the user delete records by typing Command-Backspace on Macintosh or Control-Backspace
+            on Windows:
+              Fnd_Tlbr_Button_Add (&quot;DelBttn&quot;;&quot;Delete&quot;;&quot;Fnd_Bttn_RedX&quot;;&quot;DeleteRecords&quot;;&quot;Backspace&quot;)
+
+            After calling this command, the Fnd_Tlbr_Redraw command should be called to update the toolbar.
+</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>

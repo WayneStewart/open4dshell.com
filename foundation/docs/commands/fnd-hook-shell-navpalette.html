@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fnd_Hook_Shell_NavPalette - Foundation 6 Developer Reference</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../commands.html">Commands</a><span class="sep">/</span><span aria-current="page">Fnd_Hook_Shell_NavPalette</span></nav>
+    <div class="masthead">
+      <a class="brand" href="../index.html">Foundation 6 Developer Reference</a>
+      <div class="top-links"><a href="../index.html">Overview</a><a href="../history.html">History &amp; acknowledgements</a><a href="../methods.html">Methods</a><a href="../classes.html">Classes &amp; functions</a><a href="../legacy.html">Legacy manual</a><a href="../components.html">Components</a><a href="../commands.html" aria-current="page">Commands</a><a href="../manual.html">Full Manual</a><a href="../original/Fnd_5.4_Docs.pdf">PDF</a></div>
+    </div>
+  </header>
+  <main class="page-shell">
+    <article class="doc-page">
+      <p class="eyebrow">Shell Component</p>
+      <h1>Fnd_Hook_Shell_NavPalette</h1>
+      <p class="signature">Fnd_Hook_Shell_NavPalette</p>
+      <p class="meta">Legacy manual page 216</p>
+      <section><h2>Parameters</h2><div class="table-wrap"><table>
+    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td>No parameters required</td><td></td><td> This hook is called each time the Navigation Palette command is selected from the Tools menu. Use it to configure Foundation's Navigation Palette if you want to alter the default configuration. See the Navigation Component (Fnd_Nav) chapter for more information.</td></tr></tbody>
+  </table></div></section>
+      <section>
+        <h2>Description</h2>
+        <p>Fnd_Hook_Shell_Print Fnd_Hook_Shell_Print</p>
+<p>Parameter                Type               Description No parameters required.</p>
+<p>This hook is called to display the shell's Print dialog. We have preconfigured it to display 4D's Quick Report Editor and Label Editor. You can remove these options, or add new options by calling Foundation's Fnd_Hook_List_SetEditableLists method.</p>
+<p>Fnd_Hook_Shell_QueryEditor Fnd_Hook_Shell_QueryEditor</p>
+<p>Parameter                Type               Description No parameters required.</p>
+<p>This hook is called to display the shell's Query Editor. You can use this hook to override 4D's default Query Editor with your own, or use a third party Query Editor such as Automated Solutions Group's QueryPack or Business Brothers BBFind.</p>
+<p>Fnd_Hook_Shell_Quit Fnd_Hook_Shell_Quit ➜ Boolean</p>
+<p>Parameter                Type               Description Function result          Boolean            Allow Foundation to quit?</p>
+<p>The shell calls this hook when quitting the database, just before calling QUIT 4D (if compiled). Return True to allow Foundation to quit the application normally. If you return False, Foundation will abort any attempts to quit until the next time quit is selected from the File menu. If you return False, it is your responsibility to let the user know why their attempt to quit the database is being ignored You can also add any down code of your own in this method.</p>
+      </section>
+      <details>
+        <summary>Extracted source text</summary>
+        <pre class="code"><code>            Fnd_Hook_Shell_NavPalette
+
+              Parameter                Type               Description
+              No parameters required.
+               This hook is called each time the Navigation Palette command is selected from the Tools menu. Use
+               it to configure Foundation's Navigation Palette if you want to alter the default configuration. See the
+               Navigation Component (Fnd_Nav) chapter for more information.
+
+   Fnd_Hook_Shell_Print
+               Fnd_Hook_Shell_Print
+
+                 Parameter                Type               Description
+                 No parameters required.
+
+               This hook is called to display the shell's Print dialog. We have preconfigured it to display 4D's
+               Quick Report Editor and Label Editor. You can remove these options, or add new options by calling
+               Foundation's Fnd_Hook_List_SetEditableLists method.
+
+   Fnd_Hook_Shell_QueryEditor
+               Fnd_Hook_Shell_QueryEditor
+
+                 Parameter                Type               Description
+                 No parameters required.
+
+               This hook is called to display the shell's Query Editor. You can use this hook to override 4D's default
+               Query Editor with your own, or use a third party Query Editor such as Automated Solutions Group's
+               QueryPack or Business Brothers BBFind.
+
+   Fnd_Hook_Shell_Quit
+               Fnd_Hook_Shell_Quit ➜ Boolean
+
+                 Parameter                Type               Description
+                 Function result          Boolean            Allow Foundation to quit?
+
+               The shell calls this hook when quitting the database, just before calling QUIT 4D (if compiled). Return
+               True to allow Foundation to quit the application normally. If you return False, Foundation will abort any
+               attempts to quit until the next time quit is selected from the File menu.
+               If you return False, it is your responsibility to let the user know why their attempt to quit the database is
+               being ignored
+               You can also add any down code of your own in this method.</code></pre>
+      </details>
+    </article>
+  </main>
+  <footer class="site-footer"><p>Foundation is released under the MIT Licence. Copyright &copy; 2003&ndash;2008 Dave Batton &middot; 2008&ndash;2026 Nelson Consulting, Inc. / Walt Nelson &middot; 2026 Wayne Stewart. See <a href="../../LICENSE">LICENSE</a> and <a href="../../PROVENANCE.md">PROVENANCE</a>.</p></footer>
+</body>
+</html>
