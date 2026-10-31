@@ -346,3 +346,14 @@ footer.colophon a {
 		padding: 1rem 1rem 1.25rem;
 	}
 }
+
+pre.licence {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+	font-size: 0.85rem;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	padding: 1rem;
+	border: 1px solid var(--border, #ccc);
+	background: var(--pre-bg, rgba(0,0,0,0.03));
+}
