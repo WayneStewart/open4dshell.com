@@ -4,111 +4,102 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Foundation</title>
-<meta name="description" content="Foundation is an application shell component for 4D, released as open source under the MIT licence. Foundation 6 is in beta.">
-<link rel="stylesheet" href="styles.css">
+<meta name="description" content="Foundation is an application shell component for 4D, released under the MIT licence. Foundation 6.0.0-beta.1 is a private beta from 1 November 2026.">
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-<header>
-	<h1>Foundation</h1>
-	<p>An application shell component for 4D</p>
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
 </header>
 
-<main>
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/" aria-current="page">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
 
-<p class="status"><strong>Foundation 6.0.0-beta.1</strong>, private beta from
-1 November 2026. The repository becomes public on 1 December 2026.</p>
+<div class="frame">
 
-<p>Foundation (also known as Foundation Shell) is a reusable application
-shell component for 4D. It provides menus, windows, toolbars, navigation,
-input and output forms, find, sort, lists, preferences, localisation,
-logging, dialogs, passwords, sequence numbers, and a virtual structure
-layer. You add your own tables and forms; Foundation supplies the
-application around them.</p>
+<aside class="sidebar">
+	<section class="box">
+		<h2>News</h2>
+		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
+		6.0.0-beta.1 opens as a private beta.</p>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Shell/issues">Issues</a>
+		in Foundation-Shell (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
 
-<p>Foundation was created by Dave Batton in 1993 and developed by Walt
-Nelson / Nelson Consulting, Inc. from October 2008, including Foundation 5
-for 4D v11 with a team of community developers. Wayne Stewart has
-maintained it since the 4D v16 / 64-bit era. On 11 September 2026 it was
-assigned to him by deed for release as open source under the MIT licence,
-with the names of Dave Batton and Walt Nelson kept permanently in the
-credits, the About box and the method headers.</p>
+<main class="panel">
 
-<h2>The beta</h2>
+<h1>Foundation</h1>
 
-<p>Foundation 6 requires 4D 20 LTS or later, on macOS or Windows. Each
-release ships four builds of the compiled component from one commit, all
-carrying the same version:</p>
+<p>Foundation is an application shell component for 4D: it supplies the
+menus, windows, forms, find, sort, preferences and other parts of an
+application around your own tables and forms.</p>
 
-<table>
-	<thead>
-		<tr><th>Target</th><th>4D</th></tr>
-	</thead>
-	<tbody>
-		<tr><td><code>20L</code></td><td>20 LTS</td></tr>
-		<tr><td><code>20R</code></td><td>20 R (20 R10)</td></tr>
-		<tr><td><code>21L</code></td><td>21 LTS</td></tr>
-		<tr><td><code>21R</code></td><td>21 R (the latest R)</td></tr>
-	</tbody>
-</table>
+<h2>Foundation 6.0.0-beta.1</h2>
 
-<p>Each target comes as a code-signed, notarised DMG for macOS and a ZIP of
-the same component for Windows. The compiled component runs on both
-platforms.</p>
+<p>Foundation 6.0.0-beta.1 is a private beta from 1 November 2026. The code
+is already under the MIT licence, there is nothing to sign, and the beta is
+free.</p>
 
-<p>During the beta the source and the builds are in the GitHub repository
-<a href="https://github.com/open4dshell/Foundation-Shell">open4dshell/Foundation-Shell</a>,
-which is private until 1 December 2026. Private means not yet announced to
-the world: the code is already under the MIT licence, there is nothing to
-sign, and the beta is free. To join, send your GitHub username to
-<a href="mailto:wayne@open4dshell.com">wayne@open4dshell.com</a> and you
-will be added with read access. Problems and suggestions go in that
-repository's Issues; please say which 4D version and which target you
-used.</p>
+<p>To join, email your GitHub username to the <a href="#contact">contact
+address</a>. You will be given Read access to
+<a href="https://github.com/open4dshell/Foundation-Shell">github.com/open4dshell/Foundation-Shell</a>,
+which is private until 1 December 2026, when it becomes public. Report
+problems in that repository's
+<a href="https://github.com/open4dshell/Foundation-Shell/issues">Issues</a>.</p>
 
-<h2>Getting started</h2>
+<p><a href="/start/">Getting started</a> lists the installation steps.</p>
 
-<ol>
-	<li><strong>Download</strong> the DMG (macOS) or ZIP (Windows) for your 4D
-	from the GitHub release. SHA-256 checksums are listed with the release.</li>
-	<li><strong>Install</strong>: copy <code>Foundation.4dbase</code> into your
-	project's <code>Components/</code> folder and reopen the project. For
-	development, the repository itself also works as an interpreted
-	component.</li>
-	<li><strong>New host?</strong> Clone
-	<a href="https://github.com/open4dshell/Foundation-Product-Sales">Foundation
-	Product Sales</a>, the demo database, which is public now and runs as soon
-	as it is cloned. Its <code>Fnd_Hook_*</code> and <code>Fnd_Host_*</code>
-	methods are the whole contract between a host and Foundation; copy the ones
-	you need.</li>
-	<li><strong>Foundation 5 host?</strong> Read <code>Release/UPGRADING.md</code>
-	in the repository first. The breaking changes are few and listed:
-	Foundation's own licensing methods are gone, <code>cs.fnd.wnd</code> is no
-	longer published, the separate Logging component is no longer required, and
-	German is <code>DE</code> rather than <code>GR</code>.</li>
-</ol>
+<h2>Requirements</h2>
 
-<p>Foundation is free under the MIT licence. There is nothing to register
-and nothing expires.</p>
+<ul>
+	<li>4D 20 LTS or later, on macOS or Windows.</li>
+	<li>Builds for 20 LTS, 20 R10, 21 LTS and 21 R, each as a notarised DMG
+	for macOS and a ZIP for Windows.</li>
+</ul>
 
-<h2>Documentation</h2>
+<h2>Demo</h2>
 
-<p><a href="docs/">Foundation 6 Developer Reference</a>: methods, classes
-and functions, history and acknowledgements, and the legacy 5.4 manual.
-The documentation is being reworked during the beta; this site will grow
-into the learning resource for Foundation.</p>
+<p>Foundation Product Sales is a demonstration database built on Foundation.
+It is public at
+<a href="https://github.com/open4dshell/Foundation-Product-Sales">github.com/open4dshell/Foundation-Product-Sales</a>.</p>
 
-<h2>Licence</h2>
+<h2>Licence and provenance</h2>
 
-<p>Foundation is released under the MIT licence, copyright 1993–2008 Dave
-Batton, 2008–2026 Nelson Consulting, Inc. / Walt Nelson, and 2026 Wayne
-Stewart. See the <a href="LICENSE">licence</a> and
-<a href="PROVENANCE.md">provenance</a> for the full chain of title.</p>
+<p>Foundation is released under the <a href="/LICENSE">MIT licence</a>.
+<a href="/PROVENANCE.md">Provenance</a> records the chain of title.</p>
+
+<h2>History</h2>
+
+<p><strong>Dave Batton</strong> created Foundation in 1993. <strong>Walt
+Nelson</strong> / Nelson Consulting, Inc. carried it from 2008, including
+Foundation 5 for 4D v11. On 11 September 2026 it was assigned to Wayne
+Stewart by deed for release under the MIT licence, with the credit to Dave
+Batton and Walt Nelson kept permanently.</p>
 
 </main>
 
-<footer>
-	<p>MIT licence &middot; Contact: <a href="mailto:wayne@open4dshell.com">wayne@open4dshell.com</a></p>
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
 </footer>
 
 </body>

@@ -30,7 +30,7 @@ body {
 	line-height: 1.55;
 }
 
-main, header, footer {
+main, header, footer, nav.tabs, .frame {
 	max-width: 44rem;
 	margin: 0 auto;
 }
@@ -86,4 +86,46 @@ footer {
 
 footer a {
 	color: var(--muted);
+}
+
+header.masthead a.wordmark {
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--fg);
+	text-decoration: none;
+}
+
+nav.tabs ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.2rem;
+	margin: 0;
+	padding: 0.8rem 0;
+	border-bottom: 1px solid var(--border);
+}
+
+nav.tabs a[aria-current] {
+	font-weight: 600;
+	color: var(--fg);
+}
+
+.frame {
+	display: flex;
+	flex-direction: column;
+}
+
+.frame main.panel {
+	order: 1;
+	max-width: none;
+	margin: 0;
+}
+
+.frame aside.sidebar {
+	order: 2;
+	padding-bottom: 1.5rem;
+}
+
+aside.sidebar section.box h2 {
+	font-size: 1rem;
 }

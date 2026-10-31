@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started · Foundation</title>
+<meta name="description" content="Getting started with Foundation 6.0.0-beta.1: download, install, and upgrade from Foundation 5.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/" aria-current="page">Getting started</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>News</h2>
+		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
+		6.0.0-beta.1 opens as a private beta.</p>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Shell/issues">Issues</a>
+		in Foundation-Shell (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Getting started</h1>
+
+<p>You need 4D 20 LTS or later, on macOS or Windows. The release files and
+the documents linked below are in
+<a href="https://github.com/open4dshell/Foundation-Shell">open4dshell/Foundation-Shell</a>, which is private until
+1 December 2026: during the beta you need Read access, which you get by
+emailing your GitHub username to the <a href="#contact">contact address</a>.</p>
+
+<ol>
+	<li><strong>Download</strong> the DMG (macOS) or ZIP (Windows) for your 4D
+	from the repository's <a href="https://github.com/open4dshell/Foundation-Shell/releases">Releases</a>:
+	<code>20L</code> for 20 LTS, <code>20R</code> for 20 R10, <code>21L</code>
+	for 21 LTS, <code>21R</code> for 21 R. All are 6.0.0-beta.1 from the same
+	commit. The SHA-256 checksums are in
+	<a href="https://github.com/open4dshell/Foundation-Shell/blob/main/Release/releases.md">Release/releases.md</a>.</li>
+	<li><strong>Install</strong>: copy <code>Foundation.4dbase</code> into your
+	project's <code>Components/</code> folder and reopen the project. For
+	development, the repository itself also works as an interpreted
+	component.</li>
+	<li><strong>New host?</strong> Clone
+	<a href="https://github.com/open4dshell/Foundation-Product-Sales">Foundation
+	Product Sales</a> (public) and read its <code>Fnd_Hook_*</code> and
+	<code>Fnd_Host_*</code> methods: they are the whole contract between a host
+	and Foundation. Copy the ones you need.</li>
+	<li><strong>Foundation 5 host?</strong> Read
+	<a href="https://github.com/open4dshell/Foundation-Shell/blob/main/Release/UPGRADING.md">Release/UPGRADING.md</a>
+	first. The breaking changes are few and listed: Foundation's own licensing
+	methods are gone, <code>cs.fnd.wnd</code> is no longer published, the
+	Logging component is no longer required, and German is <code>DE</code>,
+	not <code>GR</code>.</li>
+	<li><strong>Problems</strong>: open an
+	<a href="https://github.com/open4dshell/Foundation-Shell/issues">Issue</a> in Foundation-Shell, giving the 4D version
+	and the target you used. Compile warnings are not bugs; errors and
+	misbehaviour are.</li>
+</ol>
+
+<p>Foundation is free under the MIT licence. There is nothing to register
+and nothing expires.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
