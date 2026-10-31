@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 // Build the Foundation Developer Reference (foundation/docs/) from the
-// method and class documentation in a Foundation repository checkout.
+// method and class documentation in a Foundation repository checkout. Also
+// copies <f6>/LICENSE and <f6>/PROVENANCE.md verbatim to foundation/ and
+// writes the Licence page, foundation/licence/index.html, from those two files.
 //
 // Usage: node scripts/build-docs.mjs /path/to/f6
 //
-// Reads (never writes) <f6>/Documentation/Methods/*.md, Classes/*.md and
-// Foundation-History.json. Replaces everything under foundation/docs/ except
+// Reads (never writes) <f6>/Documentation/Methods/*.md, Classes/*.md,
+// Foundation-History.json, <f6>/LICENSE and <f6>/PROVENANCE.md.
+// Replaces everything under foundation/docs/ except
 // original/ and the hand-written docs.css. Output is deterministic: no timestamps; the f6 commit goes in
 // foundation/docs/DOCS_SOURCE. Plain Node, no dependencies, no JavaScript in
 // the generated pages.
 
-import { readFileSync, writeFileSync, readdirSync, rmSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, rmSync, mkdirSync, copyFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -21,7 +24,8 @@ if (!f6) {
 	process.exit(1);
 }
 const srcDocs = join(f6, 'Documentation');
-const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'foundation', 'docs');
+const siteDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'foundation');
+const outDir = join(siteDir, 'docs');
 const commit = execFileSync('git', ['-C', f6, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim();
 
 // ---------------------------------------------------------------- text helpers
@@ -35,25 +39,38 @@ const byName = (a, b) => {
 };
 
 // Inline markdown: `code` spans and **bold**; everything else is text.
-function inline(s) {
+// With opts.rich (used for PROVENANCE.md only) *italics* and bare email
+// addresses are rendered too; the method documentation never sets it.
+function inline(s, opts = {}) {
 	return s.split(/(`[^`]*`)/).map((part) => {
 		if (part.length > 1 && part.startsWith('`') && part.endsWith('`')) {
 			return `<code>${esc(part.slice(1, -1))}</code>`;
 		}
-		return esc(unescapeMd(part)).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+		let t = esc(unescapeMd(part)).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+		if (opts.rich) {
+			t = t.replace(/\*([^*\s](?:[^*]*[^*\s])?)\*/g, '<em>$1</em>')
+				.replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, '<a href="mailto:$&">$&</a>');
+		}
+		return t;
 	}).join('');
 }
 
 // Block markdown: fenced code, ### headings, bullet lists, column-aligned
 // runs (kept as preformatted) and paragraphs. headingFor() renders a heading line.
-function blocks(lines, headingFor) {
+// With opts.rich (PROVENANCE.md only) numbered lists and pipe tables are
+// recognised as well, the column-aligned heuristic is off, and inline() runs rich.
+function blocks(lines, headingFor, opts = {}) {
 	const out = [];
-	let para = [], list = [], pre = [];
+	const rich = !!opts.rich;
+	const inl = (s) => inline(s, opts);
+	let para = [], list = [], pre = [], olist = [], table = [];
 	const flush = () => {
-		if (para.length) out.push(`<p>${para.map(inline).join(' ')}</p>`);
-		if (list.length) out.push(`<ul>\n${list.map((l) => `<li>${inline(l)}</li>`).join('\n')}\n</ul>`);
+		if (para.length) out.push(`<p>${para.map(inl).join(' ')}</p>`);
+		if (list.length) out.push(`<ul>\n${list.map((l) => `<li>${inl(l)}</li>`).join('\n')}\n</ul>`);
+		if (olist.length) out.push(`<ol>\n${olist.map((l) => `<li>${inl(l)}</li>`).join('\n')}\n</ol>`);
 		if (pre.length) out.push(`<pre>${esc(pre.join('\n'))}</pre>`);
-		para = []; list = []; pre = [];
+		if (table.length) out.push(tableHtml(table, inl));
+		para = []; list = []; pre = []; olist = []; table = [];
 	};
 	for (let i = 0; i < lines.length; i++) {
 		const line = lines[i];
@@ -68,6 +85,18 @@ function blocks(lines, headingFor) {
 		const h = line.match(/^(#{2,4})\s+(.*)$/);
 		if (h && headingFor) { flush(); out.push(headingFor(h[1].length, unescapeMd(h[2].trim()))); continue; }
 		if (/^\s*$/.test(line)) { flush(); continue; }
+		if (rich && /^\s*\|/.test(line)) {
+			if (!table.length) flush();
+			table.push(line);
+			continue;
+		}
+		const ol = rich ? line.match(/^\s?\d+\.\s+(.*)$/) : null;
+		if (ol) {
+			if (!olist.length) flush();
+			olist.push(ol[1]);
+			continue;
+		}
+		if (olist.length && /^\s{2,}\S/.test(line)) { olist[olist.length - 1] += ' ' + line.trim(); continue; }
 		const li = line.match(/^\s?[-*]\s+(.*)$/);
 		if (li) {
 			if (para.length || pre.length) flush();
@@ -77,16 +106,32 @@ function blocks(lines, headingFor) {
 		if (list.length && /^\s{2,}\S/.test(line)) { list[list.length - 1] += ' ' + line.trim(); continue; }
 		// A line aligned in columns starts a preformatted run, which lasts to
 		// the next blank line. Other indented lines are wrapped prose.
-		if (pre.length || /\S {3,}\S/.test(line)) {
+		if (pre.length || (!rich && /\S {3,}\S/.test(line))) {
 			if (para.length || list.length) flush();
 			pre.push(unescapeMd(line.replace(/^\s+/, '')));
 			continue;
 		}
-		if (list.length) flush();
+		if (list.length || olist.length || table.length) flush();
 		para.push(line.trim());
 	}
 	flush();
 	return out.join('\n');
+}
+
+// A pipe table as HTML: first row is the header, the separator row is dropped.
+// The wrapper lets a wide table scroll inside the panel on a narrow screen.
+function tableHtml(rows, inl) {
+	const parsed = rows.map(cells).filter((c) => !c.every((x) => /^:?-*:?$/.test(x)));
+	const [head, ...body] = parsed;
+	const tr = (c, tag) => `<tr>${c.map((x) => `<${tag}${tag === 'th' ? ' scope="col"' : ''}>${inl(x)}</${tag}>`).join('')}</tr>`;
+	return `<div class="table-wrap">
+<table class="provenance">
+<thead>${tr(head, 'th')}</thead>
+<tbody>
+${body.map((c) => tr(c, 'td')).join('\n')}
+</tbody>
+</table>
+</div>`;
 }
 
 // Split a markdown table row on unescaped pipes.
@@ -189,7 +234,11 @@ const history = JSON.parse(readText(join(srcDocs, 'Foundation-History.json')));
 
 // ---------------------------------------------------------------- page frame
 
-function page({ title, description, sidebar, body }) {
+// The site frame shared by every page. `docs` pages add docs.css and mark the
+// Docs tab current; the Licence page marks its own tab. Links are root-relative.
+function frame({ title, description, sidebar, body, docs = false, current = 'docs' }) {
+	const tab = (href, label, key) =>
+		`\t\t<li><a href="${href}"${current === key ? ' aria-current="page"' : ''}>${label}</a></li>`;
 	return `<!doctype html>
 <html lang="en">
 <head>
@@ -198,8 +247,7 @@ function page({ title, description, sidebar, body }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
-<link rel="stylesheet" href="/styles.css">
-<link rel="stylesheet" href="/docs/docs.css">
+<link rel="stylesheet" href="/styles.css">${docs ? '\n<link rel="stylesheet" href="/docs/docs.css">' : ''}
 </head>
 <body>
 
@@ -210,11 +258,11 @@ function page({ title, description, sidebar, body }) {
 
 <nav class="tabs" aria-label="Site">
 	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/start/">Getting started</a></li>
-		<li><a href="/docs/" aria-current="page">Docs</a></li>
-		<li><a href="/licence/">Licence</a></li>
-		<li><a href="#contact">Contact</a></li>
+${tab('/', 'Home', 'home')}
+${tab('/start/', 'Getting started', 'start')}
+${tab('/docs/', 'Docs', 'docs')}
+${tab('/licence/', 'Licence', 'licence')}
+${tab('#contact', 'Contact', 'contact')}
 	</ul>
 </nav>
 
@@ -244,6 +292,8 @@ ${body}
 </html>
 `;
 }
+
+const page = (args) => frame({ ...args, docs: true, current: 'docs' });
 
 function modulesBox(current) {
 	const items = moduleNames.map((mod) => {
@@ -483,6 +533,49 @@ for (const [name, html] of Object.entries(files)) writeFileSync(join(outDir, nam
 writeFileSync(join(outDir, 'DOCS_SOURCE'),
 	`Generated by scripts/build-docs.mjs from Foundation repository (f6) commit ${commit}\n` +
 	`Sources: Documentation/Methods, Documentation/Classes, Documentation/Foundation-History.json\n`);
+
+// ---------------------------------------------------------------- licence
+
+copyFileSync(join(f6, 'LICENSE'), join(siteDir, 'LICENSE'));
+copyFileSync(join(f6, 'PROVENANCE.md'), join(siteDir, 'PROVENANCE.md'));
+
+{
+	const licenceText = readText(join(f6, 'LICENSE')).replace(/\n+$/, '');
+	const provLines = readText(join(f6, 'PROVENANCE.md')).split('\n');
+	const h1 = provLines.findIndex((l) => /^#\s+/.test(l));
+	if (h1 >= 0) provLines.splice(h1, 1);
+	const provenance = blocks(provLines, (level, text) => `<h${level + 1}>${esc(text)}</h${level + 1}>`, { rich: true });
+	mkdirSync(join(siteDir, 'licence'), { recursive: true });
+	writeFileSync(join(siteDir, 'licence', 'index.html'), frame({
+		title: 'Licence · Foundation',
+		description: 'The MIT licence under which Foundation is released, and the provenance of its title.',
+		current: 'licence',
+		sidebar: `\t<section class="box">
+		<h2>News</h2>
+		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
+		6.0.0-beta.1 opens as a private beta.</p>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Shell/issues">Issues</a>
+		in Foundation-Shell (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>`,
+		body: `<h1>Licence</h1>
+
+<p>Foundation is released under the MIT licence. The text below is the
+<a href="/LICENSE">LICENSE</a> file that ships in the repository and with
+every build. The <a href="#provenance">provenance</a> below records the chain
+of title from Dave Batton to Walt Nelson to Wayne Stewart, and the
+conditions of the 2026 assignment.</p>
+
+<pre class="licence">${esc(licenceText)}</pre>
+
+<h2 id="provenance">Provenance</h2>
+
+${provenance}`,
+	}));
+}
 
 console.log(`${methods.length} shared methods, ${moduleNames.length} module pages, ${classes.length} classes, ${Object.keys(files).length + 1} files written (plus docs.css and original/)`);
 if (failures.length) {

@@ -43,8 +43,9 @@ It deletes everything else under `foundation/docs/` except `original/`
 is deterministic, so a rebuild against the same commit changes nothing.
 Source files it cannot parse are listed on the console; fix them in f6.
 
-`foundation/LICENSE` and `foundation/PROVENANCE.md` are copied by hand
-from the f6 root when they change there.
+The same run copies `LICENSE` and `PROVENANCE.md` from the f6 root to
+`foundation/LICENSE` and `foundation/PROVENANCE.md`, and regenerates the
+Licence page, `foundation/licence/index.html`, from them.
 
 ## Licence
 

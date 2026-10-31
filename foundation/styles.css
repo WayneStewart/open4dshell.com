@@ -357,3 +357,29 @@ pre.licence {
 	border: 1px solid var(--border, #ccc);
 	background: var(--pre-bg, rgba(0,0,0,0.03));
 }
+
+/* Provenance table on the Licence page */
+
+div.table-wrap {
+	overflow-x: auto;
+	margin: 1rem 0;
+}
+
+table.provenance {
+	margin: 0;
+	width: 100%;
+	font-size: 0.92rem;
+}
+
+table.provenance th,
+table.provenance td {
+	padding: 0.5rem 0.9rem 0.5rem 0;
+	vertical-align: top;
+	border-bottom: 1px solid var(--panel-rule);
+}
+
+table.provenance th {
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: normal;
+	color: var(--heading);
+}
