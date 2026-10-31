@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Reg — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Reg module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html" aria-current="page">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Reg</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Reg_Alert">Fnd_Reg_Alert</a></li>
+		<li><a href="#Fnd_Reg_BuyNowButton">Fnd_Reg_BuyNowButton</a></li>
+		<li><a href="#Fnd_Reg_BuyNowURL">Fnd_Reg_BuyNowURL</a></li>
+		<li><a href="#Fnd_Reg_CreateTable">Fnd_Reg_CreateTable</a></li>
+		<li><a href="#Fnd_Reg_DemoDays">Fnd_Reg_DemoDays</a></li>
+		<li><a href="#Fnd_Reg_DemoDialog">Fnd_Reg_DemoDialog</a></li>
+		<li><a href="#Fnd_Reg_DemoDialogFormMethod">Fnd_Reg_DemoDialogFormMethod</a></li>
+		<li><a href="#Fnd_Reg_DemoMessage">Fnd_Reg_DemoMessage</a></li>
+		<li><a href="#Fnd_Reg_FeatureCodeIndex">Fnd_Reg_FeatureCodeIndex</a></li>
+		<li><a href="#Fnd_Reg_FeatureName">Fnd_Reg_FeatureName</a></li>
+		<li><a href="#Fnd_Reg_Format">Fnd_Reg_Format</a></li>
+		<li><a href="#Fnd_Reg_GetDemoDaysRemaining">Fnd_Reg_GetDemoDaysRemaining</a></li>
+		<li><a href="#Fnd_Reg_GetExpirationDate">Fnd_Reg_GetExpirationDate</a></li>
+		<li><a href="#Fnd_Reg_GetLicenseInfo">Fnd_Reg_GetLicenseInfo</a></li>
+		<li><a href="#Fnd_Reg_GetUnlockCode">Fnd_Reg_GetUnlockCode</a></li>
+		<li><a href="#Fnd_Reg_GetUserName">Fnd_Reg_GetUserName</a></li>
+		<li><a href="#Fnd_Reg_Info">Fnd_Reg_Info</a></li>
+		<li><a href="#Fnd_Reg_LoadRegistrationRecord">Fnd_Reg_LoadRegistrationRecord</a></li>
+		<li><a href="#Fnd_Reg_Localize">Fnd_Reg_Localize</a></li>
+		<li><a href="#Fnd_Reg_RegDialogFormMethod">Fnd_Reg_RegDialogFormMethod</a></li>
+		<li><a href="#Fnd_Reg_RegDialogOKButton">Fnd_Reg_RegDialogOKButton</a></li>
+		<li><a href="#Fnd_Reg_Register">Fnd_Reg_Register</a></li>
+		<li><a href="#Fnd_Reg_RegistrationDialog">Fnd_Reg_RegistrationDialog</a></li>
+		<li><a href="#Fnd_Reg_RegistrationState">Fnd_Reg_RegistrationState</a></li>
+		<li><a href="#Fnd_Reg_Reset">Fnd_Reg_Reset</a></li>
+		<li><a href="#Fnd_Reg_SaveRecord">Fnd_Reg_SaveRecord</a></li>
+		<li><a href="#Fnd_Reg_SaveRegistrationInfo">Fnd_Reg_SaveRegistrationInfo</a></li>
+		<li><a href="#Fnd_Reg_SetHostVars">Fnd_Reg_SetHostVars</a></li>
+		<li><a href="#Fnd_Reg_SetSecretKey">Fnd_Reg_SetSecretKey</a></li>
+		<li><a href="#Fnd_Reg_StartDemoPeriod">Fnd_Reg_StartDemoPeriod</a></li>
+		<li><a href="#Fnd_Reg_ValidateUnlockCode">Fnd_Reg_ValidateUnlockCode</a></li>
+		<li><a href="#Fnd_Reg_VerifyRecord">Fnd_Reg_VerifyRecord</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Reg</h1>
+
+<p>32 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Reg_Alert">Fnd_Reg_Alert</a></li>
+<li><a href="#Fnd_Reg_BuyNowButton">Fnd_Reg_BuyNowButton</a></li>
+<li><a href="#Fnd_Reg_BuyNowURL">Fnd_Reg_BuyNowURL</a></li>
+<li><a href="#Fnd_Reg_CreateTable">Fnd_Reg_CreateTable</a></li>
+<li><a href="#Fnd_Reg_DemoDays">Fnd_Reg_DemoDays</a></li>
+<li><a href="#Fnd_Reg_DemoDialog">Fnd_Reg_DemoDialog</a></li>
+<li><a href="#Fnd_Reg_DemoDialogFormMethod">Fnd_Reg_DemoDialogFormMethod</a></li>
+<li><a href="#Fnd_Reg_DemoMessage">Fnd_Reg_DemoMessage</a></li>
+<li><a href="#Fnd_Reg_FeatureCodeIndex">Fnd_Reg_FeatureCodeIndex</a></li>
+<li><a href="#Fnd_Reg_FeatureName">Fnd_Reg_FeatureName</a></li>
+<li><a href="#Fnd_Reg_Format">Fnd_Reg_Format</a></li>
+<li><a href="#Fnd_Reg_GetDemoDaysRemaining">Fnd_Reg_GetDemoDaysRemaining</a></li>
+<li><a href="#Fnd_Reg_GetExpirationDate">Fnd_Reg_GetExpirationDate</a></li>
+<li><a href="#Fnd_Reg_GetLicenseInfo">Fnd_Reg_GetLicenseInfo</a></li>
+<li><a href="#Fnd_Reg_GetUnlockCode">Fnd_Reg_GetUnlockCode</a></li>
+<li><a href="#Fnd_Reg_GetUserName">Fnd_Reg_GetUserName</a></li>
+<li><a href="#Fnd_Reg_Info">Fnd_Reg_Info</a></li>
+<li><a href="#Fnd_Reg_LoadRegistrationRecord">Fnd_Reg_LoadRegistrationRecord</a></li>
+<li><a href="#Fnd_Reg_Localize">Fnd_Reg_Localize</a></li>
+<li><a href="#Fnd_Reg_RegDialogFormMethod">Fnd_Reg_RegDialogFormMethod</a></li>
+<li><a href="#Fnd_Reg_RegDialogOKButton">Fnd_Reg_RegDialogOKButton</a></li>
+<li><a href="#Fnd_Reg_Register">Fnd_Reg_Register</a></li>
+<li><a href="#Fnd_Reg_RegistrationDialog">Fnd_Reg_RegistrationDialog</a></li>
+<li><a href="#Fnd_Reg_RegistrationState">Fnd_Reg_RegistrationState</a></li>
+<li><a href="#Fnd_Reg_Reset">Fnd_Reg_Reset</a></li>
+<li><a href="#Fnd_Reg_SaveRecord">Fnd_Reg_SaveRecord</a></li>
+<li><a href="#Fnd_Reg_SaveRegistrationInfo">Fnd_Reg_SaveRegistrationInfo</a></li>
+<li><a href="#Fnd_Reg_SetHostVars">Fnd_Reg_SetHostVars</a></li>
+<li><a href="#Fnd_Reg_SetSecretKey">Fnd_Reg_SetSecretKey</a></li>
+<li><a href="#Fnd_Reg_StartDemoPeriod">Fnd_Reg_StartDemoPeriod</a></li>
+<li><a href="#Fnd_Reg_ValidateUnlockCode">Fnd_Reg_ValidateUnlockCode</a></li>
+<li><a href="#Fnd_Reg_VerifyRecord">Fnd_Reg_VerifyRecord</a></li>
+</ul>
+
+<section class="method" id="Fnd_Reg_Alert">
+<h2><a href="#Fnd_Reg_Alert">Fnd_Reg_Alert</a></h2>
+<p class="syntax"><code>Fnd_Reg_Alert (message)</code></p>
+<p>Displays an alert message. Uses the Foundation Dialog module alert if available.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The alert message text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_BuyNowButton">
+<h2><a href="#Fnd_Reg_BuyNowButton">Fnd_Reg_BuyNowButton</a></h2>
+<p class="syntax"><code>Fnd_Reg_BuyNowButton</code></p>
+<p>Gets called from the Buy Now buttons.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Reg_BuyNowURL">
+<h2><a href="#Fnd_Reg_BuyNowURL">Fnd_Reg_BuyNowURL</a></h2>
+<p class="syntax"><code>Fnd_Reg_BuyNowURL ({feature code{; URL}}) --&gt; Text</code></p>
+<p>Allows the developer to get and set the URL to go to if the Buy Now button is clicked.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>A feaure code (optional)</td></tr>
+<tr><td><code>inUrl</code></td><td>Text</td><td>in</td><td>The URL (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The URL</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_CreateTable">
+<h2><a href="#Fnd_Reg_CreateTable">Fnd_Reg_CreateTable</a></h2>
+<p class="syntax"><code>Fnd_Reg_CreateTable --&gt; Object</code></p>
+<p>Creates the [Fnd_Reg] table the Registration component needs, in an interpreted host. Fnd_Reg_Init offers to call it; a developer can also call it directly. If the table already exists, nothing is changed.</p>
+<pre>The table it creates: ID               Longint, primary key Feature_Code     Alpha 80 (Fnd_Reg_Init indexes it) Demo_Days        Integer Demo_Start_Date  Date Unlock_Code      Alpha 40 User_Name        Alpha 80 License_Info     Alpha 80 Checksum         Alpha 40</pre>
+<p>In a compiled host, or on a remote client, it changes nothing and returns success False with a message. After it creates the table, restart the host before using Fnd_Reg.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>{ success : Boolean ; created : Boolean ; restartRequired : Boolean ; message : Text }</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_DemoDays">
+<h2><a href="#Fnd_Reg_DemoDays">Fnd_Reg_DemoDays</a></h2>
+<p class="syntax"><code>Fnd_Reg_DemoDays ({feature code{; days}}) --&gt; Number</code></p>
+<p>Allows the developer to set and get the number of demo days for the specified feature.</p>
+<p>This routine does not modify the expiration date if it has already been set.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature code (optional)</td></tr>
+<tr><td><code>inDays</code></td><td>Longint</td><td>in</td><td>The number of days (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The number of days</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_DemoDialog">
+<h2><a href="#Fnd_Reg_DemoDialog">Fnd_Reg_DemoDialog</a></h2>
+<p class="syntax"><code>Fnd_Reg_DemoDialog ({feature code})</code></p>
+<p>Displays the demo dialog if the feature is not registered.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature code (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_DemoDialogFormMethod">
+<h2><a href="#Fnd_Reg_DemoDialogFormMethod">Fnd_Reg_DemoDialogFormMethod</a></h2>
+<p class="syntax"><code>Fnd_Reg_DemoDialogFormMethod</code></p>
+<p>We call this from a protected method because a public form can't call private methods.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Reg_DemoMessage">
+<h2><a href="#Fnd_Reg_DemoMessage">Fnd_Reg_DemoMessage</a></h2>
+<p class="syntax"><code>Fnd_Reg_DemoMessage ({feature code{; message}}) --&gt; Text</code></p>
+<p>Sets and gets the demo message for the specified feature code.</p>
+<p>This text is displayed in the demo dialog.</p>
+<p>This text can be localized, so it's not stored in the with the registration record. If you want to use something other than the default values, you'll need to call this method to set up the names before trying to retrieve them or before displaying the registration dialogs.</p>
+<p>Pass an empty string to revert to the default message (from the localization strings).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>inMessage</code></td><td>Text</td><td>in</td><td>The new demo message (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current demo message</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_FeatureCodeIndex">
+<h2><a href="#Fnd_Reg_FeatureCodeIndex">Fnd_Reg_FeatureCodeIndex</a></h2>
+<p class="syntax"><code>Fnd_Reg_FeatureCodeIndex (feature code) --&gt; Number</code></p>
+<p>Returns the index in the arrays for the specified feature code. If the feature code hasn't been added to the arrays yet it is created.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>featureCode</code></td><td>Text</td><td>in</td><td>A feature code</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The index in the arrays</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_FeatureName">
+<h2><a href="#Fnd_Reg_FeatureName">Fnd_Reg_FeatureName</a></h2>
+<p class="syntax"><code>Fnd_Reg_FeatureName ({feature code{; feature name}}) --&gt; Text</code></p>
+<p>Sets and gets the feature name for the specified feature code.</p>
+<p>This name is used in the registration dialogs.</p>
+<p>These names can be localized, so they're not stored in the with the registration information. If you want to use something other than the default values, you'll need to call this method to set up the names before trying to retrieve them or before displaying the registration dialogs.</p>
+<p>The Application code returns the database name.</p>
+<p>Other feature codes return &quot;Feature: codename&quot;</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>inFeatureName</code></td><td>Text</td><td>in</td><td>The new feature name (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current feature name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_Format">
+<h2><a href="#Fnd_Reg_Format">Fnd_Reg_Format</a></h2>
+<p class="syntax"><code>Fnd_Reg_Format (MD5; format) --&gt; Text</code></p>
+<p>Returns an unlock code by formatting the MD5 value using the specified format.</p>
+<p>The # characters in the format string are replaced by characters from the MD5.</p>
+<p>Example: Input: (&quot;35bf6fd6b73c1e29ac15a50316c4cc6c&quot;;&quot;Test ###-##/###*&quot;) Output: &quot;Test 35b-f6/fd6*&quot;</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>md5</code></td><td>Text</td><td>in</td><td>An MD5 value</td></tr>
+<tr><td><code>inFormat</code></td><td>Text</td><td>in</td><td>A format description</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_GetDemoDaysRemaining">
+<h2><a href="#Fnd_Reg_GetDemoDaysRemaining">Fnd_Reg_GetDemoDaysRemaining</a></h2>
+<p class="syntax"><code>Fnd_Reg_GetDemoDaysRemaining ({feature code}) --&gt; Number</code></p>
+<p>Returns the number of days left in the demo. Calculated by adding the number of demo days to the demo start date.</p>
+<p>If the demo hasn't been started, the number of demo days is returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Days remaining</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_GetExpirationDate">
+<h2><a href="#Fnd_Reg_GetExpirationDate">Fnd_Reg_GetExpirationDate</a></h2>
+<p class="syntax"><code>Fnd_Reg_GetExpirationDate ({feature code}) --&gt; Date</code></p>
+<p>Gets the feature's expiration date. This is calculated by adding the number of demo days to the date the demo period was started.</p>
+<p>If the demo hasn't been started, the number of demo days is added to the current date, and the resulting date is returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Date</td><td>out</td><td>The expiration date</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_GetLicenseInfo">
+<h2><a href="#Fnd_Reg_GetLicenseInfo">Fnd_Reg_GetLicenseInfo</a></h2>
+<p class="syntax"><code>Fnd_Reg_GetLicenseInfo ({feature code}) --&gt; Text</code></p>
+<p>Returns the name of the registered user.  Returns an empty string if the program hasn't been registered yet.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the registered user</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_GetUnlockCode">
+<h2><a href="#Fnd_Reg_GetUnlockCode">Fnd_Reg_GetUnlockCode</a></h2>
+<p class="syntax"><code>Fnd_Reg_GetUnlockCode ({feature code}) --&gt; Text</code></p>
+<p>Returns the unlock code that's been entered into the data file. Returns an empty string if the program hasn't been registered yet.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The name of the feature in question (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The feature's unlock code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_GetUserName">
+<h2><a href="#Fnd_Reg_GetUserName">Fnd_Reg_GetUserName</a></h2>
+<p class="syntax"><code>Fnd_Reg_GetUserName ({feature code}) --&gt; Text</code></p>
+<p>Returns the user name that has been saved in the registration record (if any).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature name (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The registered user's name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_Info">
+<h2><a href="#Fnd_Reg_Info">Fnd_Reg_Info</a></h2>
+<p class="syntax"><code>Fnd_Reg_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<p>Fnd_Reg licenses the host developer's application, not Foundation: it shows the host's demo and registration dialogs and checks the unlock codes the host issues.</p>
+<p>Fnd_Reg needs a [Fnd_Reg] table in the host: ID Longint, Feature_Code Alpha 80, Demo_Days Integer, Demo_Start_Date Date, Unlock_Code Alpha 40, User_Name Alpha 80, License_Info Alpha 80 and Checksum Alpha 40. Fnd_Reg_Init offers to create it with Fnd_Reg_CreateTable.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_LoadRegistrationRecord">
+<h2><a href="#Fnd_Reg_LoadRegistrationRecord">Fnd_Reg_LoadRegistrationRecord</a></h2>
+<p class="syntax"><code>Fnd_Reg_LoadRegistrationRecord ({feature code})</code></p>
+<p>Searches for the registration record for the specified feature. If one is found, it is checked to make sure it hasn't been tampered with.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_Localize">
+<h2><a href="#Fnd_Reg_Localize">Fnd_Reg_Localize</a></h2>
+<p class="syntax"><code>Fnd_Reg_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Reg_RegDialogFormMethod">
+<h2><a href="#Fnd_Reg_RegDialogFormMethod">Fnd_Reg_RegDialogFormMethod</a></h2>
+<p class="syntax"><code>Fnd_Reg_RegDialogFormMethod</code></p>
+<p>We call this from a protected method because a public form can't call private methods.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Reg_RegDialogOKButton">
+<h2><a href="#Fnd_Reg_RegDialogOKButton">Fnd_Reg_RegDialogOKButton</a></h2>
+<p class="syntax"><code>Fnd_Reg_RegDialogOKButton</code></p>
+<p>We call this from a protected method because a public form can't call private methods.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Reg_Register">
+<h2><a href="#Fnd_Reg_Register">Fnd_Reg_Register</a></h2>
+<p class="syntax"><code>Fnd_Reg_Register (feature code; unlock code; user name)</code></p>
+<p>Call to register the product.  Sets the OK variable to 1 if the product gets registered. Sets the Error variable if there's a problem.</p>
+<p>This doesn't check to see if it's already been registered, so it can be called to change the registration at any time.  But only does the update if the user name and unlock code are valid.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code</td></tr>
+<tr><td><code>inUnlockCode</code></td><td>Text</td><td>in</td><td>Unlock code</td></tr>
+<tr><td><code>userName</code></td><td>Text</td><td>in</td><td>User name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_RegistrationDialog">
+<h2><a href="#Fnd_Reg_RegistrationDialog">Fnd_Reg_RegistrationDialog</a></h2>
+<p class="syntax"><code>Fnd_Reg_RegistrationDialog ({feature code})</code></p>
+<p>Displays the registration dialog. Works even if the product has been registered.</p>
+<p>Sets the OK button if a valid registration number was entered.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature code (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_RegistrationState">
+<h2><a href="#Fnd_Reg_RegistrationState">Fnd_Reg_RegistrationState</a></h2>
+<p class="syntax"><code>Fnd_Reg_RegistrationState ({feature code}) --&gt; Longint</code></p>
+<p>Returns the current registration state.</p>
+<p>It can be one of these constants: Fnd_Reg_PreDemo Fnd_Reg_Demo Fnd_Reg_Expired Fnd_Reg_Registered</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The current registration state</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_Reset">
+<h2><a href="#Fnd_Reg_Reset">Fnd_Reg_Reset</a></h2>
+<p class="syntax"><code>Fnd_Reg_Reset ({feature code})</code></p>
+<p>Clears out the start date and other information for the specified feature.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>The feature code (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_SaveRecord">
+<h2><a href="#Fnd_Reg_SaveRecord">Fnd_Reg_SaveRecord</a></h2>
+<p class="syntax"><code>Fnd_Reg_SaveRecord (product code)</code></p>
+<p>Saves the current [Fnd_Reg] record after first setting the Checksum field.</p>
+<p>Assumes the record is loaded in read/write mode.</p>
+<p>Leaves the record loaded.</p>
+<p>Use Fnd_Reg_VerifyRecord to verify the checksum.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>secretKey</code></td><td>Text</td><td>in</td><td>The secret product code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_SaveRegistrationInfo">
+<h2><a href="#Fnd_Reg_SaveRegistrationInfo">Fnd_Reg_SaveRegistrationInfo</a></h2>
+<p class="syntax"><code>Fnd_Reg_SaveRegistrationInfo (feature name; personalization; license info; unlock code)</code></p>
+<p>Save's the specified info into a registration record.</p>
+<p>Doesn't check to make sure the unlock code is valid. We'll assume whoever called us did that.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature name</td></tr>
+<tr><td><code>userName</code></td><td>Text</td><td>in</td><td>Personalization</td></tr>
+<tr><td><code>licenseInfo</code></td><td>Text</td><td>in</td><td>License info</td></tr>
+<tr><td><code>unlockCode</code></td><td>Text</td><td>in</td><td>Unlock code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_SetHostVars">
+<h2><a href="#Fnd_Reg_SetHostVars">Fnd_Reg_SetHostVars</a></h2>
+<p class="syntax"><code>Fnd_Reg_SetHostVars (-&gt;text; -&gt;text; -&gt;text; -&gt;text; -&gt;longint; -&gt;longint; -&gt;longint)</code></p>
+<p>Called by the Buy Now button method of the Fnd_Reg_DemoDialog form to pass some pointers to host variables to the component.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>hostFeatureName</code></td><td>Pointer</td><td>in</td><td>Host feature name</td></tr>
+<tr><td><code>hostMessage1</code></td><td>Pointer</td><td>in</td><td>Host message 1</td></tr>
+<tr><td><code>hostMessage2</code></td><td>Pointer</td><td>in</td><td>Host message 2</td></tr>
+<tr><td><code>hostCountDown</code></td><td>Pointer</td><td>in</td><td>Host count down</td></tr>
+<tr><td><code>hostOKButton</code></td><td>Pointer</td><td>in</td><td>Host OK button</td></tr>
+<tr><td><code>hostRegisterButton</code></td><td>Pointer</td><td>in</td><td>Host Register button</td></tr>
+<tr><td><code>hostBuyNow</code></td><td>Pointer</td><td>in</td><td>Host Buy Now button</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_SetSecretKey">
+<h2><a href="#Fnd_Reg_SetSecretKey">Fnd_Reg_SetSecretKey</a></h2>
+<p class="syntax"><code>Fnd_Reg_SetSecretKey (key)</code></p>
+<p>Allows the developer to set the secret key.</p>
+<p>For security reasons, there is no routine to get the secret key.</p>
+<p>Fnd_Reg licenses the host developer's application, not Foundation: it shows the host's demo and registration dialogs and checks the unlock codes the host issues.</p>
+<p>Security: Fnd_RegG_GenerateUnlockCode ships in Foundation's source, so a host must set its own key with Fnd_Reg_SetSecretKey at startup. The MD5-based codes deter casual copying only; they are not copy protection.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>The secret key</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_StartDemoPeriod">
+<h2><a href="#Fnd_Reg_StartDemoPeriod">Fnd_Reg_StartDemoPeriod</a></h2>
+<p class="syntax"><code>Fnd_Reg_StartDemoPeriod ({feature code})</code></p>
+<p>Call this to begin the demo period.  If the demo period has already been started, this routine will do nothing.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFeatureCode</code></td><td>Text</td><td>in</td><td>Feature code (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_ValidateUnlockCode">
+<h2><a href="#Fnd_Reg_ValidateUnlockCode">Fnd_Reg_ValidateUnlockCode</a></h2>
+<p class="syntax"><code>Fnd_Reg_ValidateUnlockCode (secret key; feature code; user name; license info; unlock code; format) --&gt; Boolean</code></p>
+<p>Returns True if a valid unlock code was passed for the specified product number and user name.</p>
+<p>Strip any license info before calling.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>secretKey</code></td><td>Text</td><td>in</td><td>The unique product secret key</td></tr>
+<tr><td><code>featureCode</code></td><td>Text</td><td>in</td><td>The feature code</td></tr>
+<tr><td><code>personalization</code></td><td>Text</td><td>in</td><td>The user name</td></tr>
+<tr><td><code>licenseInfo</code></td><td>Text</td><td>in</td><td>The license information</td></tr>
+<tr><td><code>enteredUnlockCode</code></td><td>Text</td><td>in</td><td>The user-entered unlock code</td></tr>
+<tr><td><code>format</code></td><td>Text</td><td>in</td><td>The license code format string</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the entered unlock code equals the generated unlock code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Reg_VerifyRecord">
+<h2><a href="#Fnd_Reg_VerifyRecord">Fnd_Reg_VerifyRecord</a></h2>
+<p class="syntax"><code>Fnd_Reg_VerifyRecord</code></p>
+<p>Makes sure the current [Fnd_Reg] record's Checksum field is correct.</p>
+<p>If not, the record is updated so that it is expired. Theoretically this will happen only if the user tampers with a [Fnd_Reg] record. Otherwise processing is allowed to continue uninterrupted.</p>
+<p>Assumes that there is exactly one record in the current selection.</p>
+<p>Fnd_Reg_SaveRecord is called to set the checksum.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

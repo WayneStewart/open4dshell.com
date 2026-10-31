@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Tlbr — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Tlbr module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html" aria-current="page">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Tlbr</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Tlbr_Button_Add">Fnd_Tlbr_Button_Add</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Count">Fnd_Tlbr_Button_Count</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Enabled">Fnd_Tlbr_Button_Enabled</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Icon">Fnd_Tlbr_Button_Icon</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Insert">Fnd_Tlbr_Button_Insert</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Label">Fnd_Tlbr_Button_Label</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Menu">Fnd_Tlbr_Button_Menu</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Method">Fnd_Tlbr_Button_Method</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Name">Fnd_Tlbr_Button_Name</a></li>
+		<li><a href="#Fnd_Tlbr_Button_OnClicked">Fnd_Tlbr_Button_OnClicked</a></li>
+		<li><a href="#Fnd_Tlbr_Button_OnShortcut">Fnd_Tlbr_Button_OnShortcut</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Position">Fnd_Tlbr_Button_Position</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Remove">Fnd_Tlbr_Button_Remove</a></li>
+		<li><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></li>
+		<li><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></li>
+		<li><a href="#Fnd_Tlbr_CurrentButton">Fnd_Tlbr_CurrentButton</a></li>
+		<li><a href="#Fnd_Tlbr_Divider_Add">Fnd_Tlbr_Divider_Add</a></li>
+		<li><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></li>
+		<li><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></li>
+		<li><a href="#Fnd_Tlbr_Info">Fnd_Tlbr_Info</a></li>
+		<li><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></li>
+		<li><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></li>
+		<li><a href="#Fnd_Tlbr_Platform">Fnd_Tlbr_Platform</a></li>
+		<li><a href="#Fnd_Tlbr_Redraw">Fnd_Tlbr_Redraw</a></li>
+		<li><a href="#Fnd_Tlbr_SetHostVars">Fnd_Tlbr_SetHostVars</a></li>
+		<li><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></li>
+		<li><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></li>
+		<li><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></li>
+		<li><a href="#Fnd_Tlbr_Style">Fnd_Tlbr_Style</a></li>
+		<li><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></li>
+		<li><a href="#Fnd_Tlbr_UpdateButtons">Fnd_Tlbr_UpdateButtons</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Tlbr</h1>
+
+<p>31 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Tlbr_Button_Add">Fnd_Tlbr_Button_Add</a></li>
+<li><a href="#Fnd_Tlbr_Button_Count">Fnd_Tlbr_Button_Count</a></li>
+<li><a href="#Fnd_Tlbr_Button_Enabled">Fnd_Tlbr_Button_Enabled</a></li>
+<li><a href="#Fnd_Tlbr_Button_Icon">Fnd_Tlbr_Button_Icon</a></li>
+<li><a href="#Fnd_Tlbr_Button_Insert">Fnd_Tlbr_Button_Insert</a></li>
+<li><a href="#Fnd_Tlbr_Button_Label">Fnd_Tlbr_Button_Label</a></li>
+<li><a href="#Fnd_Tlbr_Button_Menu">Fnd_Tlbr_Button_Menu</a></li>
+<li><a href="#Fnd_Tlbr_Button_Method">Fnd_Tlbr_Button_Method</a></li>
+<li><a href="#Fnd_Tlbr_Button_Name">Fnd_Tlbr_Button_Name</a></li>
+<li><a href="#Fnd_Tlbr_Button_OnClicked">Fnd_Tlbr_Button_OnClicked</a></li>
+<li><a href="#Fnd_Tlbr_Button_OnShortcut">Fnd_Tlbr_Button_OnShortcut</a></li>
+<li><a href="#Fnd_Tlbr_Button_Position">Fnd_Tlbr_Button_Position</a></li>
+<li><a href="#Fnd_Tlbr_Button_Remove">Fnd_Tlbr_Button_Remove</a></li>
+<li><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></li>
+<li><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></li>
+<li><a href="#Fnd_Tlbr_CurrentButton">Fnd_Tlbr_CurrentButton</a></li>
+<li><a href="#Fnd_Tlbr_Divider_Add">Fnd_Tlbr_Divider_Add</a></li>
+<li><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></li>
+<li><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></li>
+<li><a href="#Fnd_Tlbr_Info">Fnd_Tlbr_Info</a></li>
+<li><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></li>
+<li><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></li>
+<li><a href="#Fnd_Tlbr_Platform">Fnd_Tlbr_Platform</a></li>
+<li><a href="#Fnd_Tlbr_Redraw">Fnd_Tlbr_Redraw</a></li>
+<li><a href="#Fnd_Tlbr_SetHostVars">Fnd_Tlbr_SetHostVars</a></li>
+<li><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></li>
+<li><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></li>
+<li><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></li>
+<li><a href="#Fnd_Tlbr_Style">Fnd_Tlbr_Style</a></li>
+<li><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></li>
+<li><a href="#Fnd_Tlbr_UpdateButtons">Fnd_Tlbr_UpdateButtons</a></li>
+</ul>
+
+<section class="method" id="Fnd_Tlbr_Button_Add">
+<h2><a href="#Fnd_Tlbr_Button_Add">Fnd_Tlbr_Button_Add</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Add (name; buttonText; iconName; method{; keystroke})</code></p>
+<p>Adds a new button to the toolbar.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>A unique name for the button object</td></tr>
+<tr><td><code>buttonLabel</code></td><td>Text</td><td>in</td><td>The button label</td></tr>
+<tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>A Picture Library name for the icon</td></tr>
+<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method to run when clicked</td></tr>
+<tr><td><code>shortcut</code></td><td>Text</td><td>in</td><td>The Command/Ctrl keyboard equivalent (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Count">
+<h2><a href="#Fnd_Tlbr_Button_Count">Fnd_Tlbr_Button_Count</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Count --&gt; Longint</code></p>
+<p>Returns the number of buttons in the toolbar</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$0</code></td><td>Longint</td><td>out</td><td>Count</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Enabled">
+<h2><a href="#Fnd_Tlbr_Button_Enabled">Fnd_Tlbr_Button_Enabled</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Enabled (buttonName; state)</code></p>
+<p>Set the enabled state of the toolbar item.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>objectName</code></td><td>Text</td><td>in</td><td>The button name to modify</td></tr>
+<tr><td><code>enabled</code></td><td>Boolean</td><td>in</td><td>True to enable the button</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Icon">
+<h2><a href="#Fnd_Tlbr_Button_Icon">Fnd_Tlbr_Button_Icon</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Icon (button name{; icon name}) --&gt; Text</code></p>
+<p>Call this method to specify the name of a picture library image to use as the button's icon.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>The name of the button to modify</td></tr>
+<tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>The name of the picture to use as the icon (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the button's icon</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Insert">
+<h2><a href="#Fnd_Tlbr_Button_Insert">Fnd_Tlbr_Button_Insert</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Insert (beforeButton; name; buttonText; iconName; method{; keystroke})</code></p>
+<p>Inserts a new button to the toolbar.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>beforeButton</code></td><td>Text</td><td>in</td><td>The button in the position to insert the new button</td></tr>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>A unique name for the button object</td></tr>
+<tr><td><code>buttonLabel</code></td><td>Text</td><td>in</td><td>The button label</td></tr>
+<tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>A Picture Library name for the icon</td></tr>
+<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method to run when clicked</td></tr>
+<tr><td><code>shortcut</code></td><td>Text</td><td>in</td><td>The Command/Ctrl keyboard equivalent (optional)</td></tr>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>Nothing</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Label">
+<h2><a href="#Fnd_Tlbr_Button_Label">Fnd_Tlbr_Button_Label</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Label (button name{; label}) --&gt; Text</code></p>
+<p>Returns the label for the button with the specified name.</p>
+<p>If a label is passed, this method first sets the button label.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>objectName</code></td><td>Text</td><td>in</td><td>The button name</td></tr>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The new button label (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The button label</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Menu">
+<h2><a href="#Fnd_Tlbr_Button_Menu">Fnd_Tlbr_Button_Menu</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Menu (button name; -&gt;menu items array)</code></p>
+<p>Adds a menu to the specified button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>The button name</td></tr>
+<tr><td><code>menuItems</code></td><td>Pointer</td><td>in</td><td>Array of menu items</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Method">
+<h2><a href="#Fnd_Tlbr_Button_Method">Fnd_Tlbr_Button_Method</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Method (button name{; method name}) --&gt; Text</code></p>
+<p>Call this method to specify the name of the method to call when the button is clicked.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>The name of the button to modify</td></tr>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>The name of the method to call (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the method called by the button Toolbar Component - © mitchenall.com 2002</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Name">
+<h2><a href="#Fnd_Tlbr_Button_Name">Fnd_Tlbr_Button_Name</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Name (index) --&gt; name</code></p>
+<p>Returns the name of the nth button in the toolbar.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>index</code></td><td>Index :The index number of the buttton (1 - count)</td><td>in</td><td></td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Button name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_OnClicked">
+<h2><a href="#Fnd_Tlbr_Button_OnClicked">Fnd_Tlbr_Button_OnClicked</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_OnClicked (-&gt;form button object)</code></p>
+<p>Called whenever a button is clicked.  Each button in the toolbar has the following script for their On Clicked event.... Fnd_Tlbr_Button_OnClicked (Self)</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonClicked</code></td><td>Pointer</td><td>in</td><td>A pointer to the clicked picture button object</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_OnShortcut">
+<h2><a href="#Fnd_Tlbr_Button_OnShortcut">Fnd_Tlbr_Button_OnShortcut</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_OnShortcut (shortcut key)</code></p>
+<p>Called from the On Clicked form event of all of the shortcut key buttons.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>shortcutKey</code></td><td>Text</td><td>in</td><td>The shortcut key code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Position">
+<h2><a href="#Fnd_Tlbr_Button_Position">Fnd_Tlbr_Button_Position</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Position (button name; -&gt;left; -&gt;top; -&gt;right; -&gt;bottom)</code></p>
+<p>Returns the coordinates of the specified button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>The name of the button</td></tr>
+<tr><td><code>left</code></td><td>Pointer</td><td>in</td><td>Longint to receive the left coordinate</td></tr>
+<tr><td><code>top</code></td><td>Pointer</td><td>in</td><td>Longint to receive the top coordinate</td></tr>
+<tr><td><code>right</code></td><td>Pointer</td><td>in</td><td>Longint to receive the right coordinate</td></tr>
+<tr><td><code>bottom</code></td><td>Pointer</td><td>in</td><td>Longint to receive the bottom coordinate</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Remove">
+<h2><a href="#Fnd_Tlbr_Button_Remove">Fnd_Tlbr_Button_Remove</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Remove (buttonName)</code></p>
+<p>Call this method to remove the button with the specified name from the toolbar.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>The name of the button to remove</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Button_Shortcut">
+<h2><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Button_Shortcut (buttonName; shortcutKey)</code></p>
+<p>Associates a Command key shortcut with the button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>A button name</td></tr>
+<tr><td><code>shortcutKey</code></td><td>Text</td><td>in</td><td>The shortcut letter to assign</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Clear">
+<h2><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Clear</code></p>
+<p>Clears all items from the toolbar.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_CurrentButton">
+<h2><a href="#Fnd_Tlbr_CurrentButton">Fnd_Tlbr_CurrentButton</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_CurrentButton ({button name}) --&gt; Text</code></p>
+<p>Sets and gets the button specified as the &quot;current&quot; button.</p>
+<p>This is for the new Mac OS X style &quot;Prefs&quot; style button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>newButtonName</code></td><td>Text</td><td>in</td><td>The name of the button to make the current button (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the current button</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Divider_Add">
+<h2><a href="#Fnd_Tlbr_Divider_Add">Fnd_Tlbr_Divider_Add</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Divider_Add</code></p>
+<p>Adds a divider line to the toolbar object list.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Divider_GetPicture">
+<h2><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Divider_GetPicture (divider picture name) --&gt; Picture</code></p>
+<p>Returns the toolbar divider picture * 4 so it works as a button object.</p>
+<p>This is the divider version of the Fnd_Bttn_GetPicture method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>pictureName</code></td><td>Text</td><td>in</td><td>The name of the toolbar divider picture</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The buttonized toolbar divider picture</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_FormMethod">
+<h2><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_FormMethod</code></p>
+<p>To be called from any form method that inherits the toolbar form.</p>
+<p>Expects the On Load and On Resize form events to be enabled.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Info">
+<h2><a href="#Fnd_Tlbr_Info">Fnd_Tlbr_Info</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Object_Draw">
+<h2><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Object_Draw (object number; variation; left offset; top offset)</code></p>
+<p>Draws a toolbar object in the specified position. Doesn't actually do any drawing. It just moves a picture button into the right location and makes it visible.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>objectNumber</code></td><td>Text</td><td>in</td><td>The object number</td></tr>
+<tr><td><code>variation</code></td><td>Text</td><td>in</td><td>The object's variation</td></tr>
+<tr><td><code>leftOffset</code></td><td>Longint</td><td>in</td><td>The left offset</td></tr>
+<tr><td><code>topOffset</code></td><td>Longint</td><td>in</td><td>The top offset</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Object_GetNumber">
+<h2><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Object_GetNumber (object name) --&gt; Number</code></p>
+<p>Returns the object number (array element number) for the specified object name.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>objectName</code></td><td>Text</td><td>in</td><td>A toolbar object name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The array element number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Platform">
+<h2><a href="#Fnd_Tlbr_Platform">Fnd_Tlbr_Platform</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Platform ({platform name}) --&gt; Text</code></p>
+<p>Sets and gets the toolbar platform name.</p>
+<p>Can be: &quot;Win&quot; &quot;Mac&quot; &quot;Auto&quot; Only &quot;Mac&quot; or &quot;Win&quot; will be returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>requestedPlatform</code></td><td>Text</td><td>in</td><td>The platform to use (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The selected platform</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Redraw">
+<h2><a href="#Fnd_Tlbr_Redraw">Fnd_Tlbr_Redraw</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Redraw</code></p>
+<p>Updates the toolbar.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_SetHostVars">
+<h2><a href="#Fnd_Tlbr_SetHostVars">Fnd_Tlbr_SetHostVars</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_SetHostVars (-&gt;pointer array; -&gt;pointer array; -&gt;text)</code></p>
+<p>Called by the first toolbar button method of the Fnd_Tlbr_Toolbar form to pass some pointers to host variables to the component.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>hostPictureVariables</code></td><td>Pointer</td><td>in</td><td>Host picture variables</td></tr>
+<tr><td><code>hostPictureButtons</code></td><td>Pointer</td><td>in</td><td>Host picture buttons</td></tr>
+<tr><td><code>hostInfoVariables</code></td><td>Pointer</td><td>in</td><td>Host info variables</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_SetVariables">
+<h2><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_SetVariables</code></p>
+<p>Updates the toolbar variables depending on the current platform and size settings.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_ShortcutKeyName_Get">
+<h2><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_ShortcutKeyName_Get (Character) --&gt; Text</code></p>
+<p>Because it's not easy putting the actual keycode into the buttons on the toolbar Master form for trapping shortcuts, we have names for some of them, and this routine converts the single character keycode into that name.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>keyCodeChar</code></td><td>Text</td><td>in</td><td>The Key Code character</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The Key Code Alias Name //Author: Mark Mitchenall //Created: 16/4/02 at 2:20 AM //Toolbar Component - © mitchenall.com 2002 WBS 03 December 2024: Swap to var syntax for declarations ---------------------------------------------------- #DECLARE($keyCodeChar_t : Text)-&gt;$keyCodeName_t : Text ARRAY TEXT($keyCodeNames; 127) $keyCodeNames{3}:=&quot;Enter&quot; $keyCodeNames{127}:=&quot;Del&quot; $keyCodeNames{28}:=&quot;Left&quot; $keyCodeNames{29}:=&quot;Right&quot; $keyCodeNames{30}:=&quot;Up&quot; $keyCodeNames{31}:=&quot;Down&quot; $keyCodeNames{8}:=&quot;Backspace&quot; $keyCodeNames{27}:=&quot;Esc&quot; $keyCodeNames{Character code(&quot;.&quot;)}:=&quot;Period&quot; If ((Character code($keyCodeChar_t[[1]])&gt;0) &amp; (Character code($keyCodeChar_t[[1]])&lt;128)) 	If ($keyCodeNames{Character code($keyCodeChar_t[[1]])}#&quot;&quot;) 		$keyCodeName_t:=$keyCodeNames{Character code($keyCodeChar_t[[1]])} 	Else 		$keyCodeName_t:=$keyCodeChar_t 	End if Else 	$keyCodeName_t:=$keyCodeChar_t End if</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_StatusMessage">
+<h2><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_StatusMessage ({new text}) --&gt; Text</code></p>
+<p>Allows for the getting and setting of the information text line displayed in the standard toolbar output form.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>newStatus</code></td><td>Text</td><td>in</td><td>The text to set for the info line (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The text that's displayed in the info line.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_Style">
+<h2><a href="#Fnd_Tlbr_Style">Fnd_Tlbr_Style</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_Style ({style name}) --&gt; Text</code></p>
+<p>Sets and gets the toolbar style name.</p>
+<p>Can be: &quot;Large&quot; &quot;Prefs&quot; &quot;Small1&quot; &quot;Small2&quot;</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>requestedStyle</code></td><td>Text</td><td>in</td><td>The style to use (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The selected style</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Tlbr_UpdateBackground">
+<h2><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_UpdateBackground</code></p>
+<p>Updates the toolbar background.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Tlbr_UpdateButtons">
+<h2><a href="#Fnd_Tlbr_UpdateButtons">Fnd_Tlbr_UpdateButtons</a></h2>
+<p class="syntax"><code>Fnd_Tlbr_UpdateButtons</code></p>
+<p>Redraws the toolbar, but only if it needs it.  If no code has been called which effects the toolbar, then there is no reason to redraw it.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

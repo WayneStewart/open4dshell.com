@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Pref — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Pref module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html" aria-current="page">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Pref</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Pref_Alert">Fnd_Pref_Alert</a></li>
+		<li><a href="#Fnd_Pref_CreateTable">Fnd_Pref_CreateTable</a></li>
+		<li><a href="#Fnd_Pref_Display">Fnd_Pref_Display</a></li>
+		<li><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></li>
+		<li><a href="#Fnd_Pref_Editor">Fnd_Pref_Editor</a></li>
+		<li><a href="#Fnd_Pref_ErrorHandler">Fnd_Pref_ErrorHandler</a></li>
+		<li><a href="#Fnd_Pref_GetBoolean">Fnd_Pref_GetBoolean</a></li>
+		<li><a href="#Fnd_Pref_GetLongInt">Fnd_Pref_GetLongInt</a></li>
+		<li><a href="#Fnd_Pref_GetObject">Fnd_Pref_GetObject</a></li>
+		<li><a href="#Fnd_Pref_GetProcessWindowRef">Fnd_Pref_GetProcessWindowRef</a></li>
+		<li><a href="#Fnd_Pref_GetReal">Fnd_Pref_GetReal</a></li>
+		<li><a href="#Fnd_Pref_GetSharedValue">Fnd_Pref_GetSharedValue</a></li>
+		<li><a href="#Fnd_Pref_GetText">Fnd_Pref_GetText</a></li>
+		<li><a href="#Fnd_Pref_GetWindow">Fnd_Pref_GetWindow</a></li>
+		<li><a href="#Fnd_Pref_Info">Fnd_Pref_Info</a></li>
+		<li><a href="#Fnd_Pref_Iso2Utf8">Fnd_Pref_Iso2Utf8</a></li>
+		<li><a href="#Fnd_Pref_LegacyPath">Fnd_Pref_LegacyPath</a></li>
+		<li><a href="#Fnd_Pref_LoadLegacyPrefs">Fnd_Pref_LoadLegacyPrefs</a></li>
+		<li><a href="#Fnd_Pref_LoadLocalPrefs">Fnd_Pref_LoadLocalPrefs</a></li>
+		<li><a href="#Fnd_Pref_LoadPrefs">Fnd_Pref_LoadPrefs</a></li>
+		<li><a href="#Fnd_Pref_LoadServerPrefs">Fnd_Pref_LoadServerPrefs</a></li>
+		<li><a href="#Fnd_Pref_Localize">Fnd_Pref_Localize</a></li>
+		<li><a href="#Fnd_Pref_Path">Fnd_Pref_Path</a></li>
+		<li><a href="#Fnd_Pref_Remove">Fnd_Pref_Remove</a></li>
+		<li><a href="#Fnd_Pref_SaveLocalPrefs">Fnd_Pref_SaveLocalPrefs</a></li>
+		<li><a href="#Fnd_Pref_SavePrefs">Fnd_Pref_SavePrefs</a></li>
+		<li><a href="#Fnd_Pref_SaveServerPreference">Fnd_Pref_SaveServerPreference</a></li>
+		<li><a href="#Fnd_Pref_SaveServerPrefs">Fnd_Pref_SaveServerPrefs</a></li>
+		<li><a href="#Fnd_Pref_SetBoolean">Fnd_Pref_SetBoolean</a></li>
+		<li><a href="#Fnd_Pref_SetLongInt">Fnd_Pref_SetLongInt</a></li>
+		<li><a href="#Fnd_Pref_SetObject">Fnd_Pref_SetObject</a></li>
+		<li><a href="#Fnd_Pref_SetReal">Fnd_Pref_SetReal</a></li>
+		<li><a href="#Fnd_Pref_SetText">Fnd_Pref_SetText</a></li>
+		<li><a href="#Fnd_Pref_SetValue">Fnd_Pref_SetValue</a></li>
+		<li><a href="#Fnd_Pref_SetWindow">Fnd_Pref_SetWindow</a></li>
+		<li><a href="#Fnd_Pref_UserName">Fnd_Pref_UserName</a></li>
+		<li><a href="#Fnd_Pref_Utf8ToText">Fnd_Pref_Utf8ToText</a></li>
+		<li><a href="#Fnd_Pref_XmlDecode">Fnd_Pref_XmlDecode</a></li>
+		<li><a href="#Fnd_Pref_XmlEncode">Fnd_Pref_XmlEncode</a></li>
+		<li><a href="#Fnd_Pref_XmlParse">Fnd_Pref_XmlParse</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Pref</h1>
+
+<p>40 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Pref_Alert">Fnd_Pref_Alert</a></li>
+<li><a href="#Fnd_Pref_CreateTable">Fnd_Pref_CreateTable</a></li>
+<li><a href="#Fnd_Pref_Display">Fnd_Pref_Display</a></li>
+<li><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></li>
+<li><a href="#Fnd_Pref_Editor">Fnd_Pref_Editor</a></li>
+<li><a href="#Fnd_Pref_ErrorHandler">Fnd_Pref_ErrorHandler</a></li>
+<li><a href="#Fnd_Pref_GetBoolean">Fnd_Pref_GetBoolean</a></li>
+<li><a href="#Fnd_Pref_GetLongInt">Fnd_Pref_GetLongInt</a></li>
+<li><a href="#Fnd_Pref_GetObject">Fnd_Pref_GetObject</a></li>
+<li><a href="#Fnd_Pref_GetProcessWindowRef">Fnd_Pref_GetProcessWindowRef</a></li>
+<li><a href="#Fnd_Pref_GetReal">Fnd_Pref_GetReal</a></li>
+<li><a href="#Fnd_Pref_GetSharedValue">Fnd_Pref_GetSharedValue</a></li>
+<li><a href="#Fnd_Pref_GetText">Fnd_Pref_GetText</a></li>
+<li><a href="#Fnd_Pref_GetWindow">Fnd_Pref_GetWindow</a></li>
+<li><a href="#Fnd_Pref_Info">Fnd_Pref_Info</a></li>
+<li><a href="#Fnd_Pref_Iso2Utf8">Fnd_Pref_Iso2Utf8</a></li>
+<li><a href="#Fnd_Pref_LegacyPath">Fnd_Pref_LegacyPath</a></li>
+<li><a href="#Fnd_Pref_LoadLegacyPrefs">Fnd_Pref_LoadLegacyPrefs</a></li>
+<li><a href="#Fnd_Pref_LoadLocalPrefs">Fnd_Pref_LoadLocalPrefs</a></li>
+<li><a href="#Fnd_Pref_LoadPrefs">Fnd_Pref_LoadPrefs</a></li>
+<li><a href="#Fnd_Pref_LoadServerPrefs">Fnd_Pref_LoadServerPrefs</a></li>
+<li><a href="#Fnd_Pref_Localize">Fnd_Pref_Localize</a></li>
+<li><a href="#Fnd_Pref_Path">Fnd_Pref_Path</a></li>
+<li><a href="#Fnd_Pref_Remove">Fnd_Pref_Remove</a></li>
+<li><a href="#Fnd_Pref_SaveLocalPrefs">Fnd_Pref_SaveLocalPrefs</a></li>
+<li><a href="#Fnd_Pref_SavePrefs">Fnd_Pref_SavePrefs</a></li>
+<li><a href="#Fnd_Pref_SaveServerPreference">Fnd_Pref_SaveServerPreference</a></li>
+<li><a href="#Fnd_Pref_SaveServerPrefs">Fnd_Pref_SaveServerPrefs</a></li>
+<li><a href="#Fnd_Pref_SetBoolean">Fnd_Pref_SetBoolean</a></li>
+<li><a href="#Fnd_Pref_SetLongInt">Fnd_Pref_SetLongInt</a></li>
+<li><a href="#Fnd_Pref_SetObject">Fnd_Pref_SetObject</a></li>
+<li><a href="#Fnd_Pref_SetReal">Fnd_Pref_SetReal</a></li>
+<li><a href="#Fnd_Pref_SetText">Fnd_Pref_SetText</a></li>
+<li><a href="#Fnd_Pref_SetValue">Fnd_Pref_SetValue</a></li>
+<li><a href="#Fnd_Pref_SetWindow">Fnd_Pref_SetWindow</a></li>
+<li><a href="#Fnd_Pref_UserName">Fnd_Pref_UserName</a></li>
+<li><a href="#Fnd_Pref_Utf8ToText">Fnd_Pref_Utf8ToText</a></li>
+<li><a href="#Fnd_Pref_XmlDecode">Fnd_Pref_XmlDecode</a></li>
+<li><a href="#Fnd_Pref_XmlEncode">Fnd_Pref_XmlEncode</a></li>
+<li><a href="#Fnd_Pref_XmlParse">Fnd_Pref_XmlParse</a></li>
+</ul>
+
+<section class="method" id="Fnd_Pref_Alert">
+<h2><a href="#Fnd_Pref_Alert">Fnd_Pref_Alert</a></h2>
+<p class="syntax"><code>Fnd_Pref_Alert (message)</code></p>
+<p>Displays an alert message.  Uses the Foundation Dialog module alert if available.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The alert message text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_CreateTable">
+<h2><a href="#Fnd_Pref_CreateTable">Fnd_Pref_CreateTable</a></h2>
+<p class="syntax"><code>Fnd_Pref_CreateTable</code></p>
+<pre>Method Type:    Private</pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>Nothing</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_Display">
+<h2><a href="#Fnd_Pref_Display">Fnd_Pref_Display</a></h2>
+<p class="syntax"><code>Fnd_Pref_Display (preferences form name)</code></p>
+<p>Displays the Preferences window in a new process.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPreferencesFormName</code></td><td>Text</td><td>in</td><td>The name of the project form to display</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_DummyMethod">
+<h2><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></h2>
+<p class="syntax"><code>Fnd_Pref_DummyMethod</code></p>
+<p>A generic method with no code.  This is useful for assigning as the close box method for new windows (handle the close in the form method) or to use with ON ERR CALL to disable any automatic reaction to errors.</p>
+<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served nothing — it had no caller in Foundation at all.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_Editor">
+<h2><a href="#Fnd_Pref_Editor">Fnd_Pref_Editor</a></h2>
+<p class="syntax"><code>Fnd_Pref_Editor</code></p>
+<p>Opens the preferences editor: a list of the stored preferences, with their types and values, editable in place and deletable.</p>
+<p>Local preferences are listed. Server scoped ones share the same store and are shown when the checkbox asks for them, since a preference that plainly exists should not look missing.</p>
+<pre><code>Fnd_Pref_Editor</code></pre>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_ErrorHandler">
+<h2><a href="#Fnd_Pref_ErrorHandler">Fnd_Pref_ErrorHandler</a></h2>
+<p class="syntax"><code>Fnd_Pref_ErrorHandler</code></p>
+<p>Installed as an error handler by our preferences loading routines. Usually called because of an XML parsing error.  Displays an alert to the user.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_GetBoolean">
+<h2><a href="#Fnd_Pref_GetBoolean">Fnd_Pref_GetBoolean</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetBoolean (name{; default{; scope}}) --&gt; Boolean</code></p>
+<p>Retrieves a Boolean value in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified). Otherwise False is returned.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, naming a namespace of the caller's own in [Fnd_Pref]. A label is read from that namespace alone, so nothing local shadows it; a constant only says where to store a default that has to be created, and does not filter the read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inItemValue</code></td><td>Boolean</td><td>in</td><td>The default value (optional)</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>The scope or label if the default is used (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetLongInt">
+<h2><a href="#Fnd_Pref_GetLongInt">Fnd_Pref_GetLongInt</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetLongInt (name{; default{; scope}}) --&gt; Longint</code></p>
+<p>Retrieves a long integer value in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified). Otherwise, 0 is returned.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, naming a namespace of the caller's own in [Fnd_Pref]. A label is read from that namespace alone, so nothing local shadows it; a constant only says where to store a default that has to be created, and does not filter the read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inItemValue</code></td><td>Longint</td><td>in</td><td>The default value (optional)</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>The scope or label if the default is used (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetObject">
+<h2><a href="#Fnd_Pref_GetObject">Fnd_Pref_GetObject</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetObject (name{; default{; scope}}) --&gt; Object</code></p>
+<p>Retrieves an Object in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified). Otherwise, an empty object is returned.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, naming a namespace of the caller's own in [Fnd_Pref]. A label is read from that namespace alone, so nothing local shadows it; a constant only says where to store a default that has to be created, and does not filter the read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inDefault</code></td><td>Object</td><td>in</td><td>Stored as the item when it is missing; Null reads without storing (optional)</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>The scope or label if the default is used (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetProcessWindowRef">
+<h2><a href="#Fnd_Pref_GetProcessWindowRef">Fnd_Pref_GetProcessWindowRef</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetProcessWindowRef (process number) --&gt; Number</code></p>
+<p>Returns the window ref for the frontmost window of the specified process.</p>
+<p>There's also a Fnd_Wnd_GetProcessWindowRef method, but it may not be installed.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>processNumber</code></td><td>Longint</td><td>in</td><td>A process number</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>A window reference or 0</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetReal">
+<h2><a href="#Fnd_Pref_GetReal">Fnd_Pref_GetReal</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetReal (name{; default{; scope}}) --&gt; Real</code></p>
+<p>Retrieves a real number value in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified). Otherwise, 0 is returned.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, naming a namespace of the caller's own in [Fnd_Pref]. A label is read from that namespace alone, so nothing local shadows it; a constant only says where to store a default that has to be created, and does not filter the read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inItemValue</code></td><td>Real</td><td>in</td><td>The default value (optional)</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>The scope or label if the default is used (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetSharedValue">
+<h2><a href="#Fnd_Pref_GetSharedValue">Fnd_Pref_GetSharedValue</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetSharedValue (pref name; -&gt;value{; owner}) --&gt; Boolean</code></p>
+<p>Returns a shared preference value from the database.</p>
+<p>With an owner, reads that owner's namespace instead of the shared one, which is how a labelled preference is read.</p>
+<p>The value is only written through the pointer when the stored type matches the type of the variable pointed at, so a caller's default survives a mismatch. The same is true when the stored type is object but the stored text isn't valid JSON - the row is treated as not-found rather than raising out of this method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The preference name</td></tr>
+<tr><td><code>itemValue</code></td><td>Pointer</td><td>in</td><td>Where to put the value if found</td></tr>
+<tr><td><code>inItemOwner</code></td><td>Text</td><td>in</td><td>The owner to read, defaulting to Fnd_Pref_SharedName (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if found</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetText">
+<h2><a href="#Fnd_Pref_GetText">Fnd_Pref_GetText</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetText (name{; default{; scope}}) --&gt; Text</code></p>
+<p>Retrieves a text value in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified).</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, naming a namespace of the caller's own in [Fnd_Pref]. A label is read from that namespace alone, so nothing local shadows it; a constant only says where to store a default that has to be created, and does not filter the read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inItemValue</code></td><td>Text</td><td>in</td><td>The default value (optional)</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>The scope or label if the default is used (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_GetWindow">
+<h2><a href="#Fnd_Pref_GetWindow">Fnd_Pref_GetWindow</a></h2>
+<p class="syntax"><code>Fnd_Pref_GetWindow (name; -&gt;left; -&gt;top; -&gt;right; -&gt;bottom)</code></p>
+<p>Retrieves a text value in from user's preferences file.  If an item with the specified name isn't found, the default value is returned (if specified).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>left</code></td><td>Pointer</td><td>in</td><td>The left coordinate</td></tr>
+<tr><td><code>top</code></td><td>Pointer</td><td>in</td><td>The top coordinate</td></tr>
+<tr><td><code>right</code></td><td>Pointer</td><td>in</td><td>The right coordinate</td></tr>
+<tr><td><code>bottom</code></td><td>Pointer</td><td>in</td><td>The bottom coordinate</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_Info">
+<h2><a href="#Fnd_Pref_Info">Fnd_Pref_Info</a></h2>
+<p class="syntax"><code>Fnd_Pref_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_Iso2Utf8">
+<h2><a href="#Fnd_Pref_Iso2Utf8">Fnd_Pref_Iso2Utf8</a></h2>
+<p class="syntax"><code>Fnd_Pref_Iso2Utf8 (text) --&gt; Text</code></p>
+<p>Converts ISO text to UTF-8-encoded text.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>source</code></td><td>Text</td><td>in</td><td>ISO text string (use Mac to ISO)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The UTF-8 representation Original method by Scott Vanderbilt, Datagenic Tool &amp; Die, Inc. Copyright 1996-2003 Datagenic Tool &amp; Die, Inc. All Rights Reserved. Variable names changed by Dave Batton to match the Foundation naming conventions. Wayne Stewart (Claude Opus 5) 2026-08-10 - Body uses the named parameters, not $1..$n Wayne Stewart (Claude Opus 5) 2026-08-14 - No longer called; kept as the reference Fnd_Pref_Utf8ToText is checked against ---------------------------------------------------- #DECLARE($source_t : Text)-&gt;$utf8Text_t : Text var $destination_t : Text var $sourceIndex_i; $destIndex_i; $byte_i; $currentChar_i; $sourceLength_i : Integer</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_LegacyPath">
+<h2><a href="#Fnd_Pref_LegacyPath">Fnd_Pref_LegacyPath</a></h2>
+<p class="syntax"><code>Fnd_Pref_LegacyPath --&gt; Text</code></p>
+<p>Returns the path to the preferences file written by versions before the move to JSON: an Apple property list, named .plist on macOS and .xml on Windows.</p>
+<p>Read by Fnd_Pref_LoadLocalPrefs when there is no JSON file yet, so an installation converts itself the first time it runs. Nothing writes it any more, and it is left on disk rather than deleted so a downgrade still has something to read.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The path to the legacy prefs file</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_LoadLegacyPrefs">
+<h2><a href="#Fnd_Pref_LoadLegacyPrefs">Fnd_Pref_LoadLegacyPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_LoadLegacyPrefs</code></p>
+<p>Reads the Apple property list that versions before the JSON file wrote, and puts what it holds into the preference arrays. Called by Fnd_Pref_LoadLocalPrefs when there is no JSON file yet, so an existing installation converts itself the first time it runs.</p>
+<p>Nothing writes this file any more. It is left on disk rather than deleted, so a downgrade still finds it; the next save writes JSON and the JSON is read from then on.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_LoadLocalPrefs">
+<h2><a href="#Fnd_Pref_LoadLocalPrefs">Fnd_Pref_LoadLocalPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_LoadLocalPrefs</code></p>
+<p>Loads the preferences stored in the local external preference file into the preference arrays.</p>
+<p>Called from Fnd_Pref_LoadPrefs, which handles the semaphore.</p>
+<p>Reads the JSON file written by Fnd_Pref_SaveLocalPrefs. When there is none, reads the property list earlier versions wrote and repairs the doubled characters it holds, so an installation converts itself the first time it runs and nobody migrates anything by hand. The legacy file is left where it is; the next save writes JSON alongside it and the JSON wins from then on.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_LoadPrefs">
+<h2><a href="#Fnd_Pref_LoadPrefs">Fnd_Pref_LoadPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_LoadPrefs</code></p>
+<p>Reads the preferences file from the disk.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_LoadServerPrefs">
+<h2><a href="#Fnd_Pref_LoadServerPrefs">Fnd_Pref_LoadServerPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_LoadServerPrefs</code></p>
+<p>Loads the user's preferences from the database.</p>
+<p>Does not load the shared preferences, since we need to get those when they're needed, since they may get changed by other users.</p>
+<p>Called from Fnd_Pref_LoadPrefs, which handles the semaphore.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_Localize">
+<h2><a href="#Fnd_Pref_Localize">Fnd_Pref_Localize</a></h2>
+<p class="syntax"><code>Fnd_Pref_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_Path">
+<h2><a href="#Fnd_Pref_Path">Fnd_Pref_Path</a></h2>
+<p class="syntax"><code>Fnd_Pref_Path --&gt; Text</code></p>
+<p>Returns the path to the preferences file (or at least where it should be).</p>
+<p>The file is JSON and is named the same on every platform; the plist and .xml files earlier versions wrote are at Fnd_Pref_LegacyPath, which is read once and converted when this one is not there yet.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The path to the prefs file</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_Remove">
+<h2><a href="#Fnd_Pref_Remove">Fnd_Pref_Remove</a></h2>
+<p class="syntax"><code>Fnd_Pref_Remove (name{; scope}) --&gt; Boolean</code></p>
+<p>Deletes a preference. Returns True if there was one to delete.</p>
+<p>The scope says where to delete from, which is not what it means on a getter - there it only says where to store a default. It is a constant or a label:</p>
+<p>Fnd_Pref_Local, Fnd_Pref_Server : Storage.Fnd.Pref, and for a server preference the [Fnd_Pref] row that goes with it Fnd_Pref_Shared : the [Fnd_Pref] row owned by Fnd_Pref_SharedName a label : the [Fnd_Pref] row owned by that label</p>
+<p>Local and Server name the same slot. The store holds one entry per name and the scope is a property of it, so a name cannot be local and server at once, and either constant removes whichever it is. Whether the row goes too is decided by the scope that was stored, not by the one asked for.</p>
+<p>A local or server preference is gone from memory at once and out of the file at the next Fnd_Pref_SavePrefs. A shared or labelled one is gone from the data file immediately, as writing one is.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>Where to delete from - a scope constant or a label (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if a preference was deleted</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SaveLocalPrefs">
+<h2><a href="#Fnd_Pref_SaveLocalPrefs">Fnd_Pref_SaveLocalPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_SaveLocalPrefs</code></p>
+<p>Writes the preferences file to disk, as JSON.</p>
+<p>Called from Fnd_Pref_SavePrefs, which handles the semaphore.</p>
+<p>The file is an object of preferences keyed by name, each holding the 4D type code it was stored under and its value in the JSON type that matches:</p>
+<pre>{ &quot;format&quot;: 1, &quot;preferences&quot;: { &quot;Fnd_Nav: Open at Startup&quot;: { &quot;type&quot;: 6,  &quot;value&quot;: true }, &quot;Fnd_Out: Columns&quot;:         { &quot;type&quot;: 38, &quot;value&quot;: { &quot;width&quot;: 90 } }, &quot;Fnd_Nav: Palette Window&quot;:  { &quot;type&quot;: -1, &quot;value&quot;: &quot;10, 20, 310, 220&quot; } } }</pre>
+<p>The type is recorded because JSON cannot tell a long integer from a real, and because a window - type -1 - has no JSON equivalent at all.</p>
+<p>Only the local preferences are written. The server and shared ones live in [Fnd_Pref], and a labelled one never reaches the arrays.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_SavePrefs">
+<h2><a href="#Fnd_Pref_SavePrefs">Fnd_Pref_SavePrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_SavePrefs</code></p>
+<p>Save's the user's local and server preferences.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_SaveServerPreference">
+<h2><a href="#Fnd_Pref_SaveServerPreference">Fnd_Pref_SaveServerPreference</a></h2>
+<p class="syntax"><code>Fnd_Pref_SaveServerPreference (owner; pref name; type; value; scope)</code></p>
+<p>Saves a single preference value in the database.</p>
+<p>A scope of Fnd_Pref_Local deletes the row instead, which is how a preference that is no longer a server or shared one is cleaned up.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemOwner</code></td><td>Text</td><td>in</td><td>The item's owner name</td></tr>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemType</code></td><td>Longint</td><td>in</td><td>The variable type</td></tr>
+<tr><td><code>itemValue</code></td><td>Text</td><td>in</td><td>The value to save as text</td></tr>
+<tr><td><code>itemScope</code></td><td>Longint</td><td>in</td><td>The scope</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SaveServerPrefs">
+<h2><a href="#Fnd_Pref_SaveServerPrefs">Fnd_Pref_SaveServerPrefs</a></h2>
+<p class="syntax"><code>Fnd_Pref_SaveServerPrefs</code></p>
+<p>Saves the user's server preferences to the data file.</p>
+<p>Called from Fnd_Pref_SavePrefs, which handles the semaphore.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pref_SetBoolean">
+<h2><a href="#Fnd_Pref_SetBoolean">Fnd_Pref_SetBoolean</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetBoolean (name; value{; scope})</code></p>
+<p>Saves a Boolean value in the user's preferences file.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, which becomes the owner of a row in [Fnd_Pref] and so gives the caller a namespace of its own, written through at once.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemValue</code></td><td>Boolean</td><td>in</td><td>The Boolean value to save</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>How to save it - a scope constant or a label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetLongInt">
+<h2><a href="#Fnd_Pref_SetLongInt">Fnd_Pref_SetLongInt</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetLongInt (name; value{; scope})</code></p>
+<p>Saves a long integer value in the user's preferences file.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, which becomes the owner of a row in [Fnd_Pref] and so gives the caller a namespace of its own, written through at once.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemValue</code></td><td>Longint</td><td>in</td><td>The long integer value to save</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>How to save it - a scope constant or a label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetObject">
+<h2><a href="#Fnd_Pref_SetObject">Fnd_Pref_SetObject</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetObject (name; value{; scope})</code></p>
+<p>Saves a Object value in the user's preferences file.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, which becomes the owner of a row in [Fnd_Pref] and so gives the caller a namespace of its own, written through at once.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemValue</code></td><td>Object</td><td>in</td><td>The Object value to save</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>How to save it - a scope constant or a label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetReal">
+<h2><a href="#Fnd_Pref_SetReal">Fnd_Pref_SetReal</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetReal (name; value{; scope})</code></p>
+<p>Saves a real number value in the user's preferences file.</p>
+<p>The scope is a constant - Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared - or a label: any text, which becomes the owner of a row in [Fnd_Pref] and so gives the caller a namespace of its own, written through at once.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemValue</code></td><td>Real</td><td>in</td><td>The real value to save</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>How to save it - a scope constant or a label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetText">
+<h2><a href="#Fnd_Pref_SetText">Fnd_Pref_SetText</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetText (name; value{; scope})</code></p>
+<p>Saves a text value in the user's preferences file.</p>
+<p>The scope can be one of these: 0 = store locally (Fnd_Pref_Local) 1 = store privately on server (Fnd_Pref_Server) 2 = store shared on server (Fnd_Pref_Shared) or a label: any text, which becomes the owner of a row in [Fnd_Pref] and so gives the caller a namespace of its own, written through at once.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>itemName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>itemValue</code></td><td>Text</td><td>in</td><td>The text value to save</td></tr>
+<tr><td><code>inItemScope</code></td><td>Variant</td><td>in</td><td>How to save it - a scope constant or a label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetValue">
+<h2><a href="#Fnd_Pref_SetValue">Fnd_Pref_SetValue</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetValue (name; type; value; scope)</code></p>
+<p>Adds a preference item to Storage.Fnd.Pref.  Doesn't check the semaphore. We assume the calling process has done that, since this method is only called internally by other Fnd_Pref routines.</p>
+<p>Assumes Fnd_Pref_Init has been called.</p>
+<p>The scope is either one of the three constants or a label. A label is an owner name in [Fnd_Pref] chosen by the caller, written through at once and never held in the arrays, exactly as Fnd_Pref_Shared is.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>prefType</code></td><td>Longint</td><td>in</td><td>The variable type</td></tr>
+<tr><td><code>prefValue</code></td><td>Text</td><td>in</td><td>The value to save as text</td></tr>
+<tr><td><code>prefScope</code></td><td>Variant</td><td>in</td><td>Fnd_Pref_Local, Fnd_Pref_Server, Fnd_Pref_Shared, or a label</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_SetWindow">
+<h2><a href="#Fnd_Pref_SetWindow">Fnd_Pref_SetWindow</a></h2>
+<p class="syntax"><code>Fnd_Pref_SetWindow ({name{; window ref}}) Option 2:  Fnd_Pref_SetWindow (name; left; top; right; bottom)</code></p>
+<p>Saves the coordinates of the current window in the user's preferences file.</p>
+<p>If no name is specified, the current process name is used.</p>
+<p>If no window is specified, the frontmost window of the current process is used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The name of the preference item (optional)</td></tr>
+<tr><td><code>left</code></td><td>Longint</td><td>in</td><td>The window to save (optional)</td></tr>
+<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The name of the preference item</td></tr>
+<tr><td><code>left</code></td><td>Longint</td><td>in</td><td>The left coordinate</td></tr>
+<tr><td><code>top</code></td><td>Longint</td><td>in</td><td>The top coordinate</td></tr>
+<tr><td><code>right</code></td><td>Longint</td><td>in</td><td>The right coordinate</td></tr>
+<tr><td><code>bottom</code></td><td>Longint</td><td>in</td><td>The bottom coordinate</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_UserName">
+<h2><a href="#Fnd_Pref_UserName">Fnd_Pref_UserName</a></h2>
+<p class="syntax"><code>Fnd_Pref_UserName ({name}) --&gt; Text</code></p>
+<p>Gets and sets the current user name for the preferences system.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inName</code></td><td>Text</td><td>in</td><td>The new user name (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current user name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_Utf8ToText">
+<h2><a href="#Fnd_Pref_Utf8ToText">Fnd_Pref_Utf8ToText</a></h2>
+<p class="syntax"><code>Fnd_Pref_Utf8ToText (text) --&gt; Text</code></p>
+<p>Undoes the byte-pair expansion the old preferences writer applied to every character above 127, so a value read from a legacy preferences file comes back as what was stored rather than doubled.</p>
+<p>Two adjacent characters whose codes are a UTF-8 two-byte sequence become the one character they encode. Anything else is passed through, so text that was never doubled is returned unchanged and the method is safe to run over a whole file.</p>
+<p>Characters above U+07FF cannot be recovered: the old writer had no room for them and produced a first &quot;byte&quot; above 255, which is not a sequence this can read. They are left as they are.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>source</code></td><td>Text</td><td>in</td><td>Text read from a legacy preferences file</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The same text with any doubled characters collapsed</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_XmlDecode">
+<h2><a href="#Fnd_Pref_XmlDecode">Fnd_Pref_XmlDecode</a></h2>
+<p class="syntax"><code>Fnd_Pref_XmlDecode (text) --&gt; Text</code></p>
+<p>Decodes reserved XML characters. For example, &amp;gt; is converted to &gt;.</p>
+<p>Unlike HTML encoding, this routine only handles reserved XML characters, since accented characters are handled by the UTF-8 encoding.</p>
+<p>Call Fnd_Pref_XmlEncode to reverse the process.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inText</code></td><td>Text</td><td>in</td><td>An encoded text string</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The unencoded text string</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_XmlEncode">
+<h2><a href="#Fnd_Pref_XmlEncode">Fnd_Pref_XmlEncode</a></h2>
+<p class="syntax"><code>Fnd_Pref_XmlEncode (text) --&gt; Text</code></p>
+<p>Encodes reserved XML characters. For example, &gt; is converted to &amp;gt; Unlike HTML encoding, this routine only handles reserved XML characters, since accented characters are handled by the UTF-8 encoding.</p>
+<p>Call Fnd_Pref_XmlDecode to reverse the process.</p>
+<p>Nothing writes with this any more - the preferences file is JSON, which needs no escaping of its own. It is kept as the reference Fnd_Pref_XmlDecode is checked against, that one still being live in the legacy reader, and retires when the legacy reader does.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inText</code></td><td>Text</td><td>in</td><td>An unencoded text string</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The encoded text string</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pref_XmlParse">
+<h2><a href="#Fnd_Pref_XmlParse">Fnd_Pref_XmlParse</a></h2>
+<p class="syntax"><code>Fnd_Pref_XmlParse (element)</code></p>
+<p>Parses the XML reference into an array of element IDs and a 2D array of values.</p>
+<p>Reads the legacy property list only. Nothing writes that format any more, so this is the conversion path and not a round trip.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inElement</code></td><td>Text</td><td>in</td><td>A 4D XML reference</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

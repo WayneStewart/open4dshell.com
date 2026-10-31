@@ -1,0 +1,207 @@
+/* Developer Reference rules. The frame (masthead, tabs, sidebar, panel,
+   colophon) comes from /styles.css; this file covers only what the generated
+   reference pages add: syntax, parameter tables, jump lists and the lists of
+   methods. Hand-written; scripts/build-docs.mjs leaves it in place. */
+
+/* Colours come from the frame's tokens in /styles.css (--copper, --link,
+   --heading, --panel-rule, --code-bg); the fallbacks keep the pages legible
+   if that file changes. */
+
+:root {
+	--docs-rule: color-mix(in srgb, var(--copper, #A27249) 35%, transparent);
+	--docs-code-bg: var(--code-bg, color-mix(in srgb, #A27249 10%, transparent));
+}
+
+main.panel h2 a,
+main.panel h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+main.panel h2 a:hover,
+main.panel h3 a:hover {
+	text-decoration: underline;
+	text-decoration-color: var(--copper, #A27249);
+}
+
+code,
+pre {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.9em;
+}
+
+pre {
+	overflow-x: auto;
+	padding: 0.6rem 0.8rem;
+	background: var(--docs-code-bg);
+	border-left: 3px solid var(--copper, #A27249);
+	line-height: 1.4;
+}
+
+pre code {
+	font-size: 1em;
+}
+
+/* One method */
+
+section.method {
+	padding-top: 0.4rem;
+	border-top: 1px solid var(--docs-rule);
+	margin-top: 2rem;
+	scroll-margin-top: 1rem;
+}
+
+section.method h2 {
+	margin: 0.6rem 0 0.4rem;
+	font-size: 1.1rem;
+	overflow-wrap: anywhere;
+}
+
+section.method:target h2 {
+	color: var(--heading, #63412D);
+}
+
+p.syntax {
+	margin: 0 0 0.8rem;
+	padding: 0.4rem 0.6rem;
+	background: var(--docs-code-bg);
+	overflow-wrap: anywhere;
+}
+
+p.noparams {
+	font-size: 0.9rem;
+	opacity: 0.75;
+}
+
+/* Parameter and module tables */
+
+table.params,
+table.modules {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 0.92rem;
+	margin: 0.6rem 0 0;
+}
+
+table.params th,
+table.params td,
+table.modules th,
+table.modules td {
+	text-align: left;
+	vertical-align: top;
+	padding: 0.3rem 0.8rem 0.3rem 0;
+	border-bottom: 1px solid var(--docs-rule);
+}
+
+table.params th,
+table.modules th {
+	font-weight: 600;
+	border-bottom: 2px solid var(--copper, #A27249);
+}
+
+table.params td:first-child {
+	white-space: nowrap;
+}
+
+table.modules {
+	width: auto;
+	min-width: 16rem;
+}
+
+.num {
+	text-align: right !important;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Jump lists and the full list */
+
+ul.jump,
+ul.all {
+	list-style: none;
+	padding: 0;
+	margin: 1rem 0;
+	columns: 14rem;
+	column-gap: 1.5rem;
+	font-size: 0.88rem;
+	line-height: 1.6;
+}
+
+ul.jump li,
+ul.all li {
+	break-inside: avoid;
+	overflow-wrap: anywhere;
+}
+
+/* Sidebar lists */
+
+aside.sidebar ul.nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+aside.sidebar ul.nav a[aria-current] {
+	font-weight: 600;
+}
+
+aside.sidebar ul.methods {
+	font-size: 0.82rem;
+	overflow-wrap: anywhere;
+}
+
+/* Classes and history */
+
+section.class {
+	border-top: 1px solid var(--docs-rule);
+	margin-top: 2rem;
+}
+
+section.class h3 {
+	font-size: 1rem;
+	margin: 1.4rem 0 0.4rem;
+}
+
+p.period {
+	margin: -0.4rem 0 0.4rem;
+	font-size: 0.9rem;
+	color: var(--link, #8A5A33);
+}
+
+dl.contributors dt {
+	font-weight: 600;
+	margin-top: 1rem;
+}
+
+dl.contributors dd {
+	margin: 0.2rem 0 0;
+}
+
+ul.sources {
+	list-style: none;
+	padding: 0;
+	margin: 0.2rem 0 0;
+	font-size: 0.82rem;
+	opacity: 0.8;
+}
+
+/* Narrow screens: let long names wrap and the parameter table scroll
+   inside the panel rather than widen the page. */
+
+@media (max-width: 40rem) {
+	table.params {
+		display: block;
+		overflow-x: auto;
+		font-size: 0.85rem;
+	}
+
+	table.params td:first-child {
+		white-space: normal;
+		overflow-wrap: anywhere;
+	}
+
+	table.params th,
+	table.params td {
+		padding-right: 0.5rem;
+	}
+}

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_VS — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_VS module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html" aria-current="page">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_VS</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></li>
+		<li><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></li>
+		<li><a href="#Fnd_VS_FieldName">Fnd_VS_FieldName</a></li>
+		<li><a href="#Fnd_VS_GetFields">Fnd_VS_GetFields</a></li>
+		<li><a href="#Fnd_VS_GetTables">Fnd_VS_GetTables</a></li>
+		<li><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></li>
+		<li><a href="#Fnd_VS_Info">Fnd_VS_Info</a></li>
+		<li><a href="#Fnd_VS_NbrValidFields">Fnd_VS_NbrValidFields</a></li>
+		<li><a href="#Fnd_VS_ReplaceString">Fnd_VS_ReplaceString</a></li>
+		<li><a href="#Fnd_VS_SetFieldTitle">Fnd_VS_SetFieldTitle</a></li>
+		<li><a href="#Fnd_VS_SetFieldTitles">Fnd_VS_SetFieldTitles</a></li>
+		<li><a href="#Fnd_VS_SetTableTitle">Fnd_VS_SetTableTitle</a></li>
+		<li><a href="#Fnd_VS_SetTableTitles">Fnd_VS_SetTableTitles</a></li>
+		<li><a href="#Fnd_VS_ShowTable">Fnd_VS_ShowTable</a></li>
+		<li><a href="#Fnd_VS_TableName">Fnd_VS_TableName</a></li>
+		<li><a href="#Fnd_VS_UseNameLists">Fnd_VS_UseNameLists</a></li>
+		<li><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></li>
+		<li><a href="#Fnd_VS_zProbeHostLists">Fnd_VS_zProbeHostLists</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_VS</h1>
+
+<p>18 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></li>
+<li><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></li>
+<li><a href="#Fnd_VS_FieldName">Fnd_VS_FieldName</a></li>
+<li><a href="#Fnd_VS_GetFields">Fnd_VS_GetFields</a></li>
+<li><a href="#Fnd_VS_GetTables">Fnd_VS_GetTables</a></li>
+<li><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></li>
+<li><a href="#Fnd_VS_Info">Fnd_VS_Info</a></li>
+<li><a href="#Fnd_VS_NbrValidFields">Fnd_VS_NbrValidFields</a></li>
+<li><a href="#Fnd_VS_ReplaceString">Fnd_VS_ReplaceString</a></li>
+<li><a href="#Fnd_VS_SetFieldTitle">Fnd_VS_SetFieldTitle</a></li>
+<li><a href="#Fnd_VS_SetFieldTitles">Fnd_VS_SetFieldTitles</a></li>
+<li><a href="#Fnd_VS_SetTableTitle">Fnd_VS_SetTableTitle</a></li>
+<li><a href="#Fnd_VS_SetTableTitles">Fnd_VS_SetTableTitles</a></li>
+<li><a href="#Fnd_VS_ShowTable">Fnd_VS_ShowTable</a></li>
+<li><a href="#Fnd_VS_TableName">Fnd_VS_TableName</a></li>
+<li><a href="#Fnd_VS_UseNameLists">Fnd_VS_UseNameLists</a></li>
+<li><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></li>
+<li><a href="#Fnd_VS_zProbeHostLists">Fnd_VS_zProbeHostLists</a></li>
+</ul>
+
+<section class="method" id="Fnd_VS_AddTable">
+<h2><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></h2>
+<p class="syntax"><code>Fnd_VS_AddTable (-&gt;table)</code></p>
+<p>Adds the specified table, and all of its fields, to the virtual structure arrays.</p>
+<p>Doesn't call 4D's SET TABLE TITLES command.</p>
+<p>This is a private method. To add a table the developer will normally call the Fnd_VS_ShowTable method.</p>
+<p>We don't use semaphores here. We assume the calling process is using the semaphore.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table to add</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_CreateNameLists">
+<h2><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></h2>
+<p class="syntax"><code>Fnd_VS_CreateNameLists</code></p>
+<p>Creates the 4D lists that can be used by the virtual structure routines.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_VS_FieldName">
+<h2><a href="#Fnd_VS_FieldName">Fnd_VS_FieldName</a></h2>
+<p class="syntax"><code>Fnd_VS_FieldName (-&gt;field) --&gt; Text</code></p>
+<p>Returns the virtual field name of the specified field.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to a field</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The virtual field name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_GetFields">
+<h2><a href="#Fnd_VS_GetFields">Fnd_VS_GetFields</a></h2>
+<p class="syntax"><code>Fnd_VS_GetFields (-&gt;table; -&gt;pointer array{; -&gt;text array})</code></p>
+<p>Returns in the passed arrays the pointers to and the field names of all of the visible fields for the specified table.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A pointer to a table</td></tr>
+<tr><td><code>fieldPtrsArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a pointer array to receive the field pointers</td></tr>
+<tr><td><code>fieldNamesArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a text array to receive the field names (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_GetTables">
+<h2><a href="#Fnd_VS_GetTables">Fnd_VS_GetTables</a></h2>
+<p class="syntax"><code>Fnd_VS_GetTables (-&gt;pointer array{; -&gt;text array})</code></p>
+<p>Returns in the passed arrays the names of and pointers to all of the visible tables.</p>
+<p>Returns the arrays already sorted in the order the developer wants them sorted.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tablePtrsArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a pointer array to receive the table pointers</td></tr>
+<tr><td><code>tableNamesArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a text array to receive the table names (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_HandleError">
+<h2><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></h2>
+<p class="syntax"><code>Fnd_VS_HandleError</code></p>
+<p>Special Error handling for the Virtual Structure component.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_VS_Info">
+<h2><a href="#Fnd_VS_Info">Fnd_VS_Info</a></h2>
+<p class="syntax"><code>Fnd_VS_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_NbrValidFields">
+<h2><a href="#Fnd_VS_NbrValidFields">Fnd_VS_NbrValidFields</a></h2>
+<p class="syntax"><code>Fnd_VS_NbrValidFields ($tableNumber_i : Integer) --&gt; Integer</code></p>
+<p>Counts the fields of a table that the virtual structure treats as valid.</p>
+<p>Two negative results are error codes rather than counts, so test for them before using the number:</p>
+<pre><code>-1  no table number was passed
+-2  the table number is not a valid table</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tableNumber</code></td><td>Integer</td><td>in</td><td>The table to scan</td></tr>
+<tr><td><code>Result</code></td><td>Integer</td><td>out</td><td>The count, or -1 / -2 as above</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_ReplaceString">
+<h2><a href="#Fnd_VS_ReplaceString">Fnd_VS_ReplaceString</a></h2>
+<p class="syntax"><code>Fnd_VS_ReplaceString (old string; new string)</code></p>
+<p>Does a find and replace in all of the virtual table titles and field titles.</p>
+<p>Designed specifically to quickly replace underscores with spaces, but could also be used for other global changes.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>old</code></td><td>Text</td><td>in</td><td>The string to replace</td></tr>
+<tr><td><code>new</code></td><td>Text</td><td>in</td><td>The string to replace it with</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_SetFieldTitle">
+<h2><a href="#Fnd_VS_SetFieldTitle">Fnd_VS_SetFieldTitle</a></h2>
+<p class="syntax"><code>Fnd_VS_SetFieldTitle (-&gt;field; title)</code></p>
+<p>Allows the developer to set a virtual field title for a single field.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>The field to rename</td></tr>
+<tr><td><code>title</code></td><td>Text</td><td>in</td><td>The virtual title</td></tr>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>None</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_SetFieldTitles">
+<h2><a href="#Fnd_VS_SetFieldTitles">Fnd_VS_SetFieldTitles</a></h2>
+<p class="syntax"><code>Fnd_VS_SetFieldTitles (-&gt;table; -&gt;field titles; -&gt;field numbers)</code></p>
+<p>Allows the developer to set virtual field titles. Designed to be called as a replacement to 4D's SET FIELD TITLES command.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table to use</td></tr>
+<tr><td><code>fieldNamesArray</code></td><td>Pointer</td><td>in</td><td>Array of field titles</td></tr>
+<tr><td><code>fieldNumbersArray</code></td><td>Pointer</td><td>in</td><td>Array of field numbers</td></tr>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>None</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_SetTableTitle">
+<h2><a href="#Fnd_VS_SetTableTitle">Fnd_VS_SetTableTitle</a></h2>
+<p class="syntax"><code>Fnd_VS_SetTableTitle (-&gt;table; title)</code></p>
+<p>Allows the developer to set a virtual table title for a single table.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table to rename</td></tr>
+<tr><td><code>title</code></td><td>Text</td><td>in</td><td>The virtual title</td></tr>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>None</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_SetTableTitles">
+<h2><a href="#Fnd_VS_SetTableTitles">Fnd_VS_SetTableTitles</a></h2>
+<p class="syntax"><code>Fnd_VS_SetTableTitles (-&gt;table titles; -&gt;table numbers)</code></p>
+<p>Allows the developer to set virtual table titles. Designed to be called as a replacement to 4D's SET TABLE TITLES command.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tableNamesArray</code></td><td>Pointer</td><td>in</td><td>Array of table titles</td></tr>
+<tr><td><code>tableNumbersArray</code></td><td>Pointer</td><td>in</td><td>Array of table numbers</td></tr>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>None</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_ShowTable">
+<h2><a href="#Fnd_VS_ShowTable">Fnd_VS_ShowTable</a></h2>
+<p class="syntax"><code>Fnd_VS_ShowTable (-&gt;table)</code></p>
+<p>Adds a table to the virtual structure arrays.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to let the user see</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_TableName">
+<h2><a href="#Fnd_VS_TableName">Fnd_VS_TableName</a></h2>
+<p class="syntax"><code>Fnd_VS_TableName (-&gt;table) --&gt; Text</code></p>
+<p>Returns the virtual table name of the specified table.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A pointer to a table</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The virtual table name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_UseNameLists">
+<h2><a href="#Fnd_VS_UseNameLists">Fnd_VS_UseNameLists</a></h2>
+<p class="syntax"><code>Fnd_VS_UseNameLists</code></p>
+<p>Uses the virtual structure 4D lists.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_VS_WasSubtable">
+<h2><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></h2>
+<p class="syntax"><code>Fnd_VS_WasSubtable (-&gt;table) --&gt; Boolean</code></p>
+<p>Returns true if the referenced table was a subtable Test is done on the &quot;id_added_by_converter&quot; field name.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A table</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the table was converted from a subtable Based on the WasSubtable method donated by by Jérôme Pupier WBS 03 December 2024: Swap to var syntax for declarations ---------------------------------------------------- #DECLARE($table_ptr : Pointer)-&gt;$wasSubtable_b : Boolean var $tableNum_i; $loop_i; $lastFieldNumber_i : Integer var $fieldName_t : Text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_VS_zProbeHostLists">
+<h2><a href="#Fnd_VS_zProbeHostLists">Fnd_VS_zProbeHostLists</a></h2>
+<p class="syntax"><code>Fnd_VS_zProbeHostLists ($listName_t : Text) --&gt; Object</code></p>
+<p>A diagnostic, kept deliberately: the answer varies by host, and knowing which route works in a particular database decides how that host is migrated off 4D lists.</p>
+<p>Reports, from inside the component, which routes to a host's choice list actually work. Call it from a host with the name of one of the host's own lists.</p>
+<pre><code>Fnd_VS_zProbeHostLists(&quot;VS_Table002_EN&quot;)</code></pre>
+<p>Each route is reported as an object with a &quot;worked&quot; Boolean and what it found, so one call answers all of them and a failure in one does not hide the rest. A route that raises is silenced and reports worked:False with no further detail: Try...Catch...End try, which could report the error, is 20 R5 and this component still builds on 20.x LTS.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The name of a list belonging to the HOST database</td></tr>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>One property per route attempted</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Find — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Find module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html" aria-current="page">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Find</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Find_AddCustom">Fnd_Find_AddCustom</a></li>
+		<li><a href="#Fnd_Find_AddItem">Fnd_Find_AddItem</a></li>
+		<li><a href="#Fnd_Find_AddMultiField">Fnd_Find_AddMultiField</a></li>
+		<li><a href="#Fnd_Find_AddSeparator">Fnd_Find_AddSeparator</a></li>
+		<li><a href="#Fnd_Find_AddSubfield">Fnd_Find_AddSubfield</a></li>
+		<li><a href="#Fnd_Find_BestPopupSize">Fnd_Find_BestPopupSize</a></li>
+		<li><a href="#Fnd_Find_Display">Fnd_Find_Display</a></li>
+		<li><a href="#Fnd_Find_Engine">Fnd_Find_Engine</a></li>
+		<li><a href="#Fnd_Find_Engine2">Fnd_Find_Engine2</a></li>
+		<li><a href="#Fnd_Find_Engine3">Fnd_Find_Engine3</a></li>
+		<li><a href="#Fnd_Find_GetExtraWidth">Fnd_Find_GetExtraWidth</a></li>
+		<li><a href="#Fnd_Find_Info">Fnd_Find_Info</a></li>
+		<li><a href="#Fnd_Find_Localize">Fnd_Find_Localize</a></li>
+		<li><a href="#Fnd_Find_Now">Fnd_Find_Now</a></li>
+		<li><a href="#Fnd_Find_PrefsGet">Fnd_Find_PrefsGet</a></li>
+		<li><a href="#Fnd_Find_PrefsPut">Fnd_Find_PrefsPut</a></li>
+		<li><a href="#Fnd_Find_SetEditorButton">Fnd_Find_SetEditorButton</a></li>
+		<li><a href="#Fnd_Find_SizeArrayObject">Fnd_Find_SizeArrayObject</a></li>
+		<li><a href="#Fnd_Find_UpdateOperators">Fnd_Find_UpdateOperators</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Find</h1>
+
+<p>19 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Find_AddCustom">Fnd_Find_AddCustom</a></li>
+<li><a href="#Fnd_Find_AddItem">Fnd_Find_AddItem</a></li>
+<li><a href="#Fnd_Find_AddMultiField">Fnd_Find_AddMultiField</a></li>
+<li><a href="#Fnd_Find_AddSeparator">Fnd_Find_AddSeparator</a></li>
+<li><a href="#Fnd_Find_AddSubfield">Fnd_Find_AddSubfield</a></li>
+<li><a href="#Fnd_Find_BestPopupSize">Fnd_Find_BestPopupSize</a></li>
+<li><a href="#Fnd_Find_Display">Fnd_Find_Display</a></li>
+<li><a href="#Fnd_Find_Engine">Fnd_Find_Engine</a></li>
+<li><a href="#Fnd_Find_Engine2">Fnd_Find_Engine2</a></li>
+<li><a href="#Fnd_Find_Engine3">Fnd_Find_Engine3</a></li>
+<li><a href="#Fnd_Find_GetExtraWidth">Fnd_Find_GetExtraWidth</a></li>
+<li><a href="#Fnd_Find_Info">Fnd_Find_Info</a></li>
+<li><a href="#Fnd_Find_Localize">Fnd_Find_Localize</a></li>
+<li><a href="#Fnd_Find_Now">Fnd_Find_Now</a></li>
+<li><a href="#Fnd_Find_PrefsGet">Fnd_Find_PrefsGet</a></li>
+<li><a href="#Fnd_Find_PrefsPut">Fnd_Find_PrefsPut</a></li>
+<li><a href="#Fnd_Find_SetEditorButton">Fnd_Find_SetEditorButton</a></li>
+<li><a href="#Fnd_Find_SizeArrayObject">Fnd_Find_SizeArrayObject</a></li>
+<li><a href="#Fnd_Find_UpdateOperators">Fnd_Find_UpdateOperators</a></li>
+</ul>
+
+<section class="method" id="Fnd_Find_AddCustom">
+<h2><a href="#Fnd_Find_AddCustom">Fnd_Find_AddCustom</a></h2>
+<p class="syntax"><code>Fnd_Find_AddCustom (label; method name{; position})</code></p>
+<p>Adds a custom field to the search dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The label to use</td></tr>
+<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method to call</td></tr>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_AddItem">
+<h2><a href="#Fnd_Find_AddItem">Fnd_Find_AddItem</a></h2>
+<p class="syntax"><code>Fnd_Find_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
+<p>Called by the protected &quot;Fnd_Find_Add&quot; routines to add stuff to the arrays.</p>
+<p>If the label is blank, the field name will be used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position</td></tr>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The label</td></tr>
+<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method</td></tr>
+<tr><td><code>inField</code></td><td>Pointer</td><td>in</td><td>The field (optional)</td></tr>
+<tr><td><code>inFieldType</code></td><td>Longint</td><td>in</td><td>The field's type (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_AddMultiField">
+<h2><a href="#Fnd_Find_AddMultiField">Fnd_Find_AddMultiField</a></h2>
+<p class="syntax"><code>Fnd_Find_AddMultiField (-&gt;array of field ptrs; label{; position})</code></p>
+<p>Lets the developer add one item for searching multiple fields.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to an array of pointers</td></tr>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The label for the popup item</td></tr>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position in which to add the first item (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_AddSeparator">
+<h2><a href="#Fnd_Find_AddSeparator">Fnd_Find_AddSeparator</a></h2>
+<p class="syntax"><code>Fnd_Find_AddSeparator ({position})</code></p>
+<p>Adds a separator line to the list of searchable fields.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>Position of the separator (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_AddSubfield">
+<h2><a href="#Fnd_Find_AddSubfield">Fnd_Find_AddSubfield</a></h2>
+<p class="syntax"><code>Fnd_Find_AddSubfield (-&gt;subfield; field type{; position})</code></p>
+<p>Lets the developer add a subfield to the Find dialog.  The field type must be specified because we can't procedurally determine this like we can for fields.  If a position isn't specified, the field is added to the end of the list.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to the field to add</td></tr>
+<tr><td><code>fieldType</code></td><td>Longint</td><td>in</td><td>The type of the subfield</td></tr>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position in which to add the item (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_BestPopupSize">
+<h2><a href="#Fnd_Find_BestPopupSize">Fnd_Find_BestPopupSize</a></h2>
+<p class="syntax"><code>Fnd_Find_BestPopupSize (-&gt;popup array) --&gt; Number</code></p>
+<p>Returns the best object width to use for a pop-up menu form object.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The best object size for the pop-up</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_Display">
+<h2><a href="#Fnd_Find_Display">Fnd_Find_Display</a></h2>
+<p class="syntax"><code>Fnd_Find_Display</code></p>
+<p>Displays a Find dialog and performs the query.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Find_Engine">
+<h2><a href="#Fnd_Find_Engine">Fnd_Find_Engine</a></h2>
+<p class="syntax"><code>Fnd_Find_Engine (&quot;Query&quot; or &quot;Query Selection&quot;)</code></p>
+<p>Does the grunt work.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchScope</code></td><td>Text</td><td>in</td><td>Either &quot;Query&quot; or &quot;Query Selection&quot;</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_Engine2">
+<h2><a href="#Fnd_Find_Engine2">Fnd_Find_Engine2</a></h2>
+<p class="syntax"><code>Fnd_Find_Engine2 (&quot;Query&quot; or &quot;Query Selection&quot;; -&gt;field; operator)</code></p>
+<p>Adds a query to the built search.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchScope</code></td><td>Text</td><td>in</td><td>Either &quot;Query&quot; or &quot;Query Selection&quot;</td></tr>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to the field to search</td></tr>
+<tr><td><code>operator</code></td><td>Text</td><td>in</td><td>The operator code to use</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_Engine3">
+<h2><a href="#Fnd_Find_Engine3">Fnd_Find_Engine3</a></h2>
+<p class="syntax"><code>Fnd_Find_Engine3 (&quot;Query&quot; or &quot;Query Selection&quot;; -&gt;field; operator)</code></p>
+<p>Adds a query to the built search.</p>
+<p>Exactly the same as Fnd_Find_Engine2, but with &quot;|&quot; operators.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchScope</code></td><td>Text</td><td>in</td><td>Either &quot;Query&quot; or &quot;Query Selection&quot;</td></tr>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to the field to search</td></tr>
+<tr><td><code>operator</code></td><td>Text</td><td>in</td><td>The operator code to use</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_GetExtraWidth">
+<h2><a href="#Fnd_Find_GetExtraWidth">Fnd_Find_GetExtraWidth</a></h2>
+<p class="syntax"><code>Fnd_Find_GetExtraWidth --&gt; Number</code></p>
+<p>Returns the extra width needed to display the Find dialog so none of the text in the pop-up menus gets truncated.</p>
+<p>Lots of stuff is hard-coded here because we can't get it procedurally.  :-(</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The extra width required</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_Info">
+<h2><a href="#Fnd_Find_Info">Fnd_Find_Info</a></h2>
+<p class="syntax"><code>Fnd_Find_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_Localize">
+<h2><a href="#Fnd_Find_Localize">Fnd_Find_Localize</a></h2>
+<p class="syntax"><code>Fnd_Find_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Find_Now">
+<h2><a href="#Fnd_Find_Now">Fnd_Find_Now</a></h2>
+<p class="syntax"><code>Fnd_Find_Now (&quot;Query&quot; or &quot;Query Selection&quot;)</code></p>
+<p>Finishes up the built search.  This is separate from the Fnd_Find_Engine routine so it's possible to change the dialog to a multi-criteria find.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchScope</code></td><td>Text</td><td>in</td><td>Either &quot;Query&quot; or &quot;Query Selection&quot;</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_PrefsGet">
+<h2><a href="#Fnd_Find_PrefsGet">Fnd_Find_PrefsGet</a></h2>
+<p class="syntax"><code>Fnd_Find_PrefsGet (pref name) --&gt; Text</code></p>
+<p>Gets a value from the user preferences if the Fnd_Pref component is available.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The preference name</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The saved value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_PrefsPut">
+<h2><a href="#Fnd_Find_PrefsPut">Fnd_Find_PrefsPut</a></h2>
+<p class="syntax"><code>Fnd_Find_PrefsPut (pref name; text value)</code></p>
+<p>Adds an item to the user's preferences if the Fnd_Pref component is available.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>name</code></td><td>Text</td><td>in</td><td>The preference name</td></tr>
+<tr><td><code>value</code></td><td>Text</td><td>in</td><td>The value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_SetEditorButton">
+<h2><a href="#Fnd_Find_SetEditorButton">Fnd_Find_SetEditorButton</a></h2>
+<p class="syntax"><code>Fnd_Find_SetEditorButton (label{; method})</code></p>
+<p>Allows the developer to hide or modify the Query Editor button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The new label</td></tr>
+<tr><td><code>inMethod</code></td><td>Text</td><td>in</td><td>The method to run (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_SizeArrayObject">
+<h2><a href="#Fnd_Find_SizeArrayObject">Fnd_Find_SizeArrayObject</a></h2>
+<p class="syntax"><code>Fnd_Find_SizeArrayObject (-&gt;object; alignment) --&gt; Number</code></p>
+<p>Sets the best size for an array based form object based on the contents it displays.</p>
+<p>Rather than using BEST OBJECT SIZE, we calculate the size the same way we did before opening the dialog using the Fnd_Find_GetExtraWidth method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>object</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
+<tr><td><code>alignment</code></td><td>Longint</td><td>in</td><td>The alignment (side not to move)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The increase in the button size</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Find_UpdateOperators">
+<h2><a href="#Fnd_Find_UpdateOperators">Fnd_Find_UpdateOperators</a></h2>
+<p class="syntax"><code>Fnd_Find_UpdateOperators</code></p>
+<p>Updates the Search Operators pop-up menu depending on the type of the selected field.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

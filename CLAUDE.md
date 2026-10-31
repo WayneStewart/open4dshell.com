@@ -14,19 +14,19 @@ adds what an agent needs to work here safely.
 - Plain semantic HTML5, one stylesheet per folder, no frameworks, no
   CDNs, no external fonts. Light and dark via `prefers-color-scheme`.
   Understated tone, no marketing copy.
-- No JavaScript in the hand-written pages (`www/`, `foundation/*.html`).
-  Every page must read and navigate fully without it. The generated
-  reference under `foundation/docs/` carries a small inline script for
-  search filtering and hash reveal; that comes from the Foundation
-  generator, is self-contained, makes no network requests, and degrades
-  to a plain page when scripts are off. It is acceptable as is.
+- No JavaScript anywhere. Every page, including the generated reference
+  under `foundation/docs/`, must read and navigate fully without it;
+  search in the reference is the browser's find on `docs/all.html`.
 - Contact address everywhere is `wayne@open4dshell.com`.
-- Never hand-edit anything under `foundation/docs/`. It is generated in the
-  Foundation repository and copied here; see README and
-  `scripts/refresh-docs.sh`. Fix the source there and refresh.
+- Never hand-edit the generated files under `foundation/docs/`. They are
+  built here by `scripts/build-docs.mjs` from the method documentation in
+  the Foundation repository (f6); fix the source there (usually the method
+  header, which 4D exports to `Documentation/Methods/`) and rebuild. The
+  exceptions are `foundation/docs/docs.css` and `foundation/docs/original/`,
+  which are hand-maintained and which the generator leaves alone.
 - `foundation/LICENSE` and `foundation/PROVENANCE.md` are verbatim copies of
   the Foundation repository's root `LICENSE` and `PROVENANCE.md`. Change
-  them there first, then run `scripts/refresh-docs.sh`.
+  them there first, then copy them across by hand.
 - Commit with `git add -A`; keep the tree clean. Pushing to `main` deploys.
 
 ## Hosting
@@ -95,18 +95,26 @@ public from then); the demo database is public at
 `github.com/open4dshell/Foundation-Product-Sales`. The site links to
 both; it hosts no builds and no checksums.
 
-The HTML reference is generated in f6 from `not res/Fnd_Shell_Documentation`
-(it left `Resources/` in f6 commit 1c02b487). The generator's `--check`
-currently fails because it still expects the old path; the refresh script
-warns and copies the committed output. The documentation approach is
-under review in f6; this site is to grow into the learning resource for
-Foundation, and that design is still open.
+The Developer Reference (`foundation/docs/`) is generated in this
+repository by `node scripts/build-docs.mjs /path/to/f6`, which reads
+`Documentation/Methods/*.md`, `Documentation/Classes/*.md` and
+`Documentation/Foundation-History.json` and never writes to f6. Only
+methods whose Attributes line says Shared are published, one page per
+`Fnd_<Module>_` prefix. The built component carries no documentation (a
+large bundle of HTML files made code signing hang); it opens this site
+instead, so page names and method anchors (`/docs/pref.html#Fnd_Pref_GetText`)
+are a public interface and should stay stable. The generator lists the
+source files it could not parse; those are fixed in f6's method headers,
+never here. The earlier reference, built from a PDF extraction, is
+retired; the Foundation 5.4 manual stays at
+`foundation/docs/original/Fnd_5.4_Docs.pdf`. This site is to grow into the
+learning resource for Foundation, and that design is still open.
 
 ## Open items (as at 2026-11-01)
 
 - On 1 December 2026: change the beta wording on `foundation/index.html`
   and `www/index.html` to the public release, link the public repository,
-  and refresh `foundation/docs/` from the release tag.
+  and rebuild `foundation/docs/` from the release tag.
 - Apex `open4dshell.com` serves the site directly; a Cloudflare redirect
   rule to `www` is still to be added (zone Rules → Redirect Rules).
 - `wayne@open4dshell.com` needs Google Workspace activation of the alias

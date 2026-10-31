@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Dict — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Dict module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html" aria-current="page">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Dict</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Dict_DataType">Fnd_Dict_DataType</a></li>
+		<li><a href="#Fnd_Dict_GetArray">Fnd_Dict_GetArray</a></li>
+		<li><a href="#Fnd_Dict_GetBoolean">Fnd_Dict_GetBoolean</a></li>
+		<li><a href="#Fnd_Dict_GetDate">Fnd_Dict_GetDate</a></li>
+		<li><a href="#Fnd_Dict_GetLongint">Fnd_Dict_GetLongint</a></li>
+		<li><a href="#Fnd_Dict_GetPointer">Fnd_Dict_GetPointer</a></li>
+		<li><a href="#Fnd_Dict_GetReal">Fnd_Dict_GetReal</a></li>
+		<li><a href="#Fnd_Dict_GetText">Fnd_Dict_GetText</a></li>
+		<li><a href="#Fnd_Dict_GetTime">Fnd_Dict_GetTime</a></li>
+		<li><a href="#Fnd_Dict_GetValue">Fnd_Dict_GetValue</a></li>
+		<li><a href="#Fnd_Dict_HasKey">Fnd_Dict_HasKey</a></li>
+		<li><a href="#Fnd_Dict_ID">Fnd_Dict_ID</a></li>
+		<li><a href="#Fnd_Dict_Info">Fnd_Dict_Info</a></li>
+		<li><a href="#Fnd_Dict_IsValid">Fnd_Dict_IsValid</a></li>
+		<li><a href="#Fnd_Dict_ItemCount">Fnd_Dict_ItemCount</a></li>
+		<li><a href="#Fnd_Dict_Key">Fnd_Dict_Key</a></li>
+		<li><a href="#Fnd_Dict_Keys">Fnd_Dict_Keys</a></li>
+		<li><a href="#Fnd_Dict_Load">Fnd_Dict_Load</a></li>
+		<li><a href="#Fnd_Dict_LoadFromBlob">Fnd_Dict_LoadFromBlob</a></li>
+		<li><a href="#Fnd_Dict_LoadFromFile">Fnd_Dict_LoadFromFile</a></li>
+		<li><a href="#Fnd_Dict_LockInternalState">Fnd_Dict_LockInternalState</a></li>
+		<li><a href="#Fnd_Dict_Name">Fnd_Dict_Name</a></li>
+		<li><a href="#Fnd_Dict_New">Fnd_Dict_New</a></li>
+		<li><a href="#Fnd_Dict_Release">Fnd_Dict_Release</a></li>
+		<li><a href="#Fnd_Dict_Remove">Fnd_Dict_Remove</a></li>
+		<li><a href="#Fnd_Dict_Retain">Fnd_Dict_Retain</a></li>
+		<li><a href="#Fnd_Dict_RetainCount">Fnd_Dict_RetainCount</a></li>
+		<li><a href="#Fnd_Dict_Save">Fnd_Dict_Save</a></li>
+		<li><a href="#Fnd_Dict_SaveToBlob">Fnd_Dict_SaveToBlob</a></li>
+		<li><a href="#Fnd_Dict_SaveToFile">Fnd_Dict_SaveToFile</a></li>
+		<li><a href="#Fnd_Dict_SetArray">Fnd_Dict_SetArray</a></li>
+		<li><a href="#Fnd_Dict_SetBoolean">Fnd_Dict_SetBoolean</a></li>
+		<li><a href="#Fnd_Dict_SetDate">Fnd_Dict_SetDate</a></li>
+		<li><a href="#Fnd_Dict_SetLongint">Fnd_Dict_SetLongint</a></li>
+		<li><a href="#Fnd_Dict_SetPointer">Fnd_Dict_SetPointer</a></li>
+		<li><a href="#Fnd_Dict_SetReal">Fnd_Dict_SetReal</a></li>
+		<li><a href="#Fnd_Dict_SetText">Fnd_Dict_SetText</a></li>
+		<li><a href="#Fnd_Dict_SetTime">Fnd_Dict_SetTime</a></li>
+		<li><a href="#Fnd_Dict_SetValue">Fnd_Dict_SetValue</a></li>
+		<li><a href="#Fnd_Dict_Values">Fnd_Dict_Values</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Dict</h1>
+
+<p>40 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Dict_DataType">Fnd_Dict_DataType</a></li>
+<li><a href="#Fnd_Dict_GetArray">Fnd_Dict_GetArray</a></li>
+<li><a href="#Fnd_Dict_GetBoolean">Fnd_Dict_GetBoolean</a></li>
+<li><a href="#Fnd_Dict_GetDate">Fnd_Dict_GetDate</a></li>
+<li><a href="#Fnd_Dict_GetLongint">Fnd_Dict_GetLongint</a></li>
+<li><a href="#Fnd_Dict_GetPointer">Fnd_Dict_GetPointer</a></li>
+<li><a href="#Fnd_Dict_GetReal">Fnd_Dict_GetReal</a></li>
+<li><a href="#Fnd_Dict_GetText">Fnd_Dict_GetText</a></li>
+<li><a href="#Fnd_Dict_GetTime">Fnd_Dict_GetTime</a></li>
+<li><a href="#Fnd_Dict_GetValue">Fnd_Dict_GetValue</a></li>
+<li><a href="#Fnd_Dict_HasKey">Fnd_Dict_HasKey</a></li>
+<li><a href="#Fnd_Dict_ID">Fnd_Dict_ID</a></li>
+<li><a href="#Fnd_Dict_Info">Fnd_Dict_Info</a></li>
+<li><a href="#Fnd_Dict_IsValid">Fnd_Dict_IsValid</a></li>
+<li><a href="#Fnd_Dict_ItemCount">Fnd_Dict_ItemCount</a></li>
+<li><a href="#Fnd_Dict_Key">Fnd_Dict_Key</a></li>
+<li><a href="#Fnd_Dict_Keys">Fnd_Dict_Keys</a></li>
+<li><a href="#Fnd_Dict_Load">Fnd_Dict_Load</a></li>
+<li><a href="#Fnd_Dict_LoadFromBlob">Fnd_Dict_LoadFromBlob</a></li>
+<li><a href="#Fnd_Dict_LoadFromFile">Fnd_Dict_LoadFromFile</a></li>
+<li><a href="#Fnd_Dict_LockInternalState">Fnd_Dict_LockInternalState</a></li>
+<li><a href="#Fnd_Dict_Name">Fnd_Dict_Name</a></li>
+<li><a href="#Fnd_Dict_New">Fnd_Dict_New</a></li>
+<li><a href="#Fnd_Dict_Release">Fnd_Dict_Release</a></li>
+<li><a href="#Fnd_Dict_Remove">Fnd_Dict_Remove</a></li>
+<li><a href="#Fnd_Dict_Retain">Fnd_Dict_Retain</a></li>
+<li><a href="#Fnd_Dict_RetainCount">Fnd_Dict_RetainCount</a></li>
+<li><a href="#Fnd_Dict_Save">Fnd_Dict_Save</a></li>
+<li><a href="#Fnd_Dict_SaveToBlob">Fnd_Dict_SaveToBlob</a></li>
+<li><a href="#Fnd_Dict_SaveToFile">Fnd_Dict_SaveToFile</a></li>
+<li><a href="#Fnd_Dict_SetArray">Fnd_Dict_SetArray</a></li>
+<li><a href="#Fnd_Dict_SetBoolean">Fnd_Dict_SetBoolean</a></li>
+<li><a href="#Fnd_Dict_SetDate">Fnd_Dict_SetDate</a></li>
+<li><a href="#Fnd_Dict_SetLongint">Fnd_Dict_SetLongint</a></li>
+<li><a href="#Fnd_Dict_SetPointer">Fnd_Dict_SetPointer</a></li>
+<li><a href="#Fnd_Dict_SetReal">Fnd_Dict_SetReal</a></li>
+<li><a href="#Fnd_Dict_SetText">Fnd_Dict_SetText</a></li>
+<li><a href="#Fnd_Dict_SetTime">Fnd_Dict_SetTime</a></li>
+<li><a href="#Fnd_Dict_SetValue">Fnd_Dict_SetValue</a></li>
+<li><a href="#Fnd_Dict_Values">Fnd_Dict_Values</a></li>
+</ul>
+
+<section class="method" id="Fnd_Dict_DataType">
+<h2><a href="#Fnd_Dict_DataType">Fnd_Dict_DataType</a></h2>
+<p class="syntax"><code>Fnd_Dict_DataType (dict ID; key name) --&gt; Number</code></p>
+<p>Returns the data type of a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Data type</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetArray">
+<h2><a href="#Fnd_Dict_GetArray">Fnd_Dict_GetArray</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetArray (dict ID; key name; -&gt;values)</code></p>
+<p>Returns an array of values from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Pointer</td><td>in</td><td>Text array to receive values</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetBoolean">
+<h2><a href="#Fnd_Dict_GetBoolean">Fnd_Dict_GetBoolean</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetBoolean (dict ID; key) --&gt; Boolean</code></p>
+<p>Returns a Boolean value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetDate">
+<h2><a href="#Fnd_Dict_GetDate">Fnd_Dict_GetDate</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetDate (dict ID; key) --&gt; Date</code></p>
+<p>Returns a date value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Date</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetLongint">
+<h2><a href="#Fnd_Dict_GetLongint">Fnd_Dict_GetLongint</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetLongint (dict ID; key) --&gt; Longint</code></p>
+<p>Returns a longint value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetPointer">
+<h2><a href="#Fnd_Dict_GetPointer">Fnd_Dict_GetPointer</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetPointer (dict ID; key) --&gt; Pointer</code></p>
+<p>Returns a pointer value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetReal">
+<h2><a href="#Fnd_Dict_GetReal">Fnd_Dict_GetReal</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetReal (dict ID; key) --&gt; Real</code></p>
+<p>Returns a real value from a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Real</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetText">
+<h2><a href="#Fnd_Dict_GetText">Fnd_Dict_GetText</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetText (dict ID; key) --&gt; Text</code></p>
+<p>Returns a text value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetTime">
+<h2><a href="#Fnd_Dict_GetTime">Fnd_Dict_GetTime</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetTime (dict ID; key) --&gt; Time</code></p>
+<p>Returns a time value from a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Time</td><td>out</td><td>The key's value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_GetValue">
+<h2><a href="#Fnd_Dict_GetValue">Fnd_Dict_GetValue</a></h2>
+<p class="syntax"><code>Fnd_Dict_GetValue (dict ID; key) --&gt; Text</code></p>
+<p>Returns a value from a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The key's value as text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_HasKey">
+<h2><a href="#Fnd_Dict_HasKey">Fnd_Dict_HasKey</a></h2>
+<p class="syntax"><code>Fnd_Dict_HasKey (dict ID; key) --&gt; Boolean</code></p>
+<p>Checks whether a dictionary contains a given key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the key exists</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_ID">
+<h2><a href="#Fnd_Dict_ID">Fnd_Dict_ID</a></h2>
+<p class="syntax"><code>Fnd_Dict_ID (name) --&gt; Number</code></p>
+<p>Returns the reference number of the dictionary with the specified name.</p>
+<p>Returns 0 if the dictionary does not exist.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>name</code></td><td>Text</td><td>in</td><td>A dictionary name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The dictionary's reference number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Info">
+<h2><a href="#Fnd_Dict_Info">Fnd_Dict_Info</a></h2>
+<p class="syntax"><code>Fnd_Dict_Info (label) --&gt; Text</code></p>
+<p>Returns requested information. See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_IsValid">
+<h2><a href="#Fnd_Dict_IsValid">Fnd_Dict_IsValid</a></h2>
+<p class="syntax"><code>Fnd_Dict_IsValid (dict ID) --&gt; Boolean</code></p>
+<p>Checks whether a dictionary reference is valid.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the dictionary reference is valid</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_ItemCount">
+<h2><a href="#Fnd_Dict_ItemCount">Fnd_Dict_ItemCount</a></h2>
+<p class="syntax"><code>Fnd_Dict_ItemCount (dict ID) --&gt; Number</code></p>
+<p>Returns the number of items in a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Item count</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Key">
+<h2><a href="#Fnd_Dict_Key">Fnd_Dict_Key</a></h2>
+<p class="syntax"><code>Fnd_Dict_Key (dict ID; key number) --&gt; Text</code></p>
+<p>Returns the nth key from a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>index</code></td><td>Longint</td><td>in</td><td>Key number</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The key's value as text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Keys">
+<h2><a href="#Fnd_Dict_Keys">Fnd_Dict_Keys</a></h2>
+<p class="syntax"><code>Fnd_Dict_Keys (dict ID; -&gt;keys array)</code></p>
+<p>Fills an array with the keys in a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>Text array</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Load">
+<h2><a href="#Fnd_Dict_Load">Fnd_Dict_Load</a></h2>
+<p class="syntax"><code>Fnd_Dict_Load (-&gt;blob or path)</code></p>
+<p>Loads a dictionary from either a blob or a file</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>source</code></td><td>Pointer</td><td>in</td><td>Dictionary or path</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_LoadFromBlob">
+<h2><a href="#Fnd_Dict_LoadFromBlob">Fnd_Dict_LoadFromBlob</a></h2>
+<p class="syntax"><code>Fnd_Dict_LoadFromBlob (-&gt;blob) --&gt; Longint</code></p>
+<p>Loads a dictionary from a BLOB.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>source</code></td><td>Pointer</td><td>in</td><td>Dictionary as blob</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_LoadFromFile">
+<h2><a href="#Fnd_Dict_LoadFromFile">Fnd_Dict_LoadFromFile</a></h2>
+<p class="syntax"><code>Fnd_Dict_LoadFromFile (path) --&gt; Longint</code></p>
+<p>Loads a dictionary from a file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>filename</code></td><td>Text</td><td>in</td><td>File path</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_LockInternalState">
+<h2><a href="#Fnd_Dict_LockInternalState">Fnd_Dict_LockInternalState</a></h2>
+<p class="syntax"><code>Fnd_Dict_LockInternalState (lock?)</code></p>
+<p>Locks the internal state for the dictionary module.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>lock</code></td><td>Boolean</td><td>in</td><td>True to Lock, False to Unlock</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Name">
+<h2><a href="#Fnd_Dict_Name">Fnd_Dict_Name</a></h2>
+<p class="syntax"><code>Fnd_Dict_Name (dict ID) --&gt; Text</code></p>
+<p>Returns the name of the dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Dictionary Name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_New">
+<h2><a href="#Fnd_Dict_New">Fnd_Dict_New</a></h2>
+<p class="syntax"><code>Fnd_Dict_New ({name}) --&gt; Longint</code></p>
+<p>Creates a new dictionary and returns a refernece to it.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inName</code></td><td>Text</td><td>in</td><td>Name (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Release">
+<h2><a href="#Fnd_Dict_Release">Fnd_Dict_Release</a></h2>
+<p class="syntax"><code>Fnd_Dict_Release (dict ID)</code></p>
+<p>Decrements the retain count of a dictionary and deletes it when the retain count reaches 0.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Remove">
+<h2><a href="#Fnd_Dict_Remove">Fnd_Dict_Remove</a></h2>
+<p class="syntax"><code>Fnd_Dict_Remove (dict ID; key)</code></p>
+<p>Removes a key from a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Retain">
+<h2><a href="#Fnd_Dict_Retain">Fnd_Dict_Retain</a></h2>
+<p class="syntax"><code>Fnd_Dict_Retain (dict ID)</code></p>
+<p>Increments the retain count for a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_RetainCount">
+<h2><a href="#Fnd_Dict_RetainCount">Fnd_Dict_RetainCount</a></h2>
+<p class="syntax"><code>Fnd_Dict_RetainCount (dict ID) --&gt; Longint</code></p>
+<p>Returns the retain count for a dictionary</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Retain count</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Save">
+<h2><a href="#Fnd_Dict_Save">Fnd_Dict_Save</a></h2>
+<p class="syntax"><code>Fnd_Dict_Save (dict ID; -&gt;blob or path)</code></p>
+<p>Saves a dictionary as either a blob or a file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>blobPath</code></td><td>Pointer</td><td>in</td><td>Blob or path</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SaveToBlob">
+<h2><a href="#Fnd_Dict_SaveToBlob">Fnd_Dict_SaveToBlob</a></h2>
+<p class="syntax"><code>Fnd_Dict_SaveToBlob (dict ID; -&gt;blob)</code></p>
+<p>Saves a dictionary as a blob.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>destination</code></td><td>Pointer</td><td>in</td><td>Blob to store dictionary</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SaveToFile">
+<h2><a href="#Fnd_Dict_SaveToFile">Fnd_Dict_SaveToFile</a></h2>
+<p class="syntax"><code>Fnd_Dict_SaveToFile (dict ID; path)</code></p>
+<p>Saves a dictionary as a file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>filename</code></td><td>Text</td><td>in</td><td>Path to the file to create (or update)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetArray">
+<h2><a href="#Fnd_Dict_SetArray">Fnd_Dict_SetArray</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetArray (dict ID; key; -&gt;array)</code></p>
+<p>Stores an array of values inside a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key</td></tr>
+<tr><td><code>value</code></td><td>Pointer</td><td>in</td><td>Array</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetBoolean">
+<h2><a href="#Fnd_Dict_SetBoolean">Fnd_Dict_SetBoolean</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetBoolean (dict ID; key; Boolean value)</code></p>
+<p>Assigns a Boolean value to a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Boolean</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetDate">
+<h2><a href="#Fnd_Dict_SetDate">Fnd_Dict_SetDate</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetDate (dict ID; key; date value)</code></p>
+<p>Assigns a date value to a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Date</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetLongint">
+<h2><a href="#Fnd_Dict_SetLongint">Fnd_Dict_SetLongint</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetLongint (dict ID; key; longint value)</code></p>
+<p>Assigns a longint value to a dictionary given a key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Longint</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetPointer">
+<h2><a href="#Fnd_Dict_SetPointer">Fnd_Dict_SetPointer</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetPointer (dict ID; key; pointer)</code></p>
+<p>Assigns a pointer value to a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Pointer</td><td>in</td><td>Pointer to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetReal">
+<h2><a href="#Fnd_Dict_SetReal">Fnd_Dict_SetReal</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetReal (dict ID; key; real value)</code></p>
+<p>Assigns a real value to a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Real</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetText">
+<h2><a href="#Fnd_Dict_SetText">Fnd_Dict_SetText</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetText (dict ID; key; text value)</code></p>
+<p>Assigns a text value to a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Text</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetTime">
+<h2><a href="#Fnd_Dict_SetTime">Fnd_Dict_SetTime</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetTime (dict ID; key; time value)</code></p>
+<p>Assigns a time value to a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Time</td><td>in</td><td>Value to store</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_SetValue">
+<h2><a href="#Fnd_Dict_SetValue">Fnd_Dict_SetValue</a></h2>
+<p class="syntax"><code>Fnd_Dict_SetValue (dict ID; key; value as text; data type)</code></p>
+<p>Assigns a value to a dictionary given a key</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>key</code></td><td>Text</td><td>in</td><td>Key name</td></tr>
+<tr><td><code>value</code></td><td>Text</td><td>in</td><td>Value to store</td></tr>
+<tr><td><code>type</code></td><td>Longint</td><td>in</td><td>Data type</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dict_Values">
+<h2><a href="#Fnd_Dict_Values">Fnd_Dict_Values</a></h2>
+<p class="syntax"><code>Fnd_Dict_Values (dict ID; -&gt;array)</code></p>
+<p>Fills an array with the values in a dictionary.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dictionary</code></td><td>Longint</td><td>in</td><td>Dictionary ID</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>Array to receive values</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

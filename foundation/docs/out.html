@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Out — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Out module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html" aria-current="page">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Out</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Out_Active">Fnd_Out_Active</a></li>
+		<li><a href="#Fnd_Out_AddField">Fnd_Out_AddField</a></li>
+		<li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
+		<li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
+		<li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
+		<li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
+		<li><a href="#Fnd_Out_EditRecord">Fnd_Out_EditRecord</a></li>
+		<li><a href="#Fnd_Out_EditSelection">Fnd_Out_EditSelection</a></li>
+		<li><a href="#Fnd_Out_fieldName">Fnd_Out_fieldName</a></li>
+		<li><a href="#Fnd_Out_fieldType">Fnd_Out_fieldType</a></li>
+		<li><a href="#Fnd_Out_FormMethod">Fnd_Out_FormMethod</a></li>
+		<li><a href="#Fnd_Out_getPrimaryKey">Fnd_Out_getPrimaryKey</a></li>
+		<li><a href="#Fnd_Out_HideField">Fnd_Out_HideField</a></li>
+		<li><a href="#Fnd_Out_Info">Fnd_Out_Info</a></li>
+		<li><a href="#Fnd_Out_ListBoxMethod">Fnd_Out_ListBoxMethod</a></li>
+		<li><a href="#Fnd_Out_MaxRelationDepth">Fnd_Out_MaxRelationDepth</a></li>
+		<li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
+		<li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
+		<li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
+		<li><a href="#Fnd_Out_SynchroniseSelection">Fnd_Out_SynchroniseSelection</a></li>
+		<li><a href="#Fnd_Out_Update">Fnd_Out_Update</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Out</h1>
+
+<p>21 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Out_Active">Fnd_Out_Active</a></li>
+<li><a href="#Fnd_Out_AddField">Fnd_Out_AddField</a></li>
+<li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
+<li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
+<li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
+<li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
+<li><a href="#Fnd_Out_EditRecord">Fnd_Out_EditRecord</a></li>
+<li><a href="#Fnd_Out_EditSelection">Fnd_Out_EditSelection</a></li>
+<li><a href="#Fnd_Out_fieldName">Fnd_Out_fieldName</a></li>
+<li><a href="#Fnd_Out_fieldType">Fnd_Out_fieldType</a></li>
+<li><a href="#Fnd_Out_FormMethod">Fnd_Out_FormMethod</a></li>
+<li><a href="#Fnd_Out_getPrimaryKey">Fnd_Out_getPrimaryKey</a></li>
+<li><a href="#Fnd_Out_HideField">Fnd_Out_HideField</a></li>
+<li><a href="#Fnd_Out_Info">Fnd_Out_Info</a></li>
+<li><a href="#Fnd_Out_ListBoxMethod">Fnd_Out_ListBoxMethod</a></li>
+<li><a href="#Fnd_Out_MaxRelationDepth">Fnd_Out_MaxRelationDepth</a></li>
+<li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
+<li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
+<li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
+<li><a href="#Fnd_Out_SynchroniseSelection">Fnd_Out_SynchroniseSelection</a></li>
+<li><a href="#Fnd_Out_Update">Fnd_Out_Update</a></li>
+</ul>
+
+<section class="method" id="Fnd_Out_Active">
+<h2><a href="#Fnd_Out_Active">Fnd_Out_Active</a></h2>
+<p class="syntax"><code>Fnd_Out_Active ({activate?}) --&gt; Boolean</code></p>
+<p>Pass True to activate this component for the current process, or False to deactivate for the current process. May also be called as a function to determine the current state.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>active</code></td><td>Boolean</td><td>in</td><td>Activate? (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>Active</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_AddField">
+<h2><a href="#Fnd_Out_AddField">Fnd_Out_AddField</a></h2>
+<p class="syntax"><code>Fnd_Out_AddField (-&gt;field | formula | columnObject {; width{; header{; alignment{; format{; visible}}}}})</code></p>
+<p>Allows the developer to specify the columns to display in the output list. Call multiple times to display multiple columns.</p>
+<p>The first parameter decides how the column is described, and the method reads its type to tell which of three forms you have used. All three are current and none is deprecated.</p>
+<p>1. A field pointer. The simplest form, and the original one. The column header defaults to the field's virtual-structure name.</p>
+<p>2. A formula as text. Use this to display a calculation, or a field reached through relations, which a pointer cannot express. The header defaults to the name derived from the formula.</p>
+<p>3. An object. Use this when a column needs more than the five trailing parameters can carry — minimum and maximum widths, font style, an explicit field type. Only fo_field is compulsory; every other property has a default, listed below.</p>
+<p>Form 1, by pointer:</p>
+<pre><code>Fnd_Out_AddField(-&gt;[Invoice]Date; 80; &quot;Invoice date&quot;)</code></pre>
+<p>Form 2, by formula, for a calculation or a field reached through relations:</p>
+<pre><code>Fnd_Out_AddField(&quot;Invoice.Customer.Name&quot;; 120)</code></pre>
+<p>Form 3, by object, when the column needs more than the parameters carry:</p>
+<pre><code>$column_o:=New object(&quot;fo_field&quot;; &quot;Invoice.Total&quot;; &quot;fo_minWidth&quot;; 60; \
+&quot;fo_maxWidth&quot;; 200; &quot;fo_hAlign&quot;; Align right; &quot;fo_style&quot;; Bold)
+Fnd_Out_AddField($column_o)</code></pre>
+<p>Forms 1 and 2 take the column's settings from the trailing parameters. Form 3 takes them from the object instead — that is the point of it — so pass the object alone.</p>
+<p>Object properties, with the default applied when the property is absent:</p>
+<pre><code>fo_field    Text     COMPULSORY. Field name, or a formula reaching one through relations. A
+&quot;Formula: &quot; column returning a picture is detected as Is picture; fo_type can force it
+fo_title    Text     Column header. Defaults to the name derived from fo_field
+fo_type     Longint  Field type. Defaults to the type deduced from fo_field
+fo_format   Text     Display format. Defaults to none. For a date, time or picture column it is
+the format constant, e.g. &quot;fo_format&quot;; Scaled to fit prop centered (a picture
+defaults to Scaled to fit proportional)
+fo_hAlign   Longint  Align default | Align left | Align right | Align center. Defaults to Align default
+fo_vAlign   Longint  Align top | Align center | Align bottom, for this column's cells. Defaults to
+the list's (Fnd_Out_Default with Fnd_Out_VAlign), which itself defaults to Align center
+fo_width    Longint  Column width. Defaults to 0, meaning the default width
+fo_minWidth Longint  Minimum width. Defaults to 10
+fo_maxWidth Longint  Maximum width. Defaults to 0, meaning no maximum
+fo_style    Longint  Font style. Defaults to Plain
+fo_visible  Boolean  Whether the column shows. Defaults to True (the auto-inserted
+primary-key column 0 is always invisible regardless of this property)</code></pre>
+<p>In forms 1 and 2 the format parameter takes String(&lt;constant&gt;) for a date, time or picture.</p>
+<p>Widths, in any form: 0 uses the default size, and a negative number auto-sizes the column with that number as its minimum.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inField</code></td><td>Variant</td><td>in</td><td>A field pointer, a formula as text, or a column object</td></tr>
+<tr><td><code>inWidth</code></td><td>Longint</td><td>in</td><td>The width for the column (optional, forms 1 and 2)</td></tr>
+<tr><td><code>inHeader</code></td><td>Text</td><td>in</td><td>The column header (optional, forms 1 and 2)</td></tr>
+<tr><td><code>inAlignment</code></td><td>Longint</td><td>in</td><td>The column alignment (optional, forms 1 and 2)</td></tr>
+<tr><td><code>inFormat</code></td><td>Text</td><td>in</td><td>The column display format (optional, forms 1 and 2)</td></tr>
+<tr><td><code>inVisible</code></td><td>Boolean</td><td>in</td><td>Visible column (optional, forms 1 and 2)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_AddLayout">
+<h2><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></h2>
+<p class="syntax"><code>Fnd_Out_AddLayout ($inName_t : Text; $inVisible_c : Collection {; $inTextSize_i : Integer {; $inRowHeight_i : Integer}})</code></p>
+<p>Developer configuration hook: declares a built-in layout for the current table, offered in the palette's Layout popup ahead of any user or shared layout. Calling this again with the same name replaces the earlier declaration rather than adding a second one.</p>
+<p>This only declares the layout in memory (Fnd.out.devConfig) - it is not written to Resources/Fnd_Out/&lt;Table&gt;.json. A developer running interpreted can also capture the palette's current widths/order into a built-in layout with Fnd_Out_LayoutSaveBuiltIn, which does write the file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inName</code></td><td>Text</td><td>in</td><td>The layout's name</td></tr>
+<tr><td><code>inVisible</code></td><td>Collection</td><td>in</td><td>fo_field values that should be visible</td></tr>
+<tr><td><code>inTextSize</code></td><td>Integer</td><td>in</td><td>Text size the layout sets (optional)</td></tr>
+<tr><td><code>inRowHeight</code></td><td>Integer</td><td>in</td><td>Row height (in lines) the layout sets (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_AllowCustomColumns">
+<h2><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></h2>
+<p class="syntax"><code>Fnd_Out_AllowCustomColumns ({$allow_b : Boolean}) --&gt; $allowed_b : Boolean</code></p>
+<p>Developer configuration: may the user add, edit and delete custom columns (formulas) in the current list? Call with a value from Fnd_Hook_IO_DisplayTable to set it for this list; call with nothing to read what applies, which is the application default (Fnd_Out_Default with Fnd_Out_AllowCustomColumns), the table's allowCustomColumns and this list's value, all of which must allow it. Formulas already added stay listed, under Custom Columns, whatever the answer.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>allow</code></td><td>Boolean</td><td>in</td><td>False to forbid custom columns in this list (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>Whether custom columns are allowed in this list</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_ConfigureList">
+<h2><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></h2>
+<p class="syntax"><code>Fnd_Out_ConfigureList (font{; size{; row height}})</code></p>
+<p>Retired: use Fnd_Out_Default, or the &quot;appearance&quot; of Resources/Fnd_Out/&lt;Table&gt;.json. Still honoured: writes the current table's in-memory appearance.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>font</code></td><td>Text</td><td>in</td><td>Font Name</td></tr>
+<tr><td><code>inSize</code></td><td>Longint</td><td>in</td><td>Font Size</td></tr>
+<tr><td><code>inRowHeight</code></td><td>Longint</td><td>in</td><td>Row height, in lines (matching lk lines, the row height</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_Default">
+<h2><a href="#Fnd_Out_Default">Fnd_Out_Default</a></h2>
+<p class="syntax"><code>Fnd_Out_Default ($tag_t : Text {; $value_v : Variant}) --&gt; $result_v : Variant</code></p>
+<p>Developer configuration: the programmed default appearance of every list. One parameter reads the stored value (Null when none was set); two store it, last call wins, and return it. Call from the host's startup or from Fnd_Hook_IO_DisplayTable. A list opens from the form's own values, then these, then the table's Resources/Fnd_Out/&lt;Table&gt;.json &quot;appearance&quot;, then the user's saved default and the list's own saved definition. The View Options Reset button returns to the first three.</p>
+<p>Use the constants rather than the strings: Fnd_Out_FontName (&quot;fontName&quot;) : Text : font of the columns Fnd_Out_TextSize (&quot;textSize&quot;) : Integer : text size of the columns Fnd_Out_RowHeight (&quot;rowHeight&quot;) : Integer : row height in lines Fnd_Out_RowPixels (&quot;rowPixels&quot;) : Integer : row height in pixels, outranks lines Fnd_Out_VAlign (&quot;vAlign&quot;) : Integer : vertical alignment of the cells: Align top, Align center (the default) or Align bottom. A column's own fo_vAlign outranks it Fnd_Out_Fill (&quot;fill&quot;) : Integer : background colour, as OBJECT SET RGB COLORS takes it Fnd_Out_AltFill (&quot;altFill&quot;) : Integer : alternate background colour Fnd_Out_RelationDepth (&quot;maxRelationDepth&quot;) : Integer : relations deep the palette offers Fnd_Out_MaxColumns (&quot;maxColumns&quot;) : Integer : columns of the best-guess layout Fnd_Out_AllowCustomColumns (&quot;allowCustom&quot;) : Boolean : may users add custom columns (formulas); Null, meaning True, until set Fnd_Out_AllowPublish (&quot;allowPublish&quot;) : Boolean : may users publish and delete shared layouts; Null, meaning the Designer, the Administrator and the Administration group, until set</p>
+<p>An unknown tag, or a value of the wrong type, raises a bug alert, stores nothing and returns Null.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tag</code></td><td>Text</td><td>in</td><td>One of the tags above</td></tr>
+<tr><td><code>value</code></td><td>Variant</td><td>in</td><td>The value to store (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Variant</td><td>out</td><td>The stored value, Null when unset or refused</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_EditRecord">
+<h2><a href="#Fnd_Out_EditRecord">Fnd_Out_EditRecord</a></h2>
+<p class="syntax"><code>Fnd_Out_EditRecord ($row_i)</code></p>
+<p>Opens the record in the given row of the output list for editing, in the list's own window, as a double-click does.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>row</code></td><td>Integer</td><td>in</td><td>The row to edit, 1 to the number of rows in the list</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_EditSelection">
+<h2><a href="#Fnd_Out_EditSelection">Fnd_Out_EditSelection</a></h2>
+<p class="syntax"><code>Fnd_Out_EditSelection ($selected_es)</code></p>
+<p>Opens each record of the entity selection for editing, one after another, in a new process of its own. Does nothing when the selection is Null or empty.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>selected</code></td><td>Object</td><td>in</td><td>The entity selection whose records are to be edited</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_fieldName">
+<h2><a href="#Fnd_Out_fieldName">Fnd_Out_fieldName</a></h2>
+<p class="syntax"><code>Fnd_Out_fieldName (Formula) --&gt; Text</code></p>
+<p>Pass a formula to determine the header to include in the display listbox</p>
+<p>Fnd_Out_fieldTitle(&quot;invoice.client.FirstName&quot;) --&gt; FirstName</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>theFormula</code></td><td>Text</td><td>in</td><td>A formula</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the field</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_fieldType">
+<h2><a href="#Fnd_Out_fieldType">Fnd_Out_fieldType</a></h2>
+<p class="syntax"><code>Fnd_Out_fieldType (Formula or field pointer) --&gt; Long</code></p>
+<p>Pass either the field pointer or a formula to determine the field type to include in the display listbox Fnd_Out_fieldType(-&gt;[Client]ID) --&gt; 9 (Is longint) Fnd_Out_fieldType(&quot;invoice.client.FirstName&quot;) --&gt; 0 (Is alpha field) A &quot;Formula: &quot; path gives Is text, or Is picture when the formula returns one</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>theFormula</code></td><td>Variant</td><td>in</td><td>A field pointer or a valid formula</td></tr>
+<tr><td><code>Result</code></td><td>Long</td><td>out</td><td>Field Type (-1 indicates error)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_FormMethod">
+<h2><a href="#Fnd_Out_FormMethod">Fnd_Out_FormMethod</a></h2>
+<p class="syntax"><code>Fnd_Out_FormMethod</code></p>
+<p>The controlling from method for the Fnd_Out form</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Out_getPrimaryKey">
+<h2><a href="#Fnd_Out_getPrimaryKey">Fnd_Out_getPrimaryKey</a></h2>
+<p class="syntax"><code>Fnd_Out_getPrimaryKey (Table Number)--&gt; Integer</code></p>
+<p>Returns the primary key field for a table</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tableNumber</code></td><td>Long</td><td>in</td><td>Table Number</td></tr>
+<tr><td><code>Result</code></td><td>Long</td><td>out</td><td>Field Number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_HideField">
+<h2><a href="#Fnd_Out_HideField">Fnd_Out_HideField</a></h2>
+<p class="syntax"><code>Fnd_Out_HideField ($inPath_t : Text)</code></p>
+<p>Developer configuration hook: marks a field path (own-table or one level through a relation, e.g. &quot;contact.Notes&quot;) so the View Options palette never offers it as a candidate column. Wildcards (&quot;@&quot;) are honoured, e.g. &quot;@.Password&quot; hides that field on every relation. A column the host's own AddField already defines is unaffected - offer rules never touch a column that's already on the list.</p>
+<p>Call from wherever the host configures Fnd_Out for a table (alongside Fnd_Out_AddField calls). Mutates the in-memory developer configuration only - it is not written to Resources/Fnd_Out/&lt;Table&gt;.json until a developer explicitly saves a built-in layout or uses the palette's developer-mode &quot;offer&quot; toggle.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPath</code></td><td>Text</td><td>in</td><td>A field path, or a wildcard pattern using &quot;@&quot;</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_Info">
+<h2><a href="#Fnd_Out_Info">Fnd_Out_Info</a></h2>
+<p class="syntax"><code>Fnd_Out_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<p>Responds to: • version - what version. • name - the name of the module. • state - Is Fnd_Out active for THIS process? (active/inactive) • highlighted - the number of records highlighted in the listbox. • inSelection - the number of records displayed in the listbox. • inTable - the number of records in the table.</p>
+<p>Numeric codes: -1 : Fnd_Out is not active in this process -2 : Called oustde the context of the Fnd_Out form -3 : Called in the Fnd_Out form, but object not yet initialised/touched (most likely On Load Form Event).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response (convert to string for numbers)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_ListBoxMethod">
+<h2><a href="#Fnd_Out_ListBoxMethod">Fnd_Out_ListBoxMethod</a></h2>
+<p class="syntax"><code>Fnd_Out_ListBoxMethod</code></p>
+<p>Controller for listbox</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Out_MaxRelationDepth">
+<h2><a href="#Fnd_Out_MaxRelationDepth">Fnd_Out_MaxRelationDepth</a></h2>
+<p class="syntax"><code>Fnd_Out_MaxRelationDepth ($inDepth_i : Integer)</code></p>
+<p>Developer configuration hook: sets how many relations deep the View Options palette looks for candidate columns on the current table. 1 offers &quot;invoice.Total&quot; but not &quot;invoice.contact.LastName&quot;; 0 offers the table's own fields only. The default, when this is never called, is 5.</p>
+<p>Call from wherever the host configures Fnd_Out for a table (alongside Fnd_Out_AddField calls). Mutates the in-memory developer configuration only, exactly as Fnd_Out_HideField does.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inDepth</code></td><td>Integer</td><td>in</td><td>The most relations a candidate's path may cross</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_OfferField">
+<h2><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></h2>
+<p class="syntax"><code>Fnd_Out_OfferField ($inPath_t : Text)</code></p>
+<p>Developer configuration hook: the companion to Fnd_Out_HideField. The first call for a table switches the palette from &quot;offer everything except what's hidden&quot; to &quot;offer only what's explicitly listed&quot; - every path (or wildcard pattern) passed to Fnd_Out_OfferField for that table becomes the only-list a candidate must match to be offered. A column the host's own AddField already defines is unaffected either way.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPath</code></td><td>Text</td><td>in</td><td>A field path, or a wildcard pattern using &quot;@&quot;</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_OfferFormula">
+<h2><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></h2>
+<p class="syntax"><code>Fnd_Out_OfferFormula ($inFormula_t : Text; $inTitle_t : Text; $inType_i : Integer)</code></p>
+<p>Developer configuration hook: declares a formula the View Options palette should offer under the table's &quot;Other Columns&quot; block, even though it isn't a plain attribute path. The formula is normalised (trimmed) before it's compared or stored, exactly as Fnd_Out_AddField normalises a &quot;Formula: &quot; fo_field, so the two never drift into near-duplicate text. A formula the host has already added as a real column through Fnd_Out_AddField is not duplicated - Fnd_Out_CandidateColumns skips a declared formula that matches an already-defined column.</p>
+<p>Calling this twice for the same formula (after trimming) is a no-op - the second call is silently ignored rather than adding a duplicate entry.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFormula</code></td><td>Text</td><td>in</td><td>The formula expression, e.g. &quot;This.fullName()&quot;</td></tr>
+<tr><td><code>inTitle</code></td><td>Text</td><td>in</td><td>The column header offered for it</td></tr>
+<tr><td><code>inType</code></td><td>Integer</td><td>in</td><td>The 4D field type the formula returns</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_ORDARelatedField">
+<h2><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></h2>
+<p class="syntax"><code>Fnd_Out_ORDARelatedField --&gt; ReturnType</code></p>
+<p>Returns a pointer</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>in</code></td><td>Object</td><td>in</td><td>Parameter block</td></tr>
+<tr><td><code>in</code></td><td>Text</td><td>in</td><td>name of dataclass from which the relation starts</td></tr>
+<tr><td><code>in</code></td><td>Text</td><td>in</td><td>Path to bound attribute</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>Pointer to attribute field</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SynchroniseSelection">
+<h2><a href="#Fnd_Out_SynchroniseSelection">Fnd_Out_SynchroniseSelection</a></h2>
+<p class="syntax"><code>Fnd_Out_SynchroniseSelection</code></p>
+<p>Updates the current record selection to match the displayed entity selection.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Out_Update">
+<h2><a href="#Fnd_Out_Update">Fnd_Out_Update</a></h2>
+<p class="syntax"><code>Fnd_Out_Update</code></p>
+<p class="noparams">No parameters.</p>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

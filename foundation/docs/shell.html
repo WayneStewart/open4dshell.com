@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Shell — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Shell module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html" aria-current="page">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Shell</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
+		<li><a href="#Fnd_Shell_CommandWrapper">Fnd_Shell_CommandWrapper</a></li>
+		<li><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></li>
+		<li><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></li>
+		<li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
+		<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
+		<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
+		<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
+		<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
+		<li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
+		<li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
+		<li><a href="#Fnd_Shell_OnStartup">Fnd_Shell_OnStartup</a></li>
+		<li><a href="#Fnd_Shell_OpenTableAdd">Fnd_Shell_OpenTableAdd</a></li>
+		<li><a href="#Fnd_Shell_OpenTableDialog">Fnd_Shell_OpenTableDialog</a></li>
+		<li><a href="#Fnd_Shell_Print">Fnd_Shell_Print</a></li>
+		<li><a href="#Fnd_Shell_ProcessName">Fnd_Shell_ProcessName</a></li>
+		<li><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></li>
+		<li><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></li>
+		<li><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></li>
+		<li><a href="#Fnd_Shell_Show4DSplashScreen">Fnd_Shell_Show4DSplashScreen</a></li>
+		<li><a href="#Fnd_Shell_ShowAll">Fnd_Shell_ShowAll</a></li>
+		<li><a href="#Fnd_Shell_Sort">Fnd_Shell_Sort</a></li>
+		<li><a href="#Fnd_Shell_SpecialFunctions">Fnd_Shell_SpecialFunctions</a></li>
+		<li><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></li>
+		<li><a href="#Fnd_Shell_WriteComments">Fnd_Shell_WriteComments</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Shell</h1>
+
+<p>25 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
+<li><a href="#Fnd_Shell_CommandWrapper">Fnd_Shell_CommandWrapper</a></li>
+<li><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></li>
+<li><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></li>
+<li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
+<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
+<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
+<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
+<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
+<li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
+<li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
+<li><a href="#Fnd_Shell_OnStartup">Fnd_Shell_OnStartup</a></li>
+<li><a href="#Fnd_Shell_OpenTableAdd">Fnd_Shell_OpenTableAdd</a></li>
+<li><a href="#Fnd_Shell_OpenTableDialog">Fnd_Shell_OpenTableDialog</a></li>
+<li><a href="#Fnd_Shell_Print">Fnd_Shell_Print</a></li>
+<li><a href="#Fnd_Shell_ProcessName">Fnd_Shell_ProcessName</a></li>
+<li><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></li>
+<li><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></li>
+<li><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></li>
+<li><a href="#Fnd_Shell_Show4DSplashScreen">Fnd_Shell_Show4DSplashScreen</a></li>
+<li><a href="#Fnd_Shell_ShowAll">Fnd_Shell_ShowAll</a></li>
+<li><a href="#Fnd_Shell_Sort">Fnd_Shell_Sort</a></li>
+<li><a href="#Fnd_Shell_SpecialFunctions">Fnd_Shell_SpecialFunctions</a></li>
+<li><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></li>
+<li><a href="#Fnd_Shell_WriteComments">Fnd_Shell_WriteComments</a></li>
+</ul>
+
+<section class="method" id="Fnd_Shell_Administration">
+<h2><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></h2>
+<p class="syntax"><code>Fnd_Shell_Administration</code></p>
+<p>Displays Foundation's Administration dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_CommandWrapper">
+<h2><a href="#Fnd_Shell_CommandWrapper">Fnd_Shell_CommandWrapper</a></h2>
+<p class="syntax"><code>Fnd_Shell_CommandWrapper ($commandToRun_t : Text{; $par1_v{; $par2_v{; $par3_v}}}) --&gt; Variant</code></p>
+<p>Calls a 4D command whose name has changed between versions, by number.</p>
+<p>Command numbers are stable; their names are not. Command 254 is &quot;Get last table number&quot; up to 20 LTS and &quot;Last table number&quot; from 20 R10, and 33 commands were renamed between 20 and 21. A tokenised call is immune, because 4D resolves it by number - but source written outside the IDE has no token, so 4D must resolve it by name, and the wrong spelling becomes an undeclared variable. Ask Command name for the current spelling instead.</p>
+<p>Tokens are why existing calls survive, not luck - and that is a setting, not a guarantee. Stored tokenless, every rename becomes a load-time name resolution.</p>
+<p>The table holds only what Foundation itself calls. A host's own command usage is the host developer's to look after, not something to carry here.</p>
+<p>Either spelling may be passed; both map to the same number. Foundation passes the oldest one - &quot;Get last table number&quot;, not &quot;Last table number&quot; - so that the next rename lands in the table here and nowhere else.</p>
+<p>Read the result into a local above the loop rather than calling per pass.</p>
+<p>Every call builds the table below and compiles a formula.</p>
+<pre><code>Fnd_Shell_CommandWrapper(&quot;Get last table number&quot;)           --&gt;  no parameters
+Fnd_Shell_CommandWrapper(&quot;Get last field number&quot;; $table)   --&gt;  one, passed straight
+Fnd_Shell_CommandWrapper($command; $a; $b; $c)              --&gt;  up to three
+Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection is the list</code></pre>
+<p>Pass the parameters as they come. A collection in the second position is taken as the whole parameter list, which is how to pass more than three - so a command whose own first parameter is a collection cannot be wrapped. None of the commands in the table below is such a command.</p>
+<p>Only commands that return a value can be wrapped. An ALL-CAPS procedure returning through output parameters - PROCESS PROPERTIES, MOUSE POSITION - cannot be called this way. Build the call with Command name instead, as Fnd_Date_CalendarEventHandler does.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>commandToRun</code></td><td>Text</td><td>in</td><td>The command name, in any version's spelling</td></tr>
+<tr><td><code>par1</code></td><td>Variant</td><td>in</td><td>First parameter, or a collection holding all of them (optional)</td></tr>
+<tr><td><code>par2</code></td><td>Variant</td><td>in</td><td>Second parameter (optional)</td></tr>
+<tr><td><code>par3</code></td><td>Variant</td><td>in</td><td>Third parameter (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Variant</td><td>out</td><td>Whatever the command returns, or Null if it is not known here</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Documentation">
+<h2><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></h2>
+<p class="syntax"><code>Fnd_Shell_Documentation</code></p>
+<p>Displays Foundation 6 methods, class functions and the legacy reference manual.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_ExcludeFromQuit">
+<h2><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></h2>
+<p class="syntax"><code>Fnd_Shell_ExcludeFromQuit (process name)</code></p>
+<p>Tells Foundation not to worry about the specified process when trying to quit.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>processName</code></td><td>Text</td><td>in</td><td>The name of the process</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Find">
+<h2><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></h2>
+<p class="syntax"><code>Fnd_Shell_Find</code></p>
+<p>Called from the Find menu bar item or toolbar item to display the Find dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_GetFndObject">
+<h2><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></h2>
+<p class="syntax"><code>Fnd_Shell_GetFndObject --&gt; ReturnType</code></p>
+<p>Returns a copy of the Fnd object</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>The Fnd objects</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_IsRunning">
+<h2><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></h2>
+<p class="syntax"><code>Fnd_Shell_IsRunning --&gt; Boolean</code></p>
+<p>Returns True if the shell is running.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>Is the shell running?</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Localize">
+<h2><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></h2>
+<p class="syntax"><code>Fnd_Shell_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_MenuBar">
+<h2><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></h2>
+<p class="syntax"><code>Fnd_Shell_MenuBar</code></p>
+<p>A (hopefully) temporary method that asks the menu bar component to install the menu bar after a short delay. Must be run from a new process, but this method handles that.</p>
+<p>This is necessary because a menu bar can't be installed at startup with the first version of 4D v11 SQL.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inInternally</code></td><td>Longint</td><td>in</td><td>Used internally</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_NavigationPalette">
+<h2><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></h2>
+<p class="syntax"><code>Fnd_Shell_NavigationPalette</code></p>
+<p>Displays Foundation's Navigation Palette.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_OnExit">
+<h2><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></h2>
+<p class="syntax"><code>Fnd_Shell_OnExit</code></p>
+<p>Called from the shell's On Exit database method.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_OnStartup">
+<h2><a href="#Fnd_Shell_OnStartup">Fnd_Shell_OnStartup</a></h2>
+<p class="syntax"><code>Fnd_Shell_OnStartup</code></p>
+<p>The startup routine for the Foundation Shell.  Called from the On Startup database method.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_OpenTableAdd">
+<h2><a href="#Fnd_Shell_OpenTableAdd">Fnd_Shell_OpenTableAdd</a></h2>
+<p class="syntax"><code>Fnd_Shell_OpenTableAdd (-&gt;table{; -&gt;table2...})</code></p>
+<p>Adds the table(s) to the list of tables displayed in the Open Table dialog.</p>
+<p>Tables are displayed in the order they are passed to this method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$1..$N</code></td><td>Pointer</td><td>in</td><td>The table to add</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_OpenTableDialog">
+<h2><a href="#Fnd_Shell_OpenTableDialog">Fnd_Shell_OpenTableDialog</a></h2>
+<p class="syntax"><code>Fnd_Shell_OpenTableDialog</code></p>
+<p>Displays a dialog with the names of all visible tables.  If the user selects one it's displayed in a new window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_Print">
+<h2><a href="#Fnd_Shell_Print">Fnd_Shell_Print</a></h2>
+<p class="syntax"><code>Fnd_Shell_Print</code></p>
+<p>Displays the list of printing options.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_ProcessName">
+<h2><a href="#Fnd_Shell_ProcessName">Fnd_Shell_ProcessName</a></h2>
+<p class="syntax"><code>Fnd_Shell_ProcessName ($processNumber_i : Integer) --&gt; Text</code></p>
+<p>Returns the name of a process, or an empty string if there is no such process. An empty result is the test for &quot;has it gone&quot;.</p>
+<p>Process info would answer this in one line but only from 20 R10, so the answer comes from Process activity, which every supported version has.</p>
+<p>Process number 0 is not addressable: 4D gives it to its own preemptive processes, several at once. Asking for it returns an empty string.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>processNumber</code></td><td>Integer</td><td>in</td><td>The process number to look up</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The process name, or &quot;&quot; if it is not running</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_QuitAllProcesses">
+<h2><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></h2>
+<p class="syntax"><code>Fnd_Shell_QuitAllProcesses --&gt; Boolean</code></p>
+<p>Attempts to end all processes (except for 4D's) by bugging them until they end.</p>
+<p>Assumes they call the Fnd_Gen_QuitNow method to see if they're supposed to end.</p>
+<p>Doesn't try to end the current process.</p>
+<p>This method will give up (and return False) if any process cancels the Quit attempt or if the timeout value is reached.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if all process ended as expected</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Quitter">
+<h2><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></h2>
+<p class="syntax"><code>Fnd_Shell_Quitter</code></p>
+<p>This process tries to tell all of the other processes to quit.</p>
+<p>Called as a new process from Fnd_Gen_QuitNow.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_SelectTable">
+<h2><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></h2>
+<p class="syntax"><code>Fnd_Shell_SelectTable --&gt; Pointer</code></p>
+<p>Displays a choice list of available tables.  Returns a pointer to the selected table (if any).  Sets the OK variable to 1 if a table is selected.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>A pointer to the selected table</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Show4DSplashScreen">
+<h2><a href="#Fnd_Shell_Show4DSplashScreen">Fnd_Shell_Show4DSplashScreen</a></h2>
+<p class="syntax"><code>Fnd_Shell_Show4DSplashScreen</code></p>
+<p>Allows the developer to display the 4D splash screen so the database can be used in the User environment.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_ShowAll">
+<h2><a href="#Fnd_Shell_ShowAll">Fnd_Shell_ShowAll</a></h2>
+<p class="syntax"><code>Fnd_Shell_ShowAll</code></p>
+<p>Called from the Show All menu bar item or toolbar item.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_Sort">
+<h2><a href="#Fnd_Shell_Sort">Fnd_Shell_Sort</a></h2>
+<p class="syntax"><code>Fnd_Shell_Sort</code></p>
+<p>Called from the Sort menu bar item or toolbar item to display the Sort dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_SpecialFunctions">
+<h2><a href="#Fnd_Shell_SpecialFunctions">Fnd_Shell_SpecialFunctions</a></h2>
+<p class="syntax"><code>Fnd_Shell_SpecialFunctions</code></p>
+<p>Displays Foundation's Special Functions dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_Storage">
+<h2><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></h2>
+<p class="syntax"><code>Fnd_Shell_Storage -&gt; $storage_t</code></p>
+<p>A developer utility to read the satate of Foundation</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current state of the Storage.Fnd shared object Wayne Stewart (Claude Opus 5) 2026-08-11 - Header added; the body is unchanged ---------------------------------------------------- #DECLARE()-&gt;$storage_t : Text Fnd_Init $storage_t:=JSON Stringify(Storage.Fnd; *)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_WriteComments">
+<h2><a href="#Fnd_Shell_WriteComments">Fnd_Shell_WriteComments</a></h2>
+<p class="syntax"><code>Fnd_Shell_WriteComments {(Method Name; Do not use)}</code></p>
+<p>This method will create documentation comments it is based on the assumption that you format your method header comments in the same manner as Foundation The second paramater is just used to trigger the method starting in a new process, you should not pass anything in this parameter</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMethodName</code></td><td>Text</td><td>in</td><td>Either pass</td></tr>
+<tr><td><code>inDoNotUse</code></td><td>Longint</td><td>in</td><td>Do not use this</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

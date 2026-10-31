@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Data — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Data module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html" aria-current="page">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Data</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Data_EmailAddressError">Fnd_Data_EmailAddressError</a></li>
+		<li><a href="#Fnd_Data_FormatBypass">Fnd_Data_FormatBypass</a></li>
+		<li><a href="#Fnd_Data_FormatBypassKey">Fnd_Data_FormatBypassKey</a></li>
+		<li><a href="#Fnd_Data_FormatError">Fnd_Data_FormatError</a></li>
+		<li><a href="#Fnd_Data_FormatPhone">Fnd_Data_FormatPhone</a></li>
+		<li><a href="#Fnd_Data_FormatPostalCode">Fnd_Data_FormatPostalCode</a></li>
+		<li><a href="#Fnd_Data_FormatText">Fnd_Data_FormatText</a></li>
+		<li><a href="#Fnd_Data_FormatWebURL">Fnd_Data_FormatWebURL</a></li>
+		<li><a href="#Fnd_Data_Info">Fnd_Data_Info</a></li>
+		<li><a href="#Fnd_Data_ParseName">Fnd_Data_ParseName</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Data</h1>
+
+<p>10 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Data_EmailAddressError">Fnd_Data_EmailAddressError</a></li>
+<li><a href="#Fnd_Data_FormatBypass">Fnd_Data_FormatBypass</a></li>
+<li><a href="#Fnd_Data_FormatBypassKey">Fnd_Data_FormatBypassKey</a></li>
+<li><a href="#Fnd_Data_FormatError">Fnd_Data_FormatError</a></li>
+<li><a href="#Fnd_Data_FormatPhone">Fnd_Data_FormatPhone</a></li>
+<li><a href="#Fnd_Data_FormatPostalCode">Fnd_Data_FormatPostalCode</a></li>
+<li><a href="#Fnd_Data_FormatText">Fnd_Data_FormatText</a></li>
+<li><a href="#Fnd_Data_FormatWebURL">Fnd_Data_FormatWebURL</a></li>
+<li><a href="#Fnd_Data_Info">Fnd_Data_Info</a></li>
+<li><a href="#Fnd_Data_ParseName">Fnd_Data_ParseName</a></li>
+</ul>
+
+<section class="method" id="Fnd_Data_EmailAddressError">
+<h2><a href="#Fnd_Data_EmailAddressError">Fnd_Data_EmailAddressError</a></h2>
+<p class="syntax"><code>Fnd_Data_EmailAddressError (email address{; -&gt;description}) --&gt; Longint</code></p>
+<p>Checks Email address and returns an error number if the email address doesn't have a valid format.</p>
+<p>Pass a pointer to a text variable as the second parameter to receive a description of the problem. It is empty when the address is valid.</p>
+<pre><code>$error_i:=Fnd_Data_EmailAddressError(&quot;john smith@here.com&quot;; -&gt;$why_t)
+1, and $why_t is &quot;There is a space in the address.&quot;</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inEmailAddress</code></td><td>Text</td><td>in</td><td>The email address to check</td></tr>
+<tr><td><code>inDescription</code></td><td>Pointer</td><td>in</td><td>Gets a description of the problem (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Error number (0=valid format, 1=invalid format) Based on code posted to the 4D NUG by Owen Watson&lt;owen.watson@paradise.net.nz&gt;.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatBypass">
+<h2><a href="#Fnd_Data_FormatBypass">Fnd_Data_FormatBypass</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatBypass --&gt; Boolean</code></p>
+<p>Returns True if the data entry formatting routine should be bypassed. Usually this will be because the user is holding down the bypass key, but there may be other reasons.</p>
+<p>Sets Fnd.Data.formatError to -1 if True is returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the routine should be bypassed</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatBypassKey">
+<h2><a href="#Fnd_Data_FormatBypassKey">Fnd_Data_FormatBypassKey</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatBypassKey ({key}) --&gt; Longint</code></p>
+<p>Pass a key mask to set a new bypass key.</p>
+<p>Pass 0 to disable the bypass option.</p>
+<p>Pass 1 to always bypass the format routines (turn off formatting).</p>
+<p>Returns the currently set bypass key.</p>
+<p>Bypass key can be any of these 4D constants: Option key mask (default) Command key mask Control key mask Shift key mask Caps lock key mask</p>
+<p>The setting is shared, so it applies to every process in the host.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inKey</code></td><td>Longint</td><td>in</td><td>The new bypass key mask (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The current bypass key mask</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatError">
+<h2><a href="#Fnd_Data_FormatError">Fnd_Data_FormatError</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatError --&gt; Longint</code></p>
+<p>Allows the developer to detect if any of the data formatting routines had a problem trying to format data.</p>
+<pre><code>0  The last call formatted the value
+1  The last call could not work out how to format the value
+-1  The last call was bypassed because the bypass key was down</code></pre>
+<p>The value is per process, and each formatting method resets it before it starts, so read it immediately after the call it belongs to.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Last formatting error</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatPhone">
+<h2><a href="#Fnd_Data_FormatPhone">Fnd_Data_FormatPhone</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatPhone (phone number{; style | options}) --&gt; Text</code></p>
+<p>Formats a phone number. With no second parameter the number is formatted the US way, 000-000-0000 or 000-0000.</p>
+<p>The number is not formatted if the user holds down the Option/Alt key (or other key that's been specified by the developer).</p>
+<p>If it can't work out how to format the number it returns it unchanged and sets Fnd.Data.formatError to 1, which Fnd_Data_FormatError reports.</p>
+<p>The second parameter has two forms:</p>
+<p>1. A Longint. Accepted and ignored, giving US formatting. 2. An object, which is how a country or an explicit format is chosen.</p>
+<pre><code>Fnd_Data_FormatPhone(&quot;0412345678&quot;; {country: &quot;AU&quot;})    --&gt;  (0412) 345 678
+Fnd_Data_FormatPhone(&quot;0298765432&quot;; {country: &quot;AU&quot;})    --&gt;  (02) 9876 5432
+Fnd_Data_FormatPhone(&quot;5551234&quot;; {format: &quot;000.0000&quot;})  --&gt;  555.1234</code></pre>
+<p>Object properties, with the default applied when the property is absent:</p>
+<pre><code>country  Text  &quot;US&quot; or &quot;AU&quot;. Defaults to &quot;US&quot;
+format   Text  An explicit 4D number format, which overrides country
+areaCode Text  Prefixed to an 8 digit Australian number. Defaults to none</code></pre>
+<p>An Australian number of 9 digits is taken to have lost its leading zero, and the zero is put back.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPhoneNumber</code></td><td>Text</td><td>in</td><td>The phone number to format</td></tr>
+<tr><td><code>inStyle</code></td><td>Variant</td><td>in</td><td>A legacy style Longint, or an options object (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted phone number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatPostalCode">
+<h2><a href="#Fnd_Data_FormatPostalCode">Fnd_Data_FormatPostalCode</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatPostalCode (postal code{; style | options}) --&gt; Text</code></p>
+<p>Formats a text value into a postal code. If it can't work out how to format it then it returns the postal code unchanged and sets Fnd.Data.formatError to 1, which Fnd_Data_FormatError reports.</p>
+<p>Anything that is not a letter or a digit is removed first.</p>
+<p>With no second parameter the country is deduced from the value: five or nine digits is a US ZIP code, and a six character letter-digit-letter-digit-letter-digit value is Canadian.</p>
+<p>The second parameter has two forms:</p>
+<p>1. A Longint. Accepted and ignored. 2. An object naming the country, which skips the deduction.</p>
+<pre><code>Fnd_Data_FormatPostalCode(&quot;k1a0b1&quot;; {country: &quot;CA&quot;})  --&gt;  K1A 0B1
+Fnd_Data_FormatPostalCode(&quot;3000&quot;; {country: &quot;AU&quot;})    --&gt;  3000</code></pre>
+<p>Object properties, with the default applied when the property is absent:</p>
+<pre><code>country  Text  &quot;US&quot;, &quot;CA&quot; or &quot;AU&quot;. Defaults to deducing it from the value</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPostalCode</code></td><td>Text</td><td>in</td><td>The postal code to format</td></tr>
+<tr><td><code>inStyle</code></td><td>Variant</td><td>in</td><td>A legacy style Longint, or an options object (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted postal code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatText">
+<h2><a href="#Fnd_Data_FormatText">Fnd_Data_FormatText</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatText (text{; options}) --&gt; Text</code></p>
+<p>Strips any extra spaces before and after the text, removes double spaces within the text, then capitalizes the first letter of each word, unless the user holds down the Option/Alt key (or other bypass key that's been specified by the developer).</p>
+<p>The optional second parameter is an object, for the cases where title case is the wrong answer — a surname entered in capitals, a product code, an email address that must stay lowercase.</p>
+<pre><code>Fnd_Data_FormatText(&quot;  john   smith &quot;)                  --&gt;  John Smith
+Fnd_Data_FormatText(&quot;MacDonald&quot;; {case: &quot;none&quot;})        --&gt;  MacDonald
+Fnd_Data_FormatText(&quot;Me@Here.COM&quot;; {case: &quot;lower&quot;})     --&gt;  me@here.com</code></pre>
+<p>Object properties, with the default applied when the property is absent:</p>
+<pre><code>case        Text     &quot;title&quot;, &quot;upper&quot;, &quot;lower&quot; or &quot;none&quot;. Defaults to &quot;title&quot;
+stripSpaces Boolean  Whether to strip the spaces first. Defaults to True</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inTheText</code></td><td>Text</td><td>in</td><td>The text to capitalize</td></tr>
+<tr><td><code>inOptions</code></td><td>Variant</td><td>in</td><td>An options object (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The capitalized text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_FormatWebURL">
+<h2><a href="#Fnd_Data_FormatWebURL">Fnd_Data_FormatWebURL</a></h2>
+<p class="syntax"><code>Fnd_Data_FormatWebURL (url{; options}) --&gt; Text</code></p>
+<p>Formats the URL. A URL with no scheme gets https.</p>
+<p>The URL is not formatted if the user holds down the Option/Alt key (or other key that's been specified by the developer).</p>
+<pre><code>Fnd_Data_FormatWebURL(&quot;example.com&quot;)                      --&gt;  https://example.com/
+Fnd_Data_FormatWebURL(&quot;example.com&quot;; {scheme: &quot;http&quot;})    --&gt;  http://example.com/</code></pre>
+<p>Object properties, with the default applied when the property is absent:</p>
+<pre><code>scheme  Text  The scheme for a URL that has none. Defaults to &quot;https&quot;</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inURL</code></td><td>Text</td><td>in</td><td>The URL to format.</td></tr>
+<tr><td><code>inOptions</code></td><td>Variant</td><td>in</td><td>An options object (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted URL.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_Info">
+<h2><a href="#Fnd_Data_Info">Fnd_Data_Info</a></h2>
+<p class="syntax"><code>Fnd_Data_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Data_ParseName">
+<h2><a href="#Fnd_Data_ParseName">Fnd_Data_ParseName</a></h2>
+<p class="syntax"><code>Fnd_Data_ParseName (name{; -&gt;first name{; -&gt;last name{; -&gt;middle initial}}}) --&gt; Object</code></p>
+<p>Attempts to split a person's full name into separate parts.</p>
+<p>Drops titles such as Mr. Mrs. Jr., Sr., M.D., etc.</p>
+<p>The parts are returned as an object, and also written through any pointers that are passed. Every pointer is optional.</p>
+<pre><code>$name_o:=Fnd_Data_ParseName(&quot;Dr. John Q. Smith&quot;)
+{first: &quot;John&quot;; last: &quot;Smith&quot;; middleInitial: &quot;Q&quot;}
+
+Fnd_Data_ParseName(&quot;Dr. John Q. Smith&quot;; -&gt;$first_t; -&gt;$last_t; -&gt;$initial_t)</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFullName</code></td><td>Text</td><td>in</td><td>The name to parse</td></tr>
+<tr><td><code>firstName</code></td><td>Pointer</td><td>in</td><td>Gets the first name (optional)</td></tr>
+<tr><td><code>lastName</code></td><td>Pointer</td><td>in</td><td>Gets the last name (optional)</td></tr>
+<tr><td><code>middleInitial</code></td><td>Pointer</td><td>in</td><td>Gets the middle initial (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>The parts, as first, last and middleInitial</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

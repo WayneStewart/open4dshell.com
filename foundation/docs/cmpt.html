@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Cmpt — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Cmpt module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html" aria-current="page">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Cmpt</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Cmpt_GetBooleanValue">Fnd_Cmpt_GetBooleanValue</a></li>
+		<li><a href="#Fnd_Cmpt_GetLongintValue">Fnd_Cmpt_GetLongintValue</a></li>
+		<li><a href="#Fnd_Cmpt_Info">Fnd_Cmpt_Info</a></li>
+		<li><a href="#Fnd_Cmpt_SetBooleanValue">Fnd_Cmpt_SetBooleanValue</a></li>
+		<li><a href="#Fnd_Cmpt_SetLongintValue">Fnd_Cmpt_SetLongintValue</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Cmpt</h1>
+
+<p>5 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Cmpt_GetBooleanValue">Fnd_Cmpt_GetBooleanValue</a></li>
+<li><a href="#Fnd_Cmpt_GetLongintValue">Fnd_Cmpt_GetLongintValue</a></li>
+<li><a href="#Fnd_Cmpt_Info">Fnd_Cmpt_Info</a></li>
+<li><a href="#Fnd_Cmpt_SetBooleanValue">Fnd_Cmpt_SetBooleanValue</a></li>
+<li><a href="#Fnd_Cmpt_SetLongintValue">Fnd_Cmpt_SetLongintValue</a></li>
+</ul>
+
+<section class="method" id="Fnd_Cmpt_GetBooleanValue">
+<h2><a href="#Fnd_Cmpt_GetBooleanValue">Fnd_Cmpt_GetBooleanValue</a></h2>
+<p class="syntax"><code>Fnd_Cmpt_GetBooleanValue (name of a Boolean variable) --&gt; Boolean</code></p>
+<p>Returns the value of a Boolean variable (without actually using the variable in this component).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>variableName</code></td><td>Text</td><td>in</td><td>The name of a Boolean variable</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the Boolean is True</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Cmpt_GetLongintValue">
+<h2><a href="#Fnd_Cmpt_GetLongintValue">Fnd_Cmpt_GetLongintValue</a></h2>
+<p class="syntax"><code>Fnd_Cmpt_GetLongintValue (name of an integer variable) --&gt; Longint</code></p>
+<p>Returns the value of a long integer (without actually using the variable in this component).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>variableName</code></td><td>Text</td><td>in</td><td>The name of a Longint variable</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Returns the value of the longint</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Cmpt_Info">
+<h2><a href="#Fnd_Cmpt_Info">Fnd_Cmpt_Info</a></h2>
+<p class="syntax"><code>Fnd_Cmpt_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Cmpt_SetBooleanValue">
+<h2><a href="#Fnd_Cmpt_SetBooleanValue">Fnd_Cmpt_SetBooleanValue</a></h2>
+<p class="syntax"><code>Fnd_Cmpt_SetBooleanValue (variable name; Boolean value)</code></p>
+<p>Allows us to set a Boolean variable without actually using the variable name in this component.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>variableName</code></td><td>Text</td><td>in</td><td>The name of the variable</td></tr>
+<tr><td><code>booleanValue</code></td><td>Boolean</td><td>in</td><td>The value to set it to</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Cmpt_SetLongintValue">
+<h2><a href="#Fnd_Cmpt_SetLongintValue">Fnd_Cmpt_SetLongintValue</a></h2>
+<p class="syntax"><code>Fnd_Cmpt_SetLongintValue (variable name; longint value)</code></p>
+<p>Allows us to set a Longint variable without actually using the variable name in this component.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>variableName</code></td><td>Text</td><td>in</td><td>The name of the variable</td></tr>
+<tr><td><code>longintValue</code></td><td>Longint</td><td>in</td><td>The value to set it to</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

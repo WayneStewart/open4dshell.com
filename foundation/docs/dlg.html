@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Dlg — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Dlg module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html" aria-current="page">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Dlg</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Dlg_Alert">Fnd_Dlg_Alert</a></li>
+		<li><a href="#Fnd_Dlg_Confirm">Fnd_Dlg_Confirm</a></li>
+		<li><a href="#Fnd_Dlg_CustomIcon">Fnd_Dlg_CustomIcon</a></li>
+		<li><a href="#Fnd_Dlg_Display">Fnd_Dlg_Display</a></li>
+		<li><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></li>
+		<li><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></li>
+		<li><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></li>
+		<li><a href="#Fnd_Dlg_Info">Fnd_Dlg_Info</a></li>
+		<li><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></li>
+		<li><a href="#Fnd_Dlg_Message">Fnd_Dlg_Message</a></li>
+		<li><a href="#Fnd_Dlg_MessageCanceled">Fnd_Dlg_MessageCanceled</a></li>
+		<li><a href="#Fnd_Dlg_MessageClose">Fnd_Dlg_MessageClose</a></li>
+		<li><a href="#Fnd_Dlg_MessageOpen">Fnd_Dlg_MessageOpen</a></li>
+		<li><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></li>
+		<li><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></li>
+		<li><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></li>
+		<li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
+		<li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
+		<li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
+		<li><a href="#Fnd_Dlg_SetIcon">Fnd_Dlg_SetIcon</a></li>
+		<li><a href="#Fnd_Dlg_SetProgress">Fnd_Dlg_SetProgress</a></li>
+		<li><a href="#Fnd_Dlg_SetRequest">Fnd_Dlg_SetRequest</a></li>
+		<li><a href="#Fnd_Dlg_SetText">Fnd_Dlg_SetText</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Dlg</h1>
+
+<p>23 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Dlg_Alert">Fnd_Dlg_Alert</a></li>
+<li><a href="#Fnd_Dlg_Confirm">Fnd_Dlg_Confirm</a></li>
+<li><a href="#Fnd_Dlg_CustomIcon">Fnd_Dlg_CustomIcon</a></li>
+<li><a href="#Fnd_Dlg_Display">Fnd_Dlg_Display</a></li>
+<li><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></li>
+<li><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></li>
+<li><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></li>
+<li><a href="#Fnd_Dlg_Info">Fnd_Dlg_Info</a></li>
+<li><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></li>
+<li><a href="#Fnd_Dlg_Message">Fnd_Dlg_Message</a></li>
+<li><a href="#Fnd_Dlg_MessageCanceled">Fnd_Dlg_MessageCanceled</a></li>
+<li><a href="#Fnd_Dlg_MessageClose">Fnd_Dlg_MessageClose</a></li>
+<li><a href="#Fnd_Dlg_MessageOpen">Fnd_Dlg_MessageOpen</a></li>
+<li><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></li>
+<li><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></li>
+<li><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></li>
+<li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
+<li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
+<li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
+<li><a href="#Fnd_Dlg_SetIcon">Fnd_Dlg_SetIcon</a></li>
+<li><a href="#Fnd_Dlg_SetProgress">Fnd_Dlg_SetProgress</a></li>
+<li><a href="#Fnd_Dlg_SetRequest">Fnd_Dlg_SetRequest</a></li>
+<li><a href="#Fnd_Dlg_SetText">Fnd_Dlg_SetText</a></li>
+</ul>
+
+<section class="method" id="Fnd_Dlg_Alert">
+<h2><a href="#Fnd_Dlg_Alert">Fnd_Dlg_Alert</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Alert (message{; OK button title}) --&gt; Longint</code></p>
+<p>Replaces 4D's ALERT command.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The message to display</td></tr>
+<tr><td><code>inOkButtonTitle</code></td><td>Text</td><td>in</td><td>The OK button text (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>1 (always)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Confirm">
+<h2><a href="#Fnd_Dlg_Confirm">Fnd_Dlg_Confirm</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Confirm (message{; OK bttn{; Cancel bttn}}) --&gt; Longint</code></p>
+<p>A replacement for 4D's CONFIRM command.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMessage</code></td><td>Text</td><td>in</td><td>The message to display</td></tr>
+<tr><td><code>inOkBttn</code></td><td>Text</td><td>in</td><td>The OK button text (optional)</td></tr>
+<tr><td><code>inCancelBttn</code></td><td>Text</td><td>in</td><td>The Cancel button text (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>1 if OK is clicked, 0 if Cancel is clicked</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_CustomIcon">
+<h2><a href="#Fnd_Dlg_CustomIcon">Fnd_Dlg_CustomIcon</a></h2>
+<p class="syntax"><code>Fnd_Dlg_CustomIcon (picture library name) --&gt; Text</code></p>
+<p>Allows the developer to set and get the custom icon name.</p>
+<p>See also Fnd_Dlg_SetIcon.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPictureLibraryName</code></td><td>Text</td><td>in</td><td>The picture library name</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current picture name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Display">
+<h2><a href="#Fnd_Dlg_Display">Fnd_Dlg_Display</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Display --&gt; Longint</code></p>
+<p>Displays the built dialog.</p>
+<p>Sets the OK variable.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>1 if OK is clicked, 0 if Cancel is clicked, 2 if the optional button is clicked</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_FixButtonTexts">
+<h2><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></h2>
+<p class="syntax"><code>Fnd_Dlg_FixButtonTexts</code></p>
+<p>Convert &quot;*&quot; in the button texts to local strings.</p>
+<p>Do this just before displaying the dialog, since they get cleared after that.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_FormAlert">
+<h2><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></h2>
+<p class="syntax"><code>Fnd_Dlg_FormAlert</code></p>
+<p>Displays an alert using a 4D form.  Called from Fnd_Dlg_Display</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_GetRequest">
+<h2><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></h2>
+<p class="syntax"><code>Fnd_Dlg_GetRequest --&gt; Text</code></p>
+<p>Returns the value entered by the user after displaying a Request dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The value entered by the user</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Info">
+<h2><a href="#Fnd_Dlg_Info">Fnd_Dlg_Info</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Localize">
+<h2><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_Message">
+<h2><a href="#Fnd_Dlg_Message">Fnd_Dlg_Message</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Message (message text)</code></p>
+<pre>Displays a message window.   Stays open until it's called again with a blank string.</pre>
+<p>Designed to be a replacement for 4D's MESSAGE command.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The message to display</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_MessageCanceled">
+<h2><a href="#Fnd_Dlg_MessageCanceled">Fnd_Dlg_MessageCanceled</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageCanceled</code></p>
+<p>Returns True if the user clicked the Cancel button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the user clicked Cancel</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_MessageClose">
+<h2><a href="#Fnd_Dlg_MessageClose">Fnd_Dlg_MessageClose</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageClose</code></p>
+<p>Closes the progress indicator window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_MessageOpen">
+<h2><a href="#Fnd_Dlg_MessageOpen">Fnd_Dlg_MessageOpen</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageOpen</code></p>
+<p>Opens the message window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_MessageOpen2">
+<h2><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageOpen2 (window title)</code></p>
+<p>Called as a new process from Fnd_Dlg_MessageOpen to display the progress indicator window.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>windowTitle</code></td><td>Text</td><td>in</td><td>The window title</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_MessageUpdate">
+<h2><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageUpdate (number)</code></p>
+<p>Updates the message dialog's progress indicator.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>current</code></td><td>Longint</td><td>in</td><td>The next number in the sequence.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_PasswordEntry">
+<h2><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></h2>
+<p class="syntax"><code>Fnd_Dlg_PasswordEntry (-&gt;srcArea; -&gt;curValue) --&gt; Boolean</code></p>
+<p>Replaces typed characters with bullet characters for password entry.</p>
+<p>Returns True if the value has changed.</p>
+<p>Based on the Keystroke function example in the 4D documentation.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>formObject</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
+<tr><td><code>currentValue</code></td><td>Pointer</td><td>in</td><td>A pointer to a text variable that holds the contents</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the current value has changed</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Request">
+<h2><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Request (msg{; default{; OK button{; Cancel button}}}) --&gt; Text</code></p>
+<p>Displays a Request dialog.  Returns the user's response and sets the OK variable.</p>
+<p>Use Fnd_Dlg_GetRequest to find out what the user typed.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>msg</code></td><td>Text</td><td>in</td><td>The message to display</td></tr>
+<tr><td><code>inDefault</code></td><td>Text</td><td>in</td><td>The default response text (optional)</td></tr>
+<tr><td><code>inOkButton</code></td><td>Text</td><td>in</td><td>The OK button text (optional)</td></tr>
+<tr><td><code>inCancelButton</code></td><td>Text</td><td>in</td><td>The Cancel button text (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Text user entered in Request dialog</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetButtons">
+<h2><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetButtons ({button 1{; button 2{; button 3}}})</code></p>
+<p>Sets the button texts for the upcoming alerts.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inButton1</code></td><td>Text</td><td>in</td><td>The OK button text or &quot;&quot; or &quot;*&quot; for localized &quot;OK&quot; (optional)</td></tr>
+<tr><td><code>inButton2</code></td><td>Text</td><td>in</td><td>The Cancel button text or &quot;*&quot; for localized &quot;Cancel&quot; (optional)</td></tr>
+<tr><td><code>inButton3</code></td><td>Text</td><td>in</td><td>The third button text (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetCancelable">
+<h2><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetCancelable (cancelable?)</code></p>
+<p>Specify whether or not the upcoming dialog can be canceled.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>cancelable</code></td><td>Boolean</td><td>in</td><td>True if the message button should be enabled.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetIcon">
+<h2><a href="#Fnd_Dlg_SetIcon">Fnd_Dlg_SetIcon</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetIcon ({icon number})</code></p>
+<p>Sets the icon for the upcoming alert. 0 = Default icon (Note) 1 = Note Icon 2 = Warn Icon 3 = Stop Icon</p>
+<p>These Foundation constants are available: Fnd_Dlg_NoteIcon = Note Icon Fnd_Dlg_WarnIcon = Warn Icon Fnd_Dlg_StopIcon = Stop Icon</p>
+<p>See also Fnd_Dlg_CustomIcon.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inIconNumber</code></td><td>Longint</td><td>in</td><td>Icon number (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetProgress">
+<h2><a href="#Fnd_Dlg_SetProgress">Fnd_Dlg_SetProgress</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetProgress (to or from{; to})</code></p>
+<p>The developer calls this to set the From and To numbers.</p>
+<p>If only one number is passed, the From is assumed to be 1.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFrom</code></td><td>Longint</td><td>in</td><td>The ending number if no second parameter or the starting number</td></tr>
+<tr><td><code>inEndingNumber</code></td><td>Longint</td><td>in</td><td>The ending number (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetRequest">
+<h2><a href="#Fnd_Dlg_SetRequest">Fnd_Dlg_SetRequest</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetRequest ({default})</code></p>
+<p>Sets up the next dialog to allow the user to enter a value.  Optionally sets the default value of the value.  Pass &quot;*&quot; as the default value to cause the entry area to display bullets rather than text.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inDefault</code></td><td>Text</td><td>in</td><td>The default value (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetText">
+<h2><a href="#Fnd_Dlg_SetText">Fnd_Dlg_SetText</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetText (text 1{; text 2})</code></p>
+<p>Sets the message texts for the upcoming alert.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>text1</code></td><td>Text</td><td>in</td><td>The primary alert text</td></tr>
+<tr><td><code>inText2</code></td><td>Text</td><td>in</td><td>The smaller alert text (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

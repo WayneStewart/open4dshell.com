@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Gen — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Gen module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html" aria-current="page">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Gen</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></li>
+		<li><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></li>
+		<li><a href="#Fnd_Gen_BugAlert2">Fnd_Gen_BugAlert2</a></li>
+		<li><a href="#Fnd_Gen_ButtonText">Fnd_Gen_ButtonText</a></li>
+		<li><a href="#Fnd_Gen_CanCallHostMethod">Fnd_Gen_CanCallHostMethod</a></li>
+		<li><a href="#Fnd_Gen_CancelQuit">Fnd_Gen_CancelQuit</a></li>
+		<li><a href="#Fnd_Gen_CenterWindow">Fnd_Gen_CenterWindow</a></li>
+		<li><a href="#Fnd_Gen_ComponentAvailable">Fnd_Gen_ComponentAvailable</a></li>
+		<li><a href="#Fnd_Gen_ComponentCheck">Fnd_Gen_ComponentCheck</a></li>
+		<li><a href="#Fnd_Gen_ComponentData">Fnd_Gen_ComponentData</a></li>
+		<li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
+		<li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
+		<li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
+		<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
+		<li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
+		<li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
+		<li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
+		<li><a href="#Fnd_Gen_GetArrayWidth">Fnd_Gen_GetArrayWidth</a></li>
+		<li><a href="#Fnd_Gen_GetDatabaseInfo">Fnd_Gen_GetDatabaseInfo</a></li>
+		<li><a href="#Fnd_Gen_GetString">Fnd_Gen_GetString</a></li>
+		<li><a href="#Fnd_Gen_Info">Fnd_Gen_Info</a></li>
+		<li><a href="#Fnd_Gen_IsRunning">Fnd_Gen_IsRunning</a></li>
+		<li><a href="#Fnd_Gen_LaunchAsNewProcess">Fnd_Gen_LaunchAsNewProcess</a></li>
+		<li><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></li>
+		<li><a href="#Fnd_Gen_MenuBar">Fnd_Gen_MenuBar</a></li>
+		<li><a href="#Fnd_Gen_Platform">Fnd_Gen_Platform</a></li>
+		<li><a href="#Fnd_Gen_PlugInAvailable">Fnd_Gen_PlugInAvailable</a></li>
+		<li><a href="#Fnd_Gen_PositionR">Fnd_Gen_PositionR</a></li>
+		<li><a href="#Fnd_Gen_QuitNow">Fnd_Gen_QuitNow</a></li>
+		<li><a href="#Fnd_Gen_Quitting">Fnd_Gen_Quitting</a></li>
+		<li><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></li>
+		<li><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></li>
+		<li><a href="#Fnd_Gen_Reset">Fnd_Gen_Reset</a></li>
+		<li><a href="#Fnd_Gen_SelectionChanged">Fnd_Gen_SelectionChanged</a></li>
+		<li><a href="#Fnd_Gen_SetDatabaseInfo">Fnd_Gen_SetDatabaseInfo</a></li>
+		<li><a href="#Fnd_Gen_SetLocalizationStrings">Fnd_Gen_SetLocalizationStrings</a></li>
+		<li><a href="#Fnd_Gen_SilentError">Fnd_Gen_SilentError</a></li>
+		<li><a href="#Fnd_Gen_TableIsVisible">Fnd_Gen_TableIsVisible</a></li>
+		<li><a href="#Fnd_Gen_TableOf">Fnd_Gen_TableOf</a></li>
+		<li><a href="#Fnd_Gen_ToolbarDisplayed">Fnd_Gen_ToolbarDisplayed</a></li>
+		<li><a href="#Fnd_Gen_UIWorker">Fnd_Gen_UIWorker</a></li>
+		<li><a href="#Fnd_Gen_VerifyStructureItem">Fnd_Gen_VerifyStructureItem</a></li>
+		<li><a href="#Fnd_Gen_WaitToContinue">Fnd_Gen_WaitToContinue</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Gen</h1>
+
+<p>43 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></li>
+<li><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></li>
+<li><a href="#Fnd_Gen_BugAlert2">Fnd_Gen_BugAlert2</a></li>
+<li><a href="#Fnd_Gen_ButtonText">Fnd_Gen_ButtonText</a></li>
+<li><a href="#Fnd_Gen_CanCallHostMethod">Fnd_Gen_CanCallHostMethod</a></li>
+<li><a href="#Fnd_Gen_CancelQuit">Fnd_Gen_CancelQuit</a></li>
+<li><a href="#Fnd_Gen_CenterWindow">Fnd_Gen_CenterWindow</a></li>
+<li><a href="#Fnd_Gen_ComponentAvailable">Fnd_Gen_ComponentAvailable</a></li>
+<li><a href="#Fnd_Gen_ComponentCheck">Fnd_Gen_ComponentCheck</a></li>
+<li><a href="#Fnd_Gen_ComponentData">Fnd_Gen_ComponentData</a></li>
+<li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
+<li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
+<li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
+<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
+<li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
+<li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
+<li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
+<li><a href="#Fnd_Gen_GetArrayWidth">Fnd_Gen_GetArrayWidth</a></li>
+<li><a href="#Fnd_Gen_GetDatabaseInfo">Fnd_Gen_GetDatabaseInfo</a></li>
+<li><a href="#Fnd_Gen_GetString">Fnd_Gen_GetString</a></li>
+<li><a href="#Fnd_Gen_Info">Fnd_Gen_Info</a></li>
+<li><a href="#Fnd_Gen_IsRunning">Fnd_Gen_IsRunning</a></li>
+<li><a href="#Fnd_Gen_LaunchAsNewProcess">Fnd_Gen_LaunchAsNewProcess</a></li>
+<li><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></li>
+<li><a href="#Fnd_Gen_MenuBar">Fnd_Gen_MenuBar</a></li>
+<li><a href="#Fnd_Gen_Platform">Fnd_Gen_Platform</a></li>
+<li><a href="#Fnd_Gen_PlugInAvailable">Fnd_Gen_PlugInAvailable</a></li>
+<li><a href="#Fnd_Gen_PositionR">Fnd_Gen_PositionR</a></li>
+<li><a href="#Fnd_Gen_QuitNow">Fnd_Gen_QuitNow</a></li>
+<li><a href="#Fnd_Gen_Quitting">Fnd_Gen_Quitting</a></li>
+<li><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></li>
+<li><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></li>
+<li><a href="#Fnd_Gen_Reset">Fnd_Gen_Reset</a></li>
+<li><a href="#Fnd_Gen_SelectionChanged">Fnd_Gen_SelectionChanged</a></li>
+<li><a href="#Fnd_Gen_SetDatabaseInfo">Fnd_Gen_SetDatabaseInfo</a></li>
+<li><a href="#Fnd_Gen_SetLocalizationStrings">Fnd_Gen_SetLocalizationStrings</a></li>
+<li><a href="#Fnd_Gen_SilentError">Fnd_Gen_SilentError</a></li>
+<li><a href="#Fnd_Gen_TableIsVisible">Fnd_Gen_TableIsVisible</a></li>
+<li><a href="#Fnd_Gen_TableOf">Fnd_Gen_TableOf</a></li>
+<li><a href="#Fnd_Gen_ToolbarDisplayed">Fnd_Gen_ToolbarDisplayed</a></li>
+<li><a href="#Fnd_Gen_UIWorker">Fnd_Gen_UIWorker</a></li>
+<li><a href="#Fnd_Gen_VerifyStructureItem">Fnd_Gen_VerifyStructureItem</a></li>
+<li><a href="#Fnd_Gen_WaitToContinue">Fnd_Gen_WaitToContinue</a></li>
+</ul>
+
+<section class="method" id="Fnd_Gen_Alert">
+<h2><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></h2>
+<p class="syntax"><code>Fnd_Gen_Alert (message{; button text})</code></p>
+<p>Displays an alert message.  Uses the Foundation Dialog module alert if available.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The alert message text</td></tr>
+<tr><td><code>button</code></td><td>Text</td><td>in</td><td>The button label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_BugAlert">
+<h2><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></h2>
+<p class="syntax"><code>Fnd_Gen_BugAlert (method{; details{; options}})</code></p>
+<p>Reports a code bug without blocking the caller: a Foundation log entry, a line in the system standard output, and an alert shown by another process so this one carries on.</p>
+<p>The alert shows the method and the description only. Diagnostic detail belongs in options.columns, which is logged but not shown.</p>
+<p>options.seconds turns the alert into a self-dismissing notification of that many seconds instead of a modal dialog. Pass it from any call site that knows nobody is watching: a modal in an unattended process waits forever, and the compile-check scheduler stops answering behind one. A notification is not guaranteed to be seen - the OS may suppress or silence it - so it buys &quot;will not block&quot;, not &quot;will be read&quot;.</p>
+<pre><code>Fnd_Gen_BugAlert(Current method name; &quot;No number known for \&quot;&quot;+$name_t+&quot;\&quot;.&quot;)
+Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$module_t; $code_t]})</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>Method name (4D's 'Current method name' function doesn't work in components)</td></tr>
+<tr><td><code>description</code></td><td>Text</td><td>in</td><td>Details about the problem (optional)</td></tr>
+<tr><td><code>options</code></td><td>Object</td><td>in</td><td>{ columns | Collection ; seconds | Integer } extra detail, logged only, and</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_BugAlert2">
+<h2><a href="#Fnd_Gen_BugAlert2">Fnd_Gen_BugAlert2</a></h2>
+<p class="syntax"><code>Fnd_Gen_BugAlert2 (title; description{; options})</code></p>
+<p>Reports a code bug without blocking the caller. Kept as a name only: Fnd_Gen_BugAlert now does this, and this passes straight through to it.</p>
+<p>Prefer Fnd_Gen_BugAlert in new code. This one exists so that the call sites migrated to it between 2026-05-09 and 2026-08-14 keep working, and so that a host calling it is unaffected.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>title</code></td><td>Text</td><td>in</td><td>Short title, usually Current method name</td></tr>
+<tr><td><code>description</code></td><td>Text</td><td>in</td><td>Shown in the alert and logged</td></tr>
+<tr><td><code>options</code></td><td>Object</td><td>in</td><td>{ columns | Collection } extra detail, logged only (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ButtonText">
+<h2><a href="#Fnd_Gen_ButtonText">Fnd_Gen_ButtonText</a></h2>
+<p class="syntax"><code>Fnd_Gen_ButtonText (-&gt;button; text; alignment{; -&gt;obj1..-&gt;objN}) --&gt; Number</code></p>
+<p>A replacement for 4D's BUTTON TEXT command.</p>
+<p>Sets the button text and resizes the button if necessary. Also moves any adjacent form objects so they stay properly aligned with the modified button.</p>
+<p>Due to a bug in 4D 2003.1, this routine won't work properly if the primary button is set as the default button.  If this is a problem, UPGRADE!</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>button</code></td><td>Variant</td><td>in</td><td>A pointer to the button, or its name</td></tr>
+<tr><td><code>text</code></td><td>Text</td><td>in</td><td>New button text</td></tr>
+<tr><td><code>alignment</code></td><td>Longint</td><td>in</td><td>Which end to keep stationary (optional)</td></tr>
+<tr><td><code>$4..$N</code></td><td>Variant</td><td>in</td><td>Other form objects to move, by pointer or by name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The increase in the button size</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_CanCallHostMethod">
+<h2><a href="#Fnd_Gen_CanCallHostMethod">Fnd_Gen_CanCallHostMethod</a></h2>
+<p class="syntax"><code>Fnd_Gen_CanCallHostMethod --&gt; Boolean</code></p>
+<p>True when EXECUTE METHOD, called from the component, will actually reach the named host method: the method exists and carries &quot;Shared by components and host database&quot;. One that exists unshared raises -10508 when called.</p>
+<p>Not thread safe, because METHOD Get attribute is not - probe once and cache the answer rather than asking per call.</p>
+<p>The name must be literal. METHOD GET NAMES honours the @ wildcard, so a name containing one answers for whatever it happens to match.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>Name of the host method</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True when the method exists and is shared</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_CancelQuit">
+<h2><a href="#Fnd_Gen_CancelQuit">Fnd_Gen_CancelQuit</a></h2>
+<p class="syntax"><code>Fnd_Gen_CancelQuit</code></p>
+<p>Call this to end Foundation's attempts to quit.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_CenterWindow">
+<h2><a href="#Fnd_Gen_CenterWindow">Fnd_Gen_CenterWindow</a></h2>
+<p class="syntax"><code>Fnd_Gen_CenterWindow (width; height{; type{; position{; title{; close box?}}}})</code></p>
+<p>Opens a new window centered on the screen or over the frontmost window (depending on the value of Fnd_Gen_WindowPosition_i).</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>width</code></td><td>Longint</td><td>in</td><td>Width of the new window</td></tr>
+<tr><td><code>height</code></td><td>Longint</td><td>in</td><td>Height of the new window</td></tr>
+<tr><td><code>inType</code></td><td>Longint</td><td>in</td><td>The window type (optional)</td></tr>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>Window position (optional)</td></tr>
+<tr><td><code>inTitle</code></td><td>Text</td><td>in</td><td>The window title (optional)</td></tr>
+<tr><td><code>inHasCloseBox</code></td><td>Boolean</td><td>in</td><td>Has a close box (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The window reference number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ComponentAvailable">
+<h2><a href="#Fnd_Gen_ComponentAvailable">Fnd_Gen_ComponentAvailable</a></h2>
+<p class="syntax"><code>Fnd_Gen_ComponentAvailable (component name) --&gt; Boolean</code></p>
+<p>Returns true if the component is installed.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>component</code></td><td>Text</td><td>in</td><td>The name of the component</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the component is available</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ComponentCheck">
+<h2><a href="#Fnd_Gen_ComponentCheck">Fnd_Gen_ComponentCheck</a></h2>
+<p class="syntax"><code>Fnd_Gen_ComponentCheck (calling component; required component)</code></p>
+<p>Alerts the developer if the specified component isn't available.  Then ends execution.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>callingComponent</code></td><td>Text</td><td>in</td><td>The internal name of the calling component</td></tr>
+<tr><td><code>requiredComponent</code></td><td>Text</td><td>in</td><td>The internal name of the required component</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ComponentData">
+<h2><a href="#Fnd_Gen_ComponentData">Fnd_Gen_ComponentData</a></h2>
+<p class="syntax"><code>Fnd_Gen_ComponentData (-&gt;prefixes array{; -&gt;installed versions array{; -&gt;current versions array}})</code></p>
+<p>Modifies the arrays to contain the installed Foundation component prefixes, installed versions, and current versions.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>namesArray</code></td><td>Pointer</td><td>in</td><td>A text array to receive the component prefixes</td></tr>
+<tr><td><code>versionsArray</code></td><td>Pointer</td><td>in</td><td>A text array to receive the installed component version numbers (optional)</td></tr>
+<tr><td><code>crntVersionsArray</code></td><td>Pointer</td><td>in</td><td>A text array to receive the current component version numbers (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ComponentInfo">
+<h2><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></h2>
+<p class="syntax"><code>Fnd_Gen_ComponentInfo (component name; info requested) --&gt; Text</code></p>
+<p>Pass this method a component name and name for the information you want. If the component exists, Foundation will call its _Info routine, pass it the info label, and return the result. This allows you to get information from a component in a single call, rather than having to first test to see if the component is available.</p>
+<p>If the component isn't installed, &quot;Component Not Available&quot; will be returned.</p>
+<p>If the component doesn't have an _Info routine, &quot;Component Did Not Recognize Request&quot; will be returned.</p>
+<p>We recommend that if a component doesn't recognize a request it should return the text &quot;Fnd_LabelNotRecognized&quot;.  This routine will return this response as &quot;Component Did Not Recognize Request&quot;.</p>
+<p>These values will not be localized so the calling method can test for them.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>component</code></td><td>Text</td><td>in</td><td>The component name</td></tr>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response from component</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_CurrentFormType">
+<h2><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></h2>
+<p class="syntax"><code>Fnd_Gen_CurrentFormType ({form type}) --&gt; Number</code></p>
+<p>If no parameters are passed, this method returns the type of the currently displayed form.  Pass a form type to set the type of the currently displayed form.</p>
+<p>Designed specifically so we can tell if the window is displaying an input form or an output form.</p>
+<p>Can be one of these: 0 = Fnd_Gen_NoForm = No window 1 = Fnd_Gen_UnknownForm = Unknown form type 2 = Fnd_Gen_OutputForm = An output form 3 = Fnd_Gen_InputForm = An input form 4 = Fnd_Gen_PreferencesForm = The Preferences window 5 = Fnd_Gen_AboutForm = The About box</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inForm</code></td><td>Longint</td><td>in</td><td>The form type constant</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The form type constant</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_CurrentTable">
+<h2><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></h2>
+<p class="syntax"><code>Fnd_Gen_CurrentTable ({-&gt;table}) --&gt; Pointer</code></p>
+<p>Returns a pointer to the current table. If no table is current, a nil pointer is returned.</p>
+<p>Pass a pointer to a table to this routine to make it the current table.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPointerTableMake</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to make current (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>The current table</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_DummyMethod">
+<h2><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></h2>
+<p class="syntax"><code>Fnd_Gen_DummyMethod</code></p>
+<p>A generic method with no code.  This is useful for assigning as the close box method</p>
+<p>for new windows (handle the close in the form method) or to use with ON ERR CALL</p>
+<p>to disable any automatic reaction to errors.</p>
+<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served six ON ERR CALL sites and one Open window close box.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_FieldIsVisible">
+<h2><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></h2>
+<p class="syntax"><code>Fnd_Gen_FieldIsVisible ( fieldPtr | tableNum {; fieldNum}  --&gt; ReturnType</code></p>
+<p>Determines if a field is visible</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inField</code></td><td>Pointer</td><td>in</td><td>Field pointer</td></tr>
+<tr><td><code>inField</code></td><td>Longint</td><td>in</td><td>Table number</td></tr>
+<tr><td><code>inFieldNumber</code></td><td>Longint</td><td>in</td><td>Field number</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True - the field is visible</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_FileName">
+<h2><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></h2>
+<p class="syntax"><code>Fnd_Gen_FileName (path) --&gt; Text</code></p>
+<p>Returns the file name from the full pathname.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>path</code></td><td>Text</td><td>in</td><td>A full pathname</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The file name at the end of the pathname</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_FormMethod">
+<h2><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></h2>
+<p class="syntax"><code>Fnd_Gen_FormMethod</code></p>
+<p>Standard form method for non-modal forms.</p>
+<p>Handles the close box and quitting the application. Responds to On Activate On Close Box On Outside Call Fnd_Gen_QuitNow Fnd_Wnd_CloseAllWindows</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_GetArrayWidth">
+<h2><a href="#Fnd_Gen_GetArrayWidth">Fnd_Gen_GetArrayWidth</a></h2>
+<p class="syntax"><code>Fnd_Gen_GetArrayWidth (-&gt;text array; font; size; style) --&gt; Number</code></p>
+<p>Returns the width required to display the array text given the specified font settings.</p>
+<p>Only measures the text - does not take into account the object used to display the text.</p>
+<p>Basically this just measures the width of the longest element.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array to measure</td></tr>
+<tr><td><code>fontName</code></td><td>Text</td><td>in</td><td>The font name</td></tr>
+<tr><td><code>fontSize</code></td><td>Longint</td><td>in</td><td>The font size</td></tr>
+<tr><td><code>fontStyle</code></td><td>Longint</td><td>in</td><td>The font style</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The width of the longest element</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_GetDatabaseInfo">
+<h2><a href="#Fnd_Gen_GetDatabaseInfo">Fnd_Gen_GetDatabaseInfo</a></h2>
+<p class="syntax"><code>Fnd_Gen_GetDatabaseInfo (info type) --&gt; Text</code></p>
+<p>Gets the specified database information value.</p>
+<p>Use the Fnd_Gen_SetDatabaseInfo to set this information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The info type label</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_GetString">
+<h2><a href="#Fnd_Gen_GetString">Fnd_Gen_GetString</a></h2>
+<p class="syntax"><code>Fnd_Gen_GetString (component; internal string{; replace1..replace5})</code></p>
+<p>Calls the Foundation localization routines if they're available. If not, the default English string is returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>moduleName</code></td><td>Text</td><td>in</td><td>The component's code (&quot;Fnd_xxx&quot;)</td></tr>
+<tr><td><code>internalLabel</code></td><td>Text</td><td>in</td><td>The lookup code</td></tr>
+<tr><td><code>inReplacementString1_t..$inReplacementString3</code></td><td>Text</td><td>in</td><td>Replacement strings (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The localized string</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_Info">
+<h2><a href="#Fnd_Gen_Info">Fnd_Gen_Info</a></h2>
+<p class="syntax"><code>Fnd_Gen_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<p>Responds to: version: The current version of the component name: The name of the component minimum_extras_version: The minimum version number of Foundation Extras to compare to the Fnd_Gen_ExtrasVersion constant minimum_extras_version_string: The minimum version number of Foundation Extras as a string compiled: Whether the component itself is running compiled, as the text &quot;True&quot; or &quot;False&quot; (not &quot;1&quot;/&quot;0&quot;) — evaluated inside the component, so a host can tell its own compiled state from Foundation's</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_IsRunning">
+<h2><a href="#Fnd_Gen_IsRunning">Fnd_Gen_IsRunning</a></h2>
+<p class="syntax"><code>Fnd_Gen_IsRunning --&gt; Boolean</code></p>
+<p>True when Foundation is loaded as a component inside a host, rather than being open as a project in its own right.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True when running inside a host</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_LaunchAsNewProcess">
+<h2><a href="#Fnd_Gen_LaunchAsNewProcess">Fnd_Gen_LaunchAsNewProcess</a></h2>
+<p class="syntax"><code>Fnd_Gen_LaunchAsNewProcess (method name; process name) --&gt; Boolean</code></p>
+<p>Launches the specified process as a new process.  If the process is already</p>
+<p>running, it's just brought to the front.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>The method name to launch</td></tr>
+<tr><td><code>newProcessName</code></td><td>Text</td><td>in</td><td>The name to give the new process</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if we're in a new process</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_Localize">
+<h2><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></h2>
+<p class="syntax"><code>Fnd_Gen_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_MenuBar">
+<h2><a href="#Fnd_Gen_MenuBar">Fnd_Gen_MenuBar</a></h2>
+<p class="syntax"><code>Fnd_Gen_MenuBar ({menu bar name})</code></p>
+<p>If the Menu component is installed, it is called to handle the menu bar.</p>
+<p>If it's not, nothing happens with the menus.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMenuBarName</code></td><td>Text</td><td>in</td><td>menu bar name (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_Platform">
+<h2><a href="#Fnd_Gen_Platform">Fnd_Gen_Platform</a></h2>
+<p class="syntax"><code>Fnd_Gen_Platform --&gt; Number</code></p>
+<p>Returns the platform number.</p>
+<p>Returns 10 if we're running on Mac OS X.</p>
+<p>Returns 3 if we're running on Windows.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The platform number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_PlugInAvailable">
+<h2><a href="#Fnd_Gen_PlugInAvailable">Fnd_Gen_PlugInAvailable</a></h2>
+<p class="syntax"><code>Fnd_Gen_PlugInAvailable (plug-in name) --&gt; Boolean</code></p>
+<p>Returns true if the plug-in is installed. This is done by executing a valid call to the plug-in, then checking to see if 4D set the Error variable to something other than zero.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>plugIn</code></td><td>Text</td><td>in</td><td>The name of the plug-in</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the plug-in is available</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_PositionR">
+<h2><a href="#Fnd_Gen_PositionR">Fnd_Gen_PositionR</a></h2>
+<p class="syntax"><code>Fnd_Gen_PositionR (find; string) --&gt; Number</code></p>
+<p>Just like 4D's Position function, but work backwards.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>find</code></td><td>Text</td><td>in</td><td>The string to find</td></tr>
+<tr><td><code>inString</code></td><td>Text</td><td>in</td><td>The string to search in</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The position of the first character</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_QuitNow">
+<h2><a href="#Fnd_Gen_QuitNow">Fnd_Gen_QuitNow</a></h2>
+<p class="syntax"><code>Fnd_Gen_QuitNow ({quit?}) --&gt; Boolean</code></p>
+<p>Returns True if the user wants to quit. Pass True to tell Foundation to do its quit stuff now.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inQuit</code></td><td>Boolean</td><td>in</td><td>Cause Foundation to quit now? (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if it's time to quit</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_Quitting">
+<h2><a href="#Fnd_Gen_Quitting">Fnd_Gen_Quitting</a></h2>
+<p class="syntax"><code>Fnd_Gen_Quitting ({$setQuittingStatus_b : Boolean}) --&gt; Boolean</code></p>
+<p>Reports whether the application is shutting down, and optionally sets it.</p>
+<p>Getter and setter in one, on the usual Foundation pattern: called with no parameter it reports, called with one it sets and then reports.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>setQuittingStatus</code></td><td>Boolean</td><td>in</td><td>Sets the quitting state (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The state after any change</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_RequiredHookMethod">
+<h2><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></h2>
+<p class="syntax"><code>Fnd_Gen_RequiredHookMethod (method name)</code></p>
+<p>Creates the specified method in the host database if it doesn't already exist.</p>
+<p>If it does already exist and the host is interpreted, its declared parameters and return type are compared with those Foundation now uses. A mismatch is recorded for Fnd_Gen_GeneratedReport. A hook holds the host developer's own code, so it is never rewritten. A hook that declares nothing cannot be compared, as its parameters may be typed in a Compiler_ method; where Foundation passes it parameters or expects a result, it is recorded as left unchanged for the developer to check.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>The name of the method to create</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_RequiredHostMethod">
+<h2><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></h2>
+<p class="syntax"><code>Fnd_Gen_RequiredHostMethod (method name)</code></p>
+<p>Creates the specified method in the host database if it doesn't already exist.</p>
+<p>If it does already exist and the host is interpreted, the parameter and return types it declares are compared with the current template's. A host copy declared differently is replaced by the template, the previous code kept below as a /* comment */, and the replacement is recorded for Fnd_Gen_GeneratedReport. A copy that differs only in how it is written is left alone, as is any method in a compiled host. A copy that declares nothing cannot be judged, so it is left alone and recorded for the developer to check.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>The name of the method to create</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_Reset">
+<h2><a href="#Fnd_Gen_Reset">Fnd_Gen_Reset</a></h2>
+<p class="syntax"><code>Fnd_Gen_Reset</code></p>
+<p>Resets all of the available Foundation components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_SelectionChanged">
+<h2><a href="#Fnd_Gen_SelectionChanged">Fnd_Gen_SelectionChanged</a></h2>
+<p class="syntax"><code>Fnd_Gen_SelectionChanged</code></p>
+<p>Call this whenever the current selection of records displayed in the output list changes.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_SetDatabaseInfo">
+<h2><a href="#Fnd_Gen_SetDatabaseInfo">Fnd_Gen_SetDatabaseInfo</a></h2>
+<p class="syntax"><code>Fnd_Gen_SetDatabaseInfo (info type; value)</code></p>
+<p>Sets the specified database information value.</p>
+<p>Use the Fnd_Gen_GetDatabaseInfo to retrieve this information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The info type label</td></tr>
+<tr><td><code>value</code></td><td>Text</td><td>in</td><td>The info value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_SetLocalizationStrings">
+<h2><a href="#Fnd_Gen_SetLocalizationStrings">Fnd_Gen_SetLocalizationStrings</a></h2>
+<p class="syntax"><code>Fnd_Gen_SetLocalizationStrings (component; -&gt;lookup codes; -&gt;strings)</code></p>
+<p>Called from the Fnd_xxx_Localize method of other components to pass their localization info to this, and (if available) the Localization component.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>component</code></td><td>Text</td><td>in</td><td>The component's code (&quot;Fnd_xxx&quot;)</td></tr>
+<tr><td><code>lookupCodesArray</code></td><td>Pointer</td><td>in</td><td>Array of lookup codes</td></tr>
+<tr><td><code>stringsArray</code></td><td>Pointer</td><td>in</td><td>Array of localized strings</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_SilentError">
+<h2><a href="#Fnd_Gen_SilentError">Fnd_Gen_SilentError</a></h2>
+<p class="syntax"><code>Fnd_Gen_SilentError</code></p>
+<p>A method with no code. Foundation's single no-op, for the two places one is wanted: swallowing an error, and satisfying a parameter that demands a method name but has nothing to do.</p>
+<p>As an error handler, install it with ON ERR CALL around a call that is expected to fail and whose failure is not interesting, then restore the previous handler immediately:</p>
+<pre><code>$oldHandler_t:=Method called on error
+ON ERR CALL(&quot;Fnd_Gen_SilentError&quot;)
+...the call that may fail...
+ON ERR CALL($oldHandler_t)</code></pre>
+<p>Leaving it installed suppresses every subsequent error in the process, including the ones that matter, so the restore is not optional.</p>
+<p>As a close box method, pass its name to Open window when the close is handled in the form method:</p>
+<pre><code>$windowRef_i:=Open window($l; $t; $r; $b; $type_i; $title_t; &quot;Fnd_Gen_SilentError&quot;)</code></pre>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_TableIsVisible">
+<h2><a href="#Fnd_Gen_TableIsVisible">Fnd_Gen_TableIsVisible</a></h2>
+<p class="syntax"><code>Fnd_Gen_TableIsVisible (Table pointer or number) --&gt; Boolean</code></p>
+<p>Returns TRUE if table $1-&gt; is visible</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>the pointer to a table OR table number</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True = Visible table</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_TableOf">
+<h2><a href="#Fnd_Gen_TableOf">Fnd_Gen_TableOf</a></h2>
+<p class="syntax"><code>Fnd_Gen_TableOf (table pointer) --&gt; field pointer</code></p>
+<p>Returns a pointer to the table that the field passed in belongs to</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A field Pointer</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>The table the field belongs to</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_ToolbarDisplayed">
+<h2><a href="#Fnd_Gen_ToolbarDisplayed">Fnd_Gen_ToolbarDisplayed</a></h2>
+<p class="syntax"><code>Fnd_Gen_ToolbarDisplayed --&gt; Boolean</code></p>
+<p>Returns true if the design toolbar is visible</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>Description</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_UIWorker">
+<h2><a href="#Fnd_Gen_UIWorker">Fnd_Gen_UIWorker</a></h2>
+<p class="syntax"><code>Fnd_Gen_UIWorker --&gt; $worker_v : Variant</code></p>
+<p>Returns the identifier of the UI worker every Foundation UI message is dispatched to — the host's &quot;UI Process&quot; hook value when one exists, otherwise &quot;$Fnd_UI&quot;. Pass the result straight to CALL WORKER.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Variant</td><td>out</td><td>The UI worker's process name (Text) or process number (Integer)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_VerifyStructureItem">
+<h2><a href="#Fnd_Gen_VerifyStructureItem">Fnd_Gen_VerifyStructureItem</a></h2>
+<p class="syntax"><code>Fnd_Gen_VerifyStructureItem (component; table or field name; field type{; indexed}) --&gt; Pointer</code></p>
+<p>Makes sure the required field exists. If not, the developer is notified.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>component</code></td><td>Text :The component prefix</td><td>in</td><td></td></tr>
+<tr><td><code>fieldName</code></td><td>Text</td><td>in</td><td>The required table or field name</td></tr>
+<tr><td><code>inFieldType</code></td><td>Longint</td><td>in</td><td>The expected field type</td></tr>
+<tr><td><code>inIndexed</code></td><td>Boolean</td><td>in</td><td>The field should be indexed? (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>A pointer to the field</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Gen_WaitToContinue">
+<h2><a href="#Fnd_Gen_WaitToContinue">Fnd_Gen_WaitToContinue</a></h2>
+<p class="syntax"><code>Fnd_Gen_WaitToContinue (boolean)</code></p>
+<p>Causes a process to wait</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>whether or not to wait Added by Walt Nelson on 2/19/10</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

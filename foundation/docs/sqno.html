@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_SqNo — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_SqNo module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html" aria-current="page">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_SqNo</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_SqNo_CreateTable">Fnd_SqNo_CreateTable</a></li>
+		<li><a href="#Fnd_SqNo_Distributor">Fnd_SqNo_Distributor</a></li>
+		<li><a href="#Fnd_SqNo_EditGroup">Fnd_SqNo_EditGroup</a></li>
+		<li><a href="#Fnd_SqNo_Editor">Fnd_SqNo_Editor</a></li>
+		<li><a href="#Fnd_SqNo_Enable">Fnd_SqNo_Enable</a></li>
+		<li><a href="#Fnd_SqNo_Fix">Fnd_SqNo_Fix</a></li>
+		<li><a href="#Fnd_SqNo_Get">Fnd_SqNo_Get</a></li>
+		<li><a href="#Fnd_SqNo_Get2">Fnd_SqNo_Get2</a></li>
+		<li><a href="#Fnd_SqNo_GetMany">Fnd_SqNo_GetMany</a></li>
+		<li><a href="#Fnd_SqNo_GetMany2">Fnd_SqNo_GetMany2</a></li>
+		<li><a href="#Fnd_SqNo_IDFieldPtr">Fnd_SqNo_IDFieldPtr</a></li>
+		<li><a href="#Fnd_SqNo_Info">Fnd_SqNo_Info</a></li>
+		<li><a href="#Fnd_SqNo_IsInDesignGroup">Fnd_SqNo_IsInDesignGroup</a></li>
+		<li><a href="#Fnd_SqNo_LoadGroupRecord">Fnd_SqNo_LoadGroupRecord</a></li>
+		<li><a href="#Fnd_SqNo_Localize">Fnd_SqNo_Localize</a></li>
+		<li><a href="#Fnd_SqNo_Put">Fnd_SqNo_Put</a></li>
+		<li><a href="#Fnd_SqNo_Put2">Fnd_SqNo_Put2</a></li>
+		<li><a href="#Fnd_SqNo_Set">Fnd_SqNo_Set</a></li>
+		<li><a href="#Fnd_SqNo_SetRecordID">Fnd_SqNo_SetRecordID</a></li>
+		<li><a href="#Fnd_SqNo_TableName">Fnd_SqNo_TableName</a></li>
+		<li><a href="#Fnd_SqNo_TableSeqNoName">Fnd_SqNo_TableSeqNoName</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_SqNo</h1>
+
+<p>21 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_SqNo_CreateTable">Fnd_SqNo_CreateTable</a></li>
+<li><a href="#Fnd_SqNo_Distributor">Fnd_SqNo_Distributor</a></li>
+<li><a href="#Fnd_SqNo_EditGroup">Fnd_SqNo_EditGroup</a></li>
+<li><a href="#Fnd_SqNo_Editor">Fnd_SqNo_Editor</a></li>
+<li><a href="#Fnd_SqNo_Enable">Fnd_SqNo_Enable</a></li>
+<li><a href="#Fnd_SqNo_Fix">Fnd_SqNo_Fix</a></li>
+<li><a href="#Fnd_SqNo_Get">Fnd_SqNo_Get</a></li>
+<li><a href="#Fnd_SqNo_Get2">Fnd_SqNo_Get2</a></li>
+<li><a href="#Fnd_SqNo_GetMany">Fnd_SqNo_GetMany</a></li>
+<li><a href="#Fnd_SqNo_GetMany2">Fnd_SqNo_GetMany2</a></li>
+<li><a href="#Fnd_SqNo_IDFieldPtr">Fnd_SqNo_IDFieldPtr</a></li>
+<li><a href="#Fnd_SqNo_Info">Fnd_SqNo_Info</a></li>
+<li><a href="#Fnd_SqNo_IsInDesignGroup">Fnd_SqNo_IsInDesignGroup</a></li>
+<li><a href="#Fnd_SqNo_LoadGroupRecord">Fnd_SqNo_LoadGroupRecord</a></li>
+<li><a href="#Fnd_SqNo_Localize">Fnd_SqNo_Localize</a></li>
+<li><a href="#Fnd_SqNo_Put">Fnd_SqNo_Put</a></li>
+<li><a href="#Fnd_SqNo_Put2">Fnd_SqNo_Put2</a></li>
+<li><a href="#Fnd_SqNo_Set">Fnd_SqNo_Set</a></li>
+<li><a href="#Fnd_SqNo_SetRecordID">Fnd_SqNo_SetRecordID</a></li>
+<li><a href="#Fnd_SqNo_TableName">Fnd_SqNo_TableName</a></li>
+<li><a href="#Fnd_SqNo_TableSeqNoName">Fnd_SqNo_TableSeqNoName</a></li>
+</ul>
+
+<section class="method" id="Fnd_SqNo_CreateTable">
+<h2><a href="#Fnd_SqNo_CreateTable">Fnd_SqNo_CreateTable</a></h2>
+<p class="syntax"><code>Fnd_SqNo_CreateTable</code></p>
+<p>Creates the</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_SqNo_Distributor">
+<h2><a href="#Fnd_SqNo_Distributor">Fnd_SqNo_Distributor</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Distributor</code></p>
+<p>Launched as a new process from Fnd_SqNo_Get to get sequence numbers. Sequence numbers must be gotten from a new process for any process currently in a transaction.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_SqNo_EditGroup">
+<h2><a href="#Fnd_SqNo_EditGroup">Fnd_SqNo_EditGroup</a></h2>
+<p class="syntax"><code>Fnd_SqNo_EditGroup (record ID)</code></p>
+<p>Displays a dialog for editing the specified sequence number group.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>id</code></td><td>Longint</td><td>in</td><td>A sequence number ID</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Editor">
+<h2><a href="#Fnd_SqNo_Editor">Fnd_SqNo_Editor</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Editor</code></p>
+<p>Displays the Sequence Number Editor dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_SqNo_Enable">
+<h2><a href="#Fnd_SqNo_Enable">Fnd_SqNo_Enable</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Enable (group name{; start number})</code></p>
+<p>Creates the sequence number group if it doesn't already exist.  Optionally starts the numbering at the specified number.  Otherwise it starts at 1.</p>
+<p>The new group will be editable by the database administrator.</p>
+<p>Doesn't change the [Fnd_SqNo] table's read/write state.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>inStartNumber</code></td><td>Longint</td><td>in</td><td>The starting number (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Fix">
+<h2><a href="#Fnd_SqNo_Fix">Fnd_SqNo_Fix</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Fix (-&gt;table)</code></p>
+<p>Fixeds the next number for the tables ID field by finding the highest number used so far and adding one to it.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tablePtr</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to fix</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Get">
+<h2><a href="#Fnd_SqNo_Get">Fnd_SqNo_Get</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Get (sequence number group name) --&gt; Number</code></p>
+<p>Returns the next available sequence number for the specified group. If the group doesn't already exist, it is created and 1 is returned as the first number.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The next number in the sequence</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Get2">
+<h2><a href="#Fnd_SqNo_Get2">Fnd_SqNo_Get2</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Get2 (group name) --&gt; Number</code></p>
+<p>Called by Fnd_SqNo_Get2 to get a sequence number.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The next number in the sequence</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_GetMany">
+<h2><a href="#Fnd_SqNo_GetMany">Fnd_SqNo_GetMany</a></h2>
+<p class="syntax"><code>Fnd_SqNo_GetMany (group name; how many; -&gt;longint array)</code></p>
+<p>Returns multiple sequence numbers for the specified group. If the group doesn't already exist, it is created.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>count</code></td><td>Longint</td><td>in</td><td>The number of numbers to return</td></tr>
+<tr><td><code>numbers</code></td><td>Pointer</td><td>in</td><td>A longint array to receive the numbers</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_GetMany2">
+<h2><a href="#Fnd_SqNo_GetMany2">Fnd_SqNo_GetMany2</a></h2>
+<p class="syntax"><code>Fnd_SqNo_GetMany2 (group name; -&gt;longint array)</code></p>
+<p>Just like Fnd_SqNo_Get2, but grabs multiple numbers.</p>
+<p>Determines how many numbers to get by the size of the array.</p>
+<p>Assumes element 1 was filled elsewhere, and starts with element 2.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>numbers</code></td><td>Pointer</td><td>in</td><td>A longint array to receive the numbers</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_IDFieldPtr">
+<h2><a href="#Fnd_SqNo_IDFieldPtr">Fnd_SqNo_IDFieldPtr</a></h2>
+<p class="syntax"><code>Fnd_SqNo_IDFieldPtr (-&gt;table) --&gt; Pointer</code></p>
+<p>Returns a pointer to the specified table's ID field.  Displays a bug alert if no ID field is found or specified by the hook.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table in question.</td></tr>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>A pointer to the table's key field</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Info">
+<h2><a href="#Fnd_SqNo_Info">Fnd_SqNo_Info</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_IsInDesignGroup">
+<h2><a href="#Fnd_SqNo_IsInDesignGroup">Fnd_SqNo_IsInDesignGroup</a></h2>
+<p class="syntax"><code>Fnd_SqNo_IsInDesignGroup --&gt; Boolean</code></p>
+<p>Returns True if the current user is the Designer or in a group with a name that implies he's a designer.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the user is a Designer</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_LoadGroupRecord">
+<h2><a href="#Fnd_SqNo_LoadGroupRecord">Fnd_SqNo_LoadGroupRecord</a></h2>
+<p class="syntax"><code>Fnd_SqNo_LoadGroupRecord (group name)</code></p>
+<p>Called from Fnd_SqNo_Get2 and Fnd_SqNo_GetMany2 to load the specified group record.</p>
+<p>Creates it if it doesn't exist.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Localize">
+<h2><a href="#Fnd_SqNo_Localize">Fnd_SqNo_Localize</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_SqNo_Put">
+<h2><a href="#Fnd_SqNo_Put">Fnd_SqNo_Put</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Put (sequence number group name; number to return)</code></p>
+<p>Call this method to return a number to the specified sequence number group. If the number is higher than the current next number, it will be ignored. It will also be ignored if it's already in the list of numbers to reuse, or if the group name doesn't already exist.</p>
+<p>This method always starts a new process to return the sequence number so the calling process doesn't have to wait for it to finish.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>seqNoName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>seqNoName</code></td><td>Longint</td><td>in</td><td>The number to reuse</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Put2">
+<h2><a href="#Fnd_SqNo_Put2">Fnd_SqNo_Put2</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Put2 (sequence number group name; number to return)</code></p>
+<p>Called as a new process from Fnd_SqNo_Put to put a number back into the sequence number group.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>seqNoName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>seqNo</code></td><td>Longint</td><td>in</td><td>The number to reuse</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_Set">
+<h2><a href="#Fnd_SqNo_Set">Fnd_SqNo_Set</a></h2>
+<p class="syntax"><code>Fnd_SqNo_Set (sequence number group name; next number)</code></p>
+<p>This routine sets the next number in the sequence, and clears out any numbers in the reuse</p>
+<p>Sets the OK variable to 1 if successful.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>groupName</code></td><td>Text</td><td>in</td><td>The group name</td></tr>
+<tr><td><code>nextSeqNo</code></td><td>Longint</td><td>in</td><td>The new next number in the sequence</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_SetRecordID">
+<h2><a href="#Fnd_SqNo_SetRecordID">Fnd_SqNo_SetRecordID</a></h2>
+<p class="syntax"><code>Fnd_SqNo_SetRecordID ({-&gt;table})</code></p>
+<p>Assigns a sequential number to the specified table's ID field. Assumes the number will not be seen by the end user, so the number can't be returned for reuse.</p>
+<p>If no table is specified, either the current form table or the trigger table will be used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inTable</code></td><td>Pointer</td><td>in</td><td>A pointer to the table for which to return a number (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_TableName">
+<h2><a href="#Fnd_SqNo_TableName">Fnd_SqNo_TableName</a></h2>
+<p class="syntax"><code>Fnd_SqNo_TableName (-&gt;table) --&gt; Text</code></p>
+<p>Returns the virtual table name if the Fnd_VS component is available. Otherwise the 4D table name is returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A table</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The table name to display</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_SqNo_TableSeqNoName">
+<h2><a href="#Fnd_SqNo_TableSeqNoName">Fnd_SqNo_TableSeqNoName</a></h2>
+<p class="syntax"><code>Fnd_SqNo_TableSeqNoName (-&gt;table) --&gt; Text</code></p>
+<p>Returns the group name for the table's key field sequence number.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>tablePointer</code></td><td>Pointer</td><td>in</td><td>A table pointer</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The name of the sequence number group</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Nav — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Nav module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html" aria-current="page">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Nav</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></li>
+		<li><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></li>
+		<li><a href="#Fnd_Nav_AddButtonTable">Fnd_Nav_AddButtonTable</a></li>
+		<li><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></li>
+		<li><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></li>
+		<li><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></li>
+		<li><a href="#Fnd_Nav_Display">Fnd_Nav_Display</a></li>
+		<li><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></li>
+		<li><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></li>
+		<li><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></li>
+		<li><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></li>
+		<li><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Nav</h1>
+
+<p>12 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></li>
+<li><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></li>
+<li><a href="#Fnd_Nav_AddButtonTable">Fnd_Nav_AddButtonTable</a></li>
+<li><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></li>
+<li><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></li>
+<li><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></li>
+<li><a href="#Fnd_Nav_Display">Fnd_Nav_Display</a></li>
+<li><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></li>
+<li><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></li>
+<li><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></li>
+<li><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></li>
+<li><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></li>
+</ul>
+
+<section class="method" id="Fnd_Nav_Add">
+<h2><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></h2>
+<p class="syntax"><code>Fnd_Nav_Add (label) --&gt; Number</code></p>
+<p>Adds a button with the specified label to the navigation palette arrays.</p>
+<p>If a button with that label already exists, no new button is added.</p>
+<p>Assumes the semaphore work is handled by the calling method.</p>
+<p>Returns the number of the new or found button.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The new button's label</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The new button's number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_AddButtonMethod">
+<h2><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></h2>
+<p class="syntax"><code>Fnd_Nav_AddButtonMethod (method; label{; foreground color; background color})</code></p>
+<p>Adds a new button to the palette and assigns the method as its action.</p>
+<p>If a button already exists with that label, it is updated.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>The method name to execute</td></tr>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The button label</td></tr>
+<tr><td><code>inForegroundColor</code></td><td>Longint</td><td>in</td><td>The text color (optional)</td></tr>
+<tr><td><code>inBackgroundColor</code></td><td>Longint</td><td>in</td><td>The background color (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_AddButtonTable">
+<h2><a href="#Fnd_Nav_AddButtonTable">Fnd_Nav_AddButtonTable</a></h2>
+<p class="syntax"><code>Fnd_Nav_AddButtonTable (-&gt;table{; label{; foreground color; background color}})</code></p>
+<p>Adds a new button to the palette and assigns the specified table to it.</p>
+<p>If no label or a blank label name is passed, this routine will use the table name for the label.</p>
+<p>If a button already exists with an identical label, it is updated.</p>
+<p>This routine is designed to be called only if the Foundation IO component is installed.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table</td></tr>
+<tr><td><code>inLabel</code></td><td>Text</td><td>in</td><td>The button label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_AutoConfigure">
+<h2><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></h2>
+<p class="syntax"><code>Fnd_Nav_AutoConfigure</code></p>
+<p>Automatically determines the contents of the Navigation Palette.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Nav_ButtonMethod">
+<h2><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></h2>
+<p class="syntax"><code>Fnd_Nav_ButtonMethod (button number)</code></p>
+<p>Called from the navigation palette buttons.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonNumber</code></td><td>Longint</td><td>in</td><td>The button number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_Delete">
+<h2><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></h2>
+<p class="syntax"><code>Fnd_Nav_Delete ({label})</code></p>
+<p>Deletes the button with the specified label from the navigation palette.</p>
+<p>If no parameter is passed, all buttons are deleted.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The button label (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_Display">
+<h2><a href="#Fnd_Nav_Display">Fnd_Nav_Display</a></h2>
+<p class="syntax"><code>Fnd_Nav_Display</code></p>
+<p>Displays the navigation palette.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Nav_DummyMethod">
+<h2><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></h2>
+<p class="syntax"><code>Fnd_Nav_DummyMethod</code></p>
+<p>A generic method with no code.  This is useful for assigning as the close box method for new windows (handle the close in the form method) or to use with ON ERR CALL to disable any automatic reaction to errors.</p>
+<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served one Open window close box in Fnd_Nav_Display.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Nav_Info">
+<h2><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></h2>
+<p class="syntax"><code>Fnd_Nav_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_UpdateColors">
+<h2><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></h2>
+<p class="syntax"><code>Fnd_Nav_UpdateColors</code></p>
+<p>Updates the form's object colors.</p>
+<p>Assumes the calling method handles the necessary semaphore work.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Nav_WindowHeight">
+<h2><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></h2>
+<p class="syntax"><code>Fnd_Nav_WindowHeight --&gt; Number</code></p>
+<p>Returns the height to use for the navigation palette.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The height to use</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Nav_WindowWidth">
+<h2><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></h2>
+<p class="syntax"><code>Fnd_Nav_WindowWidth --&gt; Number</code></p>
+<p>Returns the width to use for the navigation palette.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The width to use</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

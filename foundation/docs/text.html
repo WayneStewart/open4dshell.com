@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Text — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Text module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html" aria-current="page">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Text</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Text_Base64ToText">Fnd_Text_Base64ToText</a></li>
+		<li><a href="#Fnd_Text_Capitalize">Fnd_Text_Capitalize</a></li>
+		<li><a href="#Fnd_Text_CapitalizeExclude">Fnd_Text_CapitalizeExclude</a></li>
+		<li><a href="#Fnd_Text_DecodeBase64Blob">Fnd_Text_DecodeBase64Blob</a></li>
+		<li><a href="#Fnd_Text_EncodeBase64Blob">Fnd_Text_EncodeBase64Blob</a></li>
+		<li><a href="#Fnd_Text_EqualStrings">Fnd_Text_EqualStrings</a></li>
+		<li><a href="#Fnd_Text_FormatNumber">Fnd_Text_FormatNumber</a></li>
+		<li><a href="#Fnd_Text_Info">Fnd_Text_Info</a></li>
+		<li><a href="#Fnd_Text_MD5Encoding">Fnd_Text_MD5Encoding</a></li>
+		<li><a href="#Fnd_Text_PadSpaces">Fnd_Text_PadSpaces</a></li>
+		<li><a href="#Fnd_Text_StripSpaces">Fnd_Text_StripSpaces</a></li>
+		<li><a href="#Fnd_Text_TextToBase64">Fnd_Text_TextToBase64</a></li>
+		<li><a href="#Fnd_Text_TextToMD5">Fnd_Text_TextToMD5</a></li>
+		<li><a href="#Fnd_Text_Trim">Fnd_Text_Trim</a></li>
+		<li><a href="#Fnd_Text_Wrap">Fnd_Text_Wrap</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Text</h1>
+
+<p>15 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Text_Base64ToText">Fnd_Text_Base64ToText</a></li>
+<li><a href="#Fnd_Text_Capitalize">Fnd_Text_Capitalize</a></li>
+<li><a href="#Fnd_Text_CapitalizeExclude">Fnd_Text_CapitalizeExclude</a></li>
+<li><a href="#Fnd_Text_DecodeBase64Blob">Fnd_Text_DecodeBase64Blob</a></li>
+<li><a href="#Fnd_Text_EncodeBase64Blob">Fnd_Text_EncodeBase64Blob</a></li>
+<li><a href="#Fnd_Text_EqualStrings">Fnd_Text_EqualStrings</a></li>
+<li><a href="#Fnd_Text_FormatNumber">Fnd_Text_FormatNumber</a></li>
+<li><a href="#Fnd_Text_Info">Fnd_Text_Info</a></li>
+<li><a href="#Fnd_Text_MD5Encoding">Fnd_Text_MD5Encoding</a></li>
+<li><a href="#Fnd_Text_PadSpaces">Fnd_Text_PadSpaces</a></li>
+<li><a href="#Fnd_Text_StripSpaces">Fnd_Text_StripSpaces</a></li>
+<li><a href="#Fnd_Text_TextToBase64">Fnd_Text_TextToBase64</a></li>
+<li><a href="#Fnd_Text_TextToMD5">Fnd_Text_TextToMD5</a></li>
+<li><a href="#Fnd_Text_Trim">Fnd_Text_Trim</a></li>
+<li><a href="#Fnd_Text_Wrap">Fnd_Text_Wrap</a></li>
+</ul>
+
+<section class="method" id="Fnd_Text_Base64ToText">
+<h2><a href="#Fnd_Text_Base64ToText">Fnd_Text_Base64ToText</a></h2>
+<p class="syntax"><code>Fnd_Text_Base64ToText (text) --&gt; Text</code></p>
+<p>Converts the Base64 encoded text back to ASCII text.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>textToDecode</code></td><td>Text</td><td>in</td><td>The text to decode</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The decoded text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_Capitalize">
+<h2><a href="#Fnd_Text_Capitalize">Fnd_Text_Capitalize</a></h2>
+<p class="syntax"><code>Fnd_Text_Capitalize (text{; style}) --&gt; Text</code></p>
+<p>Modifies the capitalization of the text value. The options paramter determines how the text will be modified. If no second parameter is passed, Book Title capitalization is applied.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>theText</code></td><td>Text</td><td>in</td><td>The text to format</td></tr>
+<tr><td><code>options</code></td><td>Longint</td><td>in</td><td>Style (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_CapitalizeExclude">
+<h2><a href="#Fnd_Text_CapitalizeExclude">Fnd_Text_CapitalizeExclude</a></h2>
+<p class="syntax"><code>Fnd_Text_CapitalizeExclude (-&gt;exclude array)</code></p>
+<p>Use this method to specify or determine the words that will not be capitalized using the Fnd_Text_Capitalize method.</p>
+<p>To get a list of words that will be excluded from capitalization, pass an empty text array.</p>
+<p>To set the words to exclude from the capitalization routine, pass an array with at least one element.</p>
+<p>To clear the list of words to exclude from the capitalization routines, pass an array with one element consisting of a blank string.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>excludeWordsArray</code></td><td>Pointer</td><td>in</td><td>Text array of words to exclude</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_DecodeBase64Blob">
+<h2><a href="#Fnd_Text_DecodeBase64Blob">Fnd_Text_DecodeBase64Blob</a></h2>
+<p class="syntax"><code>Fnd_Text_DecodeBase64Blob (-&gt;blob)</code></p>
+<p>Converts the blob from Base64 back to the bytes it encodes.</p>
+<p>Whitespace inside the encoded text is ignored, so text produced by Fnd_Text_EncodeBase64Blob decodes whatever line breaks it was wrapped with.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>pPassedBlob</code></td><td>Pointer</td><td>in</td><td>A pointer to a blob</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_EncodeBase64Blob">
+<h2><a href="#Fnd_Text_EncodeBase64Blob">Fnd_Text_EncodeBase64Blob</a></h2>
+<p class="syntax"><code>Fnd_Text_EncodeBase64Blob (-&gt;blob{; line breaks?{; line break character(s)}})</code></p>
+<p>Converts the blob to Base64, in place.</p>
+<p>Line breaks are inserted after every 76 characters unless the second parameter says otherwise.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>pPassedBlob</code></td><td>Pointer</td><td>in</td><td>A pointer to the blob to encode</td></tr>
+<tr><td><code>inBInsertLineBr</code></td><td>Boolean</td><td>in</td><td>Insert line breaks every 76 characters (optional, default True)</td></tr>
+<tr><td><code>inEOL</code></td><td>Text</td><td>in</td><td>The line break characters (optional, default a carriage return)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_EqualStrings">
+<h2><a href="#Fnd_Text_EqualStrings">Fnd_Text_EqualStrings</a></h2>
+<p class="syntax"><code>Fnd_Text_EqualStrings (String1; String2) --&gt; Boolean</code></p>
+<p>Compares two strings in the most efficient manner</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>stringOne</code></td><td>Text</td><td>in</td><td>String1</td></tr>
+<tr><td><code>stringTwo</code></td><td>Text</td><td>in</td><td>String2</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the strings are identical</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_FormatNumber">
+<h2><a href="#Fnd_Text_FormatNumber">Fnd_Text_FormatNumber</a></h2>
+<p class="syntax"><code>Fnd_Text_FormatNumber (string, format) --&gt; Text</code></p>
+<p>Formats a numeric string (like a zip code or phone number). Removes any dashes, &quot;E&quot;s, periods, etc. before formatting.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>theNumberToFormat</code></td><td>Text</td><td>in</td><td>The number as text</td></tr>
+<tr><td><code>theFormatToUse</code></td><td>Text</td><td>in</td><td>The format to use</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The formatted number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_Info">
+<h2><a href="#Fnd_Text_Info">Fnd_Text_Info</a></h2>
+<p class="syntax"><code>Fnd_Text_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_MD5Encoding">
+<h2><a href="#Fnd_Text_MD5Encoding">Fnd_Text_MD5Encoding</a></h2>
+<p class="syntax"><code>Fnd_Text_MD5Encoding ({charset}) --&gt; Text</code></p>
+<p>Sets the charset Fnd_Text_TextToMD5 converts text through before hashing it, for every subsequent call that does not name one itself.</p>
+<p>Returns the charset currently in force.</p>
+<p>The default is &quot;ISO-8859-1&quot;. Call this once at startup to change it:</p>
+<pre><code>Fnd_Text_MD5Encoding(&quot;UTF-8&quot;)</code></pre>
+<p>ASCII hashes the same under either, so this only affects text carrying characters above 127. Changing it invalidates any stored digest of such text.</p>
+<p>The setting is shared, so it applies to every process in the host.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inCharset</code></td><td>Text</td><td>in</td><td>The charset name, as CONVERT FROM TEXT understands it (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The charset now in force</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_PadSpaces">
+<h2><a href="#Fnd_Text_PadSpaces">Fnd_Text_PadSpaces</a></h2>
+<p class="syntax"><code>Fnd_Text_PadSpaces (text; length)</code></p>
+<p>Pads the passed text with spaces.  If the length of the text is greater than the length paramter, it will be truncated.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inText</code></td><td>Text</td><td>in</td><td>The text to pad</td></tr>
+<tr><td><code>length</code></td><td>Longint</td><td>in</td><td>The desired length</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The modified text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_StripSpaces">
+<h2><a href="#Fnd_Text_StripSpaces">Fnd_Text_StripSpaces</a></h2>
+<p class="syntax"><code>Fnd_Text_StripSpaces (text{; options{; altSpaces}}) --&gt; Text</code></p>
+<p>Strips spaces from the text that is passed to it.</p>
+<p>If no second parameter is passed, leading and trailing spaces are stripped from the text.</p>
+<p>Add these values together to specify which spaces to strip: 1 + 2 = 3 to strip leading and trailing spaces 1 + 4 = 5 to strip leading and double spaces etc.</p>
+<p>A third optional parameter allows you to specify alternatives or multiples: &quot; &quot; - normal behaviour char(9) - strip tabs &quot; &quot;+char(9) - strip spaces and tabs &quot; &quot;+char(9)+char(160) - and non-breaking spaces Leading and trailing runs may mix the characters in any order.</p>
+<p>Matching is strict, so a character is stripped only if it is listed..</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inTheText</code></td><td>Text</td><td>in</td><td>The text from which to strip spaces</td></tr>
+<tr><td><code>inOptions</code></td><td>Longint</td><td>in</td><td>Options (optional)</td></tr>
+<tr><td><code>inAltSpaces</code></td><td>Text</td><td>in</td><td>Alternatives to spaces (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The text with spaces stripped</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_TextToBase64">
+<h2><a href="#Fnd_Text_TextToBase64">Fnd_Text_TextToBase64</a></h2>
+<p class="syntax"><code>Fnd_Text_TextToBase64 (text) --&gt; Text</code></p>
+<p>Converts the text to Base64.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>textToEncode</code></td><td>Text</td><td>in</td><td>The text to encode</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The encoded text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_TextToMD5">
+<h2><a href="#Fnd_Text_TextToMD5">Fnd_Text_TextToMD5</a></h2>
+<p class="syntax"><code>Fnd_Text_TextToMD5 (text{; charset}) --&gt; Text</code></p>
+<p>Generates and returns a MD5 message digest based on the text.</p>
+<p>The default charset is ISO-8859-1. Pass a charset name to hash through a different one, or call Fnd_Text_MD5Encoding once to change the default for every subsequent call.</p>
+<pre><code>Fnd_Text_TextToMD5(&quot;abc&quot;)             --&gt;  900150983cd24fb0d6963f7d28e17f72
+Fnd_Text_TextToMD5($text; &quot;UTF-8&quot;)    --&gt;  hashed as UTF-8 instead
+Fnd_Text_MD5Encoding(&quot;UTF-8&quot;)         --&gt;  every later call uses UTF-8</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>textToMD5Digest</code></td><td>Text</td><td>in</td><td>The text from which to create the message digest</td></tr>
+<tr><td><code>inCharset</code></td><td>Text</td><td>in</td><td>Charset to convert the text through (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The message digest</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_Trim">
+<h2><a href="#Fnd_Text_Trim">Fnd_Text_Trim</a></h2>
+<p class="syntax"><code>Fnd_Text_Trim (text) --&gt; Text</code></p>
+<p>Strips native Trim whitespace from both ends of text: space, tab, LF, CR, vertical tab and form feed. Non-breaking space is deliberately excluded.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inTheText</code></td><td>Text</td><td>in</td><td>The text to trim</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The trimmed text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Text_Wrap">
+<h2><a href="#Fnd_Text_Wrap">Fnd_Text_Wrap</a></h2>
+<p class="syntax"><code>Fnd_Text_Wrap (text; max line length) --&gt; Text</code></p>
+<p>Wraps the text into lines of at most the given length, joined by carriage returns. The length is a character count, not a pixel width.</p>
+<p>Lines break at the last space that fits. A run with no space in it breaks hard at the limit, and a carriage return already in the text ends its line where it stands.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inRemainingText</code></td><td>Text</td><td>in</td><td>The text to wrap</td></tr>
+<tr><td><code>lineLength</code></td><td>Longint</td><td>in</td><td>Max line length of wrapped text</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The wrapped text Routine by Marco Bernasconi &lt;mbernasconi@befund.com&gt;</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Loc — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Loc module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html" aria-current="page">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Loc</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Loc_ArrayToList">Fnd_Loc_ArrayToList</a></li>
+		<li><a href="#Fnd_Loc_DuplicateList">Fnd_Loc_DuplicateList</a></li>
+		<li><a href="#Fnd_Loc_Editor">Fnd_Loc_Editor</a></li>
+		<li><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></li>
+		<li><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></li>
+		<li><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></li>
+		<li><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></li>
+		<li><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></li>
+		<li><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></li>
+		<li><a href="#Fnd_Loc_FixButtonWidths">Fnd_Loc_FixButtonWidths</a></li>
+		<li><a href="#Fnd_Loc_FixLabelWidths">Fnd_Loc_FixLabelWidths</a></li>
+		<li><a href="#Fnd_Loc_GetString">Fnd_Loc_GetString</a></li>
+		<li><a href="#Fnd_Loc_Info">Fnd_Loc_Info</a></li>
+		<li><a href="#Fnd_Loc_LanguageCode">Fnd_Loc_LanguageCode</a></li>
+		<li><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></li>
+		<li><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></li>
+		<li><a href="#Fnd_Loc_SetLocalizationStrings">Fnd_Loc_SetLocalizationStrings</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Loc</h1>
+
+<p>20 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Loc_ArrayToList">Fnd_Loc_ArrayToList</a></li>
+<li><a href="#Fnd_Loc_DuplicateList">Fnd_Loc_DuplicateList</a></li>
+<li><a href="#Fnd_Loc_Editor">Fnd_Loc_Editor</a></li>
+<li><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></li>
+<li><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></li>
+<li><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></li>
+<li><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></li>
+<li><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></li>
+<li><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></li>
+<li><a href="#Fnd_Loc_FixButtonWidths">Fnd_Loc_FixButtonWidths</a></li>
+<li><a href="#Fnd_Loc_FixLabelWidths">Fnd_Loc_FixLabelWidths</a></li>
+<li><a href="#Fnd_Loc_GetString">Fnd_Loc_GetString</a></li>
+<li><a href="#Fnd_Loc_Info">Fnd_Loc_Info</a></li>
+<li><a href="#Fnd_Loc_LanguageCode">Fnd_Loc_LanguageCode</a></li>
+<li><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></li>
+<li><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></li>
+<li><a href="#Fnd_Loc_SetLocalizationStrings">Fnd_Loc_SetLocalizationStrings</a></li>
+</ul>
+
+<section class="method" id="Fnd_Loc_ArrayToList">
+<h2><a href="#Fnd_Loc_ArrayToList">Fnd_Loc_ArrayToList</a></h2>
+<p class="syntax"><code>Fnd_Loc_ArrayToList($array_ptr;$listName_t)</code></p>
+<p>Updates list in the host database.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array</td></tr>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_DuplicateList">
+<h2><a href="#Fnd_Loc_DuplicateList">Fnd_Loc_DuplicateList</a></h2>
+<p class="syntax"><code>Fnd_Loc_DuplicateList</code></p>
+<p>Duplicates a 4D list.  Used for creating new localizations.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor">
+<h2><a href="#Fnd_Loc_Editor">Fnd_Loc_Editor</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor ({number})</code></p>
+<p>Displays the Localization List Editor window in a new process.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inNumber</code></td><td>Longint</td><td>in</td><td>Used internally by this method</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ArrayToList">
+<h2><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ArrayToList (-&gt;array; list name)</code></p>
+<p>A wrapper for 4D's ARRAY TO LIST command. This routine always appends an asterisk to the list name, so that we don't mess up the original.</p>
+<p>See also the Fnd_Loc_ListToArray method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array</td></tr>
+<tr><td><code>inListName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnCodesList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnCodesList</code></p>
+<p>Called from the localization editor when a lookup code is clicked, or when a higher-level list is clicked.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnGroupList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnGroupList</code></p>
+<p>Called from the localization editor when a group item is clicked, or when a higher-level list is clicked.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnModsList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnModsList</code></p>
+<p>Called from the localization editor when a module name is clicked, or when another object changes the selected list item</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_EditorClosed">
+<h2><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_EditorClosed --&gt; Boolean</code></p>
+<p>Makes sure 4D's List Editor window isn't open. If it is, the user is asked to close it.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the List Editor is not open</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_Export">
+<h2><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_Export</code></p>
+<p>Exports a text file and saves it as a 4D list.</p>
+<p>Designed to be called from the Localization Editor dialog.  Don't call directly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_Import">
+<h2><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_Import</code></p>
+<p>Imports Foundation localization lists.</p>
+<p>Designed to be called from the Localization Editor dialog.  Don't call directly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_LoadModules">
+<h2><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_LoadModules</code></p>
+<p>Loads the array of Modules names in the Localization Editor window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_SaveList">
+<h2><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_SaveList</code></p>
+<p>Saves changes back to the 4D Lists.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_FixButtonWidths">
+<h2><a href="#Fnd_Loc_FixButtonWidths">Fnd_Loc_FixButtonWidths</a></h2>
+<p class="syntax"><code>Fnd_Loc_FixButtonWidths (-&gt;button1; -&gt;button2{; -&gt;buttonN})</code></p>
+<p>Adjusts all of the button widths of two or more _vertically_aligned_ buttons so they all have the same left and right coordinates of the widest button of the group.  Designed to be called after calling Fnd_Gen_ButtonText on each of the buttons in the group.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$1</code></td><td>Pointer</td><td>in</td><td>A pointer to a button</td></tr>
+<tr><td><code>$2..$N</code></td><td>Pointer</td><td>in</td><td>More button pointers</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_FixLabelWidths">
+<h2><a href="#Fnd_Loc_FixLabelWidths">Fnd_Loc_FixLabelWidths</a></h2>
+<p class="syntax"><code>Fnd_Loc_FixLabelWidths (-&gt;form object; -&gt;enterable object{; ..repeat..})</code></p>
+<p>Used for aligning one or more sets of labels and enterable fields.</p>
+<p>Start by localizing the label text. Then pass a pointer to it and the field next to it to this routine.  This routine will properly size the label for its new text, and move the left side of the associated field so that it remains an equal distance from the label as it appears on the form.</p>
+<p>If you pass multiple label/field sets to this routine, it will adjust them so they all work with the longest label text width.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$1, $3, $5, etc.</code></td><td>Pointer</td><td>in</td><td>The name of the label to adjust</td></tr>
+<tr><td><code>$2, $4, $6, etc.</code></td><td>Pointer</td><td>in</td><td>The field to its right</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_GetString">
+<h2><a href="#Fnd_Loc_GetString">Fnd_Loc_GetString</a></h2>
+<p class="syntax"><code>Fnd_Loc_GetString (module name; internal string{; param 1{; param 2...}}) --&gt; Text</code></p>
+<p>Gets the localized string based on the internal string or label.  Also replaces any parameters.  For  example, &quot;&lt;&lt;1&gt;&gt;&quot; gets replaced with the first optional parameter, &quot;&lt;&lt;2&gt;&gt;&quot; with the second optional parameter, etc.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$1</code></td><td>Text</td><td>in</td><td>The Foundation module name</td></tr>
+<tr><td><code>$2</code></td><td>Text</td><td>in</td><td>The internal string label</td></tr>
+<tr><td><code>$3..$n</code></td><td>Text</td><td>in</td><td>Replacement strings (optional)</td></tr>
+<tr><td><code>$0</code></td><td>Text</td><td>out</td><td>The localized string</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Info">
+<h2><a href="#Fnd_Loc_Info">Fnd_Loc_Info</a></h2>
+<p class="syntax"><code>Fnd_Loc_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot; or &quot;language&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_LanguageCode">
+<h2><a href="#Fnd_Loc_LanguageCode">Fnd_Loc_LanguageCode</a></h2>
+<p class="syntax"><code>Fnd_Loc_LanguageCode ({code}) --&gt; Text</code></p>
+<p>If no parameters are passed, this routine returns the current language code that Foundation is using for localization.  If a language code is passed to this routine, it's set as the new localization code.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inCode</code></td><td>Text</td><td>in</td><td>The language code to use (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current langauge code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_ListToArray">
+<h2><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></h2>
+<p class="syntax"><code>Fnd_Loc_ListToArray (list name; -&gt;array)</code></p>
+<p>A wrapper for 4D's LIST TO ARRAY command.  Tries to read in a list with an asterisk appended to the name first.  If all it gets is an empty list (which probably indicates no list) then it tries to read in a list without the asterisk.</p>
+<p>A host without a Fnd_Host_ListToArray method gets an empty array and one bug report per session naming the missing method.</p>
+<p>See also the Fnd_Loc_Editor_ArrayToList method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_LoadStringList">
+<h2><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></h2>
+<p class="syntax"><code>Fnd_Loc_LoadStringList (module name)</code></p>
+<p>Loads arrays with localized strings.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>moduleName</code></td><td>Text</td><td>in</td><td>The Foundation module name (eg: &quot;Fnd_Dlg&quot;)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_SetLocalizationStrings">
+<h2><a href="#Fnd_Loc_SetLocalizationStrings">Fnd_Loc_SetLocalizationStrings</a></h2>
+<p class="syntax"><code>Fnd_Loc_SetLocalizationStrings (component code; -&gt;lookup codes; -&gt;strings)</code></p>
+<p>Allows a component to use its Fnd4-style localization strings.</p>
+<p>Similar to Fnd_Loc_LoadStringList, but designed to work with Fnd5 components.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>component</code></td><td>Text</td><td>in</td><td>The component code (e.g.: &quot;Fnd_Menu&quot;)</td></tr>
+<tr><td><code>lookupCodes</code></td><td>Pointer</td><td>in</td><td>A text array of translation lookup codes</td></tr>
+<tr><td><code>strings</code></td><td>Pointer</td><td>in</td><td>A text array of localized strings</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

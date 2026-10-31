@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Pswd — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Pswd module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html" aria-current="page">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Pswd</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Pswd_BulletEntry">Fnd_Pswd_BulletEntry</a></li>
+		<li><a href="#Fnd_Pswd_CustomCharacters">Fnd_Pswd_CustomCharacters</a></li>
+		<li><a href="#Fnd_Pswd_ExcludeCharacters">Fnd_Pswd_ExcludeCharacters</a></li>
+		<li><a href="#Fnd_Pswd_GeneratePassword">Fnd_Pswd_GeneratePassword</a></li>
+		<li><a href="#Fnd_Pswd_GeneratorDialog">Fnd_Pswd_GeneratorDialog</a></li>
+		<li><a href="#Fnd_Pswd_GetValidCharacters">Fnd_Pswd_GetValidCharacters</a></li>
+		<li><a href="#Fnd_Pswd_Info">Fnd_Pswd_Info</a></li>
+		<li><a href="#Fnd_Pswd_Localize">Fnd_Pswd_Localize</a></li>
+		<li><a href="#Fnd_Pswd_MaxLength">Fnd_Pswd_MaxLength</a></li>
+		<li><a href="#Fnd_Pswd_MinLength">Fnd_Pswd_MinLength</a></li>
+		<li><a href="#Fnd_Pswd_Strength">Fnd_Pswd_Strength</a></li>
+		<li><a href="#Fnd_Pswd_UseLowercase">Fnd_Pswd_UseLowercase</a></li>
+		<li><a href="#Fnd_Pswd_UseNumbers">Fnd_Pswd_UseNumbers</a></li>
+		<li><a href="#Fnd_Pswd_UseSymbols">Fnd_Pswd_UseSymbols</a></li>
+		<li><a href="#Fnd_Pswd_UseUppercase">Fnd_Pswd_UseUppercase</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Pswd</h1>
+
+<p>15 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Pswd_BulletEntry">Fnd_Pswd_BulletEntry</a></li>
+<li><a href="#Fnd_Pswd_CustomCharacters">Fnd_Pswd_CustomCharacters</a></li>
+<li><a href="#Fnd_Pswd_ExcludeCharacters">Fnd_Pswd_ExcludeCharacters</a></li>
+<li><a href="#Fnd_Pswd_GeneratePassword">Fnd_Pswd_GeneratePassword</a></li>
+<li><a href="#Fnd_Pswd_GeneratorDialog">Fnd_Pswd_GeneratorDialog</a></li>
+<li><a href="#Fnd_Pswd_GetValidCharacters">Fnd_Pswd_GetValidCharacters</a></li>
+<li><a href="#Fnd_Pswd_Info">Fnd_Pswd_Info</a></li>
+<li><a href="#Fnd_Pswd_Localize">Fnd_Pswd_Localize</a></li>
+<li><a href="#Fnd_Pswd_MaxLength">Fnd_Pswd_MaxLength</a></li>
+<li><a href="#Fnd_Pswd_MinLength">Fnd_Pswd_MinLength</a></li>
+<li><a href="#Fnd_Pswd_Strength">Fnd_Pswd_Strength</a></li>
+<li><a href="#Fnd_Pswd_UseLowercase">Fnd_Pswd_UseLowercase</a></li>
+<li><a href="#Fnd_Pswd_UseNumbers">Fnd_Pswd_UseNumbers</a></li>
+<li><a href="#Fnd_Pswd_UseSymbols">Fnd_Pswd_UseSymbols</a></li>
+<li><a href="#Fnd_Pswd_UseUppercase">Fnd_Pswd_UseUppercase</a></li>
+</ul>
+
+<section class="method" id="Fnd_Pswd_BulletEntry">
+<h2><a href="#Fnd_Pswd_BulletEntry">Fnd_Pswd_BulletEntry</a></h2>
+<p class="syntax"><code>Fnd_Pswd_BulletEntry (-&gt;visible object; -&gt;text variable)</code></p>
+<p>Replaces typed characters with bullet characters for password entry.</p>
+<p>Based on the Keystroke function example in the 4D documentation.</p>
+<p>Requires the field's On Before Keystroke event is enabled.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>bulletField</code></td><td>Pointer</td><td>in</td><td>The displayed variable</td></tr>
+<tr><td><code>actualField</code></td><td>Pointer</td><td>in</td><td>The entered value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_CustomCharacters">
+<h2><a href="#Fnd_Pswd_CustomCharacters">Fnd_Pswd_CustomCharacters</a></h2>
+<p class="syntax"><code>Fnd_Pswd_CustomCharacters ({characters}) --&gt; Text</code></p>
+<p>Pass any custom characters that should be used to generate passwords.</p>
+<p>Returns the currently specified custom characters.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inCharacters</code></td><td>Text</td><td>in</td><td>Custom characters to use (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current custom characters</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_ExcludeCharacters">
+<h2><a href="#Fnd_Pswd_ExcludeCharacters">Fnd_Pswd_ExcludeCharacters</a></h2>
+<p class="syntax"><code>Fnd_Pswd_ExcludeCharacters ({characters}) --&gt; Text</code></p>
+<p>Pass any characters that should be excluded from generate passwords.</p>
+<p>Returns the currently specified excluded characters.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inCharacters</code></td><td>Text</td><td>in</td><td>Characters to exclude (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current list of excluded characters</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_GeneratePassword">
+<h2><a href="#Fnd_Pswd_GeneratePassword">Fnd_Pswd_GeneratePassword</a></h2>
+<p class="syntax"><code>Fnd_Pswd_GeneratePassword ({options}) --&gt; Text</code></p>
+<p>Generates a password.</p>
+<p>With no parameter it uses the module's stored settings, as it always has.</p>
+<p>Pass an object to generate under different settings without changing the stored ones, which is also what makes it safe to call from a worker:</p>
+<pre><code>Fnd_Pswd_GeneratePassword({length: 16; useSymbols: False})
+Fnd_Pswd_GeneratePassword({type: Fnd_Pswd_TypePronounceable})
+Fnd_Pswd_GeneratePassword({type: Fnd_Pswd_TypePIN; length: 6})</code></pre>
+<pre>The three types: Fnd_Pswd_TypeRandom        - characters drawn from the classes in use Fnd_Pswd_TypePronounceable - syllables, in the shape macOS offers; see Fnd_Pswd_Pronounceable for the exact form Fnd_Pswd_TypePIN           - digits only, and the exclusion list does not apply, so all ten are available</pre>
+<p>A random password holds at least one character from every class in use, so asking for numbers means getting one. Set requireEachClass to False for the older behaviour of drawing every character from the pooled set.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>options</code></td><td>Variant</td><td>in</td><td>Settings to override for this call (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The generated password</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_GeneratorDialog">
+<h2><a href="#Fnd_Pswd_GeneratorDialog">Fnd_Pswd_GeneratorDialog</a></h2>
+<p class="syntax"><code>Fnd_Pswd_GeneratorDialog --&gt; Text</code></p>
+<p>Displays a password generator dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The generated password, or &quot;&quot; if cancelled</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_GetValidCharacters">
+<h2><a href="#Fnd_Pswd_GetValidCharacters">Fnd_Pswd_GetValidCharacters</a></h2>
+<p class="syntax"><code>Fnd_Pswd_GetValidCharacters ({options}) --&gt; Text</code></p>
+<p>Returns a string with all of the allowed password characters (based on the user's preference settings).</p>
+<p>Pass an object to answer for settings other than the stored ones, without changing them:</p>
+<pre><code>Fnd_Pswd_GetValidCharacters({useSymbols: False; excludedCharacters: &quot;0O&quot;})</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>options</code></td><td>Variant</td><td>in</td><td>Settings to override for this call (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>A string of all valid characters</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_Info">
+<h2><a href="#Fnd_Pswd_Info">Fnd_Pswd_Info</a></h2>
+<p class="syntax"><code>Fnd_Pswd_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_Localize">
+<h2><a href="#Fnd_Pswd_Localize">Fnd_Pswd_Localize</a></h2>
+<p class="syntax"><code>Fnd_Pswd_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Pswd_MaxLength">
+<h2><a href="#Fnd_Pswd_MaxLength">Fnd_Pswd_MaxLength</a></h2>
+<p class="syntax"><code>Fnd_Pswd_MaxLength ({max chars to use{; max limitation}}) --&gt; Number</code></p>
+<p>Allows the developer to set the maximum password length, and optionally the maximum password length defined in the Generator dialog. Returns the current value of the maximum password length.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMaxChars</code></td><td>Longint</td><td>in</td><td>The maximum password length setting (optional)</td></tr>
+<tr><td><code>inMaxLimitation</code></td><td>Longint</td><td>in</td><td>The maximum value displayed in the pop-up menu (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The currently set maximum length</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_MinLength">
+<h2><a href="#Fnd_Pswd_MinLength">Fnd_Pswd_MinLength</a></h2>
+<p class="syntax"><code>Fnd_Pswd_MinLength ({min chars to use{; min limitation}}) --&gt; Number</code></p>
+<p>Allows the developer to set the Minimum password length, and optionally the Minimum password length defined in the Generator dialog. Returns the current value of the Minimum password length.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMinChars</code></td><td>Longint</td><td>in</td><td>The Minimum password length setting (optional)</td></tr>
+<tr><td><code>inMinLimitation</code></td><td>Longint</td><td>in</td><td>The Minimum value displayed in the pop-up menu (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The currently set Minimum length</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_Strength">
+<h2><a href="#Fnd_Pswd_Strength">Fnd_Pswd_Strength</a></h2>
+<p class="syntax"><code>Fnd_Pswd_Strength ($password_t : Text {; $options_v : Variant}) --&gt; Object</code></p>
+<p>How much work guessing the password would be, given only its length and the character classes it draws on.</p>
+<pre><code>$strength_o:=Fnd_Pswd_Strength(&quot;Tr0ub4dor&amp;3&quot;)
+$strength_o.bits    --&gt;  72.1
+$strength_o.rating  --&gt;  3</code></pre>
+<p>rating runs 0 to 4 — very weak, weak, reasonable, strong, very strong — at the customary boundaries of 28, 36, 60 and 128 bits. Pass rating through Fnd_Gen_GetString(&quot;Fnd_Pswd&quot;; &quot;Strength&quot;+String(rating)) for a localized name.</p>
+<p>By default this counts the pool a guesser would have to search, which is an upper bound rather than a judgement: it cannot know a password is a dictionary word, and it badly overstates a pronounceable one, whose syllables are far more constrained than its letters suggest.</p>
+<p>So tell it what it is looking at when you know:</p>
+<pre><code>Fnd_Pswd_Strength($password_t; {type: Fnd_Pswd_TypePronounceable})</code></pre>
+<p>which counts the passwords that shape can actually produce instead — about 79 bits for the three-group default, against the 131 its characters imply.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>password</code></td><td>Text</td><td>in</td><td>The password to weigh</td></tr>
+<tr><td><code>options</code></td><td>Variant</td><td>in</td><td>{ type } — how it was generated, if known (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>{ length ; poolSize ; bits ; rating }</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_UseLowercase">
+<h2><a href="#Fnd_Pswd_UseLowercase">Fnd_Pswd_UseLowercase</a></h2>
+<p class="syntax"><code>Fnd_Pswd_UseLowercase ({use Lowercase?}) --&gt; Boolean</code></p>
+<p>Pass True to tell the password generator to use lowercase letters in passwords.</p>
+<p>Returns the current setting.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inLowercase</code></td><td>Boolean</td><td>in</td><td>True to use lowercase letters (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if lowercase letters can be used</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_UseNumbers">
+<h2><a href="#Fnd_Pswd_UseNumbers">Fnd_Pswd_UseNumbers</a></h2>
+<p class="syntax"><code>Fnd_Pswd_UseNumbers ({use numbers?}) --&gt; Boolean</code></p>
+<p>Pass True to tell the password generator to use numbers in passwords.</p>
+<p>Returns the current setting.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inNumbers</code></td><td>Boolean</td><td>in</td><td>True to use numbers (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if numbers can be used</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_UseSymbols">
+<h2><a href="#Fnd_Pswd_UseSymbols">Fnd_Pswd_UseSymbols</a></h2>
+<p class="syntax"><code>Fnd_Pswd_UseSymbols ({use symbols?}) --&gt; Boolean</code></p>
+<p>Pass True to tell the password generator to use symbols in passwords.</p>
+<p>Returns the current setting.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inSymbols</code></td><td>Boolean</td><td>in</td><td>True to use symbols (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if symbols can be used</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Pswd_UseUppercase">
+<h2><a href="#Fnd_Pswd_UseUppercase">Fnd_Pswd_UseUppercase</a></h2>
+<p class="syntax"><code>Fnd_Pswd_UseUppercase ({use uppercase?}) --&gt; Boolean</code></p>
+<p>Pass True to tell the password generator to use uppercase letters in passwords.</p>
+<p>Returns the current setting.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inUppercase</code></td><td>Boolean</td><td>in</td><td>True to use uppercase letters (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if uppercase letters can be used</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

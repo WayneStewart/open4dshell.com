@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Menu — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Menu module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html" aria-current="page">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Menu</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Menu_About">Fnd_Menu_About</a></li>
+		<li><a href="#Fnd_Menu_Administration">Fnd_Menu_Administration</a></li>
+		<li><a href="#Fnd_Menu_BuildMenuBar">Fnd_Menu_BuildMenuBar</a></li>
+		<li><a href="#Fnd_Menu_Delete">Fnd_Menu_Delete</a></li>
+		<li><a href="#Fnd_Menu_DisableAll">Fnd_Menu_DisableAll</a></li>
+		<li><a href="#Fnd_Menu_DisableAllMenuItems">Fnd_Menu_DisableAllMenuItems</a></li>
+		<li><a href="#Fnd_Menu_EnableAllMenuItems">Fnd_Menu_EnableAllMenuItems</a></li>
+		<li><a href="#Fnd_Menu_EnableDisableItems">Fnd_Menu_EnableDisableItems</a></li>
+		<li><a href="#Fnd_Menu_Find">Fnd_Menu_Find</a></li>
+		<li><a href="#Fnd_Menu_FindRelated">Fnd_Menu_FindRelated</a></li>
+		<li><a href="#Fnd_Menu_Info">Fnd_Menu_Info</a></li>
+		<li><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></li>
+		<li><a href="#Fnd_Menu_Localize">Fnd_Menu_Localize</a></li>
+		<li><a href="#Fnd_Menu_MenuBar">Fnd_Menu_MenuBar</a></li>
+		<li><a href="#Fnd_Menu_MenuBarName">Fnd_Menu_MenuBarName</a></li>
+		<li><a href="#Fnd_Menu_ModifyRecords">Fnd_Menu_ModifyRecords</a></li>
+		<li><a href="#Fnd_Menu_NavPalette">Fnd_Menu_NavPalette</a></li>
+		<li><a href="#Fnd_Menu_NewRecord">Fnd_Menu_NewRecord</a></li>
+		<li><a href="#Fnd_Menu_OmitSubset">Fnd_Menu_OmitSubset</a></li>
+		<li><a href="#Fnd_Menu_OpenTable">Fnd_Menu_OpenTable</a></li>
+		<li><a href="#Fnd_Menu_Preferences">Fnd_Menu_Preferences</a></li>
+		<li><a href="#Fnd_Menu_Print">Fnd_Menu_Print</a></li>
+		<li><a href="#Fnd_Menu_QueryEditor">Fnd_Menu_QueryEditor</a></li>
+		<li><a href="#Fnd_Menu_Quit">Fnd_Menu_Quit</a></li>
+		<li><a href="#Fnd_Menu_SetMenuItem">Fnd_Menu_SetMenuItem</a></li>
+		<li><a href="#Fnd_Menu_ShowAll">Fnd_Menu_ShowAll</a></li>
+		<li><a href="#Fnd_Menu_ShowSubset">Fnd_Menu_ShowSubset</a></li>
+		<li><a href="#Fnd_Menu_Sort">Fnd_Menu_Sort</a></li>
+		<li><a href="#Fnd_Menu_SortOrderEditor">Fnd_Menu_SortOrderEditor</a></li>
+		<li><a href="#Fnd_Menu_SpecialFunctions">Fnd_Menu_SpecialFunctions</a></li>
+		<li><a href="#Fnd_Menu_UpdateResources">Fnd_Menu_UpdateResources</a></li>
+		<li><a href="#Fnd_Menu_ViewOptions">Fnd_Menu_ViewOptions</a></li>
+		<li><a href="#Fnd_Menu_Window_Add">Fnd_Menu_Window_Add</a></li>
+		<li><a href="#Fnd_Menu_Window_Remove">Fnd_Menu_Window_Remove</a></li>
+		<li><a href="#Fnd_Menu_Window_Update">Fnd_Menu_Window_Update</a></li>
+		<li><a href="#Fnd_Menu_WindowItem">Fnd_Menu_WindowItem</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Menu</h1>
+
+<p>36 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Menu_About">Fnd_Menu_About</a></li>
+<li><a href="#Fnd_Menu_Administration">Fnd_Menu_Administration</a></li>
+<li><a href="#Fnd_Menu_BuildMenuBar">Fnd_Menu_BuildMenuBar</a></li>
+<li><a href="#Fnd_Menu_Delete">Fnd_Menu_Delete</a></li>
+<li><a href="#Fnd_Menu_DisableAll">Fnd_Menu_DisableAll</a></li>
+<li><a href="#Fnd_Menu_DisableAllMenuItems">Fnd_Menu_DisableAllMenuItems</a></li>
+<li><a href="#Fnd_Menu_EnableAllMenuItems">Fnd_Menu_EnableAllMenuItems</a></li>
+<li><a href="#Fnd_Menu_EnableDisableItems">Fnd_Menu_EnableDisableItems</a></li>
+<li><a href="#Fnd_Menu_Find">Fnd_Menu_Find</a></li>
+<li><a href="#Fnd_Menu_FindRelated">Fnd_Menu_FindRelated</a></li>
+<li><a href="#Fnd_Menu_Info">Fnd_Menu_Info</a></li>
+<li><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></li>
+<li><a href="#Fnd_Menu_Localize">Fnd_Menu_Localize</a></li>
+<li><a href="#Fnd_Menu_MenuBar">Fnd_Menu_MenuBar</a></li>
+<li><a href="#Fnd_Menu_MenuBarName">Fnd_Menu_MenuBarName</a></li>
+<li><a href="#Fnd_Menu_ModifyRecords">Fnd_Menu_ModifyRecords</a></li>
+<li><a href="#Fnd_Menu_NavPalette">Fnd_Menu_NavPalette</a></li>
+<li><a href="#Fnd_Menu_NewRecord">Fnd_Menu_NewRecord</a></li>
+<li><a href="#Fnd_Menu_OmitSubset">Fnd_Menu_OmitSubset</a></li>
+<li><a href="#Fnd_Menu_OpenTable">Fnd_Menu_OpenTable</a></li>
+<li><a href="#Fnd_Menu_Preferences">Fnd_Menu_Preferences</a></li>
+<li><a href="#Fnd_Menu_Print">Fnd_Menu_Print</a></li>
+<li><a href="#Fnd_Menu_QueryEditor">Fnd_Menu_QueryEditor</a></li>
+<li><a href="#Fnd_Menu_Quit">Fnd_Menu_Quit</a></li>
+<li><a href="#Fnd_Menu_SetMenuItem">Fnd_Menu_SetMenuItem</a></li>
+<li><a href="#Fnd_Menu_ShowAll">Fnd_Menu_ShowAll</a></li>
+<li><a href="#Fnd_Menu_ShowSubset">Fnd_Menu_ShowSubset</a></li>
+<li><a href="#Fnd_Menu_Sort">Fnd_Menu_Sort</a></li>
+<li><a href="#Fnd_Menu_SortOrderEditor">Fnd_Menu_SortOrderEditor</a></li>
+<li><a href="#Fnd_Menu_SpecialFunctions">Fnd_Menu_SpecialFunctions</a></li>
+<li><a href="#Fnd_Menu_UpdateResources">Fnd_Menu_UpdateResources</a></li>
+<li><a href="#Fnd_Menu_ViewOptions">Fnd_Menu_ViewOptions</a></li>
+<li><a href="#Fnd_Menu_Window_Add">Fnd_Menu_Window_Add</a></li>
+<li><a href="#Fnd_Menu_Window_Remove">Fnd_Menu_Window_Remove</a></li>
+<li><a href="#Fnd_Menu_Window_Update">Fnd_Menu_Window_Update</a></li>
+<li><a href="#Fnd_Menu_WindowItem">Fnd_Menu_WindowItem</a></li>
+</ul>
+
+<section class="method" id="Fnd_Menu_About">
+<h2><a href="#Fnd_Menu_About">Fnd_Menu_About</a></h2>
+<p class="syntax"><code>Fnd_Menu_About</code></p>
+<p>Called from the menu when the About box command is selected.</p>
+<p>Installed by the Fnd_Shell_OnStartup method.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Administration">
+<h2><a href="#Fnd_Menu_Administration">Fnd_Menu_Administration</a></h2>
+<p class="syntax"><code>Fnd_Menu_Administration</code></p>
+<p>Called from the menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_BuildMenuBar">
+<h2><a href="#Fnd_Menu_BuildMenuBar">Fnd_Menu_BuildMenuBar</a></h2>
+<p class="syntax"><code>Fnd_Menu_BuildMenuBar</code></p>
+<p>Testing</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$1</code></td><td>Longint</td><td>in</td><td>Description</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Description</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_Delete">
+<h2><a href="#Fnd_Menu_Delete">Fnd_Menu_Delete</a></h2>
+<p class="syntax"><code>Fnd_Menu_Delete</code></p>
+<p>Deletes the highlighted records in the output list.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_DisableAll">
+<h2><a href="#Fnd_Menu_DisableAll">Fnd_Menu_DisableAll</a></h2>
+<p class="syntax"><code>Fnd_Menu_DisableAll</code></p>
+<p>Disables all of the menu items.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_DisableAllMenuItems">
+<h2><a href="#Fnd_Menu_DisableAllMenuItems">Fnd_Menu_DisableAllMenuItems</a></h2>
+<p class="syntax"><code>Fnd_Menu_DisableAllMenuItems (menu reference)</code></p>
+<p>Disables all menu items in the specified menu.</p>
+<p>A temporary work-around for a 4D v11 SQL 1.0 bug, which doesn't disable all menu items if 0 is passed as the menu item.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>menu</code></td><td>String</td><td>in</td><td>A menu reference</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_EnableAllMenuItems">
+<h2><a href="#Fnd_Menu_EnableAllMenuItems">Fnd_Menu_EnableAllMenuItems</a></h2>
+<p class="syntax"><code>Fnd_Menu_EnableAllMenuItems (menu reference)</code></p>
+<p>Disables all menu items in the specified menu.</p>
+<p>A temporary work-around for a 4D v11 SQL 1.0 bug, which doesn't enable all menu items if 0 is passed as the menu item.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>menu</code></td><td>String</td><td>in</td><td>A menu reference</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_EnableDisableItems">
+<h2><a href="#Fnd_Menu_EnableDisableItems">Fnd_Menu_EnableDisableItems</a></h2>
+<p class="syntax"><code>Fnd_Menu_EnableDisableItems</code></p>
+<p>Here's where we enable or disable menu items based on the contents and state of the frontmost window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Find">
+<h2><a href="#Fnd_Menu_Find">Fnd_Menu_Find</a></h2>
+<p class="syntax"><code>Fnd_Menu_Find</code></p>
+<p>Called when the user selects Find from the Select menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_FindRelated">
+<h2><a href="#Fnd_Menu_FindRelated">Fnd_Menu_FindRelated</a></h2>
+<p class="syntax"><code>Fnd_Menu_FindRelated</code></p>
+<p>Called when the user selects Find Related from the Select menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Info">
+<h2><a href="#Fnd_Menu_Info">Fnd_Menu_Info</a></h2>
+<p class="syntax"><code>Fnd_Menu_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_LoadMenuTitles">
+<h2><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></h2>
+<p class="syntax"><code>Fnd_Menu_LoadMenuTitles</code></p>
+<p>Loads the localization for the menu bar.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Localize">
+<h2><a href="#Fnd_Menu_Localize">Fnd_Menu_Localize</a></h2>
+<p class="syntax"><code>Fnd_Menu_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_MenuBar">
+<h2><a href="#Fnd_Menu_MenuBar">Fnd_Menu_MenuBar</a></h2>
+<p class="syntax"><code>Fnd_Menu_MenuBar ({&quot;*&quot;})</code></p>
+<p>Updates the menu bar.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inForce</code></td><td>Text</td><td>in</td><td>Pass &quot;*&quot; to force a full update (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_MenuBarName">
+<h2><a href="#Fnd_Menu_MenuBarName">Fnd_Menu_MenuBarName</a></h2>
+<p class="syntax"><code>Fnd_Menu_MenuBarName ({menu name{; Window menu number}}) --&gt; Text</code></p>
+<p>Allows the developer to specify the menu bar to display the next time the menu bar is displayed by a Foundation component.</p>
+<p>If a blank name is specified, the default Foundation menu bar name is restored.</p>
+<p>You can also specify an optional number for the Window menu to use if you want to add a Window menu to a non-Foundation database.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inMenuName</code></td><td>Text</td><td>in</td><td>The menu bar name (optional)</td></tr>
+<tr><td><code>inWindowMenuNumber</code></td><td>Longint</td><td>in</td><td>The number of the Window menu (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The menu bar name to use next</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_ModifyRecords">
+<h2><a href="#Fnd_Menu_ModifyRecords">Fnd_Menu_ModifyRecords</a></h2>
+<p class="syntax"><code>Fnd_Menu_ModifyRecords</code></p>
+<p>Called from the Modify Records item in the Edit menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_NavPalette">
+<h2><a href="#Fnd_Menu_NavPalette">Fnd_Menu_NavPalette</a></h2>
+<p class="syntax"><code>Fnd_Menu_NavPalette</code></p>
+<p>Called from the menu bar.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_NewRecord">
+<h2><a href="#Fnd_Menu_NewRecord">Fnd_Menu_NewRecord</a></h2>
+<p class="syntax"><code>Fnd_Menu_NewRecord</code></p>
+<p>Creates and displays a new record for the current table.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_OmitSubset">
+<h2><a href="#Fnd_Menu_OmitSubset">Fnd_Menu_OmitSubset</a></h2>
+<p class="syntax"><code>Fnd_Menu_OmitSubset</code></p>
+<p>Called from the &quot;Omit Subset&quot; item in the &quot;Select&quot; menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_OpenTable">
+<h2><a href="#Fnd_Menu_OpenTable">Fnd_Menu_OpenTable</a></h2>
+<p class="syntax"><code>Fnd_Menu_OpenTable</code></p>
+<p>Called when the user selects the Open Table command from the File menu.</p>
+<p>This is just a temporary placeholder.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Preferences">
+<h2><a href="#Fnd_Menu_Preferences">Fnd_Menu_Preferences</a></h2>
+<p class="syntax"><code>Fnd_Menu_Preferences</code></p>
+<p>Called from the menu bar.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Print">
+<h2><a href="#Fnd_Menu_Print">Fnd_Menu_Print</a></h2>
+<p class="syntax"><code>Fnd_Menu_Print</code></p>
+<p>Called when Print is selected from the File menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_QueryEditor">
+<h2><a href="#Fnd_Menu_QueryEditor">Fnd_Menu_QueryEditor</a></h2>
+<p class="syntax"><code>Fnd_Menu_QueryEditor</code></p>
+<p>Displays 4D's Query Editor.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Quit">
+<h2><a href="#Fnd_Menu_Quit">Fnd_Menu_Quit</a></h2>
+<p class="syntax"><code>Fnd_Menu_Quit</code></p>
+<p>Called from the menu bar when the user selects Quit from the File menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_SetMenuItem">
+<h2><a href="#Fnd_Menu_SetMenuItem">Fnd_Menu_SetMenuItem</a></h2>
+<p class="syntax"><code>Fnd_Menu_SetMenuItem (menu number; item number; label)</code></p>
+<p>A wrapper for the SET MENU ITEM command that parses out the shortcut command and sets it using 4D's SET MENU ITEM KEY command.</p>
+<p>Pass the shortcut at the end of the label after the &quot;/&quot; character. Fnd_Menu_SetMenuItem (1;5;&quot;Print.../P&quot;)</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>menuNumber</code></td><td>Longint</td><td>in</td><td>The menu number</td></tr>
+<tr><td><code>itemNumber</code></td><td>Longint</td><td>in</td><td>The menu item number</td></tr>
+<tr><td><code>inLabel</code></td><td>Longint</td><td>in</td><td>The new label, with shortcut if desired</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_ShowAll">
+<h2><a href="#Fnd_Menu_ShowAll">Fnd_Menu_ShowAll</a></h2>
+<p class="syntax"><code>Fnd_Menu_ShowAll</code></p>
+<p>Displays all records for the current table.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_ShowSubset">
+<h2><a href="#Fnd_Menu_ShowSubset">Fnd_Menu_ShowSubset</a></h2>
+<p class="syntax"><code>Fnd_Menu_ShowSubset</code></p>
+<p>Called from the &quot;Show Subset&quot; item in the &quot;Select&quot; menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Sort">
+<h2><a href="#Fnd_Menu_Sort">Fnd_Menu_Sort</a></h2>
+<p class="syntax"><code>Fnd_Menu_Sort</code></p>
+<p>Sorts the records for the current table.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_SortOrderEditor">
+<h2><a href="#Fnd_Menu_SortOrderEditor">Fnd_Menu_SortOrderEditor</a></h2>
+<p class="syntax"><code>Fnd_Menu_SortOrderEditor</code></p>
+<p>Displays 4D's Order By editor.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_SpecialFunctions">
+<h2><a href="#Fnd_Menu_SpecialFunctions">Fnd_Menu_SpecialFunctions</a></h2>
+<p class="syntax"><code>Fnd_Menu_SpecialFunctions</code></p>
+<p>Called from the menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_UpdateResources">
+<h2><a href="#Fnd_Menu_UpdateResources">Fnd_Menu_UpdateResources</a></h2>
+<p class="syntax"><code>Fnd_Menu_UpdateResources</code></p>
+<p>Updates the 'STR#' resources in the structure file used for localizing menu titles.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_ViewOptions">
+<h2><a href="#Fnd_Menu_ViewOptions">Fnd_Menu_ViewOptions</a></h2>
+<p class="syntax"><code>Fnd_Menu_ViewOptions</code></p>
+<p>Supports the View Options function for Fnd_Out. Opens the single, shared View Options palette process (Fnd_Out_ViewOptionsProcess) if it isn't already running, or brings its window to front if it is - never a second palette. The palette serves whichever list window is front, retargeting through Fnd_Out_ViewOptionsFront as focus moves between Foundation windows; this method only needs to get it open or forward.</p>
+<p>Runs with Form bound to the Fnd_Out form, since it's reached from Fnd_Out's own menu bar while its window is front - the same context Fnd_Menu_Sort relies on to reach Form.listData directly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_Window_Add">
+<h2><a href="#Fnd_Menu_Window_Add">Fnd_Menu_Window_Add</a></h2>
+<p class="syntax"><code>Fnd_Menu_Window_Add ({item text})</code></p>
+<p>Adds the current process to the Window menu.  If no title is specified, the current window title is used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inItemText</code></td><td>Text</td><td>in</td><td>The item text to add to the menu (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_Window_Remove">
+<h2><a href="#Fnd_Menu_Window_Remove">Fnd_Menu_Window_Remove</a></h2>
+<p class="syntax"><code>Fnd_Menu_Window_Remove ({process number})</code></p>
+<p>Removes the specified process from the Window menu.  If the process number is not specified, the current process is used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inProcessNumber</code></td><td>Longint</td><td>in</td><td>Process number to remove</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Menu_Window_Update">
+<h2><a href="#Fnd_Menu_Window_Update">Fnd_Menu_Window_Update</a></h2>
+<p class="syntax"><code>Fnd_Menu_Window_Update</code></p>
+<p>Updates the Window menu.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Menu_WindowItem">
+<h2><a href="#Fnd_Menu_WindowItem">Fnd_Menu_WindowItem</a></h2>
+<p class="syntax"><code>Fnd_Menu_WindowItem</code></p>
+<p>This method is called whenever any of the items in the Window menu is selected.  This method moves the associated process to the front.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

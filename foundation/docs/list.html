@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_List — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_List module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/LICENSE">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html" aria-current="page">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_List</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_List_AddButton">Fnd_List_AddButton</a></li>
+		<li><a href="#Fnd_List_AddItem">Fnd_List_AddItem</a></li>
+		<li><a href="#Fnd_List_AddToListEditor">Fnd_List_AddToListEditor</a></li>
+		<li><a href="#Fnd_List_ChoiceList">Fnd_List_ChoiceList</a></li>
+		<li><a href="#Fnd_List_Clear">Fnd_List_Clear</a></li>
+		<li><a href="#Fnd_List_CommandDialog">Fnd_List_CommandDialog</a></li>
+		<li><a href="#Fnd_List_CreateTable">Fnd_List_CreateTable</a></li>
+		<li><a href="#Fnd_List_DoesListExist">Fnd_List_DoesListExist</a></li>
+		<li><a href="#Fnd_List_EditOne">Fnd_List_EditOne</a></li>
+		<li><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></li>
+		<li><a href="#Fnd_List_Editor">Fnd_List_Editor</a></li>
+		<li><a href="#Fnd_List_Info">Fnd_List_Info</a></li>
+		<li><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></li>
+		<li><a href="#Fnd_List_Localize">Fnd_List_Localize</a></li>
+		<li><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></li>
+		<li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
+		<li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
+		<li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+		<li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
+		<li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
+		<li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
+		<li><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></li>
+		<li><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></li>
+		<li><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_List</h1>
+
+<p>24 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_List_AddButton">Fnd_List_AddButton</a></li>
+<li><a href="#Fnd_List_AddItem">Fnd_List_AddItem</a></li>
+<li><a href="#Fnd_List_AddToListEditor">Fnd_List_AddToListEditor</a></li>
+<li><a href="#Fnd_List_ChoiceList">Fnd_List_ChoiceList</a></li>
+<li><a href="#Fnd_List_Clear">Fnd_List_Clear</a></li>
+<li><a href="#Fnd_List_CommandDialog">Fnd_List_CommandDialog</a></li>
+<li><a href="#Fnd_List_CreateTable">Fnd_List_CreateTable</a></li>
+<li><a href="#Fnd_List_DoesListExist">Fnd_List_DoesListExist</a></li>
+<li><a href="#Fnd_List_EditOne">Fnd_List_EditOne</a></li>
+<li><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></li>
+<li><a href="#Fnd_List_Editor">Fnd_List_Editor</a></li>
+<li><a href="#Fnd_List_Info">Fnd_List_Info</a></li>
+<li><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></li>
+<li><a href="#Fnd_List_Localize">Fnd_List_Localize</a></li>
+<li><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></li>
+<li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
+<li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
+<li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+<li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
+<li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
+<li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
+<li><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></li>
+<li><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></li>
+<li><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></li>
+</ul>
+
+<section class="method" id="Fnd_List_AddButton">
+<h2><a href="#Fnd_List_AddButton">Fnd_List_AddButton</a></h2>
+<p class="syntax"><code>Fnd_List_AddButton (label)</code></p>
+<p>Allows the developer to add an additional button to the Choice List dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The new button's label</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_AddItem">
+<h2><a href="#Fnd_List_AddItem">Fnd_List_AddItem</a></h2>
+<p class="syntax"><code>Fnd_List_AddItem (command name; method name)</code></p>
+<p>Adds a command to the Command Dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>commandName</code></td><td>Text</td><td>in</td><td>The command name to add to the dialog</td></tr>
+<tr><td><code>commandMethod</code></td><td>Text</td><td>in</td><td>The method name to run if it's selected</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_AddToListEditor">
+<h2><a href="#Fnd_List_AddToListEditor">Fnd_List_AddToListEditor</a></h2>
+<p class="syntax"><code>Fnd_List_AddToListEditor (listname)</code></p>
+<p>Called from the Fnd_Hook_List_SetEditableLists method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The name of the list to make available.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_ChoiceList">
+<h2><a href="#Fnd_List_ChoiceList">Fnd_List_ChoiceList</a></h2>
+<p class="syntax"><code>Fnd_List_ChoiceList (prompt; -&gt;text array) --&gt; Number</code></p>
+<p>Allows the user to select an element from a list.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>prompt</code></td><td>Text</td><td>in</td><td>The prompt</td></tr>
+<tr><td><code>pointerTextArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a text array</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The selected element number</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_Clear">
+<h2><a href="#Fnd_List_Clear">Fnd_List_Clear</a></h2>
+<p class="syntax"><code>Fnd_List_Clear</code></p>
+<p>Clears the Command List elements.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_CommandDialog">
+<h2><a href="#Fnd_List_CommandDialog">Fnd_List_CommandDialog</a></h2>
+<p class="syntax"><code>Fnd_List_CommandDialog</code></p>
+<p>Displays the Admin dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_CreateTable">
+<h2><a href="#Fnd_List_CreateTable">Fnd_List_CreateTable</a></h2>
+<p class="syntax"><code>Fnd_List_CreateTable</code></p>
+<p>Global and IP variables accessed:</p>
+<p>C_POINTER(&lt;&gt;Fnd_List_Table_ptr; &lt;&gt;Fnd_List_ListNameFld_ptr)</p>
+<pre>Method Type:    Private</pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td></td><td>out</td><td>Nothing</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_DoesListExist">
+<h2><a href="#Fnd_List_DoesListExist">Fnd_List_DoesListExist</a></h2>
+<p class="syntax"><code>Fnd_List_DoesListExist (List Name) -&gt; Boolean</code></p>
+<p>Checks if a list exists</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>A choice list defined in the List Editor</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True = The list exists</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_EditOne">
+<h2><a href="#Fnd_List_EditOne">Fnd_List_EditOne</a></h2>
+<p class="syntax"><code>Fnd_List_EditOne (list name)</code></p>
+<p>Call this method to edit the specified list in a semi-modal dialog.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The name of the list</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_EditOne2">
+<h2><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></h2>
+<p class="syntax"><code>Fnd_List_EditOne2 (list name)</code></p>
+<p>Called as a new process by Fnd_List_EditOne to edit a list.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_Editor">
+<h2><a href="#Fnd_List_Editor">Fnd_List_Editor</a></h2>
+<p class="syntax"><code>Fnd_List_Editor</code></p>
+<p>Displays the List Editor window in a new process.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_Info">
+<h2><a href="#Fnd_List_Info">Fnd_List_Info</a></h2>
+<p class="syntax"><code>Fnd_List_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_ListToRecord">
+<h2><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></h2>
+<p class="syntax"><code>Fnd_List_ListToRecord (list name)</code></p>
+<p>Saves the list as a 4D list and as a record.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The name of the list to save</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_Localize">
+<h2><a href="#Fnd_List_Localize">Fnd_List_Localize</a></h2>
+<p class="syntax"><code>Fnd_List_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_OnExit">
+<h2><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></h2>
+<p class="syntax"><code>Fnd_List_OnExit</code></p>
+<p>Stores the current date and time in both the structure file (as a list) and the data file (as a record).  We can compare these at startup to determine if the structure file has been updated.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_OnStartup">
+<h2><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></h2>
+<p class="syntax"><code>Fnd_List_OnStartup</code></p>
+<p>Called when the database is launched to determine if the lists in the structure file neeed to be updated from the lists in the data file.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_RecordLoaded">
+<h2><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></h2>
+<p class="syntax"><code>Fnd_List_RecordLoaded (-&gt;table{; timeout in seconds}) --&gt; Boolean</code></p>
+<p>Makes sure the current record is not locked.  If it is, it waits a while to see if the record becomes avaialble.</p>
+<p>If no timeout period is specified control is returned immediately if the record is locked.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The record's table</td></tr>
+<tr><td><code>inSecondsToWait</code></td><td>Longint</td><td>in</td><td>Number of seconds to wait if it's locked (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the record isn't locked</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_SaveListItems">
+<h2><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></h2>
+<p class="syntax"><code>Fnd_List_SaveListItems</code></p>
+<p>Assumes the proper [Fnd_List] record is loaded.</p>
+<p>Called from the Fnd_List_Editor and ListsCreateSystemLists2 methods.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_UpdateItemsList">
+<h2><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></h2>
+<p class="syntax"><code>Fnd_List_UpdateItemsList</code></p>
+<p>Assumes the proper [Lists] record is loaded.</p>
+<p>Assumes any previous changes to the list have been saved.</p>
+<p>Called from the [Constants].ListEditor form.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_UpdateStructureLists">
+<h2><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></h2>
+<p class="syntax"><code>Fnd_List_UpdateStructureLists</code></p>
+<p>Copies the Foundation maintained lists to the 4D structure file.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_UseTypeAhead">
+<h2><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></h2>
+<p class="syntax"><code>Fnd_List_UseTypeAhead ({$inBoolean_b : Boolean}) --&gt; Boolean</code></p>
+<p>Reports whether type-ahead is enabled for lists, and optionally sets it.</p>
+<p>Getter and setter in one: called with no parameter it reports, called with one it sets and then reports. The setting lives on Fnd.List, so it persists for the session rather than the call.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inBoolean</code></td><td>Boolean</td><td>in</td><td>Turns type-ahead on or off (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The setting after any change</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_FilePath">
+<h2><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></h2>
+<p class="syntax"><code>Fnd_List_XML_FilePath --&gt; Text</code></p>
+<p>Returns the path to the Fnd_List.xml file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The file path</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_GetDateTime">
+<h2><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></h2>
+<p class="syntax"><code>Fnd_List_XML_GetDateTime --&gt; Text</code></p>
+<p>Returns the date-time value stored in the Fnd_List.xml file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The date-time value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_SetDateTime">
+<h2><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></h2>
+<p class="syntax"><code>Fnd_List_XML_SetDateTime (date-time string)</code></p>
+<p>Updates the Fnd_List.xml file with the last use date for this structure file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dateTime</code></td><td>Text</td><td>in</td><td>A date-time string (e.g.: &quot;2007-10-16T17:55:04&quot;)</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Nelson Consulting, Inc. / Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/LICENSE">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne.b.stewart@gmail.com">wayne.b.stewart@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
