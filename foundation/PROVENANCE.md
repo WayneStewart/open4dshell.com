@@ -8,7 +8,7 @@ its open-source release.
 
 | Period | Owner | Basis |
 |---|---|---|
-| 2003 – October 2008 | Dave Batton | Original author. Earliest method headers are dated 2003. |
+| 1993 – October 2008 | Dave Batton | Original author. Foundation dates from 1993 (Walt Nelson, *4DMethod #6: Foundation Shell for 4D*, YouTube, at 33:01); the earliest method headers in this repository are dated 2003. |
 | October 2008 – 11 September 2026 | Nelson Consulting, Inc. (Walt Nelson) | Acquired all rights from Dave Batton in or about October 2008; the purchase was announced to the developer community on 21 February 2009. |
 | 11 September 2026 – present | Wayne Stewart | Deed of Assignment dated 2026-09-11. |
 

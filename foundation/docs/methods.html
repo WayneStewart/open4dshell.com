@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Methods — Foundation 6 Developer Reference</title><style>:root{font:16px/1.6 system-ui,sans-serif;color:#18303b;background:#f3f6f7}body{margin:0}header{background:#18303b;color:white;padding:24px max(24px,calc((100vw - 1120px)/2))}header strong{font-size:22px}nav{display:flex;gap:24px;flex-wrap:wrap}nav a{color:#c2e8e5}main{max-width:1120px;margin:32px auto;padding:0 24px}a{color:#12635f}h1{font-size:36px;line-height:1.2}h2{margin-top:32px}input{box-sizing:border-box;width:100%;padding:14px;font:inherit;border:1px solid #8caaae;border-radius:6px;margin:12px 0 24px}article,details,.card{background:white;border:1px solid #d5e1e3;border-radius:8px;padding:20px;margin:12px 0}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.prose{white-space:pre-wrap;font:inherit;margin:12px 0;overflow-wrap:anywhere}code{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}small,.meta{color:#526a73}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.badge{font-size:12px;font-weight:normal;margin-left:12px}section[id],details[id]{scroll-margin-top:24px}[hidden]{display:none!important}footer.site-footer{max-width:1120px;margin:48px auto 24px;padding:16px 24px 0;border-top:1px solid #d5e1e3;color:#526a73;font-size:13px}footer.site-footer a{color:#12635f}</style></head>
-<body><header><strong>Foundation 6 Developer Reference</strong><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="history.html">History &amp; acknowledgements</a><a href="methods.html">Methods</a><a href="classes.html">Classes &amp; functions</a><a href="legacy.html">Legacy manual</a></nav></header><main><h1>Methods</h1><label for="search">Filter by name, signature or description</label><input id="search" type="search" placeholder="Search this reference…"><p id="matches" role="status"></p><p>765 current Foundation methods. Internal methods are implementation details. Hooks and generated host methods are excluded.</p><details data-entry id="Fnd_Art_About"><summary>Fnd_Art_About<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Art_About
+<body><header><strong>Foundation 6 Developer Reference</strong><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="history.html">History &amp; acknowledgements</a><a href="methods.html">Methods</a><a href="classes.html">Classes &amp; functions</a><a href="legacy.html">Legacy manual</a></nav></header><main><h1>Methods</h1><label for="search">Filter by name, signature or description</label><input id="search" type="search" placeholder="Search this reference…"><p id="matches" role="status"></p><p>838 current Foundation methods. Internal methods are implementation details. Hooks and generated host methods are excluded.</p><details data-entry id="Fnd_Art_About"><summary>Fnd_Art_About<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Art_About
 
 Displays the About Box dialog in a new process.
 
@@ -3139,12 +3139,29 @@ Handles the close box and quitting the application.
  Responds to
    On Activate
    On Close Box
+   On Outside Call
    Fnd_Gen_QuitNow
    Fnd_Wnd_CloseAllWindows
 
 Access: Shared
 
 Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Gen_GeneratedReport"><summary>Fnd_Gen_GeneratedReport<span class="badge">Internal</span></summary><p><code>#DECLARE($methodName_t : Text; $note_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_GeneratedReport ({$methodName_t : Text; $note_t : Text})
+
+Collects what the Fnd_Gen_Required... methods changed or found wrong in
+  the host's generated methods, and reports it all at once.
+With parameters, records the method and a note about it. Without, shows
+  one alert listing everything recorded, opens each of those methods in
+  the Method editor, and clears the list. Nothing is shown when nothing
+  was recorded.
+
+Access: Private
+
+Parameters:
+  $methodName_t : Text : The host method concerned (optional)
+  $note_t : Text : What happened to it (optional)
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Gen_GetArrayWidth"><summary>Fnd_Gen_GetArrayWidth<span class="badge">Shared</span></summary><p><code>#DECLARE($array_ptr : Pointer; $fontName_t : Text; $fontSize_i : Integer; $fontStyle_i : Integer)-&gt;$maxWidth_i : Integer</code></p><pre class="prose">Project Method: Fnd_Gen_GetArrayWidth (-&gt;text array; font; size; style) --&gt; Number
@@ -3189,6 +3206,20 @@ Parameters:
 
 Returns:
   $localisedString_t : Text : The localized string</pre></details>
+<details data-entry id="Fnd_Gen_HasTypingEntries"><summary>Fnd_Gen_HasTypingEntries<span class="badge">Internal</span></summary><p><code>#DECLARE($code_t : Text; $template_t : Text)-&gt;$hasAll_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Gen_HasTypingEntries ($code_t : Text; $template_t : Text) --&gt; Boolean
+
+Tests whether a typing method carries every C_XX entry of a template.
+  Spacing and comments are ignored, and so is whether the entries sit
+  inside a /* */ block.
+
+Access: Private
+
+Parameters:
+  $code_t : Text : The typing method's code
+  $template_t : Text : The code whose C_XX entries must all be present
+
+Returns:
+  $hasAll_b : Boolean : True when every entry of the template is present</pre></details>
 <details data-entry id="Fnd_Gen_Info"><summary>Fnd_Gen_Info<span class="badge">Shared</span></summary><p><code>#DECLARE($request_t : Text)-&gt;$reply_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_Info (label) --&gt; Text
 
 Returns requested information.  See the Fnd_Gen_ComponentInfo
@@ -3269,6 +3300,39 @@ Parameters:
   $inMenuBarName_t : Text : menu bar name (optional)
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Gen_MethodBody"><summary>Fnd_Gen_MethodBody<span class="badge">Internal</span></summary><p><code>#DECLARE($code_t : Text)-&gt;$body_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_MethodBody ($code_t) --&gt; Text
+
+Reduces method code to what it does, so that two copies can be compared
+  whatever their comments, layout or line endings. Comment lines (which
+  covers the header and the //%attributes line), blank lines and every
+  space and tab are dropped; the remaining lines are joined with CR.
+
+Access: Private
+
+Parameters:
+  $code_t : Text : The method code
+
+Returns:
+  $body_t : Text : The normalised body</pre></details>
+<details data-entry id="Fnd_Gen_MethodSignature"><summary>Fnd_Gen_MethodSignature<span class="badge">Internal</span></summary><p><code>#DECLARE($code_t : Text)-&gt;$signature_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_MethodSignature ($code_t) --&gt; Text
+
+Reads the parameter and return types a method declares and returns them in a
+  canonical form such as &quot;(Text;Object)-&gt;Boolean&quot;, or &quot;()&quot; for none.
+Returns &quot;&quot; when the code declares nothing at all, as its parameters may be
+  typed elsewhere (a Compiler_ method); callers should not compare that.
+
+Understands #DECLARE (including the grouped form &quot;$a; $b : Text&quot; and the
+  &quot;-&gt;$r : Type&quot; and &quot;: Type&quot; return forms), C_TEXT($1) style lines and
+  &quot;var $1 : Type&quot; lines. Only $0 and numbered $n arguments are read, and
+  comment lines and /* */ blocks are ignored. Longint is read as Integer.
+
+Access: Private
+
+Parameters:
+  $code_t : Text : The method code
+
+Returns:
+  $signature_t : Text : The canonical signature, or &quot;&quot; if nothing is declared</pre></details>
 <details data-entry id="Fnd_Gen_Platform"><summary>Fnd_Gen_Platform<span class="badge">Shared</span></summary><p><code>#DECLARE()-&gt;$platformNumber_i : Integer</code></p><pre class="prose">Project Method: Fnd_Gen_Platform --&gt; Number
 
 Returns the platform number.
@@ -3332,217 +3396,14 @@ Parameters:
 
 Returns:
   $isQuitting_b : Boolean : The state after any change</pre></details>
-<details data-entry id="Fnd_Gen_Reg_Alert"><summary>Fnd_Gen_Reg_Alert<span class="badge">Shared</span></summary><p><code>#DECLARE($message_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_Alert (message)
-
-Displays Foundation's Alert dialog if available. Otherwise displays a 4D alert.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters:
-  $message_t : Text : The text message to display
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_BuyNowButtonMethod"><summary>Fnd_Gen_Reg_BuyNowButtonMethod<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_BuyNowButtonMethod
-
-
-Called when one of the Buy Now buttons is clicked.
-
-
-Method Type: Private
-
-
-Access: Shared
-
-Parameters: None
-
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_CheckTimout"><summary>Fnd_Gen_Reg_CheckTimout<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_CheckTimout
-
-Checks to see if we've reached the demo timeout value.  If so, an alert dialog is displayed
-  and ABORT is called.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_DemoDialog"><summary>Fnd_Gen_Reg_DemoDialog<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_DemoDialog
-
-Displays the demo message at startup.  Called as a new process
-  from Fnd_Reg_Startup
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_GetActivationCode"><summary>Fnd_Gen_Reg_GetActivationCode<span class="badge">Shared</span></summary><p><code>#DECLARE()-&gt;$activationCode_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_GetActivationCode --&gt; Text
-
-Returns the activation code that's been stored in the list.
-  Returns an empty string if the program hasn't been registered yet.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns:
-  $activationCode_t : Text : The activation code</pre></details>
-<details data-entry id="Fnd_Gen_Reg_GetUserName"><summary>Fnd_Gen_Reg_GetUserName<span class="badge">Shared</span></summary><p><code>#DECLARE()-&gt;$registeredUserName_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_GetUserName --&gt; Text
-
-Returns the name of the registered user.  Returns an empty string
-  if the program hasn't been registered yet.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns:
-  $registeredUserName_t : Text : The name of the registered user</pre></details>
-<details data-entry id="Fnd_Gen_Reg_GetValueForElement"><summary>Fnd_Gen_Reg_GetValueForElement<span class="badge">Shared</span></summary><p><code>#DECLARE($elementName_t : Text)-&gt;$value_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_GetValueForElement (element) --&gt; Text
-
-Returns the value for the specified element in the Foundation registration xml file.
-
-Access: Private
-
-Parameters:
-  $elementName_t : Text : The name of the element to find
-
-Returns:
-  $value_t : Text : Its value</pre></details>
-<details data-entry id="Fnd_Gen_Reg_LicenseFilePath"><summary>Fnd_Gen_Reg_LicenseFilePath<span class="badge">Shared</span></summary><p><code>#DECLARE()-&gt;$licenseFilePath_t : Text</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_LicenseFilePath --&gt; Path
-
-Returns the path to the license file.
-
-Access: Private
-
-Parameters: None
-
-Returns:
-  $licenseFilePath_t : Text : File path</pre></details>
-<details data-entry id="Fnd_Gen_Reg_RegButtonMethod"><summary>Fnd_Gen_Reg_RegButtonMethod<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_RegButtonMethod
-
-Called from the OK buttons in the &quot;Fnd_Gen_Reg_RegisterDialog&quot; form.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_Register"><summary>Fnd_Gen_Reg_Register<span class="badge">Shared</span></summary><p><code>#DECLARE($activationCode_t : Text; $userName_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_Register (activation code; user name)
-
-
-Call to register the product.  Sets the OK variable to 1 if the product gets registered.
-
-  Sets the Error variable if there's a problem.
-
-This doesn't check to see if it's already been registered, so it can be called
-
-  to change the registration at any time.  But only does the update if the
-
-  user name and activation code are valid.
-
-
-Method Type: Private
-
-
-Access: Shared
-
-Parameters:
-
-  $activationCode_t : Text : Activation code
-
-  $userName_t : Text : User name
-
-
-Returns:
-
-  $0 : Longint : Description</pre></details>
-<details data-entry id="Fnd_Gen_Reg_SaveRegInfo"><summary>Fnd_Gen_Reg_SaveRegInfo<span class="badge">Shared</span></summary><p><code>#DECLARE($userName_t : Text; $activationCode_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_SaveRegInfo (user name; activation code)
-
-Returns the name of the registered user.  Returns an empty string
-  if the program hasn't been registered yet.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters:
-  $userName_t : Text : User name
-  $activationCode_t : Text : Activation code
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_Startup"><summary>Fnd_Gen_Reg_Startup<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_Startup
-
-Call when launching the database to initialize the registration routines.
-
-Method Type: Private
-
-Access: Shared
-
-Parameters: None
-
-Returns: Nothing</pre></details>
-<details data-entry id="Fnd_Gen_Reg_UpdateState"><summary>Fnd_Gen_Reg_UpdateState<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_Reg_UpdateState
-
-
-Updates the &lt;&gt;Fnd_Gen_Reg_State_i variable.  Don't check this variable directly,
-
-  call Fnd_Gen_Reg_RegistrationState instead.
-
-
-Method Type: Private
-
-
-Access: Shared
-
-Parameters: None
-
-
-Returns:
-
-  $0 : Longint : Description</pre></details>
-<details data-entry id="Fnd_Gen_Reg_Validate"><summary>Fnd_Gen_Reg_Validate<span class="badge">Internal</span></summary><p><code>#DECLARE($userName_t : Text; $enteredActivationCode_t : Text)-&gt;$isValid_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Gen_Reg_Validate (user name; activation code) --&gt; Boolean
-
-Returns True if a valid activation code was passed for the specified
-  product number and user name.
-
-Method Type: Private
-
-Access: Private
-
-Parameters:
-  $userName_t : Text : The user's name
-  $enteredActivationCode_t : Text : The entered activation code
-
-Returns:
-  $isValid_b : Boolean : True if the user name and activation code are valid for this product.</pre></details>
-<details data-entry id="Fnd_Gen_RemoveActivationCode"><summary>Fnd_Gen_RemoveActivationCode<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Gen_RemoveActivationCode
-
-Removes the activation code from the database so the developer can share
-  the source code with the Foundation components installed.
-
-Access: Shared
-
-Parameters: None
-
-Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Gen_RequiredCompilerMethod"><summary>Fnd_Gen_RequiredCompilerMethod<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Gen_RequiredCompilerMethod
 
 Creates the Compiler_Fnd_HookAndHost method in the host database if it
-  doesn't already exist. If it does already exist, nothing happens.
+  doesn't already exist, with its typing block active or wrapped in /* */
+  to suit the running 4D. In an interpreted host, an existing copy that
+  lacks any of the current typing entries is replaced, the previous code
+  kept below it as a /* comment */, and the replacement is recorded
+  for Fnd_Gen_GeneratedReport.
 This single method replaces the old per-method Compiler_Fnd_Host_XXX
   methods: it gathers the classic parameter typing entries for every
   method that Fnd_Gen_RequiredHostMethod and Fnd_Gen_RequiredHookMethod
@@ -3558,7 +3419,13 @@ Called from Fnd_Gen_RequiredHostMethod and Fnd_Gen_RequiredHookMethod</pre></det
 <details data-entry id="Fnd_Gen_RequiredHookMethod"><summary>Fnd_Gen_RequiredHookMethod<span class="badge">Shared</span></summary><p><code>#DECLARE($methodName_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_RequiredHookMethod (method name)
 
 Creates the specified method in the host database if it doesn't already exist.
-If it does already exist, nothing happens.
+If it does already exist and the host is interpreted, its declared parameters
+  and return type are compared with those Foundation now uses. A mismatch is
+  recorded for Fnd_Gen_GeneratedReport. A hook holds the host developer's own code,
+  so it is never rewritten. A hook that declares nothing cannot be
+  compared, as its parameters may be typed in a Compiler_ method; where
+  Foundation passes it parameters or expects a result, it is recorded as
+  left unchanged for the developer to check.
 
 Access: Shared
 
@@ -3569,7 +3436,14 @@ Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Gen_RequiredHostMethod"><summary>Fnd_Gen_RequiredHostMethod<span class="badge">Shared</span></summary><p><code>#DECLARE($methodName_t : Text)</code></p><pre class="prose">Project Method: Fnd_Gen_RequiredHostMethod (method name)
 
 Creates the specified method in the host database if it doesn't already exist.
-If it does already exist, nothing happens.
+If it does already exist and the host is interpreted, the parameter and
+  return types it declares are compared with the current template's. A host
+  copy declared differently is replaced by the template, the previous code
+  kept below as a /* comment */, and the replacement is recorded for
+  Fnd_Gen_GeneratedReport. A copy that differs only in how it is written is
+  left alone, as is any method in a compiled host. A copy that declares
+  nothing cannot be judged, so it is left alone and recorded for the
+  developer to check.
 
 Access: Shared
 
@@ -4513,6 +4387,8 @@ A wrapper for 4D's LIST TO ARRAY command.  Tries to read in a
   list with an asterisk appended to the name first.  If all it gets is
   an empty list (which probably indicates no list) then it tries to
   read in a list without the asterisk.
+A host without a Fnd_Host_ListToArray method gets an empty array and one
+  bug report per session naming the missing method.
 See also the Fnd_Loc_Editor_ArrayToList method.
 
 Access: Private
@@ -5219,7 +5095,16 @@ Parameters: None
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Menu_ViewOptions"><summary>Fnd_Menu_ViewOptions<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Menu_ViewOptions
 
-Supports the View options function for Fnd_Out
+Supports the View Options function for Fnd_Out. Opens the single, shared
+  View Options palette process (Fnd_Out_ViewOptionsProcess) if it isn't
+  already running, or brings its window to front if it is - never a
+  second palette. The palette serves whichever list window is front,
+  retargeting through Fnd_Out_ViewOptionsFront as focus moves between
+  Foundation windows; this method only needs to get it open or forward.
+
+Runs with Form bound to the Fnd_Out form, since it's reached from
+  Fnd_Out's own menu bar while its window is front - the same context
+  Fnd_Menu_Sort relies on to reach Form.listData directly.
 
 Access: Shared</pre></details>
 <details data-entry id="Fnd_Menu_WindowItem"><summary>Fnd_Menu_WindowItem<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Menu_WindowItem
@@ -5628,17 +5513,25 @@ Forms 1 and 2 take the column's settings from the trailing parameters. Form 3
 Object properties, with the default applied when the property is absent:
 
 ```
-  fo_field    Text     COMPULSORY. Field name, or a formula reaching one through relations
+  fo_field    Text     COMPULSORY. Field name, or a formula reaching one through relations. A
+              &quot;Formula: &quot; column returning a picture is detected as Is picture; fo_type can force it
   fo_title    Text     Column header. Defaults to the name derived from fo_field
   fo_type     Longint  Field type. Defaults to the type deduced from fo_field
-  fo_format   Text     Display format. Defaults to none
+  fo_format   Text     Display format. Defaults to none. For a date, time or picture column it is
+              the format constant, e.g. &quot;fo_format&quot;; Scaled to fit prop centered (a picture
+              defaults to Scaled to fit proportional)
   fo_hAlign   Longint  Align default | Align left | Align right | Align center. Defaults to Align default
+  fo_vAlign   Longint  Align top | Align center | Align bottom, for this column's cells. Defaults to
+              the list's (Fnd_Out_Default with Fnd_Out_VAlign), which itself defaults to Align center
   fo_width    Longint  Column width. Defaults to 0, meaning the default width
   fo_minWidth Longint  Minimum width. Defaults to 10
   fo_maxWidth Longint  Maximum width. Defaults to 0, meaning no maximum
   fo_style    Longint  Font style. Defaults to Plain
-  fo_visible  Boolean  Whether the column shows. Defaults to the current setting
+  fo_visible  Boolean  Whether the column shows. Defaults to True (the auto-inserted
+              primary-key column 0 is always invisible regardless of this property)
 ```
+
+In forms 1 and 2 the format parameter takes String(&lt;constant&gt;) for a date, time or picture.
 
 Widths, in any form: 0 uses the default size, and a negative number auto-sizes
   the column with that number as its minimum.
@@ -5654,6 +5547,27 @@ Parameters:
   $inVisible_b : Boolean : Visible column (optional, forms 1 and 2)
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_AddLayout"><summary>Fnd_Out_AddLayout<span class="badge">Shared</span></summary><p><code>#DECLARE($inName_t : Text; $inVisible_c : Collection; $inTextSize_i : Integer; $inRowHeight_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_AddLayout ($inName_t : Text; $inVisible_c : Collection {; $inTextSize_i : Integer {; $inRowHeight_i : Integer}})
+
+Developer configuration hook: declares a built-in layout for the current
+  table, offered in the palette's Layout popup ahead of any user or shared
+  layout. Calling this again with the same name replaces the earlier
+  declaration rather than adding a second one.
+
+This only declares the layout in memory (Fnd.out.devConfig) - it is not
+  written to Resources/Fnd_Out/&lt;Table&gt;.json. A developer running
+  interpreted can also capture the palette's current widths/order into a
+  built-in layout with Fnd_Out_LayoutSaveBuiltIn, which does write the file.
+
+Access: Shared
+
+Parameters:
+  $inName_t : Text : The layout's name
+  $inVisible_c : Collection : fo_field values that should be visible
+  $inTextSize_i : Integer : Text size the layout sets (optional)
+  $inRowHeight_i : Integer : Row height (in lines) the layout sets (optional)
+
+Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_AddToSelection"><summary>Fnd_Out_AddToSelection<span class="badge">Internal</span></summary><p><code>#DECLARE($recordNumber_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_AddToSelection (record number)
 
 Called from Fnd_Rec_AddToSelection
@@ -5664,6 +5578,211 @@ Parameters:
   $recordNumber_i : Longint : Record number
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_AllowCustomColumns"><summary>Fnd_Out_AllowCustomColumns<span class="badge">Shared</span></summary><p><code>#DECLARE($allow_b : Boolean)-&gt;$allowed_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_AllowCustomColumns ({$allow_b : Boolean}) --&gt; $allowed_b : Boolean
+
+Developer configuration: may the user add, edit and delete custom columns
+  (formulas) in the current list? Call with a value from
+  Fnd_Hook_IO_DisplayTable to set it for this list; call with nothing to read
+  what applies, which is the application default (Fnd_Out_Default with
+  Fnd_Out_AllowCustomColumns), the table's allowCustomColumns and this list's
+  value, all of which must allow it. Formulas already added stay listed,
+  under Custom Columns, whatever the answer.
+
+Access: Shared
+
+Parameters:
+  $allow_b : Boolean : False to forbid custom columns in this list (optional)
+
+Returns:
+  $allowed_b : Boolean : Whether custom columns are allowed in this list</pre></details>
+<details data-entry id="Fnd_Out_AppearanceMerge"><summary>Fnd_Out_AppearanceMerge<span class="badge">Internal</span></summary><p><code>#DECLARE($formOwn_o : Object; $programmed_o : Object; $table_o : Object; $user_o : Object; $saved_o : Object)-&gt;$merged_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_AppearanceMerge ($formOwn_o : Object; $programmed_o : Object; $table_o : Object; $user_o : Object; $saved_o : Object) --&gt; $merged_o : Object
+
+Layers the appearance settings of a list, lowest precedence first: the
+  form's own, the programmed default (Fnd_Out_Default), the table's
+  developer file, the user's saved default, the list's saved definition.
+  For each of fontName, textSize, rowHeight, rowPixels, vAlign, fill and altFill the
+  last layer holding a non-Null value wins. A layer may be Null. A layer may
+  spell the colours fill/altFill or fillColor/altFillColor.
+
+Access: Private
+
+Parameters:
+  $formOwn_o : Object : What the form itself draws
+  $programmed_o : Object : Storage.Fnd.Out.defaults, as a copy
+  $table_o : Object : The &quot;appearance&quot; of the table's developer file
+  $user_o : Object : The user's saved default for every list
+  $saved_o : Object : The list's own saved definition
+
+Returns:
+  $merged_o : Object : fontName, textSize, rowHeight, rowPixels, vAlign, fill, altFill (Null where no layer set one)</pre></details>
+<details data-entry id="Fnd_Out_ApplyAppearance"><summary>Fnd_Out_ApplyAppearance<span class="badge">Internal</span></summary><p><code>#DECLARE()</code></p><pre class="prose">Project Method: Fnd_Out_ApplyAppearance
+
+Reflects the appearance settings held on Fnd.out onto the live output
+  listbox (&quot;Fnd_Out_ListBox&quot;). Must run in the list window's own form
+  context. Settings read:
+    Fnd.out.columnFontSize   - text size of every inserted column; its
+                               header is one point smaller
+    Fnd.out.columnVAlign     - vertical alignment of every inserted column's
+                               cells, unless the column has its own fo_vAlign
+                               (Fnd_Out_ColumnVAlign decides); headers stay put
+    Fnd.out.columnRowPixels  - row height in pixels when above zero,
+                               otherwise Fnd.out.columnRowHeight in lines
+    Fnd.out.fillColor        - background color override, Null for the
+                               form's own
+    Fnd.out.altFillColor     - alternate background color override, Null
+                               for the form's own
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ApplyColumnOverrides"><summary>Fnd_Out_ApplyColumnOverrides<span class="badge">Internal</span></summary><p><code>#DECLARE($inOverrides_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_ApplyColumnOverrides ($inOverrides_o : Object)
+
+Lays the user's per-column choices over the column definitions in
+  Fnd.out.lbox.columns. $inOverrides_o is keyed by fo_field; each entry
+  holds any of fo_title, fo_format, fo_hAlign, fo_vAlign and fo_style, and a property
+  left out keeps the definition's own value. The definition's own values
+  are kept in its fo_std the first time through, so calling this again
+  with an entry removed - or with Null - puts the column back as the host
+  or the candidate walk defined it.
+
+Runs headless: it touches only Fnd.out, never a live listbox. Call
+  Fnd_Out_StyleColumn afterwards for a column that is already showing.
+
+Access: Private
+
+Parameters:
+  $inOverrides_o : Object : The overrides, keyed by fo_field (may be Null)
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ApplyDefaults"><summary>Fnd_Out_ApplyDefaults<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_ApplyDefaults ($inTableNumber_i : Integer)
+
+Lays the programmed defaults (Fnd_Out_Default) and then the table's developer
+  file &quot;appearance&quot; over what Fnd.out holds, which is taken to be the form's
+  own: columnFontName, columnFontSize, columnRowHeight, columnRowPixels,
+  columnVAlign, fillColor, altFillColor and maxColumns. Nothing set leaves a value alone. Also
+  seeds Fnd.out.allowCustom from the application default and the table's
+  allowCustomColumns, unless the list's own Fnd_Out_AllowCustomColumns call has set it.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table whose developer file to read
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ApplyOfferRules"><summary>Fnd_Out_ApplyOfferRules<span class="badge">Internal</span></summary><p><code>#DECLARE($inCandidates_c : Collection; $inDevConfig_o : Object; $inExistingFields_c : Collection)-&gt;$candidates_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_ApplyOfferRules ($inCandidates_c : Collection; $inDevConfig_o : Object; $inExistingFields_c : Collection) --&gt; $candidates_c : Collection
+
+Marks each real-attribute candidate (from Fnd_Out_CandidateColumns's own
+  walk, never a header row or a folded-in column) with offered:Boolean
+  according to the developer's hide/only rules ($inDevConfig_o.offer),
+  using 4D's own wildcard-aware &quot;=&quot; so an &quot;@&quot; pattern such as
+  &quot;@.Password&quot; matches. A candidate already on Fnd.out.lbox.columns
+  ($inExistingFields_c) is always kept and offered - the rules only ever
+  limit what a user may newly add.
+
+A non-offered candidate is dropped from the result outright when the host
+  is compiled (Is compiled mode(*)); when the host is running interpreted
+  (developer mode) it is kept with offered:False, so the palette can show
+  it with its developer-only &quot;offer&quot; checkbox.
+
+Access: Private
+
+Parameters:
+  $inCandidates_c : Collection : Real-attribute candidates for one block
+  $inDevConfig_o : Object : offer:{hide; only}, as built by Fnd_Out_DevConfigForTable
+  $inExistingFields_c : Collection : fo_field values already on Fnd.out.lbox.columns
+
+Returns:
+  $candidates_c : Collection : The same candidates, offered ones marked,
+              non-offered ones dropped unless the host is interpreted</pre></details>
+<details data-entry id="Fnd_Out_ApplyRowStyle"><summary>Fnd_Out_ApplyRowStyle<span class="badge">Internal</span></summary><p><code>#DECLARE()</code></p><pre class="prose">Project Method: Fnd_Out_ApplyRowStyle
+
+Sets the list's row-style (meta) expression on the live output listbox
+  (&quot;Fnd_Out_ListBox&quot;). Must run in the list window's own process with the
+  Fnd_Out form current.
+  The layout in force wins: its rowStyle rules (condition/style pairs, the
+  first matching rule styles the row) are compiled into one expression.
+  Without rules, the host's Fnd_Hook_Out_RowStyle is used when the host
+  defines it. Otherwise the expression is cleared.
+  A rule's condition is written in terms of This, the row's entity, and a
+  style holds any of fontWeight, fontStyle, textDecoration, stroke, fill.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ApplyViewOptions"><summary>Fnd_Out_ApplyViewOptions<span class="badge">Internal</span></summary><p><code>#DECLARE($inCandidates_c : Collection)-&gt;$columns_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_ApplyViewOptions ($inCandidates_c : Collection) --&gt; $columns_c : Collection
+
+Writes a View Options picker's choices back into Fnd.out.lbox.columns:
+  an already-defined column has its fo_visible toggled in place; a
+  candidate that is newly visible and has no existing column is added
+  through Fnd_Out_AddField's object form. A candidate that stays
+  invisible and has no existing column is simply skipped - this method
+  is the only place a column is added on the picker's behalf, and it
+  never invents one that isn't checked.
+
+Runs headless: it touches only Fnd.out, never Form or a live listbox, so
+  it's exercised directly by Test_Fnd_Out. Fnd_Out_ViewOptionsToListBox is the
+  host-only wrapper that also updates the live listbox objects.
+
+Access: Private
+
+Parameters:
+  $inCandidates_c : Collection : Candidates, as built by Fnd_Out_CandidateColumns
+              and then edited by the Fnd_Out_ViewOptions picker
+
+Returns:
+  $columns_c : Collection : Fnd.out.lbox.columns after the changes</pre></details>
+<details data-entry id="Fnd_Out_CandidateColumns"><summary>Fnd_Out_CandidateColumns<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$candidates_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_CandidateColumns ($inTableNumber_i : Integer) --&gt; $candidates_c : Collection
+
+Builds the candidate column list for the View Options picker: every
+  storage attribute of the table itself, plus the storage attributes
+  reached through each related-entity attribute - followed up to five
+  relations deep (&quot;invoice.contact.LastName&quot;; Fnd_Out_MaxRelationDepth
+  changes the limit), never back through a dataclass the path already
+  crossed - plus each related table's own declared formulas
+  (Fnd_Out_OfferFormula) that are written against This, re-rooted onto the
+  relation path (&quot;invoice.contact.fullName()&quot;), plus any
+  column already on Fnd.out.lbox.columns that isn't a plain attribute
+  path (chiefly a &quot;Formula: &quot; column). The primary key is excluded,
+  matching Fnd_Out_AddField's own always-invisible auto-inserted PK
+  column.
+
+The result is grouped and ordered for the palette, not just built: the
+  table's own fields come first (no header - they're the top block by
+  convention), then one block per relation - each preceded by a header
+  row (isHeader:True, fo_field:&quot;&quot;, fo_title the relation name
+  capitalised; group the relation path, e.g. &quot;invoice.contact&quot;) - in
+  the order the relations were discovered (a &quot;Custom Columns&quot; block,
+  group &quot;~custom~&quot;, holding the formulas the user added, sits between the
+  own table's block and the relations), then a
+  final &quot;Other Columns&quot; block (also header-led) for any folded-in
+  non-attribute column. Fnd_Out_ApplyViewOptions and
+  Fnd_Out_RestoreVisibleColumns both skip isHeader rows - they aren't
+  real columns and carry no fo_field to match against.
+
+DataClass.getInfo() doesn't enumerate attributes (only .name, .primaryKey,
+  .tableNumber, .exposed - confirmed against the 20 and 21-R3 API docs, so
+  this isn't a version gap). A dataclass's attributes are its own object
+  properties, so OB Keys(ds[dataClassName]) is what actually lists them;
+  ds[dataClassName][attributeName] then gives the per-attribute .kind,
+  .fieldType and .relatedDataClass used below.
+
+A relation-path candidate's fo_title is just the field name (Fnd_Out_fieldName
+  already drops everything before the last &quot;.&quot;), since its block header
+  supplies the relation context.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table to build candidates for
+
+Returns:
+  $candidates_c : Collection : Objects with fo_field, fo_title, fo_type,
+              fo_visible, group, isHeader, (for a calculated column) isFormula
+              and (for a formula the user added) isUser and source</pre></details>
 <details data-entry id="Fnd_Out_ChoosePotentialColumns"><summary>Fnd_Out_ChoosePotentialColumns<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ChoosePotentialColumns
 
 Lists fields that COULD be displayed
@@ -5671,16 +5790,243 @@ Lists fields that COULD be displayed
 Access: Private
 
 Parameters: None</pre></details>
+<details data-entry id="Fnd_Out_ColumnObjectName"><summary>Fnd_Out_ColumnObjectName<span class="badge">Internal</span></summary><p><code>#DECLARE($inField_t : Text)-&gt;$objectName_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_ColumnObjectName ($inField_t : Text) --&gt; $objectName_t : Text
+
+Derives the form-object base name for a listbox column from its stored
+  fo_field text (a dotted relation path, a formula, or a plain field
+  name), so the &quot;On Load&quot; column build and the &quot;(0-On Load)&quot; width pass
+  compute the same name. Append &quot;_Col&quot; or &quot;_Hdr&quot; to the result for the
+  column or header object itself.
+
+Fnd_Out_ColumnObjectName(&quot;contact.reversedFullName()&quot;) --&gt; &quot;contact_reversedFullName()&quot;
+
+Access: Private
+
+Parameters:
+  $inField_t : Text : The column's stored fo_field text
+
+Returns:
+  $objectName_t : Text : $inField_t with every &quot;.&quot; replaced by &quot;_&quot;</pre></details>
+<details data-entry id="Fnd_Out_ColumnReplayPlan"><summary>Fnd_Out_ColumnReplayPlan<span class="badge">Internal</span></summary><p><code>#DECLARE($saved_c : Collection; $exists_c : Collection)-&gt;$plan_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_ColumnReplayPlan ($saved_c : Collection; $exists_c : Collection) --&gt; $plan_c : Collection
+
+Works out how to put a list's columns back as the user left them. Walks the saved
+  columns (in their saved order) and keeps those named in $exists_c, numbering
+  them 1, 2, 3 ... so a saved column that this opening did not build does not
+  shift the rest along.
+
+Access: Private
+
+Parameters:
+  $saved_c : Collection : The saved columns - objects with columnName and columnWidth - or Null
+  $exists_c : Collection : The names of the columns that exist on the listbox
+
+Returns:
+  $plan_c : Collection : Objects {columnName; position; width}, in the order to apply them</pre></details>
+<details data-entry id="Fnd_Out_ColumnVAlign"><summary>Fnd_Out_ColumnVAlign<span class="badge">Internal</span></summary><p><code>#DECLARE($inColumnDefinition_o : Object)-&gt;$alignment_i : Integer</code></p><pre class="prose">Project Method: Fnd_Out_ColumnVAlign ($inColumnDefinition_o : Object) --&gt; $alignment_i : Integer
+
+The vertical alignment a column's cells take: the column's own fo_vAlign
+  when it holds Align top, Align center or Align bottom, otherwise the
+  layout's (Fnd.out.columnVAlign), otherwise Align center. Headless.
+
+Access: Private
+
+Parameters:
+  $inColumnDefinition_o : Object : The column, from Fnd.out.lbox.columns
+
+Returns:
+  $alignment_i : Integer : Align top, Align center or Align bottom</pre></details>
 <details data-entry id="Fnd_Out_ConfigureList"><summary>Fnd_Out_ConfigureList<span class="badge">Shared</span></summary><p><code>#DECLARE($font_t : Text; $inSize_i : Integer; $inRowHeight_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_ConfigureList (font{; size{; row height}})
 
-Sets the font used for display if you wish to override the defaults
+Retired: use Fnd_Out_Default, or the &quot;appearance&quot; of Resources/Fnd_Out/&lt;Table&gt;.json.
+  Still honoured: writes the current table's in-memory appearance.
 
 Access: Shared
 
 Parameters:
   $font_t : Text : Font Name
   $inSize_i : Longint : Font Size
-  $inRowHeight_i : Longint : Row Height
+  $inRowHeight_i : Longint : Row height, in lines (matching lk lines, the row height
+              unit the Fnd_Out listbox columns are set to). 0 or omitted leaves the
+              default of 1 line.
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_CustomAllowed"><summary>Fnd_Out_CustomAllowed<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$allowed_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_CustomAllowed () --&gt; $allowed_b : Boolean
+
+May the user add, edit and delete custom columns (formulas) in this list?
+  True only when all three layers allow it, each of which defaults to True:
+  the application default (Fnd_Out_Default, tag allowCustom), the table's
+  Resources/Fnd_Out/&lt;Table&gt;.json allowCustomColumns, and the list's own
+  choice (Fnd_Out_AllowCustomColumns, from Fnd_Hook_IO_DisplayTable) - which counts
+  only when that call was made.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $allowed_b : Boolean : True when custom columns may be changed</pre></details>
+<details data-entry id="Fnd_Out_CustomGate"><summary>Fnd_Out_CustomGate<span class="badge">Internal</span></summary><p><code>#DECLARE($action_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_CustomGate ($action_t : Text) --&gt; $status_o : Object
+
+Is this View Options action allowed? &quot;addFormula&quot;, &quot;editFormula&quot;,
+  &quot;changeFormula&quot;, &quot;removeFormula&quot; and &quot;formulaBox&quot; change custom columns,
+  so with Fnd_Out_CustomAllowed False they are refused, silently: the
+  status says why and nothing is shown. Any other action passes.
+
+Access: Private
+
+Parameters:
+  $action_t : Text : The Fnd_Out_ViewOptionsApply action
+
+Returns:
+  $status_o : Object : success, and error when refused (&quot;custom columns are off&quot;)</pre></details>
+<details data-entry id="Fnd_Out_Default"><summary>Fnd_Out_Default<span class="badge">Shared</span></summary><p><code>#DECLARE($tag_t : Text; $value_v : Variant)-&gt;$result_v : Variant</code></p><pre class="prose">Project Method: Fnd_Out_Default ($tag_t : Text {; $value_v : Variant}) --&gt; $result_v : Variant
+
+Developer configuration: the programmed default appearance of every list.
+  One parameter reads the stored value (Null when none was set); two store
+  it, last call wins, and return it. Call from the host's startup or from
+  Fnd_Hook_IO_DisplayTable. A list opens from the form's own values, then
+  these, then the table's Resources/Fnd_Out/&lt;Table&gt;.json &quot;appearance&quot;, then
+  the user's saved default and the list's own saved definition. The View
+  Options Reset button returns to the first three.
+
+Use the constants rather than the strings:
+  Fnd_Out_FontName (&quot;fontName&quot;) : Text : font of the columns
+  Fnd_Out_TextSize (&quot;textSize&quot;) : Integer : text size of the columns
+  Fnd_Out_RowHeight (&quot;rowHeight&quot;) : Integer : row height in lines
+  Fnd_Out_RowPixels (&quot;rowPixels&quot;) : Integer : row height in pixels, outranks lines
+  Fnd_Out_VAlign (&quot;vAlign&quot;) : Integer : vertical alignment of the cells: Align top,
+              Align center (the default) or Align bottom. A column's own fo_vAlign outranks it
+  Fnd_Out_Fill (&quot;fill&quot;) : Integer : background colour, as OBJECT SET RGB COLORS takes it
+  Fnd_Out_AltFill (&quot;altFill&quot;) : Integer : alternate background colour
+  Fnd_Out_RelationDepth (&quot;maxRelationDepth&quot;) : Integer : relations deep the palette offers
+  Fnd_Out_MaxColumns (&quot;maxColumns&quot;) : Integer : columns of the best-guess layout
+  Fnd_Out_AllowCustomColumns (&quot;allowCustom&quot;) : Boolean : may users add custom columns
+              (formulas); Null, meaning True, until set
+  Fnd_Out_AllowPublish (&quot;allowPublish&quot;) : Boolean : may users publish and delete shared
+              layouts; Null, meaning the Designer, the Administrator and the
+              Administration group, until set
+
+An unknown tag, or a value of the wrong type, raises a bug alert, stores
+  nothing and returns Null.
+
+Access: Shared
+
+Parameters:
+  $tag_t : Text : One of the tags above
+  $value_v : Variant : The value to store (optional)
+
+Returns:
+  $result_v : Variant : The stored value, Null when unset or refused</pre></details>
+<details data-entry id="Fnd_Out_DevConfigForTable"><summary>Fnd_Out_DevConfigForTable<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$config_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_DevConfigForTable ($inTableNumber_i : Integer) --&gt; $config_o : Object
+
+Returns the cached developer configuration for a table (Fnd.out.devConfig,
+  keyed by table name), loading it from Resources/Fnd_Out/&lt;Table&gt;.json
+  through Fnd_Out_DevConfigLoad the first time it's asked for. The result
+  is the cached object itself, not a copy, so a hook such as
+  Fnd_Out_HideField mutates it directly - and it stays mutated for the rest
+  of the process, since nothing here re-reads the file until the next
+  Fnd_Out_DevConfigSave.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table whose developer configuration to fetch
+
+Returns:
+  $config_o : Object : offer:{hide; only}, formulas, builtInLayouts - the
+              live cached object, not a copy</pre></details>
+<details data-entry id="Fnd_Out_DevConfigLoad"><summary>Fnd_Out_DevConfigLoad<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer; $inFolder_folder : 4D.Folder)-&gt;$config_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_DevConfigLoad ($inTableNumber_i : Integer {; $inFolder_folder : 4D.Folder}) --&gt; $config_o : Object
+
+Reads a table's developer configuration file (Resources/Fnd_Out/&lt;Table&gt;.json,
+  in the host's own Resources when run as a component) and returns it with
+  every property defaulted: offer.hide, offer.only, formulas, builtInLayouts,
+  appearance (any of fontName, textSize, rowHeight, rowPixels, vAlign, fill, altFill),
+  allowCustomColumns (Boolean, True).
+  A missing file, or one that fails to parse, comes back as the all-defaults
+  object rather than raising.
+
+The optional folder parameter lets Test_Fnd_Out point this at a scratch
+  folder instead of the real host Resources/Fnd_Out - it is never supplied
+  in production code, which always reads Folder(&quot;/RESOURCES/&quot;; *).
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table whose configuration to read
+  $inFolder_folder : 4D.Folder : Folder to read from instead of the host's
+              Resources/Fnd_Out (optional, for tests)
+
+Returns:
+  $config_o : Object : offer:{hide; only}, formulas, builtInLayouts, appearance</pre></details>
+<details data-entry id="Fnd_Out_DevConfigSave"><summary>Fnd_Out_DevConfigSave<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer; $inConfig_o : Object; $inFolder_folder : 4D.Folder)</code></p><pre class="prose">Project Method: Fnd_Out_DevConfigSave ($inTableNumber_i : Integer; $inConfig_o : Object {; $inFolder_folder : 4D.Folder})
+
+Writes a table's developer configuration to Resources/Fnd_Out/&lt;Table&gt;.json
+  (in the host's own Resources when run as a component), as pretty-printed
+  JSON, creating the Fnd_Out folder first if it doesn't exist yet.
+
+The optional folder parameter lets Test_Fnd_Out point this at a scratch
+  folder instead of the real host Resources/Fnd_Out.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table whose configuration to write
+  $inConfig_o : Object : offer:{hide; only}, formulas, builtInLayouts
+  $inFolder_folder : 4D.Folder : Folder to write to instead of the host's
+              Resources/Fnd_Out (optional, for tests)
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_EditRecord"><summary>Fnd_Out_EditRecord<span class="badge">Shared</span></summary><p><code>#DECLARE($row_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_EditRecord ($row_i)
+
+Opens the record in the given row of the output list for editing, in the list's own window,
+  as a double-click does.
+
+Access: Shared
+
+Parameters:
+  $row_i : Integer : The row to edit, 1 to the number of rows in the list
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_EditSelection"><summary>Fnd_Out_EditSelection<span class="badge">Shared</span></summary><p><code>#DECLARE($selected_es : Object)</code></p><pre class="prose">Project Method: Fnd_Out_EditSelection ($selected_es)
+
+Opens each record of the entity selection for editing, one after another, in a new
+  process of its own. Does nothing when the selection is Null or empty.
+
+Access: Shared
+
+Parameters:
+  $selected_es : Object : The entity selection whose records are to be edited
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_EditSelectionProc"><summary>Fnd_Out_EditSelectionProc<span class="badge">Internal</span></summary><p><code>#DECLARE($tableNumber_i : Integer; $keys_c : Collection)</code></p><pre class="prose">Project Method: Fnd_Out_EditSelectionProc ($tableNumber_i; $keys_c)
+
+Process body started by Fnd_Out_EditSelection: opens each record whose primary key is in
+  the collection for editing, one after another.
+
+Access: Private
+
+Parameters:
+  $tableNumber_i : Integer : The table's number
+  $keys_c : Collection : The primary keys of the records to edit
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_FillLastColumn"><summary>Fnd_Out_FillLastColumn<span class="badge">Internal</span></summary><p><code>#DECLARE()</code></p><pre class="prose">Project Method: Fnd_Out_FillLastColumn
+
+Lays the columns of &quot;Fnd_Out_ListBox&quot; out against its current width:
+  every visible column gets its own width, and the last visible one is
+  widened by whatever space is left so the columns reach the right edge.
+  When they don't fit, nothing is squeezed - the listbox scrolls sideways.
+  Runs in the list's own form context.
+
+A column's own width is kept in Form.columnWidths, by column object
+  name. A column not yet there is recorded at the width it has now, so
+  call this after inserting or replaying columns; after the user drags a
+  column, record the new width there first (Fnd_Out_ListBoxMethod does).
+  The stretched width of the last column is never recorded.
+
+Access: Private
+
+Parameters: None
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_FormMethod"><summary>Fnd_Out_FormMethod<span class="badge">Shared</span></summary><p><code>#DECLARE($inFormEvent_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_FormMethod
@@ -5690,6 +6036,82 @@ The controlling from method for the Fnd_Out form
 Access: Shared
 
 Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_FormulaAction"><summary>Fnd_Out_FormulaAction<span class="badge">Internal</span></summary><p><code>#DECLARE($inIsUser_b : Boolean; $inOriginal_t : Text; $inEdited_t : Text)-&gt;$action_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_FormulaAction ($inIsUser_b : Boolean; $inOriginal_t : Text; $inEdited_t : Text) --&gt; $action_t : Text
+
+What an edit of a column's formula means. A formula the user added is
+  changed; a field or a developer-declared formula is never redefined, so
+  an edit of it proposes a new custom column instead.
+
+Access: Private
+
+Parameters:
+  $inIsUser_b : Boolean : True when the column is a formula the user added
+  $inOriginal_t : Text : The formula as the column showed it (empty to add)
+  $inEdited_t : Text : The formula as it was left
+
+Returns:
+  $action_t : Text : &quot;none&quot; (empty or unchanged), &quot;changeFormula&quot; or &quot;addFormula&quot;
+              - the Fnd_Out_ViewOptionsApply actions of those names</pre></details>
+<details data-entry id="Fnd_Out_FormulaToOrda"><summary>Fnd_Out_FormulaToOrda<span class="badge">Internal</span></summary><p><code>#DECLARE($inFormula_t : Text; $inTableNumber_i : Integer)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_FormulaToOrda ($inFormula_t : Text; $inTableNumber_i : Integer) --&gt; $status_o : Object
+
+Turns a formula written the classic way - what EDIT FORMULA hands back,
+  &quot;[LineItems]Quantity*[Products]ListPrice&quot; - into one a list column can
+  use, where every row is an entity: &quot;This.Quantity*This.product.ListPrice&quot;.
+  A field of the list's own table becomes This.&lt;field&gt;; a field of another
+  table becomes the shortest relation path to that table that
+  Fnd_Out_CandidateColumns offers. The result is then checked with
+  Parse formula.
+
+Fails, with a message fit to show the user, when the formula names a
+  table or field that doesn't exist, a table the list can't reach through
+  its relations, or when Parse formula rejects the result.
+
+Access: Private
+
+Parameters:
+  $inFormula_t : Text : The formula, with [Table]Field references
+  $inTableNumber_i : Integer : The list's own table
+
+Returns:
+  $status_o : Object : success (Boolean), formula (Text - the translated
+              formula), error (Text - empty on success)</pre></details>
+<details data-entry id="Fnd_Out_FormulaType"><summary>Fnd_Out_FormulaType<span class="badge">Internal</span></summary><p><code>#DECLARE($inFormula_t : Text; $inEntity_o : Object)-&gt;$fieldType_i : Integer</code></p><pre class="prose">Project Method: Fnd_Out_FormulaType ($inFormula_t : Text; $inEntity_o : Object) --&gt; $fieldType_i : Integer
+
+Works out the column type for a This-based formula by running it once
+  against an entity and looking at what comes back. Is text when there is
+  no entity to try it on, when the formula fails, or when the result is
+  something a column can't show as itself.
+
+Access: Private
+
+Parameters:
+  $inFormula_t : Text : A formula written against This
+  $inEntity_o : Object : An entity of the list's table (may be Null)
+
+Returns:
+  $fieldType_i : Integer : Is text, Is real, Is longint, Is date, Is time,
+              Is boolean or Is picture</pre></details>
+<details data-entry id="Fnd_Out_HideField"><summary>Fnd_Out_HideField<span class="badge">Shared</span></summary><p><code>#DECLARE($inPath_t : Text)</code></p><pre class="prose">Project Method: Fnd_Out_HideField ($inPath_t : Text)
+
+Developer configuration hook: marks a field path (own-table or one level
+  through a relation, e.g. &quot;contact.Notes&quot;) so the View Options palette
+  never offers it as a candidate column. Wildcards (&quot;@&quot;) are honoured, e.g.
+  &quot;@.Password&quot; hides that field on every relation. A column the host's own
+  AddField already defines is unaffected - offer rules never touch a
+  column that's already on the list.
+
+Call from wherever the host configures Fnd_Out for a table (alongside
+  Fnd_Out_AddField calls). Mutates the in-memory developer configuration
+  only - it is not written to Resources/Fnd_Out/&lt;Table&gt;.json until a
+  developer explicitly saves a built-in layout or uses the palette's
+  developer-mode &quot;offer&quot; toggle.
+
+Access: Shared
+
+Parameters:
+  $inPath_t : Text : A field path, or a wildcard pattern using &quot;@&quot;
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_Info"><summary>Fnd_Out_Info<span class="badge">Shared</span></summary><p><code>#DECLARE($request_t : Text)-&gt;$reply_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_Info (label) --&gt; Text
@@ -5727,6 +6149,211 @@ Access: Private
 Parameters: None
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_InsertColumn"><summary>Fnd_Out_InsertColumn<span class="badge">Internal</span></summary><p><code>#DECLARE($inColumnDefinition_o : Object; $inColumnNumber_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_InsertColumn ($inColumnDefinition_o : Object; $inColumnNumber_i : Integer)
+
+Inserts one listbox column into Fnd_Out_ListBox and configures it: fonts,
+  best-size-driven width defaults, alignment, visibility, style, format.
+  Factored out of Fnd_Out_FormMethod's On Load loop (one iteration's worth
+  of work) so Fnd_Out_ViewOptionsToListBox can insert a single newly-checked
+  column live, without duplicating the configuration steps. Sets
+  $inColumnDefinition_o.fo_inserted to True once the column is on the
+  listbox, so callers can tell an already-inserted column from one still
+  to be inserted without tracking a column count of their own.
+
+Access: Private
+
+Parameters:
+  $inColumnDefinition_o : Object : One entry from Fnd.out.lbox.columns (fo_field,
+              fo_type, fo_title, fo_width, fo_minWidth, fo_maxWidth, fo_hAlign,
+              fo_vAlign (optional), fo_style, fo_visible, fo_format); fo_inserted is set to True
+              by this method
+  $inColumnNumber_i : Integer : The listbox column position to insert at
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_LayoutApply"><summary>Fnd_Out_LayoutApply<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$success_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_LayoutApply ($inName_t : Text) --&gt; $success_b : Boolean
+
+Applies a named layout (any kind Fnd_Out_LayoutList returns) to the
+  current table headlessly: rebuilds the candidate list, marks visible
+  what the layout says, writes it back into Fnd.out.lbox.columns through
+  Fnd_Out_ApplyViewOptions, sets Fnd.out.columnFontSize/columnRowHeight
+  from the layout when it specifies them, and saves the pref with
+  layout:=name and edited:=False. Never touches a live listbox -
+  Fnd_Out_ViewOptionsToListBox is the host-only wrapper that reflects the
+  result onto Fnd_Out_ListBox, the same split as Fnd_Out_ApplyViewOptions
+  itself.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : A layout name, as listed by Fnd_Out_LayoutList
+
+Returns:
+  $success_b : Boolean : False when no layout by that name was found</pre></details>
+<details data-entry id="Fnd_Out_LayoutDelete"><summary>Fnd_Out_LayoutDelete<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutDelete ($inName_t : Text) --&gt; $status_o : Object
+
+Deletes one of the current table's own user layouts, or - when the user may
+  publish (Fnd_Out_PublishAllowed) - a shared layout, for every machine. If it
+  was the selected layout, the table falls back to Standard (Fnd_Out_LayoutReset)
+  after the delete is saved. Refuses any other name: a built-in layout is
+  never deleted from here, nor a shared one by a user who may not publish.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The user or shared layout to delete
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutDeleteBuiltIn"><summary>Fnd_Out_LayoutDeleteBuiltIn<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutDeleteBuiltIn ($inName_t : Text) --&gt; $status_o : Object
+
+Developer-mode only: removes a built-in layout from the current table's
+  developer configuration and writes Resources/Fnd_Out/&lt;Table&gt;.json through
+  Fnd_Out_DevConfigSave. Refused when the host is compiled
+  (Is compiled mode(*)), same as Fnd_Out_LayoutSaveBuiltIn.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The built-in layout to delete
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutList"><summary>Fnd_Out_LayoutList<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$layouts_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_LayoutList () --&gt; $layouts_c : Collection
+
+Builds the palette's Layout popup order for the current table
+  (Fnd.out.currentTable): Standard, then built-in layouts (from the
+  developer configuration), then the machine's own user layouts (the View
+  Options pref), then shared layouts (read-only, Fnd_Pref_Shared) -
+  Standard first, everything else in the order each source stores it.
+
+Standard's own visibleColumns/textSize/rowHeight come from
+  Fnd.out.standardVisible/standardTextSize/standardRowHeight, captured once
+  by Fnd_Out_OpenDialog before any saved state is restored.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $layouts_c : Collection : Objects with name, kind (&quot;standard&quot;, &quot;builtin&quot;,
+              &quot;user&quot; or &quot;shared&quot;), visibleColumns, columns, textSize,
+              rowHeight, rowPixels, vAlign, fillColor, altFillColor, default</pre></details>
+<details data-entry id="Fnd_Out_LayoutMenuShow"><summary>Fnd_Out_LayoutMenuShow<span class="badge">Internal</span></summary><p><code>#DECLARE($items_c : Collection; $left_i : Integer; $bottom_i : Integer)-&gt;$index_i : Integer</code></p><pre class="prose">Project Method: Fnd_Out_LayoutMenuShow ($items_c : Collection; $left_i : Integer; $bottom_i : Integer) --&gt; Integer
+
+Pops up the Layout menu at the given point of the current form and returns the position of the chosen item.
+
+Access: Private
+
+Parameters:
+  $items_c : Collection : Items from Fnd_Out_LayoutPopupValues: {text; kind; enabled; current}
+  $left_i : Integer : Left of the menu, in pixels of the current form's coordinate system
+  $bottom_i : Integer : Top of the menu, in the same coordinate system (the bottom of the button)
+
+Returns:
+  $0 : Integer : 0-based position in $items_c of the chosen item, or -1 when the menu was dismissed</pre></details>
+<details data-entry id="Fnd_Out_LayoutPopupValues"><summary>Fnd_Out_LayoutPopupValues<span class="badge">Internal</span></summary><p><code>#DECLARE($layouts_c : Collection; $current_t : Text; $edited_b : Boolean; $developer_b : Boolean; $publishAllowed_b : Boolean)-&gt;$items_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_LayoutPopupValues ($layouts_c : Collection; $current_t : Text; $edited_b : Boolean; $developer_b : Boolean {; $publishAllowed_b : Boolean}) --&gt; Collection
+
+Builds the items of the Layout menu: layouts, &quot;-&quot;, Save/Save As.../Rename.../Delete/Manage Layouts..., when publishing is allowed &quot;-&quot; and Publish Layout.../the default toggle for a shared layout, and in developer mode &quot;-&quot; and the application layout actions.
+
+Access: Private
+
+Parameters:
+  $layouts_c : Collection : Layout objects {name; kind}
+  $current_t : Text : The layout in force
+  $edited_b : Boolean : True when the current layout has unsaved edits
+  $developer_b : Boolean : True in developer mode
+  $publishAllowed_b : Boolean : True when the user may publish shared layouts (optional)
+
+Returns:
+  $0 : Collection : One object per item: {text; kind (&quot;layout&quot;, &quot;separator&quot; or &quot;action&quot;); name; layoutKind; enabled; current}; separators carry text &quot;-&quot; only, and Manage Layouts is always present and enabled, and Delete is always present but not enabled where the layout in force cannot be removed</pre></details>
+<details data-entry id="Fnd_Out_LayoutPublish"><summary>Fnd_Out_LayoutPublish<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutPublish ($inName_t : Text) --&gt; $status_o : Object
+
+Publishes the current table's live column choices as a shared layout, seen
+  by every machine using the same shared preferences. Replaces a shared
+  layout of the same name, keeping its default flag; a new one is not the
+  default. The layout in force becomes the shared one. Refused when the user
+  may not publish (Fnd_Out_PublishAllowed), and for a name that is Standard
+  or already a built-in or user layout.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The name to publish the layout under
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutRename"><summary>Fnd_Out_LayoutRename<span class="badge">Internal</span></summary><p><code>#DECLARE($inOldName_t : Text; $inNewName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutRename ($inOldName_t : Text; $inNewName_t : Text) --&gt; $status_o : Object
+
+Renames one of the current table's own user layouts. Refuses when the old
+  name isn't a user layout, or the new name collides with Standard, a
+  built-in layout, a shared layout, or a different user layout.
+
+Access: Private
+
+Parameters:
+  $inOldName_t : Text : The user layout's current name
+  $inNewName_t : Text : The name to rename it to
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutReset"><summary>Fnd_Out_LayoutReset<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$success_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_LayoutReset () --&gt; $success_b : Boolean
+
+Discards any edits and returns the current table to the Standard layout -
+  exactly Fnd_Out_LayoutApply(&quot;Standard&quot;).
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $success_b : Boolean : False if Standard's own visible set was never
+              captured (Fnd_Out_OpenDialog hasn't run yet this process)</pre></details>
+<details data-entry id="Fnd_Out_LayoutSaveAs"><summary>Fnd_Out_LayoutSaveAs<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutSaveAs ($inName_t : Text) --&gt; $status_o : Object
+
+Saves the current table's live column choices (as last applied through
+  Fnd_Out_ApplyViewOptions / Fnd_Out_LayoutApply) as a new user layout,
+  or replaces an existing user layout of the same name. Refuses a name
+  that collides with Standard, a built-in layout, or a shared layout - a
+  user layout may only ever be replaced by name, never shadow another kind.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The name to save the layout under
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutSaveBuiltIn"><summary>Fnd_Out_LayoutSaveBuiltIn<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutSaveBuiltIn ($inName_t : Text) --&gt; $status_o : Object
+
+Developer-mode only: captures the current table's live column choices
+  (widths, text size, row height) as a built-in layout, writing
+  Resources/Fnd_Out/&lt;Table&gt;.json through Fnd_Out_DevConfigSave. Replaces
+  an existing built-in layout of the same name. Refused when the host is
+  compiled (Is compiled mode(*)) - built-in layouts are development-time
+  configuration, not something an end-user session writes.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The name to save the built-in layout under
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
+<details data-entry id="Fnd_Out_LayoutSharedDefault"><summary>Fnd_Out_LayoutSharedDefault<span class="badge">Internal</span></summary><p><code>#DECLARE($inName_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_LayoutSharedDefault ($inName_t : Text) --&gt; $status_o : Object
+
+Toggles whether a shared layout is the one a list opens with on a machine
+  that has no saved state of its own. At most one shared layout is the
+  default: setting one clears the others; toggling the default off leaves
+  none. Refused when the user may not publish (Fnd_Out_PublishAllowed) or
+  no shared layout has that name.
+
+Access: Private
+
+Parameters:
+  $inName_t : Text : The shared layout to toggle
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text</pre></details>
 <details data-entry id="Fnd_Out_ListBoxMethod"><summary>Fnd_Out_ListBoxMethod<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Out_ListBoxMethod
 
 Controller for listbox
@@ -5734,6 +6361,114 @@ Controller for listbox
 Access: Private
 
 Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ListWindowRegister"><summary>Fnd_Out_ListWindowRegister<span class="badge">Internal</span></summary><p><code>#DECLARE($window_i : Integer; $add_b : Boolean)-&gt;$remaining_i : Integer</code></p><pre class="prose">Project Method: Fnd_Out_ListWindowRegister ($window_i : Integer; $add_b : Boolean) --&gt; $remaining_i : Integer
+
+Adds a Fnd_Out list window to, or removes it from, the registry the View Options
+  palette reads (Storage.Fnd.Out.listWindows). Removing a window that is not listed
+  changes nothing. Also clears frontWindow/frontTable when the window removed was the front list.
+
+Access: Private
+
+Parameters:
+  $window_i : Integer : The list window's reference number
+  $add_b : Boolean : True to register the window, False to deregister it
+
+Returns:
+  $remaining_i : Integer : How many list windows are registered afterwards</pre></details>
+<details data-entry id="Fnd_Out_ManageDelete"><summary>Fnd_Out_ManageDelete<span class="badge">Internal</span></summary><p><code>#DECLARE($inRows_c : Collection; $ioChanges_o : Object)-&gt;$done_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_ManageDelete ($inRows_c : Collection; $ioChanges_o : Object) --&gt; $done_b : Boolean
+
+Deletes the ticked rows of the Manage Layouts dialog after one confirmation
+  that says what goes: this machine's own layouts, shared layouts (for every
+  machine) and the saved settings of whole tables. A &quot;Reset&quot; row removes
+  the table's definition file and its older Fnd_Pref_Local entry, and so also
+  covers any of that table's own layouts ticked with it; shared layouts are
+  deleted either way. A table left with no shared layouts keeps its shared
+  preference as an empty list. Run it in the process that shows the dialog.
+
+Access: Private
+
+Parameters:
+  $inRows_c : Collection : The dialog's rows (Fnd_Out_ManageGather), tick included
+  $ioChanges_o : Object : changed:Collection and reset:Collection of table numbers, added to
+              (see Fnd_Out_ManageLayouts)
+
+Returns:
+  $done_b : Boolean : True when something was ticked, the user confirmed and it was deleted</pre></details>
+<details data-entry id="Fnd_Out_ManageGather"><summary>Fnd_Out_ManageGather<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$rows_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_ManageGather () --&gt; $rows_c : Collection
+
+Lists everything the Manage Layouts dialog can delete, across every table:
+  this machine's own layouts (kind &quot;Mine&quot;), the shared layouts (kind &quot;Shared&quot;,
+  only for a user who may publish - Fnd_Out_PublishAllowed), and one &quot;All
+  settings&quot; row (kind &quot;Reset&quot;) for each table this machine stores anything
+  for - its definition file, or the older Fnd_Pref_Local entry.
+  Sorted by table name, then Mine, Shared, Reset, then layout name.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $rows_c : Collection : Objects {tick:Boolean; tableNumber:Integer; table:Text;
+              layout:Text; kind:Text; rank:Integer}</pre></details>
+<details data-entry id="Fnd_Out_ManageLayouts"><summary>Fnd_Out_ManageLayouts<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$changes_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ManageLayouts () --&gt; $changes_o : Object
+
+Opens the Manage Layouts dialog (form Fnd_Out_ManageLayouts) modally, in the
+  calling process, and returns what the user deleted. Run it from
+  Fnd_Out_ViewOptionsApply with the palette hidden, never from the palette.
+
+Other open lists of the affected tables are not refreshed: they pick up a
+  change when they are next opened.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $changes_o : Object : changed:Collection - the numbers of the tables something was deleted
+              for; reset:Collection - the tables whose settings were wiped, or whose
+              layout in force was deleted, so the list should return to Standard</pre></details>
+<details data-entry id="Fnd_Out_ManageRefresh"><summary>Fnd_Out_ManageRefresh<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ManageRefresh
+
+Rebuilds the Manage Layouts dialog's rows (Form.rows, from Fnd_Out_ManageGather),
+  shows the &quot;No saved layouts.&quot; line when there are none and disables Delete,
+  as nothing is ticked. Call it from the form's own process, with the dialog open.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ManageTick"><summary>Fnd_Out_ManageTick<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ManageTick
+
+Applies a modifier-click on a Manage Layouts tick box, once the list box has
+  flipped the clicked row: Command (Ctrl on Windows) sets every row to the
+  clicked row's new state, Shift every row from the previously clicked row
+  to this one, Option (Alt on Windows) every row of the clicked row's table.
+  A plain click changes nothing here. Then sets Delete's enabled state.
+  Call it from the tick column's On Data Change.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_MaxRelationDepth"><summary>Fnd_Out_MaxRelationDepth<span class="badge">Shared</span></summary><p><code>#DECLARE($inDepth_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_MaxRelationDepth ($inDepth_i : Integer)
+
+Developer configuration hook: sets how many relations deep the View
+  Options palette looks for candidate columns on the current table. 1
+  offers &quot;invoice.Total&quot; but not &quot;invoice.contact.LastName&quot;; 0 offers the
+  table's own fields only. The default, when this is never called, is 5.
+
+Call from wherever the host configures Fnd_Out for a table (alongside
+  Fnd_Out_AddField calls). Mutates the in-memory developer configuration
+  only, exactly as Fnd_Out_HideField does.
+
+Access: Shared
+
+Parameters:
+  $inDepth_i : Integer : The most relations a candidate's path may cross
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_ORDARelatedField"><summary>Fnd_Out_ORDARelatedField<span class="badge">Shared</span></summary><p><code>#DECLARE($in_o : Object)-&gt;$out_ptr : Pointer</code></p><pre class="prose">Project Method: Fnd_Out_ORDARelatedField --&gt; ReturnType
@@ -5749,6 +6484,43 @@ Parameters:
 
 Returns:
   $out_ptr : Pointer : Pointer to attribute field</pre></details>
+<details data-entry id="Fnd_Out_OfferField"><summary>Fnd_Out_OfferField<span class="badge">Shared</span></summary><p><code>#DECLARE($inPath_t : Text)</code></p><pre class="prose">Project Method: Fnd_Out_OfferField ($inPath_t : Text)
+
+Developer configuration hook: the companion to Fnd_Out_HideField. The
+  first call for a table switches the palette from &quot;offer everything
+  except what's hidden&quot; to &quot;offer only what's explicitly listed&quot; - every
+  path (or wildcard pattern) passed to Fnd_Out_OfferField for that table
+  becomes the only-list a candidate must match to be offered. A column the
+  host's own AddField already defines is unaffected either way.
+
+Access: Shared
+
+Parameters:
+  $inPath_t : Text : A field path, or a wildcard pattern using &quot;@&quot;
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_OfferFormula"><summary>Fnd_Out_OfferFormula<span class="badge">Shared</span></summary><p><code>#DECLARE($inFormula_t : Text; $inTitle_t : Text; $inType_i : Integer)</code></p><pre class="prose">Project Method: Fnd_Out_OfferFormula ($inFormula_t : Text; $inTitle_t : Text; $inType_i : Integer)
+
+Developer configuration hook: declares a formula the View Options palette
+  should offer under the table's &quot;Other Columns&quot; block, even though it
+  isn't a plain attribute path. The formula is normalised (trimmed) before
+  it's compared or stored, exactly as Fnd_Out_AddField normalises a
+  &quot;Formula: &quot; fo_field, so the two never drift into near-duplicate text.
+  A formula the host has already added as a real column through
+  Fnd_Out_AddField is not duplicated - Fnd_Out_CandidateColumns skips a
+  declared formula that matches an already-defined column.
+
+Calling this twice for the same formula (after trimming) is a no-op - the
+  second call is silently ignored rather than adding a duplicate entry.
+
+Access: Shared
+
+Parameters:
+  $inFormula_t : Text : The formula expression, e.g. &quot;This.fullName()&quot;
+  $inTitle_t : Text : The column header offered for it
+  $inType_i : Integer : The 4D field type the formula returns
+
+Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_OpenDialog"><summary>Fnd_Out_OpenDialog<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_OpenDialog
 
 Called by Fnd_IO_DisplayTable2. Not intended to be called from anywhere else.
@@ -5758,6 +6530,60 @@ Access: Private
 Parameters: None
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_OpenLayoutChoice"><summary>Fnd_Out_OpenLayoutChoice<span class="badge">Internal</span></summary><p><code>#DECLARE($inPref_o : Object; $inConfig_o : Object; $inShared_o : Object)-&gt;$name_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_OpenLayoutChoice ($inPref_o : Object; $inConfig_o : Object; $inShared_o : Object) --&gt; $name_t : Text
+
+Decides which layout Fnd_Out_OpenDialog should open with, factored out of
+  it so the precedence can be exercised headlessly. Precedence: a saved
+  pref state with a non-empty visibleColumns wins (its own layout name, or
+  &quot;Standard&quot; if it didn't record one or has been edited since); otherwise a built-in layout marked
+  default:True; otherwise a shared layout marked default:True; otherwise
+  &quot;Standard&quot;.
+
+Access: Private
+
+Parameters:
+  $inPref_o : Object : The saved Fnd_Out_&lt;Table&gt;Default pref, or Null
+  $inConfig_o : Object : The developer configuration (builtInLayouts), or Null
+  $inShared_o : Object : The shared layouts object (layouts), or Null
+
+Returns:
+  $name_t : Text : The layout name Fnd_Out_OpenDialog should apply</pre></details>
+<details data-entry id="Fnd_Out_PaletteIsOpen"><summary>Fnd_Out_PaletteIsOpen<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$open_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_PaletteIsOpen () --&gt; $open_b : Boolean
+
+Is the View Options palette open? Clears the registry (paletteWindow and
+  paletteProcess to 0) when it is not.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $open_b : Boolean : True only when the palette's process exists and its window is listed</pre></details>
+<details data-entry id="Fnd_Out_PalettePrompt"><summary>Fnd_Out_PalettePrompt<span class="badge">Internal</span></summary><p><code>#DECLARE($open_b : Boolean)</code></p><pre class="prose">Project Method: Fnd_Out_PalettePrompt ($open_b : Boolean)
+
+Hides the View Options palette while a dialog is up over it (True), and shows
+  it again afterwards (False). Call it in the list's own process, once either side
+  of the dialog, with nothing between that can exit.
+
+Access: Private
+
+Parameters:
+  $open_b : Boolean : True as the dialog is about to open, False once it has closed</pre></details>
+<details data-entry id="Fnd_Out_PaletteShouldHide"><summary>Fnd_Out_PaletteShouldHide<span class="badge">Internal</span></summary><p><code>#DECLARE($front_i : Integer; $own_i : Integer)-&gt;$hide_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_PaletteShouldHide ($front_i : Integer; $own_i : Integer) --&gt; $hide_b : Boolean
+
+Should the View Options palette be hidden because the frontmost window is not a list?
+  False when the palette is not open, when the front window is a registered list window,
+  when it is the palette itself, or when it is $own_i - the window of the calling process,
+  which may be mid-close and already deregistered.
+
+Access: Private
+
+Parameters:
+  $front_i : Integer : The frontmost window's reference number
+  $own_i : Integer : The calling process's own list window, or 0
+
+Returns:
+  $hide_b : Boolean : True when the palette should be hidden</pre></details>
 <details data-entry id="Fnd_Out_PickOutputColumns"><summary>Fnd_Out_PickOutputColumns<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_PickOutputColumns
 
 This routine automatically selects some columns to display in the output form
@@ -5766,6 +6592,149 @@ This routine automatically selects some columns to display in the output form
 Access: Private
 
 Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_PopupParens"><summary>Fnd_Out_PopupParens<span class="badge">Internal</span></summary><p><code>#DECLARE($text_t : Text)-&gt;$wrapped_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_PopupParens ($text_t : Text) --&gt; Text
+
+Wraps text in ornamental parentheses (U+2768 / U+2769) for a popup item; a plain &quot;(&quot; at the start of an item disables it.
+
+Access: Private
+
+Parameters:
+  $text_t : Text : The text to wrap
+
+Returns:
+  $0 : Text : The wrapped text</pre></details>
+<details data-entry id="Fnd_Out_PrefFile"><summary>Fnd_Out_PrefFile<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$file_file : 4D.File</code></p><pre class="prose">Project Method: Fnd_Out_PrefFile ($inTableNumber_i : Integer) --&gt; $file_file : 4D.File
+
+The file holding a table's list definition for this user: its View Options
+  state, named layouts and own formulas. One file per table,
+  &quot;Fnd_Out/&lt;Table&gt;.json&quot;, in a folder beside the Fnd_Pref preferences
+  document - a definition is too bulky to sit inside that document. The
+  file may not exist yet.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table
+
+Returns:
+  $file_file : 4D.File : The table's definition file</pre></details>
+<details data-entry id="Fnd_Out_PrefRead"><summary>Fnd_Out_PrefRead<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$state_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_PrefRead ($inTableNumber_i : Integer) --&gt; $state_o : Object
+
+Reads a table's list definition from its own file (Fnd_Out_PrefFile).
+  Until that file exists, the definition is taken from where it used to
+  live - the &quot;Fnd_Out_&lt;Table&gt;Default&quot; object in the Fnd_Pref document - so
+  nothing a user already set up is lost; the first Fnd_Out_PrefWrite then
+  moves it. Never returns Null: with nothing saved, or a file that won't
+  parse, the result is an empty object.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table
+
+Returns:
+  $state_o : Object : The saved definition, or an empty object</pre></details>
+<details data-entry id="Fnd_Out_PrefWrite"><summary>Fnd_Out_PrefWrite<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer; $inState_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_PrefWrite ($inTableNumber_i : Integer; $inState_o : Object)
+
+Writes a table's list definition to its own file (Fnd_Out_PrefFile),
+  creating the &quot;Fnd_Out&quot; folder on first use. Callers other than the list
+  window itself should go through Fnd_Out_ViewOptionsSave, which fills in
+  the defaults first.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table
+  $inState_o : Object : The definition to save
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_PublishAllowed"><summary>Fnd_Out_PublishAllowed<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$allowed_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Out_PublishAllowed () --&gt; $allowed_b : Boolean
+
+May this user publish, set as default and delete shared layouts? The
+  host's own answer when it has called Fnd_Out_Default(Fnd_Out_AllowPublish;
+  &lt;Boolean&gt;); otherwise the Designer, the Administrator and members of the
+  Administration group.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $allowed_b : Boolean : True when shared layouts may be changed</pre></details>
+<details data-entry id="Fnd_Out_RestoreVisibleColumns"><summary>Fnd_Out_RestoreVisibleColumns<span class="badge">Internal</span></summary><p><code>#DECLARE($inVisibleFields_c : Collection)</code></p><pre class="prose">Project Method: Fnd_Out_RestoreVisibleColumns ($inVisibleFields_c : Collection)
+
+Reproduces a saved View Options choice on a fresh process, where
+  Fnd.out.lbox may hold only whatever the host's AddField calls or
+  Fnd_Out_PickOutputColumns already put there. Rebuilds the candidate
+  list, marks every candidate whose fo_field appears in
+  $inVisibleFields_c as visible, and lets Fnd_Out_ApplyViewOptions do the
+  actual write-back (toggle existing columns, AddField any that are
+  missing).
+
+Called by Fnd_Out_OpenDialog before the listbox is built, so the restored
+  picks are in Fnd.out.lbox.columns in time for the On Load column build.
+
+Access: Private
+
+Parameters:
+  $inVisibleFields_c : Collection : fo_field values that should be visible,
+              read back from Fnd_Out_&lt;Table&gt;Default's visibleColumns
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_RowRuleAdd"><summary>Fnd_Out_RowRuleAdd<span class="badge">Internal</span></summary><p><code>#DECLARE($inFormula_t : Text; $inPosition_i : Integer)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_RowRuleAdd ($inFormula_t : Text {; $inPosition_i : Integer}) --&gt; $status_o : Object
+
+Adds a row-style rule to the layout in force, or changes the condition of
+  one, from a condition written the
+  way EDIT FORMULA hands it back (&quot;[Products]ListPrice&gt;500&quot;). The condition
+  is translated (Fnd_Out_FormulaToOrda) and, when the list has a row to try
+  it on, must give True or False. A new rule is bold and ends the list of
+  rules; with $inPosition_i the rule there keeps its style and place and
+  takes the new condition. The layout is marked edited and saved. Must run in the list
+  window's own process with the Fnd_Out form current.
+
+Access: Private
+
+Parameters:
+  $inFormula_t : Text : The condition, with [Table]Field references
+  $inPosition_i : Integer : 1-based position of the rule to change (optional,
+              default: add a new rule)
+
+Returns:
+  $status_o : Object : success (Boolean), error (Text - fit to show the
+              user, empty on success). On success the rule's position
+              is offered to the palette to select.</pre></details>
+<details data-entry id="Fnd_Out_RowRulePanel"><summary>Fnd_Out_RowRulePanel<span class="badge">Internal</span></summary><p><code>#DECLARE($inAction_t : Text)</code></p><pre class="prose">Project Method: Fnd_Out_RowRulePanel ($inAction_t : Text)
+
+Runs the Row Styles section of the advanced panel on the
+  Fnd_Out_ViewOptionsList palette (page 2, below the column options): the
+  list of the layout's row-style rules, Add Rule…/Delete Rule, and the
+  selected rule's Bold/Italic/Underline boxes and Text/Background swatches.
+  Every change is sent to the list window (Fnd_Out_ViewOptionsSend), which
+  edits the layout and republishes. Runs in the palette's own form context.
+
+  &quot;load&quot;   - fills the list from Form.state.rowStyle (one column: the condition without the list's own [Table]
+             prefix, each row drawn in its rule's style) and selects a rule: the
+             one just added (Form.state.ruleSelect), else the one that was
+             selected, kept within the rules that exist. Called after every
+             redraw.
+  &quot;click&quot;  - the highlight moved in the list: takes the selected row
+  &quot;select&quot; - fills the controls from the selected rule, or disables them
+             when none is
+  &quot;send&quot;   - sends the selected rule's style as the controls now hold it
+  &quot;stroke&quot; - picks the selected rule's text color; Option-click clears it
+  &quot;fill&quot;   - picks the selected rule's background color; Option-click clears it
+  &quot;add&quot;    - asks the list window for a new rule's condition (the formula
+             editor opens there, never from a palette)
+  &quot;edit&quot;   - the same, for the selected rule's condition, which the editor
+             opens on; its style and place are kept
+  &quot;delete&quot; - deletes the selected rule
+
+Access: Private
+
+Parameters:
+  $inAction_t : Text : &quot;load&quot;, &quot;click&quot;, &quot;select&quot;, &quot;send&quot;, &quot;stroke&quot;, &quot;fill&quot;, &quot;add&quot;, &quot;edit&quot; or &quot;delete&quot;
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_SetupToolbar"><summary>Fnd_Out_SetupToolbar<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_SetupToolbar
@@ -5777,6 +6746,46 @@ Method Type: Private
 Access: Private
 
 Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_SharedLayoutsRead"><summary>Fnd_Out_SharedLayoutsRead<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$shared_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_SharedLayoutsRead ({$inTableNumber_i : Integer}) --&gt; $shared_o : Object
+
+Reads a table's shared layouts afresh from the shared preference - the
+  current table's without a table number. Never writes: a table with none
+  gives an empty collection.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table (optional, default the current table)
+
+Returns:
+  $shared_o : Object : layouts:Collection - always present, possibly empty</pre></details>
+<details data-entry id="Fnd_Out_SharedPrefName"><summary>Fnd_Out_SharedPrefName<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$prefName_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_SharedPrefName ({$inTableNumber_i : Integer}) --&gt; $prefName_t : Text
+
+Returns the name of the shared preference that holds a table's shared
+  layouts: Fnd_Out_&lt;Table&gt;SharedLayouts. Without a table number, the current
+  table (Fnd.out.currentTable).
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table (optional, default the current table)
+
+Returns:
+  $prefName_t : Text : The preference name, for Fnd_Pref_Shared</pre></details>
+<details data-entry id="Fnd_Out_StyleColumn"><summary>Fnd_Out_StyleColumn<span class="badge">Internal</span></summary><p><code>#DECLARE($inColumnDefinition_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_StyleColumn ($inColumnDefinition_o : Object)
+
+Puts a column definition's header title, alignment (horizontal, and the
+  cells' vertical, Fnd_Out_ColumnVAlign), font style and
+  display format onto its live listbox column. The column must already be
+  on &quot;Fnd_Out_ListBox&quot; (Fnd_Out_InsertColumn); runs in the list's own form
+  context.
+
+Access: Private
+
+Parameters:
+  $inColumnDefinition_o : Object : The column, from Fnd.out.lbox.columns
 
 Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Out_SynchroniseSelection"><summary>Fnd_Out_SynchroniseSelection<span class="badge">Shared</span></summary><pre class="prose">Project Method: Fnd_Out_SynchroniseSelection
@@ -5808,6 +6817,611 @@ Access: Private
 Parameters: None
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsApply"><summary>Fnd_Out_ViewOptionsApply<span class="badge">Internal</span></summary><p><code>#DECLARE($inState_o : Object; $inAction_t : Text)-&gt;$status_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsApply ($inState_o : Object {; $inAction_t : Text}) --&gt; $status_o : Object
+
+Runs in the front list window's own form context, reached via CALL FORM
+  from the View Options palette's own object methods (a different
+  form context, in the same process). $inAction_t decides what $inState_o
+  is taken to mean; every action ends by reflecting Fnd.out.lbox.columns
+  onto the live listbox (Fnd_Out_ViewOptionsToListBox) and republishing to
+  the palette when one is open.
+
+Actions ($inState_o's relevant properties in brackets):
+  &quot;apply&quot; (default, omit $inAction_t) - visibility/text size/row height
+              changes from the palette's checkboxes and popups [candidates,
+              textSize, rowHeight, rowPixels, vAlign, fillColor, altFillColor - a
+              negative color clears that override]; marks the saved layout
+              edited
+  &quot;layout&quot; - switch to a named layout, discarding edits [name]
+  &quot;saveAs&quot; - save the current choices as a new/replacing user layout [name]
+  &quot;rename&quot; - rename a user layout [oldName, newName]
+  &quot;delete&quot; - delete a user layout, or a shared one when the user may publish [name]
+  &quot;publishShared&quot; - publish the current choices as a shared layout [name]
+  &quot;sharedDefault&quot; - toggle whether a shared layout is the default for new
+              machines [name]
+  &quot;reset&quot; - discard edits and return to Standard
+  &quot;manageLayouts&quot; - open the Manage Layouts dialog (Fnd_Out_ManageLayouts) with
+              the palette hidden [prompt]. The current table returns to
+              Standard when its settings were wiped or the layout in force was
+              deleted; other open lists of the tables affected are not
+              refreshed and pick the change up when reopened
+  &quot;offer&quot; - developer mode only: toggle a candidate's offer/hide rule
+              [path, offered]
+  &quot;saveBuiltIn&quot; - developer mode only: save a built-in layout [name]
+  &quot;deleteBuiltIn&quot; - developer mode only: delete a built-in layout [name]
+  &quot;collapse&quot; - remember a block's collapsed state [block, collapsed]
+  &quot;editFormula&quot; - open the formula editor: empty, to add a column, or on
+              the highlighted column's formula [field, formula - both empty
+              to add; isUser; defaultTitle]. What comes back changes a
+              formula the user added; for a field or a declared formula it
+              is a new custom column, titled by a Request (see
+              Fnd_Out_FormulaAction)
+  &quot;formulaBox&quot; - the same decision for text typed into the formula box,
+              without the editor [field, formula - as shown, newText - as
+              left, isUser, defaultTitle]
+  &quot;changeFormula&quot; - replace one of the user's own formulas [field - the
+              column's fo_field, formula - the new one in [Table]Field form]
+  &quot;customTextSize&quot; - ask for a text size (6-72) and apply it [candidates]
+  &quot;saveVisualDefault&quot; - save the current text size, row height and
+              background colors as the default appearance of every list
+  &quot;resetAppearance&quot; - discard this list's appearance changes and return
+              to the programmed default: the form's own appearance, then
+              Fnd_Out_Default, then the table's developer file. The user's
+              saved default is left in place but not applied
+  &quot;addRowRule&quot; - add a row-style rule: with prompt:True opens the formula
+              editor for its condition [prompt]; an unusable condition is
+              ALERTed and nothing is added
+  &quot;editRowRule&quot; - change a row-style rule's condition [rulePosition - 1-based];
+              with prompt:True opens the formula editor on the rule's
+              condition [prompt]; its style and place are kept
+  &quot;deleteRowRule&quot; - delete a row-style rule [rulePosition - 1-based]
+  &quot;rowRuleStyle&quot; - replace a row-style rule's style [rulePosition - 1-based,
+              style - fontWeight, fontStyle, textDecoration, stroke, fill]
+
+Access: Private
+
+Parameters:
+  $inState_o : Object : Action-dependent, see above; for &quot;apply&quot; also
+              candidates (the full Form.candidates collection, edited
+              fo_visible flags included)
+  $inAction_t : Text : One of the actions above (optional, default &quot;apply&quot;)
+
+Returns:
+  $status_o : Object : success:Boolean, error:Text - from the underlying
+              layout action for &quot;saveAs&quot;/&quot;rename&quot;/&quot;delete&quot;/&quot;saveBuiltIn&quot;/
+              &quot;deleteBuiltIn&quot;/&quot;publishShared&quot;/&quot;sharedDefault&quot;; {success:True} for every other action. Only
+              useful to a direct (non-CALL FORM) caller, such as a test -
+              CALL FORM posts to a window's message box and cannot receive
+              a return value, so the palette never sees this; a refusal on
+              one of those actions is ALERTed here instead, in the
+              list window's own process, where the status is available</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsColumnPanel"><summary>Fnd_Out_ViewOptionsColumnPanel<span class="badge">Internal</span></summary><p><code>#DECLARE($inAction_t : Text)</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsColumnPanel ($inAction_t : Text)
+
+Runs the advanced panel to the right of the main interface on the
+  Fnd_Out_ViewOptionsList palette - the &quot;opt_&quot; objects and Add Formula…,
+  all on page 2. The panel works on
+  the one column highlighted in &quot;lb_columns&quot;, and what it sets is that
+  column's entry in the definition's columnOverrides (see
+  Fnd_Out_ApplyColumnOverrides). Runs in the palette's own form context.
+
+  &quot;toggle&quot; - shows or hides the panel: widens or narrows the window and
+             goes to page 2 or back to page 1
+  &quot;load&quot;   - fills the panel from the highlighted column, or disables it
+             when no single column is highlighted. Called when the
+             highlight moves and after every redraw.
+  &quot;send&quot;   - sends what the panel now holds to the list window
+  &quot;formula&quot; - sends the edited formula to the list window. It replaces the
+             highlighted column's when that is a formula the user added;
+             for a field or a declared formula it proposes a new custom
+             column (the list window decides - Fnd_Out_FormulaAction)
+  &quot;clear&quot;  - removes every override from the highlighted column
+  &quot;deleteFormula&quot; - asks the list window to delete the highlighted column's
+             formula, when it is one the user added; it confirms first
+
+Access: Private
+
+Parameters:
+  $inAction_t : Text : &quot;toggle&quot;, &quot;load&quot;, &quot;send&quot;, &quot;formula&quot;, &quot;clear&quot; or &quot;deleteFormula&quot;
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsFront"><summary>Fnd_Out_ViewOptionsFront<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ViewOptionsFront ()
+
+Called from Fnd_Menu_EnableDisableItems, which runs on every Foundation
+  window's On Activate - keeps the Select &gt; View Options... menu item and
+  the View Options palette's own visibility in step with which window is
+  front: enabled and fronted for an active Fnd_Out output window, disabled
+  and hidden for anything else (an input form, a non-Fnd_Out window).
+
+If the palette is open and a different list window has just come front,
+  publishes that list's candidates and state to the palette
+  (Fnd_Out_ViewOptionsPublish) so it retargets.
+
+Guards every Storage.Fnd.Out.paletteWindow/paletteProcess action with
+  Current process # Storage.Fnd.Out.paletteProcess: this method also runs
+  in the palette's own process (its form method tails into
+  Fnd_Gen_FormMethod, which calls Fnd_Gen_MenuBar on its own On Activate),
+  where Fnd_Gen_CurrentFormType is never Fnd_Gen_OutputForm - without the
+  guard the palette would hide itself the moment it was clicked.
+
+Hiding is Fnd_Out_PaletteShouldHide's decision, so a list that is closing,
+  or one of several, never hides the palette.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsGridBuild"><summary>Fnd_Out_ViewOptionsGridBuild<span class="badge">Internal</span></summary><p><code>#DECLARE($inCandidates_c : Collection; $inCollapsed_o : Object; $inDeveloperMode_b : Boolean; $inState_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsGridBuild ($inCandidates_c : Collection; $inCollapsed_o : Object; $inDeveloperMode_b : Boolean; $inState_o : Object)
+
+Rebuilds the Show Columns grid inside the Fnd_Out_ViewOptionsGrid subform.
+  Runs in the SUBFORM's own form context, reached via EXECUTE METHOD IN
+  SUBFORM(&quot;grid_columns&quot;; &quot;Fnd_Out_ViewOptionsGridBuild&quot;; *; ...) from the
+  palette's Fnd_Out_ViewOptionsRedraw (never from an On Load - see the
+  note on OBJECT DUPLICATE below) - not from the subform's own On Load,
+  which cannot call OBJECT DUPLICATE at all.
+
+Stores the three parameters onto the subform's own Form object
+  (Form.candidates/collapsed/developerMode) so the cloned objects' shared
+  methods (ObjectMethods/chk_template.4dm etc.) can read them back via
+  Form.gridMap, then walks Fnd_Out_ViewOptionsGridPlan's row plan:
+  - a row whose objectName isn't yet in Form.cloneNames is cloned from its
+    template (hdr_template/disc_template/chk_template/chk_offer_template)
+    with OBJECT DUPLICATE's absolute-coordinates form, and the name is
+    remembered;
+  - every row in the plan is then repositioned, shown, and given its
+    title/value (OBJECT SET TITLE for text; OBJECT SET VALUE for a
+    checkbox's tick) regardless of whether it was just cloned or already
+    existed from an earlier build;
+  - a name in Form.cloneNames that the new plan no longer needs is hidden
+    (OBJECT SET VISIBLE false), not deleted - there is no OBJECT DELETE in
+    this schema (checked via 4dlookup), and since Fnd_Out_ViewOptionsGridPlan
+    names objects by candidate index, the same objectName is reused across
+    rebuilds of the same table, so hiding-and-reusing never leaks clones.
+
+Also sets the subform's own size (FORM SET SIZE) to the plan's total
+  height so the palette's &quot;grid_columns&quot; subform object, with a vertical
+  scrollbar, scrolls rather than clips.
+
+$inState_o is the palette's own Form.state, passed as-is: 4D objects and
+  collections are reference types, so this subform's Form.state IS the
+  same object as the palette's, without any copy or CALL FORM round trip.
+  The clone templates' shared object methods (ObjectMethods/chk_template.
+  4dm, disc_template.4dm, chk_offer_template.4dm) use it as the mailbox
+  back to the container: they stage Form.state.pendingAction/pendingExtra
+  (mutating candidates/collapsed in place first, since those are shared
+  the same way) and call CALL SUBFORM CONTAINER, which runs the palette's
+  own ObjectMethods/grid_columns.4dm - already in the palette's form
+  context, so it reads Form.state.pendingAction/pendingExtra straight off
+  Form.state (no fetch needed) and calls Fnd_Out_ViewOptionsSend. The
+  &quot;grid_columns&quot; subform container IS bound - &quot;dataSource&quot;: &quot;Form.grid&quot; in
+  the palette's form JSON, per FormObjects/subformOverview.html's generic
+  Variable or Expression/dataSource property, not the Subform-specific
+  list in propertiesSubform.html (detailForm/listForm/table/
+  selectionMode/enterableInList/deletableInList/the two double-click
+  actions) which was mistakenly read as the complete set for a subform
+  container in the earlier B2 rework. Fnd_Out_ViewOptionsRedraw keeps
+  Form.grid's candidates/state/collapsed/developerMode properties current
+  before every EXECUTE METHOD IN SUBFORM call, so this method's own
+  parameter assignment below (Form.candidates:=$inCandidates_c etc.) now
+  writes onto that same bound object - redundant with the binding, kept so
+  the parameter contract stays self-sufficient if the binding is ever
+  removed. This reference-sharing (both the binding and the parameters)
+  is what makes CALL SUBFORM CONTAINER's round trip work, since it is
+  still the only channel available short of CALL FORM, which the palette
+  already uses to reach the *list window's* process and would be the
+  wrong tool for talking to a subform in the same process.
+
+OBJECT DUPLICATE cannot run from an object method's On Load event, from
+  On Unload, or from a printing-context event (4dlookup --body confirms
+  this). This method is reached through EXECUTE METHOD IN SUBFORM from a
+  CALL FORM chain (list window -&gt; Fnd_Out_ViewOptionsRetarget -&gt; ...
+  Redraw), never from a form or object method's own On Load handler, so
+  the restriction does not apply here.
+
+Access: Private
+
+Parameters:
+  $inCandidates_c : Collection : Grouped candidates, as built by Fnd_Out_CandidateColumns
+  $inCollapsed_o : Object : block (group) name -&gt; Boolean, from the saved View Options state
+  $inDeveloperMode_b : Boolean : selects the single-column, offer-checkbox layout
+  $inState_o : Object : the palette's own Form.state, kept by reference as
+              the mailbox back to it - see the note above
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsGridClick"><summary>Fnd_Out_ViewOptionsGridClick<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ViewOptionsGridClick
+
+Click handler for every interactive object the JSON-built Show Columns
+  grid emits (Fnd_Out_ViewOptionsGridJson) - disclosure buttons and the
+  checkbox/offer boxes - referenced by name from each generated object's
+  own &quot;method&quot; property, so it runs as an object method inside the
+  &quot;grid_columns&quot; subform, the comparison variant of
+  Fnd_Out_ViewOptionsGrid's chk_template.4dm/disc_template.4dm/
+  chk_offer_template.4dm.
+
+A checkbox/offer row's tick has already been written straight onto the
+  bound Form.candidates[candidateIndex].fo_visible/.offered by the
+  dataSource binding itself before this method runs (Fnd_Out_
+  ViewOptionsGridJson gives those objects a dataSource, not a static
+  value) - unlike the OBJECT DUPLICATE variant's clones, which have to
+  read OBJECT Get value and write it on manually. A disclosure row has no
+  dataSource (a button carries no value), so this method flips
+  Form.collapsed itself, exactly as disc_template.4dm does.
+
+Looks the clicked object's row up in Form.gridMap (populated by
+  Fnd_Out_ViewOptionsRedraw from the same plan the JSON form was built
+  from), stages the outcome on the mailbox (Form.state.pendingAction/
+  pendingExtra - the same object as the palette's own Form.state, shared
+  by reference), and wakes the palette's grid_columns container object
+  method via CALL SUBFORM CONTAINER, which sends it on through
+  Fnd_Out_ViewOptionsSend exactly as the OBJECT DUPLICATE variant does.</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsGridJson"><summary>Fnd_Out_ViewOptionsGridJson<span class="badge">Internal</span></summary><p><code>#DECLARE($inPlan_c : Collection; $inCandidates_c : Collection; $inDeveloperMode_b : Boolean)-&gt;$form_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsGridJson ($inPlan_c : Collection; $inCandidates_c : Collection; $inDeveloperMode_b : Boolean) --&gt; $form_o : Object
+
+Comparison variant of Fnd_Out_ViewOptionsGridBuild (FND-72): instead of
+  cloning hidden template objects with OBJECT DUPLICATE, emits a complete
+  generated form-description object for the Show Columns grid, one page
+  subform's worth, ready to hand to OBJECT SET SUBFORM. Pure - no OBJECT
+  DUPLICATE, no Form access, no CALL FORM - so it can be exercised
+  headlessly the same way Fnd_Out_ViewOptionsGridPlan can.
+
+Takes the same row plan Fnd_Out_ViewOptionsGridPlan already produces (kind
+  &quot;disclosure&quot;/&quot;header&quot;/&quot;checkbox&quot;/&quot;offer&quot;, each with objectName and
+  absolute left/top/width/height) and turns every row into one form
+  object keyed by its objectName:
+  - &quot;header&quot; rows become a bold, non-enterable text object showing the
+    block's title;
+  - &quot;disclosure&quot; rows become a button showing the row's ▶/▼ glyph;
+  - &quot;checkbox&quot;/&quot;offer&quot; rows become a checkbox bound directly to the
+    matching element of the palette's own Form.candidates collection -
+    &quot;Form.candidates[&lt;candidateIndex&gt;].fo_visible&quot; for a &quot;checkbox&quot; row,
+    &quot;...offered&quot; for an &quot;offer&quot; row - so ticking the box updates that
+    shared candidate object as a side effect of the binding itself, the
+    same object Fnd_Out_ViewOptionsSend reads back from Form.candidates.
+  Every disclosure/checkbox/offer object carries &quot;method&quot;:
+  &quot;Fnd_Out_ViewOptionsGridClick&quot; and &quot;events&quot;: [&quot;onClick&quot;], so a click
+  still reaches the same send path as the OBJECT DUPLICATE variant, via
+  Form.gridMap (populated by the caller from this same plan - see
+  Fnd_Out_ViewOptionsRedraw).
+
+The returned object's own width/height are set to 260 and the plan's
+  total row height + 8, matching Fnd_Out_ViewOptionsGridBuild's FORM SET
+  SIZE call, so the container's vertical scrollbar does the rest.
+
+$inCandidates_c and $inDeveloperMode_b are accepted for parity with the
+  plan-building call and so a caller need not re-derive them, but the
+  plan already carries everything a row needs (title, candidateIndex,
+  fo_visible, offered) - this method reads $inPlan_c alone.
+
+Access: Private
+
+Parameters:
+  $inPlan_c : Collection : Row plan, as built by Fnd_Out_ViewOptionsGridPlan
+  $inCandidates_c : Collection : Grouped candidates, as built by Fnd_Out_CandidateColumns
+  $inDeveloperMode_b : Boolean : Developer mode flag the plan was built with
+
+Returns:
+  $form_o : Object : A form-description object for OBJECT SET SUBFORM's
+              detailSubform parameter</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsGridPlan"><summary>Fnd_Out_ViewOptionsGridPlan<span class="badge">Internal</span></summary><p><code>#DECLARE($inCandidates_c : Collection; $inCollapsed_o : Object; $inDeveloperMode_b : Boolean)-&gt;$plan_c : Collection</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsGridPlan ($inCandidates_c : Collection; $inCollapsed_o : Object; $inDeveloperMode_b : Boolean) --&gt; $plan_c : Collection
+
+Pure layout maths for the palette's Show Columns grid: walks the grouped,
+  header-led candidates built by Fnd_Out_CandidateColumns and decides which
+  objects Fnd_Out_ViewOptionsGridBuild should clone, where, and with what
+  content, given the saved collapsed state. The own-table block (group:&quot;&quot;)
+  has no header row and is never collapsible - its checkboxes are always
+  drawn. Every other block (a relation, or &quot;~other~&quot; for Other Columns) is
+  collapsible: a disclosure row and a header row are emitted for it, and
+  its checkbox rows are included only when the block isn't collapsed.
+
+Row kinds: &quot;disclosure&quot; (the ▶/▼ button for a collapsible block's header -
+  title carries the glyph), &quot;header&quot; (the block's bold title text, no
+  glyph), &quot;checkbox&quot; (a column's visibility box, title is the column's
+  label), &quot;offer&quot; (developer mode only, alongside a checkbox row, no
+  title). Every row carries objectName (what
+  Fnd_Out_ViewOptionsGridBuild should clone the matching template to),
+  left/top/width/height (absolute, for OBJECT DUPLICATE's useAbsoluteCoordinates
+  form), block (the group it belongs to) and candidateIndex (index into
+  $inCandidates_c, so a clone's object method can look its candidate back
+  up via Fnd_Out_ViewOptionsGridMap).
+
+Layout: outside developer mode, checkbox rows fill two columns (left at
+  x=28, right at x=148) so a block's items pack two to a line; the odd row
+  left dangling at the end of a block (or at the end of the plan) still
+  claims a full line before the next block starts. In developer mode each
+  checkbox takes the whole line paired with its offer checkbox, since the
+  two-column layout leaves no room for it.
+
+Default collapsed state when $inCollapsed_o carries nothing for a block:
+  True for a relation, False for &quot;~other~&quot; - matching the settled design
+  (relation blocks collapsed by default, Other Columns open when non-empty).
+
+No form, no OBJECT DUPLICATE, no CALL FORM - this is the part of the
+  palette's Show Columns section that can be exercised headlessly.
+
+Access: Private
+
+Parameters:
+  $inCandidates_c : Collection : Grouped candidates, as built by Fnd_Out_CandidateColumns
+  $inCollapsed_o : Object : block (group) name -&gt; Boolean, from the saved
+              View Options state (may be Null)
+  $inDeveloperMode_b : Boolean : True selects the single-column, offer-
+              checkbox-bearing layout instead of the two-column grid
+
+Returns:
+  $plan_c : Collection : One object per object to clone - see Row kinds
+              above for the shape of each kind</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsListBuild"><summary>Fnd_Out_ViewOptionsListBuild<span class="badge">Internal</span></summary><p><code>#DECLARE()</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsListBuild
+
+Fills the Show Columns hierarchical listbox (&quot;lb_columns&quot; on
+  Fnd_Out_ViewOptionsList) from Form.candidates and Form.state. Runs in
+  the palette's own form context, from Fnd_Out_ViewOptionsRedraw.
+
+One array row per non-header candidate, in candidate order (already
+  grouped by Fnd_Out_CandidateColumns):
+    Fnd_Out_VOLevel2_at  - hierarchy level 1: the section - the table's own
+                           name for its own columns, the relation's name
+                           for a relation's
+    Fnd_Out_VOName_at    - hierarchy level 2: the column's label
+    Fnd_Out_VOBlock_at   - the block key (&quot;~own~&quot;, &quot;~custom~&quot;, a relation name, &quot;~other~&quot;)
+    Fnd_Out_VOVisible_ab - fo_visible (the visibility checkbox column)
+    Fnd_Out_VOOffer_ab   - offered (the developer-mode checkbox column)
+    Fnd_Out_VOIndex_ai   - index back into Form.candidates
+    Fnd_Out_VOSelected_ab - the listbox's own variable: the highlighted rows
+    Fnd_Out_VOStyle_ai   - row style: Italic for a calculated column
+                           (isFormula, so every Custom Columns row), Plain otherwise
+  Header candidates are not rows themselves. The own table's rows carry
+  group &quot;&quot; but their header carries &quot;~own~&quot;; both map to the &quot;~own~&quot; block.
+
+Every row is the same depth (2) on purpose. 20.8 draws an empty hierarchy
+  level as a blank break row (tried 2026-09-17), so the table's own columns
+  sit in a section of their own, at the same level as the relations.
+
+Then applies Form.state.collapsed: everything is expanded first, and a
+  section is collapsed when the saved state says so - or, with nothing
+  saved, when it is a relation (relations closed by default, the own
+  fields, Custom Columns and Other Columns open). The offer column is shown only in
+  developer mode.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsLoad"><summary>Fnd_Out_ViewOptionsLoad<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$state_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsLoad () --&gt; $state_o : Object
+
+The single read path for a table's View Options pref (machine scope, key
+  Fnd_Out_&lt;Table&gt;Default), for the currently active table
+  (Fnd.out.currentTable). Always returns a complete object - see
+  Fnd_Out_ViewOptionsWithDefaults - whether or not anything was saved yet.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $state_o : Object : columns, layout, edited, visibleColumns, textSize,
+              rowHeight, collapsed, layouts</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsPrefName"><summary>Fnd_Out_ViewOptionsPrefName<span class="badge">Internal</span></summary><p><code>#DECLARE($inTableNumber_i : Integer)-&gt;$prefName_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsPrefName ($inTableNumber_i : Integer) --&gt; $prefName_t : Text
+
+Builds the Fnd_Pref name that holds a table's View Options column
+  configuration (widths/positions and the visible set). Factored out so
+  Fnd_Out_OpenDialog (reads it) and Fnd_Out_ViewOptionsToListBox (writes
+  it) can't drift apart.
+
+Access: Private
+
+Parameters:
+  $inTableNumber_i : Integer : The table the configuration belongs to
+
+Returns:
+  $prefName_t : Text : The Fnd_Pref name, e.g. &quot;Fnd_Out_CustomerDefault&quot;</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsProcess"><summary>Fnd_Out_ViewOptionsProcess<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ViewOptionsProcess
+
+The View Options palette's own process method. Opens the one shared
+  floating palette window, registers it on Storage.Fnd.Out so every
+  Foundation window's Fnd_Menu_EnableDisableItems can find and front it,
+  and blocks in DIALOG for the palette's lifetime. Only
+  Fnd_Gen_LaunchAsNewProcess starts this - never call it directly.
+
+Position: reuses the saved rect for whichever form is opened (below) if
+  there is one; otherwise places the palette to the right of the front
+  list window, top aligned, 20pt gap - matching the settled design.
+
+Form: opens Storage.Fnd.Out.paletteForm if set, else the default
+  &quot;Fnd_Out_ViewOptions&quot;. Fnd_Menu_ViewOptions sets paletteForm to
+  &quot;Fnd_Out_ViewOptionsJson&quot; before launching this process when the
+  Option/Alt key is held - see that method's header. Since only one
+  palette process exists at a time, this only takes effect when a new
+  process is actually launched: closing the current palette and reopening
+  with Option held is how a user switches variant.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsPublish"><summary>Fnd_Out_ViewOptionsPublish<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ViewOptionsPublish ()
+
+Sends this list window's candidate columns and current state to the View
+  Options palette, so it retargets onto whichever list is front. Must run
+  in the front list's own process/form context - Fnd.out.currentTable and
+  Fnd_Gen_CurrentTable_ptr are per-process, and Storage.Fnd.Out.paletteWindow
+  is where the CALL FORM lands.
+
+Called by Fnd_Out_ViewOptionsFront when the front list window changes
+  while the palette is already open, and by the palette's own On Load
+  (CALL FORM back into the front list) right after Fnd_Out_ViewOptionsProcess
+  opens it for the first time.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsRedraw"><summary>Fnd_Out_ViewOptionsRedraw<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Out_ViewOptionsRedraw
+
+Rebuilds everything the palette's form draws from Form.candidates and
+  Form.state: the Layout popup (layout names, a separator, then Save/Save
+  As.../Rename.../Delete, plus the developer-only built-in actions), the
+  Text size, Row height and vertical Align popups, and the Show Columns grid - a page
+  subform (&quot;grid_columns&quot;, detailForm Fnd_Out_ViewOptionsGrid) rebuilt via
+  EXECUTE METHOD IN SUBFORM calling Fnd_Out_ViewOptionsGridBuild in the
+  subform's own context, passing Form.candidates/state.collapsed/
+  state.developerMode and Form.state itself (see that method's header for
+  why Form.state is passed too). Called from the form method's On Load and
+  again after every Fnd_Out_ViewOptionsRetarget, since a retarget replaces
+  both inputs wholesale (a different table, or a change applied
+  elsewhere).
+
+The &quot;grid_columns&quot; subform container is bound to Form.grid (&quot;dataSource&quot;:
+  &quot;Form.grid&quot; in the form JSON), so Form (as read inside the subform) IS
+  Form.grid - per FormObjects/subformOverview.html, &quot;When bound to the
+  subform container, this object is returned by the Form command directly
+  in the subform&quot;. Form.grid is created once, here, the first time this
+  method runs, and only its properties are updated on later redraws -
+  never reassigned wholesale - since the container's binding is to the
+  object itself. The four properties mirror exactly what used to be
+  passed as EXECUTE METHOD IN SUBFORM parameters (still passed below, for
+  Fnd_Out_ViewOptionsGridBuild's own parameters), so the subform's
+  Form.candidates/state/collapsed/developerMode now resolve two ways that
+  agree: through the bound Form.grid, and through GridBuild's own
+  parameter assignment.
+
+The Layout control is a display-only dropdown, dropdown_layout (Form.layoutChoice, one value: the
+  layout in force), under an unrendered button, btn_layout, that opens a dynamic menu. Form.layoutChoiceMap
+  carries the menu's items - {kind:&quot;layout&quot;; name} for a real layout, {kind:&quot;separator&quot;},
+  {kind:&quot;action&quot;; name} for a menu action, each with enabled and current - so
+  btn_layout's object method can tell what was picked without re-parsing display text.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsRetarget"><summary>Fnd_Out_ViewOptionsRetarget<span class="badge">Internal</span></summary><p><code>#DECLARE($inCandidates_c : Collection; $inState_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsRetarget ($inCandidates_c : Collection; $inState_o : Object)
+
+Runs in the View Options palette's own form context, reached via CALL FORM
+  from Fnd_Out_ViewOptionsPublish (the front list's process). Replaces
+  Form.candidates and Form.state with what the front list just sent, and
+  retitles the window so it's clear which table the palette now serves.
+  Ends by calling Fnd_Out_ViewOptionsRedraw, which turns the new
+  candidates/state into the Layout/Display popups and the Show Columns
+  list - both inputs changed wholesale, so nothing short of a full rebuild
+  is correct here.
+
+Access: Private
+
+Parameters:
+  $inCandidates_c : Collection : Candidates, as built by Fnd_Out_CandidateColumns
+  $inState_o : Object : tableName, layout, edited, textSize, rowHeight, visibleColumns
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsSave"><summary>Fnd_Out_ViewOptionsSave<span class="badge">Internal</span></summary><p><code>#DECLARE($inState_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsSave ($inState_o : Object)
+
+The single write path for a table's View Options definition: fills in
+  defaults through Fnd_Out_ViewOptionsWithDefaults, then saves to the
+  table's own file (Fnd_Out_PrefWrite). Every
+  View Options write - Fnd_Out_LayoutApply, Save As, Rename, Delete, an
+  &quot;offer&quot; toggle in developer mode, and so on - goes through here, so the
+  pref can never end up with a property missing that a later read expects.
+
+Access: Private
+
+Parameters:
+  $inState_o : Object : The state to save, as built by
+              Fnd_Out_ViewOptionsWithDefaults or a caller extending it
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsSend"><summary>Fnd_Out_ViewOptionsSend<span class="badge">Internal</span></summary><p><code>#DECLARE($inAction_t : Text; $inExtra_o : Object)</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsSend ($inAction_t : Text; $inExtra_o : Object)
+
+The palette's single outbound path: every object method that needs the
+  front list to act (a checkbox tick, a popup change, a layout action, a
+  disclosure click, Reset to Standard) builds the action-specific extra
+  properties and calls this rather than writing CALL FORM directly. Runs in
+  the palette's own form context; the front list's form context (a
+  different one, in the same process) is reached through Storage.Fnd.Out.
+  frontWindow, matching how Phase A's chk_visible already did it.
+
+$inExtra_o's properties are merged onto a copy of Form.state (which already
+  carries tableName/layout/edited/textSize/rowHeight/visibleColumns/
+  layouts/developerMode/collapsed); Form.candidates - the full, currently
+  edited set - is always attached as state.candidates, since
+  Fnd_Out_ViewOptionsApply's &quot;apply&quot; action reads visibility straight off
+  it. Actions that don't need it (layout/saveAs/rename/delete/reset/offer/
+  saveBuiltIn/deleteBuiltIn/collapse) simply ignore the extra property.
+
+Access: Private
+
+Parameters:
+  $inAction_t : Text : One of Fnd_Out_ViewOptionsApply's actions
+  $inExtra_o : Object : Action-specific properties to merge onto the state
+              sent (name, oldName, newName, path, offered, block, collapsed,
+              textSize, rowHeight - see Fnd_Out_ViewOptionsApply's header)
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsState"><summary>Fnd_Out_ViewOptionsState<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$state_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsState () --&gt; $state_o : Object
+
+Builds the state object the View Options palette is driven by and applies
+  changes back through: table name, current layout, whether it's edited,
+  text size, row height and the currently visible columns. Factored out of
+  Fnd_Out_ViewOptionsPublish so it can be exercised headlessly - it touches
+  only Fnd.out and Fnd_Gen_CurrentTable_ptr, never Form or a live listbox.
+
+Phase B1: layout, edited, and collapsed now come from the saved
+  Fnd_Out_&lt;Table&gt;Default pref (Fnd_Out_ViewOptionsLoad) rather than being
+  hard-coded to Standard/False/{} - see the settled design's Prefs
+  section. layouts is the palette's Layout popup order
+  (Fnd_Out_LayoutList); developerMode gates the palette's &quot;offer&quot;
+  checkboxes and its Save/Delete Built-in actions.
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $state_o : Object : tableName, layout, edited, textSize, rowHeight,
+              rowPixels, vAlign, fillColor, altFillColor, visibleColumns, layouts,
+              developerMode, collapsed, columnOverrides, rowStyle, allowCustom, publishAllowed;
+              ruleSelect (the position of a row-style rule just added, once only)</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsToListBox"><summary>Fnd_Out_ViewOptionsToListBox<span class="badge">Internal</span></summary><p><code>#DECLARE()</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsToListBox ()
+
+Host-only: reflects Fnd.out.lbox.columns (already updated by
+  Fnd_Out_ApplyViewOptions, from the View Options palette's checkbox
+  object method) onto the live Fnd_Out listbox - OBJECT SET VISIBLE for a
+  column that already existed, Fnd_Out_InsertColumn for one just added -
+  updates Form.listBoxConfiguration.visibleColumns, and saves that
+  configuration immediately, the way Fnd_Out_OpenDialog otherwise only
+  does on window close.
+
+Must run with Form bound to the Fnd_Out list window's own form context -
+  that's what CALL FORM(Fnd.out.windowReference; ...) provides when the
+  palette's checkbox object method calls it, since the palette runs in
+  its own, different form context in the same process.
+
+Tells an already-listed column from one just added by Fnd_Out_ApplyViewOptions
+  via each column definition's own fo_inserted flag (set by Fnd_Out_InsertColumn),
+  rather than a beforehand column count.
+
+Access: Private
+
+Parameters: None
+
+Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Out_ViewOptionsWithDefaults"><summary>Fnd_Out_ViewOptionsWithDefaults<span class="badge">Internal</span></summary><p><code>#DECLARE($inState_o : Object)-&gt;$state_o : Object</code></p><pre class="prose">Project Method: Fnd_Out_ViewOptionsWithDefaults ($inState_o : Object) --&gt; $state_o : Object
+
+Fills a View Options pref state object with defaults for every property
+  the palette and Fnd_Out_ViewOptionsSave/Load rely on: columns, layout,
+  edited, visibleColumns, textSize, rowHeight, collapsed and layouts. A
+  Null input, or one missing some properties (an old saved pref, or a
+  freshly-built state) comes back complete. Never mutates its input - the
+  result is always a copy.
+
+Access: Private
+
+Parameters:
+  $inState_o : Object : A state object, possibly partial, possibly Null
+
+Returns:
+  $state_o : Object : The same state with every default property filled in</pre></details>
 <details data-entry id="Fnd_Out_fieldName"><summary>Fnd_Out_fieldName<span class="badge">Shared</span></summary><p><code>#DECLARE($theFormula_t : Text)-&gt;$fieldName_t : Text</code></p><pre class="prose">Project Method: Fnd_Out_fieldName (Formula) --&gt; Text
 
 Pass a formula to determine
@@ -5828,6 +7442,7 @@ Pass either the field pointer or a formula to determine
 the field type to include in the display listbox
 Fnd_Out_fieldType(-&gt;[Client]ID) --&gt; 9 (Is longint)
 Fnd_Out_fieldType(&quot;invoice.client.FirstName&quot;) --&gt; 0 (Is alpha field)
+A &quot;Formula: &quot; path gives Is text, or Is picture when the formula returns one
 
 Access: Shared
 
@@ -6129,7 +7744,7 @@ Access: Shared
 
 Parameters:
   $itemName_t : Text : The name of the preference item
-  $inDefault_o : Object : The default value (optional)
+  $inDefault_o : Object : Stored as the item when it is missing; Null reads without storing (optional)
   $inItemScope_v : Variant : The scope or label if the default is used (optional)
 
 Returns:
@@ -6174,7 +7789,9 @@ With an owner, reads that owner's namespace instead of the shared one, which
   is how a labelled preference is read.
 The value is only written through the pointer when the stored type matches
   the type of the variable pointed at, so a caller's default survives a
-  mismatch.
+  mismatch. The same is true when the stored type is object but the stored
+  text isn't valid JSON - the row is treated as not-found rather than
+  raising out of this method.
 
 Access: Private
 
@@ -7250,6 +8867,12 @@ Returns:
 
 Returns a registration/unlock code based on the product number and user name.
 
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
+Security: Fnd_RegG_GenerateUnlockCode ships in Foundation's source, so a host must
+  set its own key with Fnd_Reg_SetSecretKey at startup. The MD5-based codes deter
+  casual copying only; they are not copy protection.
+
 Access: Shared
 
 Parameters:
@@ -7266,6 +8889,9 @@ Returns:
 Returns requested information.  See the Fnd_Gen_ComponentInfo method
   for more information.
 
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
+
 Access: Shared
 
 Parameters:
@@ -7277,6 +8903,9 @@ Returns:
 
 Initializes both the process and interprocess variables used by the
   Fnd_RegG routines.
+
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
 
 Access: Private
 
@@ -7454,7 +9083,7 @@ Returns:
   $registeredUserName_t : Text : The name of the registered user</pre></details>
 <details data-entry id="Fnd_Reg_GetUnlockCode"><summary>Fnd_Reg_GetUnlockCode<span class="badge">Shared</span></summary><p><code>#DECLARE($inFeatureCode_t : Text)-&gt;$unlockCode_t : Text</code></p><pre class="prose">Project Method: Fnd_Reg_GetUnlockCode ({feature code}) --&gt; Text
 
-Returns the activation code that's been entered into the data file.
+Returns the unlock code that's been entered into the data file.
   Returns an empty string if the program hasn't been registered yet.
 
 Access: Private
@@ -7480,6 +9109,9 @@ Returns:
 Returns requested information.  See the Fnd_Gen_ComponentInfo method
   for more information.
 
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
+
 Access: Shared
 
 Parameters:
@@ -7490,6 +9122,9 @@ Returns:
 <details data-entry id="Fnd_Reg_Init"><summary>Fnd_Reg_Init<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Reg_Init
 
 Initializes both the process and interprocess variables used by the Fnd_Reg routines.
+
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
 
 Access: Private
 
@@ -7605,7 +9240,7 @@ Returns: Nothing</pre></details>
 <details data-entry id="Fnd_Reg_SaveRegistrationInfo"><summary>Fnd_Reg_SaveRegistrationInfo<span class="badge">Shared</span></summary><p><code>#DECLARE($inFeatureCode_t : Text; $userName_t : Text; $licenseInfo_t : Text; $unlockCode_t : Text)</code></p><pre class="prose">Project Method: Fnd_Reg_SaveRegistrationInfo (feature name; personalization; license info; unlock code)
 
 Save's the specified info into a registration record.
-Doesn't check to make sure the activation code is valid.
+Doesn't check to make sure the unlock code is valid.
   We'll assume whoever called us did that.
 
 Access: Private
@@ -7638,6 +9273,12 @@ Returns: Nothing</pre></details>
 
 Allows the developer to set the secret key.
 For security reasons, there is no routine to get the secret key.
+
+Fnd_Reg licenses the host developer's application, not Foundation: it shows the
+  host's demo and registration dialogs and checks the unlock codes the host issues.
+Security: Fnd_RegG_GenerateUnlockCode ships in Foundation's source, so a host must
+  set its own key with Fnd_Reg_SetSecretKey at startup. The MD5-based codes deter
+  casual copying only; they are not copy protection.
 
 Access: Shared
 
@@ -8593,6 +10234,16 @@ Access: Private
 Parameters: None
 
 Returns: Nothing</pre></details>
+<details data-entry id="Fnd_Test_IsRunning"><summary>Fnd_Test_IsRunning<span class="badge">Internal</span></summary><p><code>#DECLARE()-&gt;$running_b : Boolean</code></p><pre class="prose">Project Method: Fnd_Test_IsRunning --&gt; Boolean
+
+True while a Fnd_Test run is open (Storage.test exists and is not closed).
+
+Access: Private
+
+Parameters: None
+
+Returns:
+  $running_b : Boolean : True while a test run is open</pre></details>
 <details data-entry id="Fnd_Test_PackParameters"><summary>Fnd_Test_PackParameters<span class="badge">Internal</span></summary><pre class="prose">Project Method: Fnd_Test_PackParameters
 
 Unit tests for Fnd_Msg_PackParameters, the variadic method that can be

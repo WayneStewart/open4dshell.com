@@ -25,8 +25,8 @@ adds what an agent needs to work here safely.
   Foundation repository and copied here; see README and
   `scripts/refresh-docs.sh`. Fix the source there and refresh.
 - `foundation/LICENSE` and `foundation/PROVENANCE.md` are verbatim copies of
-  the Foundation repository's `LICENSE` and
-  `Documentation/Open-Source/PROVENANCE.md`. Change them there first.
+  the Foundation repository's root `LICENSE` and `PROVENANCE.md`. Change
+  them there first, then run `scripts/refresh-docs.sh`.
 - Commit with `git add -A`; keep the tree clean. Pushing to `main` deploys.
 
 ## Hosting
@@ -65,7 +65,7 @@ permission; its page should say so.
 
 | Project | What it is | Suggested tier | Readiness |
 |---|---|---|---|
-| nativeObjectTools (OTr) | Native 4D replacement for the ObjectTools plugin API, ~900 methods, extensive specs and a README | Subdomain | Most advanced: public GitHub repository already exists; docs are markdown, not yet built as HTML |
+| nativeObjectTools (OTr) | Native 4D replacement for the ObjectTools plugin API, ~900 methods, extensive specs and a README | Subdomain | Most advanced: public at github.com/open4dshell/nativeObjectTools; docs are markdown, not yet built as HTML |
 | kvp | Key-value pair component, successor to the 2010-era KVP for 4D v11–v13 | Path under www | Method docs exist; no README |
 | logging | Modern logging component: named logs, levels, routing, PostgreSQL delivery; lineage from Foundation 4 Logging | Path under www, possibly subdomain later | Feature document and method docs exist; no README |
 | process-viewer | Small process-list viewer utility (~18 methods) | Path under www | Method docs only; last touched January 2025 |
@@ -81,21 +81,36 @@ done
 
 ## Relationship to Foundation
 
-The Foundation source lives in a separate, currently private repository
-(`f6`). Foundation work, its Jira tickets (FND project) and its release
-never happen from this repository. This site only publishes copies.
-Foundation's own history is in `foundation/docs/history.html`; the
-authoritative source for it is `Documentation/Foundation-History.json`
+The Foundation source lives in a separate, private repository (`f6`, on
+Bitbucket). Foundation work, its Jira tickets (FND project) and its
+release never happen from this repository. This site only publishes
+copies. Foundation's own history is in `foundation/docs/history.html`;
+the authoritative source for it is `Documentation/Foundation-History.json`
 in the Foundation repository.
 
-## Open items (as at 2026-09-15)
+Foundation 6.0.0-beta.1 opened as a private beta on 1 November 2026. The
+beta snapshot and its GitHub Releases live in
+`github.com/open4dshell/Foundation-Shell` (private until 1 December 2026,
+public from then); the demo database is public at
+`github.com/open4dshell/Foundation-Product-Sales`. The site links to
+both; it hosts no builds and no checksums.
 
+The HTML reference is generated in f6 from `not res/Fnd_Shell_Documentation`
+(it left `Resources/` in f6 commit 1c02b487). The generator's `--check`
+currently fails because it still expects the old path; the refresh script
+warns and copies the committed output. The documentation approach is
+under review in f6; this site is to grow into the learning resource for
+Foundation, and that design is still open.
+
+## Open items (as at 2026-11-01)
+
+- On 1 December 2026: change the beta wording on `foundation/index.html`
+  and `www/index.html` to the public release, link the public repository,
+  and refresh `foundation/docs/` from the release tag.
 - Apex `open4dshell.com` serves the site directly; a Cloudflare redirect
   rule to `www` is still to be added (zone Rules → Redirect Rules).
 - `wayne@open4dshell.com` needs Google Workspace activation of the alias
   domain plus MX (`smtp.google.com`, priority 1, DNS only) and SPF
   (`v=spf1 include:_spf.google.com ~all`) records in Cloudflare DNS.
-- `foundation/docs/` will need refreshing once the Foundation repository
-  removes its legacy registration module (FND-60 to FND-65).
-- When the public Foundation repository exists, replace the "public
-  repository coming" line on `foundation/index.html` with the link.
+- Design of the site as an education resource for Foundation is still
+  open; the current pages are the minimum for the beta.
