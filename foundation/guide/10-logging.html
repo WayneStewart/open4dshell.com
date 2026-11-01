@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10. Logging · Foundation Guide</title>
+<meta name="description" content="10. Logging, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/10-logging.html" aria-current="page">10. Logging</a></li>
+			<li><a href="/guide/upgrading.html">11. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>10. Logging</h1>
+
+<p><code>Fnd_Log</code> writes tab-separated entries to a file, to a file on the server, or to the <code>[Fnd_Log]</code> table in the host, from any process, batched through workers. This chapter is the host-facing contract of the module as of Foundation 6.</p>
+<p>The existing <code>Fnd_Log_*</code> methods remain available. Hosts can also instantiate <code>cs.fnd.log.new()</code>; inside Foundation use <code>cs.log.new()</code>. Class instances delegate to the same methods and process state. This API supports 4D 20; no shared singleton is required. A later 21 branch can add singleton access without changing <code>.new()</code>.</p>
+<h2 id="changes-in-behaviour">Changes in behaviour</h2>
+<p>Batching is now enabled by default. Entries flush after approximately 9 seconds, 1,000 entries, or 64,000 characters. This reduces file writes but delays visibility in the file; an unexpected exit can lose pending memory buffers. The timer is checked twice a second, and a busy worker processes its flush after queued work.</p>
+<p>Timestamps now use local time with milliseconds (<code>YYYY-MM-DDThh:mm:ss.mmm</code>), using the existing Arnaud de Montard conversion. They have no timezone offset suffix. Severity and machine-name columns are independently optional and off by default. Text columns remain tab-separated with CRLF line endings. Existing extension and rollover conventions remain in force.</p>
+<h2 id="existing-calls">Existing calls</h2>
+<pre><code>Fnd_Log_Enable(True)
+Fnd_Log_AddEntry(&quot;Import started&quot;; &quot;customers.csv&quot;)
+Fnd_Log_Enable(False)</code></pre>
+<p>Enable remains Boolean-only, scoped to the current process, and returns its Boolean state. Enabled writes every severity. Disabled suppresses all entries unless an explicit severity override permits an entry.</p>
+<h2 id="severity-overrides">Severity overrides</h2>
+<pre><code>// Application default, normally set at startup.
+Fnd_Log_OverrideLevel(Fnd_Log_LevelWarning; True)
+
+// This process inherits it until explicitly overridden.
+Fnd_Log_Enable(False)
+Fnd_Log_AddEntry(&quot;Import failed&quot;; \
+    New object(Fnd_Log_OptionLevel; Fnd_Log_LevelError))
+
+// Suppress even errors in this process, or restore inheritance.
+Fnd_Log_OverrideLevel(Fnd_Log_LevelNone)
+Fnd_Log_OverrideLevel(Fnd_Log_LevelInherit)</code></pre>
+<p>The initial application override is <code>Fnd_Log_LevelNone</code>. Default Level (0) never bypasses disabled logging. Explicit levels are Info (1), Warning (2), Error (4). The getter returns the effective threshold. A process setting takes precedence over the application default. <code>True</code> as the second argument selects application scope; False selects process scope. Enabled logging bypasses thresholds.</p>
+<h2 id="named-logs-and-destinations">Named logs and destinations</h2>
+<pre><code>$options_o:=New object(Fnd_Log_OptionDestinations; Fnd_Log_ToRecord)
+Fnd_Log_DeclareLog(&quot;Audit&quot;; &quot;&quot;; &quot;&quot;; $options_o; True)
+Fnd_Log_UseLog(&quot;Audit&quot;)
+Fnd_Log_AddEntry(&quot;Import completed&quot;)
+Fnd_Log_UseLog  // Return to the default file log</code></pre>
+<p>Declaration arguments are label, optional filename, optional folder, optional settings object, optional dedicated-worker Boolean (default False). Empty filename or folder uses defaults. Redeclaring an existing label does not change its settings. Selecting an unknown label declares it with defaults. <code>Fnd_Log_UseLog</code> is shared. Direct filename/path setters clear the named selection and use application settings.</p>
+<p>Destinations are a mask: <code>Fnd_Log_ToLocalFile</code> (1), <code>Fnd_Log_ToServerFile</code> (2), <code>Fnd_Log_ToRecord</code> (4). Add distinct flags to combine them. The default is local file. Standalone local+server file selections are written once.</p>
+<p>An entry can override label and/or destinations without altering process selection:</p>
+<pre><code>Fnd_Log_AddEntry(&quot;One audit entry&quot;; \
+    New object(Fnd_Log_OptionLabel; &quot;Audit&quot;))
+Fnd_Log_AddEntry(&quot;One record&quot;; \
+    New object(Fnd_Log_OptionDestinations; Fnd_Log_ToRecord))</code></pre>
+<p>Entry destinations replace the selected log's mask. Zero (<code>Fnd_Log_ToDefault</code>) leaves the selected log's destinations in effect. Text arguments remain columns; objects supply metadata, numeric arguments supply severity, and Boolean arguments supply flushNow. Last metadata value wins.</p>
+<h2 id="configuration-and-output">Configuration and output</h2>
+<p><code>Fnd_Log_Config</code> reads a copy of application settings. Pass an object to update defaults for unnamed logs and future declarations; existing declarations retain their settings. The same keys are accepted in declaration options.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Constant</th><th scope="col">Default</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td>Fnd_Log_UseBatch</td><td>True</td><td>Buffer entries before writing</td></tr>
+<tr><td>Fnd_Log_FlushInterval</td><td>9</td><td>Seconds before a buffer becomes due; 0 writes immediately</td></tr>
+<tr><td>Fnd_Log_FlushEntryLimit</td><td>1000</td><td>Maximum entries before flushing</td></tr>
+<tr><td>Fnd_Log_FlushCharLimit</td><td>64000</td><td>Maximum rendered characters before flushing</td></tr>
+<tr><td>Fnd_Log_OptionDestinations</td><td>Fnd_Log_ToLocalFile</td><td>Destination mask</td></tr>
+<tr><td>Fnd_Log_IncludeSeverity</td><td>False</td><td>Include severity column</td></tr>
+<tr><td>Fnd_Log_IncludeMachineName</td><td>False</td><td>Include source machine column</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>Fnd_Log_Config(New object(Fnd_Log_IncludeSeverity; True))
+Fnd_Log_Config(New object(Fnd_Log_UseBatch; False))  // Immediate writing</code></pre>
+<p>When enabled, machine name follows the timestamp; severity follows machine name (or timestamp if machine name is disabled). Severity values render as <code>-</code>, <code>info</code>, <code>warn</code>, <code>error</code>. <code>Fnd_Log_Extension</code> remains the run-wide extension preference.</p>
+<h2 id="flush-close-and-workers">Flush, close and workers</h2>
+<p>Logging is best effort under 4D's worker execution model. Queueing an entry or flush does not guarantee completion before termination. Normal-operation tests verify routing and observed writes; they do not establish guaranteed delivery.</p>
+<p><code>Fnd_Log_Flush(label)</code> queues a flush for one log. With no argument it queues flushes for all registered logs. It returns before writing completes and is not a disk durability guarantee. <code>Fnd_Log_CloseLog</code> flushes and closes through the same owning workers. <code>Fnd_Log_OptionFlushNow</code> requests a flush after that entry.</p>
+<p>A dedicated worker isolates a busy log's queue. The logger names and registers it with <code>Fnd_Shell_ExcludeFromQuit</code>. Aliases of the same physical path share the first assigned writer, so a later declaration cannot move a file with queued writes. Server-file writers are allocated on the server; client paths are not sent there as filesystem targets. Dedicated workers do not imply CPU scheduling priority.</p>
+<p>Call <code>Fnd_Log_Shutdown</code> after producers have stopped, from outside any logging worker, before exiting a host that does not use Foundation's shell quit sequence. It stops the timer and queues a flush, close and stop on each local writer, then returns without waiting. The shell quit sequence does this automatically. A client queues a server flush but does not stop server workers used by other clients. Shutdown is best effort: a stalled worker cannot hold up the caller. Application exit may interrupt unfinished writes, and late record-failure fallbacks to another worker may be lost. Stop producers first and do not resume logging during exit. Completion markers are used only by tests, with bounded waits.</p>
+<h2 id="fndlog-table">Fnd_Log table</h2>
+<p>Requesting <code>Fnd_Log_ToRecord</code> requires the host <code>Fnd_Log</code> table. There is no separate record-enable switch. <code>Fnd_Log_CreateTable</code> is an explicit developer operation; the logger never calls it. Run it on an interpreted local host or interpreted server, not from a remote client. Its result reports <code>success</code>, <code>created</code>, <code>restartRequired</code> and <code>message</code>. Restart/reopen after creating the schema.</p>
+<p>The schema matches the separate component: UUID primary key <code>ID</code>, <code>logTimestamp</code>, <code>logLabel</code>, <code>logLevel</code>, <code>destinationMask</code>, <code>processName</code>, <code>message</code>, <code>renderedLine</code>. <code>message</code> holds the first column (up to 255 characters); <code>renderedLine</code> retains the complete formatted entry. Record data access uses ORDA.</p>
+<p>Missing/incompatible schema or failed record saves preserve the original entry and failure explanation in the server's default file, or the standalone default file. An interpreted host also receives <code>Fnd_Gen_BugAlert</code> with corrective guidance. Compiled hosts receive no dialog. Fallback handling bypasses record dispatch.</p>
+<h2 id="class-examples">Class examples</h2>
+<pre><code>$logger_o:=cs.fnd.log.new()
+$logger_o.enable(True)
+$logger_o.useLog(&quot;Audit&quot;)
+$logger_o.addEntry(&quot;Import completed&quot;)
+$logger_o.addEntry(New collection(&quot;Import&quot;; &quot;customers.csv&quot;); \
+    New object(Fnd_Log_OptionLevel; Fnd_Log_LevelInfo))
+$logger_o.flush()</code></pre>
+<p>The class accepts text or a collection of text columns, plus an options object. Its other functions are <code>config</code>, <code>declareLog</code>, <code>label</code>, <code>overrideLevel</code>, <code>closeLog</code>, <code>createTable</code>, <code>shutdown</code>, <code>extension</code>, <code>fileName</code>, <code>path</code>, <code>maximumSize</code> and <code>info</code>.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

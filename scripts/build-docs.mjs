@@ -55,7 +55,7 @@ const docsSource = findDocsSource();
 const srcDocs = docsSource.dir;
 const siteDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'foundation');
 const outDir = join(siteDir, 'docs');
-const commit = execFileSync('git', ['-C', f6, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim();
+const commit = execFileSync('git', ['-C', f6, 'describe', '--tags', '--long', '--always'], { encoding: 'utf8' }).trim();
 let version = 'unknown version';
 try { version = JSON.parse(readFileSync(join(f6, 'Resources', 'InfoPlist.json'), 'utf8').replace(/^\uFEFF/, '')).CFBundleShortVersionString || version; } catch { /* leave */ }
 

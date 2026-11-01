@@ -27,7 +27,7 @@ if (!f6) {
 }
 const siteDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'foundation');
 const outDir = join(siteDir, 'guide');
-const commit = execFileSync('git', ['-C', f6, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim();
+const commit = execFileSync('git', ['-C', f6, 'describe', '--tags', '--long', '--always'], { encoding: 'utf8' }).trim();
 let version = 'unknown version';
 try { version = JSON.parse(readFileSync(join(f6, 'Resources', 'InfoPlist.json'), 'utf8').replace(/^\uFEFF/, '')).CFBundleShortVersionString || version; } catch { /* leave */ }
 const readText = (p) => readFileSync(p, 'utf8').replace(/\r\n?/g, '\n');
@@ -40,7 +40,7 @@ const chapterFiles = readdirSync(join(f6, 'Guide')).filter((f) => /^\d\d-.*\.md$
 const sources = [
 	{ path: 'Guide/README.md', out: 'index.html', label: null },
 	...chapterFiles.map((f) => ({ path: `Guide/${f}`, out: pageName(f), label: null })),
-	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '10. Upgrading from Foundation 5' },
+	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '11. Upgrading from Foundation 5' },
 	{ path: 'CONTRIBUTING.md', out: 'contributing.html', label: 'Contributing' },
 ];
 for (const s of sources) {
