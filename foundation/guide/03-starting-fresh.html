@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Starting fresh · Foundation Guide</title>
+<meta name="description" content="3. Starting fresh, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html" aria-current="page">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>3. Starting fresh</h1>
+
+<p>Read this chapter whatever your experience with 4D. It takes a new project from nothing to a running application in the Custom Menus environment, with Foundation doing the work.</p>
+<h2 id="install-the-component">Install the component</h2>
+<ol>
+<li>Create a new 4D project (or open the one you are adding Foundation to) and quit 4D.</li>
+<li>Download Foundation for your 4D version from <a href="https://foundation.open4dshell.com">https://foundation.open4dshell.com</a> and put <code>Foundation.4dbase</code> in the project's <code>Components/</code> folder, beside <code>Project/</code>. Where your 4D's dependency manager supports GitHub components, you will be able to declare it in <code>Project/Sources/dependencies.json</code> instead, once a GitHub release carries it.</li>
+<li>Reopen the project. The Foundation methods appear in the Explorer under Component Methods.</li>
+</ol>
+<p>To develop with Foundation's source instead, put the Foundation project folder itself in <code>Components/</code> or declare its path; it then runs interpreted inside your host.</p>
+<h2 id="call-foundation-from-the-database-methods">Call Foundation from the database methods</h2>
+<pre><code>// On Startup, and On Server Startup
+Fnd_Shell_OnStartup
+
+// On Exit, and On Server Shutdown
+Fnd_Shell_OnExit</code></pre>
+<p>That is the whole integration. <code>Fnd_Shell_OnStartup</code> initialises every module, creates any missing <code>Fnd_Host_*</code> method, runs your <code>Fnd_Hook_Shell_*</code> hooks, shows the startup dialog, opens the navigation palette and installs the menu bar. <code>Fnd_Shell_OnExit</code> saves the lists, asks every Foundation window to close and waits for them.</p>
+<h2 id="tables-and-fields">Tables and fields</h2>
+<p>Create your tables and fields as you normally would. Three things decide what Foundation shows:</p>
+<ul>
+<li>A table or field marked <strong>invisible</strong> in the structure never appears: not in the navigation palette, the Open Table dialog, Find, Sort or a list window.</li>
+<li>A field's <strong>indexed</strong> and <strong>searchable/sortable</strong> attributes decide whether Find and Sort offer it, unless a hook says otherwise.</li>
+<li>The <strong>first field</strong> of each table is taken to be its key, a long integer, for sequence numbers and record identity. If yours is elsewhere, say so in <code>Fnd_Hook_SqNo_SetIDField</code> (an example is in <code>HooksAndHosts/</code>).</li>
+</ul>
+<p>Foundation's optional tables (<code>Fnd_Pref</code> for shared preferences, <code>Fnd_Log</code> for a log kept in the data, <code>Fnd_Reg</code> for licensing, <code>Fnd_List</code> and <code>Fnd_SqNo</code>) are created on request: in an interpreted host the module offers to add the table the first time it is needed; compiled, it reports and does without.</p>
+<h2 id="forms">Forms</h2>
+<p>Each visible table needs two forms:</p>
+<ul>
+<li>an <strong>input form</strong>, the record window, named <code>Input</code>, inheriting <code>Fnd_IO_InputForm</code>. Chapter 6 is the full guide. The short version: copy <code>Forms/Fnd_IO_InputTemplate</code> from Foundation Product Sales, enable the eight events it lists, call <code>Fnd_IO_InputFormMethod</code> from the form method, replace the sample fields with yours.</li>
+<li>a <strong>list window</strong>, which in Foundation 6 is not a classic output form at all. <code>Fnd_Out</code> draws a listbox over an entity selection and lets the user choose, order, size and style the columns; the developer decides which fields are offered. Chapter 5 is the guide. The classic <code>Output</code> form inheriting <code>Fnd_Tlbr_Toolbar</code>, with Header, Detail and Footer lines, still works for a host that has one, and is what the 5.4 manual describes.</li>
+</ul>
+<h2 id="tell-foundation-about-your-database">Tell Foundation about your database</h2>
+<p><code>Fnd_Hook_Shell_Setup</code> is called once at startup. Give it at least the four database facts:</p>
+<pre><code>Fnd_Gen_SetDatabaseInfo(&quot;DatabaseName&quot;; &quot;A Great Database&quot;)
+Fnd_Gen_SetDatabaseInfo(&quot;DatabaseVersion&quot;; &quot;1.0 beta 1&quot;)
+Fnd_Gen_SetDatabaseInfo(&quot;DatabaseCopyright&quot;; &quot;Copyright © 2026 Your Company&quot;)
+Fnd_Gen_SetDatabaseInfo(&quot;DatabaseURL&quot;; &quot;https://www.example.com/&quot;)</code></pre>
+<p>The name appears in the startup dialog, the About box and the About menu item, and names the local preferences file, so give every database its own. The version and copyright are for display. The URL is clickable in the About box. <code>Fnd_Art_VersionHistory</code> takes HTML for the About box's history tab; FPS shows the form.</p>
+<p>If you localise, read the four values with <code>Fnd_Loc_GetString</code> from your own lists, as FPS does.</p>
+<h2 id="run-it">Run it</h2>
+<p>Choose <strong>Test Application</strong>. Foundation starts, shows the startup dialog with your database name, and opens the <strong>navigation palette</strong> with a button per visible table. Click one: a list window opens on the table. Double-click a row: the record opens in its input form. From the Select menu, <strong>Find</strong> lists the table's searchable fields and <strong>Sort</strong> its sortable ones. The About menu item shows your name, version, copyright and URL.</p>
+<p>To return to Design while interpreted, choose Quit: Foundation treats an interpreted host as a developer at work, resets itself and hands you back to Design instead of quitting 4D. Hold Option (Alt) while choosing Quit to quit for real. Compiled, Quit quits.</p>
+<h2 id="customise-it">Customise it</h2>
+<p>Everything you saw is a default a hook can change:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Want to</th><th scope="col">Hook</th></tr></thead>
+<tbody>
+<tr><td>choose which tables and buttons the palette shows</td><td><code>Fnd_Hook_Shell_NavPalette</code>, with <code>Fnd_Nav_AddButtonTable</code> and <code>Fnd_Nav_AddButtonMethod</code></td></tr>
+<tr><td>offer a different set of Find or Sort fields</td><td><code>Fnd_Hook_Shell_Find</code>, <code>Fnd_Hook_Shell_Sort</code></td></tr>
+<tr><td>control which tables Open Table lists</td><td><code>Fnd_Hook_Shell_OpenTable</code></td></tr>
+<tr><td>set a window's title, type or buttons before it opens</td><td><code>Fnd_Hook_IO_DisplayRecord</code>, <code>Fnd_Hook_IO_DisplayTable</code></td></tr>
+<tr><td>validate before Save, or react to any input-form button</td><td><code>Fnd_Hook_IO_InputFormButton</code></td></tr>
+<tr><td>set defaults on a new record, or veto a delete</td><td><code>Fnd_Hook_Rec_New</code>, <code>Fnd_Hook_Rec_Delete</code></td></tr>
+<tr><td>style list rows, or give them a context menu</td><td><code>Fnd_Hook_Out_RowStyle</code>, <code>Fnd_Hook_Out_ContextMenu</code></td></tr>
+<tr><td>run your own startup code, initialise plugins</td><td><code>Fnd_Hook_Shell_Startup</code>, <code>Fnd_Hook_Shell_InitPlugins</code></td></tr>
+<tr><td>rename tables and fields for the user</td><td><code>Fnd_Hook_Shell_VirtualStructure</code></td></tr>
+<tr><td>add your own menu items to the Special Functions dialog</td><td><code>Fnd_Hook_Shell_SpecialFunctions</code> with <code>Fnd_List_AddItem</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Chapter 4 describes each one. Every hook in FPS is a working example to copy.</p>
+<h2 id="compile">Compile</h2>
+<p>Compile early and often. Foundation's typing methods (<code>Compiler_Fnd_*</code>) travel with the component; your own hooks and host methods are typed by the <code>Compiler_*</code> methods Foundation generated with them, so keep the pair together if you ever delete one.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

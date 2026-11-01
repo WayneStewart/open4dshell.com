@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundation — upgrade notes for host databases · Foundation Guide</title>
+<meta name="description" content="Foundation — upgrade notes for host databases, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html" aria-current="page">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Foundation — upgrade notes for host databases</h1>
+
+<p>Written 2026-08-13 for the host developer, not the Foundation developer. The companion to <code>README.md</code>: that document says how a release is cut, this one says what a host must do to accept it.</p>
+<p>One section per release, newest first. Every entry answers three things — what changed, what the host sees, what the host must do. An entry that needs no action still belongs here, because &quot;we checked and it is safe&quot; is worth recording once rather than re-deriving per site.</p>
+<h2 id="what-counts-as-a-breaking-change">What counts as a breaking change</h2>
+<p>Foundation's contract with a host is <strong>every method carrying <code>&quot;shared&quot;:true</code></strong>, at the signature it had when the host was written. Not the methods a header comment calls public — hosts invoke Foundation by name at runtime through <code>EXECUTE METHOD</code>, stored method names and object-method wiring, and none of that is visible to any static reading of the component.</p>
+<p>That distinction is not theoretical. In March 2026 the surface was narrowed from 697 to 451 shared methods on the strength of <code>Access:</code> header comments, shipped as Foundation 20 LTS, and broke host databases in the field. The rule since: a shared method is contract until runtime evidence from real hosts says otherwise, and removal is staged deprecation, never a flag flip.</p>
+<p>So the categories below are ordered by what they cost a host:</p>
+<ul>
+<li><strong>Breaking</strong> — a call that compiles today stops working. The host must act.</li>
+<li><strong>Behavioural</strong> — the call still works and returns a different answer. The host must decide whether it cares.</li>
+<li><strong>Additive</strong> — new capability. Nothing to do.</li>
+</ul>
+<hr>
+<h2 id="600-beta1-private-beta-1-november-2026">6.0.0-beta.1 (private beta, 1 November 2026)</h2>
+<p>First release under the new versioning scheme. The component is built for four targets from one commit, all carrying the same version: <code>20L</code> (4D 20 LTS), <code>20R</code> (4D 20 R), <code>21L</code> (4D 21 LTS) and <code>21R</code> (4D 21 R). The floor is <strong>4D 20 LTS</strong>; 4D 19 is no longer supported. Foundation is released under the MIT licence.</p>
+<h3 id="breaking">Breaking</h3>
+<p><strong>Foundation's own licensing is gone.</strong> <code>Fnd_Gen_Reg_*</code>, <code>Fnd_Gen_RemoveActivationCode</code>, their two forms and <code>Resources/Fnd_License.xml</code> are removed (FND-61, FND-62). A host that called <code>Fnd_Gen_RemoveActivationCode</code>, or had a menu item for it, must remove the call. Fnd_Reg, which licenses the <em>host's</em> application, is unaffected.</p>
+<p><strong><code>cs.fnd.wnd</code> is no longer published.</strong> The unfinished class is now <code>_wnd_sketch</code>. A host that referred to <code>cs.fnd.wnd</code> must remove the reference; nothing worked through it (FND-44).</p>
+<p><strong>The standalone Logging component is removed</strong>, and Foundation records through <code>Fnd_Log</code> (FND-96). A host that installed <code>Logging.4dbase</code> only for Foundation's sake can remove it; a host that calls the Logging component's own methods keeps its copy.</p>
+<p><strong>German's language code is <code>DE</code>, not <code>GR</code>.</strong> <code>Fnd_Loc_LanguageCode</code> returns <code>DE</code>. A host with its own <code>_GR</code> lists for German renames them <code>_DE</code>.</p>
+<h3 id="behavioural">Behavioural</h3>
+<p><strong>Fnd_Reg offers to create <code>[Fnd_Reg]</code>.</strong> A host that uses Fnd_Reg without a <code>[Fnd_Reg]</code> table no longer aborts. In an interpreted host during development, Fnd_Reg asks whether to create the table, then asks for a restart; a compiled host gets a report. Either way Fnd_Reg stays inactive for the session. Hosts with the table already in place need do nothing (FND-85). <code>Fnd_Reg_Init</code> is not part of the published API: do not call it from a host.</p>
+<p><strong>Fnd_Reg registration fixes</strong> (FND-87, FND-90, FND-93, FND-94). Duplicate records are resolved rather than aborting; days remaining honour a demo period set before the demo starts; the registration dialog is not shown once registered; and a tampered record reports Expired on the call that detects it. Hosts need do nothing.</p>
+<p><strong><code>Fnd_Loc</code> names a missing <code>Fnd_Host_ListToArray</code>.</strong> A host without the hook now gets one report naming it, instead of empty strings (FND-39). Hosts that have the hook see no change.</p>
+<p><strong>Fnd_Dlg keeps its state in objects.</strong> The module's process and interprocess variables (<code>Fnd_Dlg_Text1_t</code>, <code>&lt;&gt;Fnd_Dlg_ProgFrom_i</code> and the rest) are gone, replaced by <code>Fnd.Dlg</code> and <code>Storage.Fnd.Dlg</code>. Component variables were never visible to a host, so the public methods behave as before, with one exception: <code>Fnd_Dlg_SetIcon(0)</code>, or any value other than <code>Fnd_Dlg_WarnIcon</code> and <code>Fnd_Dlg_StopIcon</code>, now resets the next alert to the Note icon instead of leaving the previous alert's icon in place. A host that wants the old leak has none.</p>
+<p><strong>Development history in method headers is one line.</strong> Every modification line dated 2026-08-01 to 2026-11-01 reads &quot;Prepare Foundation 6 release&quot;; earlier lines are unchanged. Nothing to do; it is why a diff against Foundation 5 headers looks shorter than the code change.</p>
+<h3 id="additive">Additive</h3>
+<ul>
+<li><strong><code>Fnd_Reg_CreateTable</code></strong> is new and shared, for creating the <code>[Fnd_Reg]</code> table by hand in an interpreted host.</li>
+<li><strong><code>Fnd_Art_VersionHistory</code></strong> is new. A host can pass release notes (styled text, newest first) to show on the About box's About tab; without them the area is hidden. The generic About box is now tabbed (About / Foundation / Foundation Licence), resizable, and credits Dave Batton and Walt Nelson (FND-59).</li>
+<li><strong><code>Fnd_VS_zProbeHostLists</code></strong> is published, as a diagnostic: it reports which route to a host's choice lists works in that database.</li>
+</ul>
+<hr>
+<h2 id="also-in-600-beta1-since-31aa2c9-2026-08-12">Also in 6.0.0-beta.1 — since <code>31aa2c9</code> (2026-08-12)</h2>
+<p>Nineteen commits on <code>basis-for-change</code>. The <code>Fnd_Text</code> and <code>Fnd_Data</code> modules were modernised: hand-written MD5 and Base64 replaced by the 4D commands that now do the same work, and module state moved out of interprocess variables into <code>Storage</code>.</p>
+<h3 id="breaking-2">Breaking</h3>
+<p><strong>63 methods are no longer callable from a host.</strong> They carried <code>&quot;shared&quot;:true</code> and no longer do — 33 <code>Compiler_Fnd_*</code> methods and 30 <code>Fnd_*_Init</code> methods, including <code>Fnd_Init</code> itself. The shared surface went from 698 to 633.</p>
+<p><strong>This is deliberate and settled</strong> (Wayne, 2026-08-13). Neither family is part of the published API: <code>Compiler_Fnd_*</code> methods are declaration scaffolding a host has no reason to name, and <code>Fnd_*_Init</code> is called by every public method in its module on entry — and has been since 2004 — so a host calling one was calling it a second time for no effect.</p>
+<p>Note that the change is not merely documentary. The <code>%attributes</code> flag is what 4D checks when a host resolves a name, so the same edit that corrected the claim also withdrew the method.</p>
+<p>A host that calls any <code>Fnd_*_Init</code> directly will therefore fail at that call. This is not hypothetical: <code>Foundation-Product-Sales</code>, the reference host, calls <code>Fnd_Wnd_Init</code> from a form object method (<code>Forms/_Matrix_Testing/ObjectMethods/Button.4dm</code>, line 1).</p>
+<p><strong>What to do.</strong> Nothing, if the host only calls public <code>Fnd_&lt;Module&gt;_&lt;Verb&gt;</code> methods — every one of those kept its flag, verified method by method. If the host calls an <code>Init</code> or a <code>Compiler_Fnd_*</code> method directly, delete the call rather than replacing it; there is nothing to replace it with, and nothing was relying on it.</p>
+<p><strong>Three MD5 helpers were removed</strong>, having been <code>shared:true</code>: <code>Fnd_Text_TextToMD5_Bits32Add</code>, <code>Fnd_Text_TextToMD5_Bits32Left</code>, <code>Fnd_Text_TextToMD5_Calc</code>. They were the internals of the hand-written digest and are meaningless outside it. A host calling them was reaching into the implementation; use <code>Fnd_Text_TextToMD5</code>.</p>
+<p><strong>Interprocess and process variables are gone, not renamed.</strong> A host reading any of these by name finds nothing:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Was</th><th scope="col">Now</th></tr></thead>
+<tbody>
+<tr><td><code>&lt;&gt;Fnd_Data_Initialized_b</code></td><td><code>Storage.Fnd.Data.Initialized</code></td></tr>
+<tr><td><code>&lt;&gt;Fnd_Data_NameTitles_at</code></td><td><code>Storage.Fnd.Data.nameTitles</code> (collection)</td></tr>
+<tr><td><code>&lt;&gt;Fnd_Data_UserBypassKey_i</code></td><td><code>Storage.Fnd.Data.bypassKey</code></td></tr>
+<tr><td><code>Fnd_Data_FormatError_i</code></td><td><code>Fnd.Data.formatError</code> (per-process object)</td></tr>
+<tr><td><code>&lt;&gt;Fnd_Text_Initialized_b</code></td><td><code>Storage.Fnd.Text.Initialized</code></td></tr>
+<tr><td><code>&lt;&gt;Fnd_Text_CapExcludeWords_at</code></td><td><code>Storage.Fnd.Text.capExcludeWords</code> (collection)</td></tr>
+<tr><td><code>&lt;&gt;Fnd_Text_Text2MD5_SINUS_ai</code></td><td>removed — the sine table of the digest it served</td></tr>
+<tr><td><code>Fnd_Text_TempBlob_blob</code></td><td>removed — the Base64 methods use a local blob</td></tr>
+</tbody>
+</table>
+</div>
+<p>Prefer the accessor to the storage location in every case: <code>Fnd_Data_FormatError</code> rather than reading <code>Fnd.Data.formatError</code>, <code>Fnd_Text_CapitalizeExclude</code> rather than touching the collection. The accessors are shared and stable; the layout behind them is not contract.</p>
+<p><strong>Two flags were re-spelled</strong> to the US spelling the rest of the component uses. <code>&lt;&gt;Fnd_Tbl_Initialised_b</code> is now <code>&lt;&gt;Fnd_Tbl_Initialized_b</code>, and the per-process <code>Fnd.List.Initialised</code> is now <code>Fnd.List.Initialized</code>. This matters beyond tidiness: <code>Fnd_Gen_Reset</code> builds the flag name as a formula and swallows the error when it misses, so a module spelling its own flag the British way was silently never reset.</p>
+<h3 id="behavioural-2">Behavioural</h3>
+<p><strong><code>Fnd_Data_FormatWebURL</code> now defaults to <code>https</code>.</strong> A URL arriving with no scheme was given <code>http://</code>; it is now given <code>https://</code>. Trailing-slash normalisation, which previously matched only <code>http://</code>, now applies to both. A URL that already carries a scheme is untouched, as before.</p>
+<pre><code>Fnd_Data_FormatWebURL(&quot;example.com&quot;)                    // https://example.com/
+Fnd_Data_FormatWebURL(&quot;example.com&quot;; {scheme: &quot;http&quot;})  // http://example.com/</code></pre>
+<p>Stored values are not migrated. A host that formatted URLs on entry has <code>http://</code> in its data and will produce <code>https://</code> from now on, so the same input will not match a stored value. Pass <code>{scheme: &quot;http&quot;}</code> to keep the old behaviour at a particular call site.</p>
+<p><strong><code>Fnd_Text_EncodeBase64Blob</code> no longer prefixes a carriage return.</strong> The old encoder wrote a line break before the first character and sized the blob to allow for it, so <code>Fnd_Text_TextToBase64(&quot;Man&quot;)</code> returned five characters where four were asked for. It now returns <code>TWFu</code>.</p>
+<p>This reaches <code>Fnd_Text_TextToBase64</code> too, and it changes the output every existing caller has been receiving. Anything that stored, transmitted or compared those values holds strings with a leading carriage return that fresh encodings will no longer match. The 76-character wrapping is unchanged — <code>BASE64 ENCODE</code> does not wrap, so the wrapper still does.</p>
+<h3 id="verified-unchanged">Verified unchanged</h3>
+<p>Recorded because they are the changes most likely to be feared:</p>
+<ul>
+<li><strong>MD5 digests are identical.</strong> <code>Fnd_Text_TextToMD5</code> delegates to <code>Generate digest</code>, and the default charset stays ISO-8859-1 — what the hand-written digest always used — so stored digests still match. <code>Test_Fnd_Text</code> asserts the RFC 1321 vectors and the accented-text digest against the default.</li>
+<li><strong>Base64 decoding still tolerates whitespace.</strong> The old decoder ignored line breaks incidentally; <code>BASE64 DECODE</code> is stricter, so <code>Fnd_Text_DecodeBase64Blob</code> now strips CR, LF, tab and space before calling it. Same result, deliberately.</li>
+<li><strong><code>Fnd_Text_Wrap</code> output is unchanged.</strong> Rewritten to walk an index rather than delete the front of the text on each pass — a performance change only, pinned by boundary tests including exactly-at-limit, over-limit with no space, and an embedded carriage return.</li>
+</ul>
+<h3 id="additive-2">Additive</h3>
+<ul>
+<li><strong><code>cs.fnd.text</code></strong> — the <code>Fnd_Text</code> module through the class store: <code>cs.fnd.text.new().capitalize(&quot;hello world&quot;)</code>. Every function delegates to the method of the same behaviour, so the two routes cannot diverge. 4D 20 LTS has no singletons, hence <code>new()</code>.</li>
+<li><strong><code>Fnd_Text_MD5Encoding</code></strong> — reads the default MD5 charset, or sets it for every later call.</li>
+<li><strong>New trailing optional parameters</strong>, all backwards compatible: <code>Fnd_Data_FormatWebURL</code> and <code>Fnd_Data_FormatText</code> take an options object; <code>Fnd_Data_EmailAddressError</code> takes a pointer for the description; <code>Fnd_Text_TextToMD5</code> takes a charset.</li>
+<li><strong><code>Fnd_Data_FormatPhone</code> and <code>Fnd_Data_FormatPostalCode</code></strong> widened their style parameter from <code>Integer</code> to <code>Variant</code> and dispatch on <code>Value type</code>, so an options object is accepted where the legacy style constant still works.</li>
+<li><strong><code>Fnd_Data_ParseName</code></strong> now also returns an object, in addition to the output pointers it has always filled.</li>
+</ul>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

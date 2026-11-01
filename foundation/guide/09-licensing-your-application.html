@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9. Licensing your application · Foundation Guide</title>
+<meta name="description" content="9. Licensing your application, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html" aria-current="page">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>9. Licensing your application</h1>
+
+<p><code>Fnd_Reg</code> lets your application run as a time-limited demo and unlock with a code you issue. It licenses <strong>your</strong> application; Foundation itself has no licence enforcement and never did since version 6. <code>Fnd_RegG</code> is the other half, the code generator, which you run in your own customer database.</p>
+<p>Keep the limits in mind before you build on it: the codes are MD5-based and the generator ships in Foundation's source, so the scheme deters casual copying and nothing more. Its strength is your <strong>secret key</strong>, which never leaves your code.</p>
+<h2 id="the-table">The table</h2>
+<p><code>Fnd_Reg</code> keeps its state in a <code>[Fnd_Reg]</code> table in your structure:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Field</th><th scope="col">Type</th></tr></thead>
+<tbody>
+<tr><td><code>ID</code></td><td>Longint, indexed</td></tr>
+<tr><td><code>Feature_Code</code></td><td>Alpha 80, indexed</td></tr>
+<tr><td><code>Demo_Days</code></td><td>Integer</td></tr>
+<tr><td><code>Demo_Start_Date</code></td><td>Date</td></tr>
+<tr><td><code>Unlock_Code</code></td><td>Alpha 40</td></tr>
+<tr><td><code>User_Name</code></td><td>Alpha 80</td></tr>
+<tr><td><code>License_Info</code></td><td>Alpha 80</td></tr>
+<tr><td><code>Checksum</code></td><td>Alpha 40</td></tr>
+</tbody>
+</table>
+</div>
+<p>The first <code>Fnd_Reg</code> call of a session checks for it. In an interpreted host Foundation offers to create it and asks you to restart; compiled, it reports and <code>Fnd_Reg</code> stays inactive, with no alert and no abort. Because the demo start date and the unlock code are records, a new data file starts a new demo.</p>
+<h2 id="quick-start">Quick start</h2>
+<p>In <code>Fnd_Hook_Shell_Startup</code>, or anywhere that runs once after <code>Fnd_Shell_OnStartup</code>:</p>
+<pre><code>Fnd_Reg_SetSecretKey(&quot;a phrase nobody will guess&quot;)
+Fnd_Reg_DemoDays(&quot;&quot;; 30)
+Fnd_Reg_BuyNowURL(&quot;&quot;; &quot;https://www.example.com/buy&quot;)
+Fnd_Reg_DemoDialog</code></pre>
+<ul>
+<li><code>Fnd_Reg_SetSecretKey</code> must come before any other <code>Fnd_Reg</code> call; there is no getter.</li>
+<li><code>Fnd_Reg_DemoDays</code> sets the trial length for a feature code; the empty code is the application as a whole. It does not move an expiry already set.</li>
+<li><code>Fnd_Reg_DemoDialog</code> shows the demo dialog unless the feature is registered: days remaining, Buy Now, Register, Continue.</li>
+<li><code>Fnd_Reg_StartDemoPeriod</code> begins the clock. Call it at launch, or at the first real use (the first record saved); it does nothing the second time.</li>
+</ul>
+<p>Then ask the state wherever a feature is gated:</p>
+<pre><code>Case of
+	: (Fnd_Reg_RegistrationState=Fnd_Reg_Registered)
+		// full function
+	: (Fnd_Reg_RegistrationState=Fnd_Reg_Demo)
+		// trial, days remaining in Fnd_Reg_GetDemoDaysRemaining
+	: (Fnd_Reg_RegistrationState=Fnd_Reg_Expired)
+		Fnd_Reg_DemoDialog
+	: (Fnd_Reg_RegistrationState=Fnd_Reg_PreDemo)
+		// never started
+End case</code></pre>
+<h2 id="issuing-a-code">Issuing a code</h2>
+<p>In your customer database, with the same secret key:</p>
+<pre><code>$code_t:=Fnd_RegG_GenerateUnlockCode(&quot;a phrase nobody will guess&quot;; &quot;&quot;; [Customer]Company)</code></pre>
+<p>The customer enters that code and the same name in the Registration dialog (<code>Fnd_Reg_RegistrationDialog</code>), or your code calls <code>Fnd_Reg_Register(featureCode; unlockCode; userName)</code>, which sets <code>OK</code> to 1 on success. The optional fourth argument of the generator, licence information (a seat count, an edition), is bound into the code and readable afterwards with <code>Fnd_Reg_GetLicenseInfo</code>.</p>
+<h2 id="feature-codes">Feature codes</h2>
+<p>Every <code>Fnd_Reg</code> call takes an optional feature code, so one application can license several features separately, each with its own demo period, message and Buy Now URL: <code>Fnd_Reg_FeatureName(&quot;REPORTS&quot;; &quot;Reporting module&quot;)</code>, <code>Fnd_Reg_DemoMessage(&quot;REPORTS&quot;; &quot;…&quot;)</code>. The empty code is the application.</p>
+<h2 id="dialogs">Dialogs</h2>
+<p>The demo and registration dialogs are Foundation's, localised through <code>Fnd_Loc</code>, and show your <code>DatabaseName</code>. <code>Fnd_Reg_Reset(featureCode)</code> clears a feature's registration and demo start for testing.</p>
+<h2 id="testing">Testing</h2>
+<p><code>AgentNotes</code> in the development repository carries a 127-assertion test of the module as run before release; the useful fact from it for a host is that the <code>[Fnd_Reg]</code> table must exist when 4D starts, so a table created by <code>Fnd_Reg_CreateTable</code> needs a restart before the first real run.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

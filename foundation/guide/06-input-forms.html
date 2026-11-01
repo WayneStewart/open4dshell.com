@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a Foundation input form · Foundation Guide</title>
+<meta name="description" content="Building a Foundation input form, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html" aria-current="page">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Building a Foundation input form</h1>
+
+<p>How a host database gives one of its tables a data-entry form that Foundation drives: navigation between records, the Save and Cancel paths, record I/O and window handling all come from <code>Fnd_IO_InputForm</code>; you draw the fields and wire the related tables. The worked example is the demo database, Foundation Product Sales: an <code>Invoices</code> record (table 6) with its <code>Contacts</code> parent (table 4) and its <code>LineItems</code> children (table 7).</p>
+<p>Written for a developer or an AI agent building such forms from a catalog. Everything an agent cannot see at compile time is marked <strong>not checked by the compiler</strong>.</p>
+<h2 id="1-where-the-form-lives-and-why">1. Where the form lives, and why</h2>
+<p>Input forms are <strong>table forms</strong>: <code>Project/Sources/TableForms/&lt;n&gt;/Input/</code>, where <code>&lt;n&gt;</code> is the table <em>number</em> from <code>catalog.4DCatalog</code> (<code>&lt;table name=&quot;Invoices&quot; … id=&quot;6&quot;&gt;</code>), not its name. <code>Fnd_IO_InputForm</code> is table-bound and a project form under <code>Forms/</code> cannot inherit from it. This is deliberate, not legacy drift.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">File</th><th scope="col">Holds</th></tr></thead>
+<tbody>
+<tr><td><code>TableForms/6/Input/form.4DForm</code></td><td>the form, JSON</td></tr>
+<tr><td><code>TableForms/6/Input/method.4dm</code></td><td>the form method, a thin shell</td></tr>
+<tr><td><code>TableForms/6/Input/ObjectMethods/&lt;objectName&gt;.4dm</code></td><td>one per clickable object; the file name <strong>is</strong> the binding</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-classic-for-the-forms-own-record-orda-for-everything-else">2. Classic for the form's own record, ORDA for everything else</h2>
+<p>A form opened by <code>MODIFY SELECTION</code> or <code>MODIFY RECORD</code> has no <code>Form</code> object and no entity. The current record is what exists, so the form reads its own record classically (<code>[Invoices]InvoiceNumber</code>) and reaches related data with ORDA (<code>ds.LineItems.query(…)</code>). That is the rule here, narrower than &quot;never mix&quot;: <strong>classic for this record, ORDA for the rest.</strong></p>
+<p>State the form and its objects share lives on a <strong>process object named for your project</strong> (<code>FPS</code>, <code>ACME</code>), created by an init method that <code>Fnd_Hook_IO_DisplayRecord</code> and <code>Fnd_Hook_IO_DisplayTable</code> both call, so it exists before any form opens; application-wide state goes in <code>Storage.&lt;Project&gt;</code>. Property names derive mechanically from the table name: drop underscores, lower-case the first letter, capitalise what followed each underscore, then one of four suffixes that match the listbox properties they bind:</p>
+<pre><code>FPS.lineItemSelection       // the entity selection
+FPS.lineItemCurrItem        // currentItemSource
+FPS.lineItemCurrItemPos     // currentItemPositionSource
+FPS.lineItemHighlighted     // selectedItemsSource</code></pre>
+<p>No abbreviations: the full table name needs no registry.</p>
+<h2 id="3-making-one">3. Making one</h2>
+<p>Foundation Product Sales carries <code>Forms/Fnd_IO_InputTemplate</code>, a copy-from template whose help object lists these same steps; copy its objects into the new form, then delete the help object. Its &quot;window size 450 x 300&quot; step is historical: use automatic sizing with the margins below.</p>
+<ol>
+<li><strong>Read the catalog first.</strong> Take the table's fields in order with their ids and types, its N-to-1 relations (they become parent fields) and its 1-to-N relations (they become child listboxes). Every <code>dataSource</code> token is <code>[Table:tableId]Field:fieldId</code>; a wrong id binds silently to the wrong thing, so derive them, never guess.</li>
+<li><strong>Write <code>form.4DForm</code>.</strong> Three settings are load-bearing: <code>&quot;inheritedForm&quot;: &quot;Fnd_IO_InputForm&quot;</code>; all <strong>eight</strong> events (<code>onLoad</code>, <code>onValidate</code>, <code>onActivate</code>, <code>onCloseBox</code>, <code>onOutsideCall</code>, <code>onClick</code>, <code>onDataChange</code>, <code>onResize</code>); <code>formSizeAnchor</code> on the tallest object, with a 20-pixel right margin and a <strong>60-pixel bottom margin</strong> so the inherited Save button clears. <strong><code>pages[0]</code> is the background layer drawn on every page, not a page</strong>: a form whose only entry is <code>pages[0]</code> crashes 4D on open with no message, and a compile check cannot see it. Every form needs <code>pages[1]</code>; put a tabless form's content there and leave <code>pages[0]</code> empty.</li>
+<li><strong>Lay out the record's own fields</strong>, one label and one field per row. Name objects <code>Table-Field</code> with a hyphen (<code>Invoices-InvoiceNumber</code>, <code>Label-InvoiceNumber</code>); the template's <code>Fnd_IO_Field1…n</code> names are a starting point, nothing depends on them. Hyphens are fine; full stops are not (object notation reads them as property access). Labels use 4D's reference syntax (<code>&lt;?3&gt;:</code> is field 3 of the current table, <code>&lt;?[4]&gt;:</code> is table 4's name) so they follow renames. A single-line input at the form font is <strong>17 pixels</strong> high, not the 21 the editor draws. <code>ID</code> is shown, non-enterable: these are developer forms.</li>
+<li><strong>A parent field per foreign key</strong> (section 4).</li>
+<li><strong>A tab control with one listbox per child table</strong>, every column non-enterable (section 5).</li>
+<li><strong>The form method</strong> (below) and <strong>one object method per parent field and per listbox</strong>.</li>
+<li><strong>Compile-check, then open it.</strong> The compiler validates code, never form JSON; a malformed form compiles clean and fails on open. Say so when you report.</li>
+</ol>
+<h3 id="the-form-method">The form method</h3>
+<pre><code>var $formEvent_o : Object:=FORM Event
+
+Case of
+	: ($formEvent_o.code=On Load)
+		SET WINDOW TITLE(Gen_WindowTitle)
+		Fnd_Menu_Window_Add  // Update the Window menu
+		RELATE ONE([Invoices]Contact_ID)  // One per foreign key: loads the parent display field
+		FPS.lineItemSelection:=ds.LineItems.query(&quot;invoice.Invoice_ID = :1&quot;; [Invoices]Invoice_ID).orderBy(&quot;LineItem_ID asc&quot;)
+End case
+
+Fnd_IO_InputFormMethod</code></pre>
+<p><code>Fnd_IO_InputFormMethod</code> must be <strong>called</strong>; where it sits does not matter. A <code>Case of</code> on the event code is right here because the form subscribes to eight events. Load every child selection at <code>On Load</code>: entity selections are lazy and the listbox pages through them, so an unbounded child costs nothing. Per-table setup that must happen <strong>before the window opens</strong> (window type, title, nav buttons) goes in the <code>Case of</code> on the table pointer in <code>Fnd_Hook_IO_DisplayRecord</code>, as FPS does for <code>[CompanyInfo]</code> and <code>[Invoices]</code>.</p>
+<p><strong>Window titles come from <code>Gen_WindowTitle</code></strong> (in <code>HooksAndHosts/</code>), never from a hand-built string: it reads the current table and record, says &quot;Invoices: New Record&quot; for a new one, and clips long titles. Copy it and <code>Gen_GetFieldPtr_Name</code> into your project; the commented branches show the per-table override.</p>
+<h2 id="4-navigating-up-the-parent-as-a-display-field">4. Navigating up: the parent as a display field</h2>
+<p>Do not show the raw foreign key. Bind the field to the <strong>parent's</strong> display field, <code>[Contacts:4]Company:4</code> rather than <code>[Invoices:6]Contact_ID:2</code>, with <code>enterable: false</code> and <code>focusable: false</code>. The form method's <code>RELATE ONE</code> loads it. The object method is one line:</p>
+<pre><code>Gen_IO_DisplayParent(-&gt;[Contacts]; -&gt;[Invoices]Contact_ID)</code></pre>
+<p><strong>Call the wrapper, never <code>Fnd_IO_DisplayRecord</code> directly.</strong> <code>Fnd_IO_DisplayRecord</code> unloads the related record on return, so a direct call leaves the field <strong>blank the moment the user clicks it</strong>: the parent window opens correctly and the field empties behind it. The wrapper (in <code>HooksAndHosts/</code>) is <code>RELATE ONE</code>, display, <code>RELATE ONE</code> again, and exists because the two statements are only correct together.</p>
+<p><strong>One click or two buttons.</strong> A field carrying the method is enough where the parent is set elsewhere and only ever looked at. Where the user must also <em>change</em> or <em>create</em> the parent, the field carries no method and <strong>Display</strong> and <strong>Choose</strong> buttons sit beside it: one handler cannot serve three intentions. FPS's <code>Invoices</code> form shows the full set as View, Clear, Select and New Contact buttons, with <code>SelectContact</code> as the chooser form.</p>
+<p><strong>Read-only fields must not look alike.</strong> Inert (<code>ID</code>, a total): <code>sunken</code>, stroke <code>#696969</code>, fill transparent. Clickable (a parent field with no buttons): <code>raised</code>, stroke <code>#000000</code>. Raised is a button affordance, so <strong>raised only where the object has a method.</strong></p>
+<h2 id="5-navigating-down-one-listbox-per-child-on-tabs">5. Navigating down: one listbox per child, on tabs</h2>
+<p>More than one child table goes on a <strong>tab control on page 0</strong>, each listbox on its own page. Page 0 objects appear on every page, so the record's own fields stay visible while the tabs swap the child list; a fourth child needs no redesign. The listbox and its tab control both take <code>sizingX: grow</code>, <code>sizingY: grow</code>, or the listbox leaves a gap on resize.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Property</th><th scope="col">Value</th></tr></thead>
+<tbody>
+<tr><td><code>listboxType</code></td><td><code>collection</code></td></tr>
+<tr><td><code>headerHeight</code></td><td><code>1em</code></td></tr>
+<tr><td><code>scrollbarHorizontal</code> / <code>scrollbarVertical</code></td><td><code>automatic</code></td></tr>
+<tr><td><code>alternateFill</code></td><td><code>#EDF3FE</code></td></tr>
+<tr><td><code>horizontalLineStroke</code> / <code>verticalLineStroke</code></td><td><code>transparent</code></td></tr>
+<tr><td>column width</td><td>120, adjusted to the data; differ by 50, never by 1</td></tr>
+<tr><td><strong><code>enterable</code></strong></td><td><strong><code>false</code> on every column</strong></td></tr>
+<tr><td><code>textAlign</code></td><td><code>center</code> on numeric columns, header included; <code>left</code> on text</td></tr>
+</tbody>
+</table>
+</div>
+<p>Columns traverse the wired relations and are named for what they show: <code>This.product.ProductName</code> in a column called <code>product</code>, not <code>Product_ID</code>. Where a column needs composing, put an <code>exposed Function</code> on the entity class and bind <code>This.lineText()</code>; never assemble the string in the form and never parse one back.</p>
+<p><strong>Non-enterable is not cosmetic.</strong> A listbox bound to an entity selection writes through: an enterable <code>This.product.ProductName</code> would rename a Product from the Invoices form.</p>
+<p>Bind <code>currentItemSource</code>, <code>currentItemPositionSource</code> and <code>selectedItemsSource</code> to the process-object properties of section 2; the double-click handler needs the position:</p>
+<pre><code>var $formEvent_o : Object:=FORM Event
+
+Case of
+	: ($formEvent_o.code=On Double Clicked)
+		USE ENTITY SELECTION(FPS.lineItemSelection)
+		GOTO SELECTED RECORD([LineItems]; FPS.lineItemCurrItemPos)
+		Fnd_IO_DisplayRecord(-&gt;[LineItems])
+End case</code></pre>
+<p>Three lines, and the two worlds meet once. <code>Fnd_IO_DisplayRecord</code> is right here: a child row has no parent display field to restore.</p>
+<p><strong>The self-join hazard.</strong> A child listbox on the <em>same</em> table as the form gets no double-click handler: <code>USE ENTITY SELECTION</code> plus <code>GOTO SELECTED RECORD</code> would move the current record of the table the open form is bound to and discard the user's unsaved keystrokes. List the rows and leave navigation out.</p>
+<h2 id="6-validation-before-saving">6. Validation before saving</h2>
+<p>Pre-save checks go in <strong><code>Fnd_Hook_IO_InputFormButton</code></strong>. The Save button belongs to the inherited form, so there is no object method of yours to hold them. The hook receives the button name in lower case (<code>&quot;save&quot;</code>, <code>&quot;cancel&quot;</code>, <code>&quot;first&quot;</code>, …) and returns a Boolean; return <strong>False</strong> to stop the default action. Branch on <code>Fnd_Gen_CurrentTable</code>; on failure alert, <code>GOTO OBJECT</code> the offending field by the object name the <code>Table-Field</code> convention makes predictable, and return False.</p>
+<p>Watch the empty test on a text field: <code>If ([Contacts]EmailAddress=!00-00-00!)</code> compiles cleanly and throws &quot;A function was expected&quot; at runtime. The test is <code>=&quot;&quot;</code>. This hook sees the UI only; a rule that must hold however a record is written belongs where every path passes.</p>
+<h2 id="7-building-more-than-two">7. Building more than two</h2>
+<p>Generate them from a table-and-relation spec rather than by hand, then sweep <strong>every</strong> emitted form for the invariants a compile check cannot see:</p>
+<ul>
+<li><code>pages</code> has at least two entries (section 3, step 2);</li>
+<li>every object method file is named exactly after its object;</li>
+<li>table and field ids match the catalog; relation names behind each column <code>dataSource</code> resolve; <code>enterable: false</code> on every column; eight events; <code>inheritedForm</code> set; tab-label count equals pages minus one; no duplicate object names; no orphan or missing object-method files.</li>
+</ul>
+<p>Two of these cost a 4D crash each before they were written down.</p>
+<h2 id="files-in-hooksandhosts">Files in <code>HooksAndHosts/</code></h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col"><code>Gen_IO_DisplayParent.4dm</code></th><th scope="col">the parent display wrapper, required</th></tr></thead>
+<tbody>
+<tr><td><code>Gen_WindowTitle.4dm</code>, <code>Gen_GetFieldPtr_Name.4dm</code></td><td>window titles, with the per-table override commented</td></tr>
+<tr><td><code>Fnd_Hook_SqNo_SetIDField.4dm</code></td><td>tells Foundation a table's key field when it is not the first</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>Gen_*</code> are host-side project methods, not Foundation's API; rename the prefix to your project's. Copy them into <code>Project/Sources/Methods/</code> and register them in <code>folders.json</code>.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

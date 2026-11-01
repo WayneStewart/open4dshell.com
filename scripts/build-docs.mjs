@@ -6,16 +6,21 @@
 //
 // Usage: node scripts/build-docs.mjs /path/to/f6
 //
-// Reads (never writes) <f6>/Documentation/Methods/*.md, Classes/*.md,
-// Foundation-History.json, <f6>/LICENSE and <f6>/PROVENANCE.md.
+// Reads (never writes) Methods/*.md, Classes/*.md and Foundation-History.json
+// from <f6>/Builds/Docs/Foundation-<version>/Documentation when that exists
+// (private methods already removed), else from <f6>/Documentation with a
+// warning; also <f6>/LICENSE and <f6>/PROVENANCE.md. The site frame is in
+// site-frame.mjs and the Markdown helpers in markdown.mjs.
 // Replaces everything under foundation/docs/ except
 // original/ and the hand-written docs.css. Output is deterministic: no timestamps; the f6 commit goes in
 // foundation/docs/DOCS_SOURCE. Plain Node, no dependencies, no JavaScript in
 // the generated pages.
 
-import { readFileSync, writeFileSync, readdirSync, rmSync, mkdirSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, rmSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { esc, frame, newsBox, supportBox } from './site-frame.mjs';
+import { unescapeMd, inline, blocks, cells } from './markdown.mjs';
 import { execFileSync } from 'node:child_process';
 
 const f6 = process.argv[2];
@@ -23,122 +28,43 @@ if (!f6) {
 	console.error('usage: node scripts/build-docs.mjs /path/to/f6');
 	process.exit(1);
 }
-const srcDocs = join(f6, 'Documentation');
+
+// Documentation input. A release build of the documentation, with private
+// methods already removed, lives at Builds/Docs/Foundation-<version>/Documentation;
+// use it when present (the version in Resources/InfoPlist.json if that folder
+// exists, otherwise the highest version found). Without one, fall back to the
+// working documentation in <f6>/Documentation, which includes private methods.
+function findDocsSource() {
+	const base = join(f6, 'Builds', 'Docs');
+	if (existsSync(base)) {
+		const found = readdirSync(base).filter((d) => d.startsWith('Foundation-') && existsSync(join(base, d, 'Documentation')));
+		if (found.length) {
+			let wanted = null;
+			try { wanted = JSON.parse(readFileSync(join(f6, 'Resources', 'InfoPlist.json'), 'utf8')).CFBundleShortVersionString; } catch { /* use the highest */ }
+			const pick = found.includes(`Foundation-${wanted}`)
+				? `Foundation-${wanted}`
+				: found.sort((a, b) => a.localeCompare(b, 'en', { numeric: true })).at(-1);
+			return { dir: join(base, pick, 'Documentation'), label: `Builds/Docs/${pick}/Documentation` };
+		}
+	}
+	console.warn('WARNING: no Builds/Docs/Foundation-<version>/Documentation in the Foundation checkout;\n' +
+		'falling back to <f6>/Documentation, which includes private methods. Do not publish this output.');
+	return { dir: join(f6, 'Documentation'), label: 'Documentation' };
+}
+const docsSource = findDocsSource();
+const srcDocs = docsSource.dir;
 const siteDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'foundation');
 const outDir = join(siteDir, 'docs');
 const commit = execFileSync('git', ['-C', f6, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim();
 
 // ---------------------------------------------------------------- text helpers
 
-const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const unescapeMd = (s) => s.replace(/\\([\\`*_{}\[\]()#+\-.!|<>~])/g, '$1');
 const readText = (p) => readFileSync(p, 'utf8').replace(/\r\n?/g, '\n');
 const byName = (a, b) => {
 	const x = a.toLowerCase(), y = b.toLowerCase();
 	return x < y ? -1 : x > y ? 1 : a < b ? -1 : a > b ? 1 : 0;
 };
 
-// Inline markdown: `code` spans and **bold**; everything else is text.
-// With opts.rich (used for PROVENANCE.md only) *italics* and bare email
-// addresses are rendered too; the method documentation never sets it.
-function inline(s, opts = {}) {
-	return s.split(/(`[^`]*`)/).map((part) => {
-		if (part.length > 1 && part.startsWith('`') && part.endsWith('`')) {
-			return `<code>${esc(part.slice(1, -1))}</code>`;
-		}
-		let t = esc(unescapeMd(part)).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-		if (opts.rich) {
-			t = t.replace(/\*([^*\s](?:[^*]*[^*\s])?)\*/g, '<em>$1</em>')
-				.replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, '<a href="mailto:$&">$&</a>');
-		}
-		return t;
-	}).join('');
-}
-
-// Block markdown: fenced code, ### headings, bullet lists, column-aligned
-// runs (kept as preformatted) and paragraphs. headingFor() renders a heading line.
-// With opts.rich (PROVENANCE.md only) numbered lists and pipe tables are
-// recognised as well, the column-aligned heuristic is off, and inline() runs rich.
-function blocks(lines, headingFor, opts = {}) {
-	const out = [];
-	const rich = !!opts.rich;
-	const inl = (s) => inline(s, opts);
-	let para = [], list = [], pre = [], olist = [], table = [];
-	const flush = () => {
-		if (para.length) out.push(`<p>${para.map(inl).join(' ')}</p>`);
-		if (list.length) out.push(`<ul>\n${list.map((l) => `<li>${inl(l)}</li>`).join('\n')}\n</ul>`);
-		if (olist.length) out.push(`<ol>\n${olist.map((l) => `<li>${inl(l)}</li>`).join('\n')}\n</ol>`);
-		if (pre.length) out.push(`<pre>${esc(pre.join('\n'))}</pre>`);
-		if (table.length) out.push(tableHtml(table, inl));
-		para = []; list = []; pre = []; olist = []; table = [];
-	};
-	for (let i = 0; i < lines.length; i++) {
-		const line = lines[i];
-		const fence = line.match(/^\s*```/);
-		if (fence) {
-			flush();
-			const code = [];
-			for (i++; i < lines.length && !/^\s*```/.test(lines[i]); i++) code.push(lines[i]);
-			out.push(`<pre><code>${esc(code.join('\n'))}</code></pre>`);
-			continue;
-		}
-		const h = line.match(/^(#{2,4})\s+(.*)$/);
-		if (h && headingFor) { flush(); out.push(headingFor(h[1].length, unescapeMd(h[2].trim()))); continue; }
-		if (/^\s*$/.test(line)) { flush(); continue; }
-		if (rich && /^\s*\|/.test(line)) {
-			if (!table.length) flush();
-			table.push(line);
-			continue;
-		}
-		const ol = rich ? line.match(/^\s?\d+\.\s+(.*)$/) : null;
-		if (ol) {
-			if (!olist.length) flush();
-			olist.push(ol[1]);
-			continue;
-		}
-		if (olist.length && /^\s{2,}\S/.test(line)) { olist[olist.length - 1] += ' ' + line.trim(); continue; }
-		const li = line.match(/^\s?[-*]\s+(.*)$/);
-		if (li) {
-			if (para.length || pre.length) flush();
-			list.push(li[1]);
-			continue;
-		}
-		if (list.length && /^\s{2,}\S/.test(line)) { list[list.length - 1] += ' ' + line.trim(); continue; }
-		// A line aligned in columns starts a preformatted run, which lasts to
-		// the next blank line. Other indented lines are wrapped prose.
-		if (pre.length || (!rich && /\S {3,}\S/.test(line))) {
-			if (para.length || list.length) flush();
-			pre.push(unescapeMd(line.replace(/^\s+/, '')));
-			continue;
-		}
-		if (list.length || olist.length || table.length) flush();
-		para.push(line.trim());
-	}
-	flush();
-	return out.join('\n');
-}
-
-// A pipe table as HTML: first row is the header, the separator row is dropped.
-// The wrapper lets a wide table scroll inside the panel on a narrow screen.
-function tableHtml(rows, inl) {
-	const parsed = rows.map(cells).filter((c) => !c.every((x) => /^:?-*:?$/.test(x)));
-	const [head, ...body] = parsed;
-	const tr = (c, tag) => `<tr>${c.map((x) => `<${tag}${tag === 'th' ? ' scope="col"' : ''}>${inl(x)}</${tag}>`).join('')}</tr>`;
-	return `<div class="table-wrap">
-<table class="provenance">
-<thead>${tr(head, 'th')}</thead>
-<tbody>
-${body.map((c) => tr(c, 'td')).join('\n')}
-</tbody>
-</table>
-</div>`;
-}
-
-// Split a markdown table row on unescaped pipes.
-function cells(row) {
-	const inner = row.trim().replace(/^\|/, '').replace(/\|$/, '');
-	return inner.split(/(?<!\\)\|/).map((c) => unescapeMd(c.trim()));
-}
 
 const DIRECTION = { '➡️': 'in', '⬅️': 'out', '↔️': 'in/out', '➡': 'in', '⬅': 'out', '↔': 'in/out' };
 
@@ -234,64 +160,6 @@ const history = JSON.parse(readText(join(srcDocs, 'Foundation-History.json')));
 
 // ---------------------------------------------------------------- page frame
 
-// The site frame shared by every page. `docs` pages add docs.css and mark the
-// Docs tab current; the Licence page marks its own tab. Links are root-relative.
-function frame({ title, description, sidebar, body, docs = false, current = 'docs' }) {
-	const tab = (href, label, key) =>
-		`\t\t<li><a href="${href}"${current === key ? ' aria-current="page"' : ''}>${label}</a></li>`;
-	return `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title>
-<meta name="description" content="${esc(description)}">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
-<link rel="stylesheet" href="/styles.css">${docs ? '\n<link rel="stylesheet" href="/docs/docs.css">' : ''}
-</head>
-<body>
-
-<header class="masthead">
-	<a class="wordmark" href="/">Foundation</a>
-	<span class="edition">6</span>
-</header>
-
-<nav class="tabs" aria-label="Site">
-	<ul>
-${tab('/', 'Home', 'home')}
-${tab('/start/', 'Getting started', 'start')}
-${tab('/docs/', 'Docs', 'docs')}
-${tab('/licence/', 'Licence', 'licence')}
-${tab('#contact', 'Contact', 'contact')}
-	</ul>
-</nav>
-
-<div class="frame">
-
-<aside class="sidebar">
-${sidebar}
-</aside>
-
-<main class="panel">
-
-${body}
-
-</main>
-
-</div>
-
-<footer class="colophon">
-	<p>Copyright &copy; 1993–2008 Dave Batton<br>
-	Copyright &copy; 2008–2026 Walt Nelson<br>
-	Copyright &copy; 2026 Wayne Stewart</p>
-	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
-	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
-</footer>
-
-</body>
-</html>
-`;
-}
 
 const page = (args) => frame({ ...args, docs: true, current: 'docs' });
 
@@ -532,7 +400,7 @@ mkdirSync(outDir, { recursive: true });
 for (const [name, html] of Object.entries(files)) writeFileSync(join(outDir, name), html);
 writeFileSync(join(outDir, 'DOCS_SOURCE'),
 	`Generated by scripts/build-docs.mjs from Foundation repository (f6) commit ${commit}\n` +
-	`Sources: Documentation/Methods, Documentation/Classes, Documentation/Foundation-History.json\n`);
+	`Sources: ${docsSource.label}/Methods, ${docsSource.label}/Classes, ${docsSource.label}/Foundation-History.json\n`);
 
 // ---------------------------------------------------------------- licence
 
@@ -550,17 +418,8 @@ copyFileSync(join(f6, 'PROVENANCE.md'), join(siteDir, 'PROVENANCE.md'));
 		title: 'Licence · Foundation',
 		description: 'The MIT licence under which Foundation is released, and the provenance of its title.',
 		current: 'licence',
-		sidebar: `\t<section class="box">
-		<h2>News</h2>
-		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
-		6.0.0-beta.1 opens as a private beta.</p>
-	</section>
-	<section class="box">
-		<h2>Support</h2>
-		<p><a href="https://github.com/open4dshell/Foundation-Shell/issues">Issues</a>
-		in Foundation-Shell (beta testers).</p>
-		<p>Email: see <a href="#contact">contact</a>.</p>
-	</section>`,
+		sidebar: `${newsBox}
+${supportBox}`,
 		body: `<h1>Licence</h1>
 
 <p>Foundation is released under the MIT licence. The text below is the

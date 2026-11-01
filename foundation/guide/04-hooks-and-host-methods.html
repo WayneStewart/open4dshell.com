@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4. Hooks and host methods · Foundation Guide</title>
+<meta name="description" content="4. Hooks and host methods, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html" aria-current="page">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>4. Hooks and host methods</h1>
+
+<p>A <strong>hook</strong> is a method in your database that Foundation calls at a defined moment, by name, with <code>EXECUTE METHOD</code>. If the method is absent Foundation does something sensible. If present, it must be <strong>shared</strong> (the &quot;Shared by components and host database&quot; attribute), or the call fails. Foundation creates each hook it needs on first startup in an interpreted host, with the expected parameters and a comment saying what it is for, so the easiest way to get one is to let Foundation make it and then fill it in. Foundation Product Sales has a working copy of every one.</p>
+<p>A <strong>host method</strong> (<code>Fnd_Host_*</code>) is the same mechanism used the other way: a small method Foundation needs you to have because a component cannot do the thing itself. Foundation creates these too and you normally never edit them.</p>
+<h2 id="shell">Shell</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Hook</th><th scope="col">Called</th><th scope="col">Use it to</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Hook_Shell_Setup</code></td><td>once at startup, before anything is shown</td><td>set the database name, version, copyright and URL with <code>Fnd_Gen_SetDatabaseInfo</code>; the About box history with <code>Fnd_Art_VersionHistory</code></td></tr>
+<tr><td><code>Fnd_Hook_Shell_Startup</code></td><td>after setup, while the startup dialog shows</td><td>your own startup code: number formats, defaults, opening a first window</td></tr>
+<tr><td><code>Fnd_Hook_Shell_InitPlugins</code></td><td>at startup, single-user and server</td><td>activate plugins</td></tr>
+<tr><td><code>Fnd_Hook_Shell_VirtualStructure</code></td><td>at startup</td><td>give tables and fields the names the user should see (<code>Fnd_VS_*</code>)</td></tr>
+<tr><td><code>Fnd_Hook_Shell_NavPalette</code></td><td>each time the palette is built</td><td><code>Fnd_Nav_AddButtonTable(-&gt;[Table]; …)</code> per table, <code>Fnd_Nav_AddButtonMethod(&quot;method&quot;; &quot;label&quot;; …)</code> per command, then <code>Fnd_Nav_Display</code></td></tr>
+<tr><td><code>Fnd_Hook_Shell_OpenTable</code></td><td>before the Open Table dialog</td><td>restrict or reorder the tables offered</td></tr>
+<tr><td><code>Fnd_Hook_Shell_Find</code></td><td>before the Find dialog</td><td><code>Fnd_Find_AddItem</code> the fields to offer for the current table</td></tr>
+<tr><td><code>Fnd_Hook_Shell_Sort</code></td><td>before the Sort dialog</td><td>the fields to offer, likewise</td></tr>
+<tr><td><code>Fnd_Hook_Shell_QueryEditor</code></td><td>from the Query Editor command</td><td>display a query editor for the current table; Foundation first syncs the list window's selection</td></tr>
+<tr><td><code>Fnd_Hook_Shell_ModifyRecords</code></td><td>from the Modify Records command</td><td>show your own batch-change dialog</td></tr>
+<tr><td><code>Fnd_Hook_Shell_Print</code></td><td>from Print</td><td>your own print dialog or report</td></tr>
+<tr><td><code>Fnd_Hook_Shell_Administration</code></td><td>from Administration</td><td>your own admin dialog</td></tr>
+<tr><td><code>Fnd_Hook_Shell_SpecialFunctions</code></td><td>from Special Functions</td><td><code>Fnd_List_AddItem</code> your own commands to its list</td></tr>
+<tr><td><code>Fnd_Hook_Shell_Quit</code></td><td>just before <code>QUIT 4D</code></td><td>last-moment cleanup; return True to allow the quit, False to abort it</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="records-and-record-windows">Records and record windows</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Hook</th><th scope="col">Called</th><th scope="col">Use it to</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Hook_IO_DisplayTable</code></td><td>just before a list window opens</td><td>window title, type and size for a table (<code>Fnd_Wnd_*</code>), your process object's init</td></tr>
+<tr><td><code>Fnd_Hook_IO_DisplayRecord</code></td><td>just before a record window opens</td><td>the same for a record: FPS sets &quot;Invoice: 1234&quot; here, and a fixed window for <code>[CompanyInfo]</code></td></tr>
+<tr><td><code>Fnd_Hook_IO_InputFormMethod</code></td><td>on every event of every input form</td><td>behaviour common to all your record windows</td></tr>
+<tr><td><code>Fnd_Hook_IO_OutputFormMethod</code></td><td>on every event of a classic output form</td><td>likewise for classic list forms</td></tr>
+<tr><td><code>Fnd_Hook_IO_InputFormButton</code></td><td>when an inherited button (Save, Cancel, First, Next…) is clicked, with the button name in lower case</td><td>validate before Save; return <strong>False</strong> to stop the default action</td></tr>
+<tr><td><code>Fnd_Hook_IO_SelectionChanged</code></td><td>whenever Foundation changes the current table's selection (find, sort, show all)</td><td>react to the new selection; <code>Fnd_Gen_CurrentTable</code> says which table</td></tr>
+<tr><td><code>Fnd_Hook_Rec_New</code></td><td>when the user asks for a new record, with a pointer to the table</td><td>return True to let Foundation create it, False to handle it yourself</td></tr>
+<tr><td><code>Fnd_Hook_Rec_Delete</code></td><td>before Foundation deletes; the <code>UserSet</code> set holds the records</td><td>return True for Foundation's warning and delete, False to handle it yourself</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="lists-menus-output">Lists, menus, output</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Hook</th><th scope="col">Called</th><th scope="col">Use it to</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Hook_List_SetEditableLists</code></td><td>at startup</td><td>name the 4D lists the user may edit in the list editor</td></tr>
+<tr><td><code>Fnd_Hook_Menu_UpdateMenuBar</code></td><td>each time Foundation rebuilds the menu bar</td><td>enable, disable or add menu items</td></tr>
+<tr><td><code>Fnd_Hook_Out_RowStyle</code></td><td>for every row a list window draws</td><td>return font, colour and style for the row from its record (chapter 5)</td></tr>
+<tr><td><code>Fnd_Hook_Out_ContextMenu</code></td><td>on a right-click in a list window</td><td>add your own items to the menu (chapter 5)</td></tr>
+<tr><td><code>Fnd_Hook_SqNo_SetIDField</code></td><td>when sequence numbers need a table's key field</td><td>return a pointer to it when it is not the first field</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="host-methods">Host methods</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Method</th><th scope="col">Foundation uses it to</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Host_ExecuteFormula</code></td><td>run a formula text in the host's context (the <code>OK</code> variable, your methods)</td></tr>
+<tr><td><code>Fnd_Host_GetIntegerValue</code></td><td>read a host variable by name</td></tr>
+<tr><td><code>Fnd_Host_GetFormProperties</code></td><td>read the size of one of your forms</td></tr>
+<tr><td><code>Fnd_Host_ListToArray</code>, <code>Fnd_Host_ArrayToList</code>, <code>Fnd_Host_SaveList</code></td><td>read, write and persist the host's 4D lists: localisation, editable lists, preferences</td></tr>
+<tr><td><code>Fnd_Host_GetPictureFromLibrary</code></td><td>fetch a picture from the host's library by name</td></tr>
+<tr><td><code>Fnd_Host_IO_DisplayDialog</code></td><td>show one of the host's dialogs</td></tr>
+<tr><td><code>Fnd_Host_Tlbr_ButtonClck</code>, <code>Fnd_Host_Tlbr_SetBtnPict</code>, <code>Fnd_Host_Tlbr_SetMessage</code></td><td>toolbar callbacks for the classic output form</td></tr>
+</tbody>
+</table>
+</div>
+<p>Each of these is a few lines. If you delete one, delete its <code>Compiler_Fnd_Host_*</code> method too; Foundation recreates both.</p>
+<h2 id="when-a-hooks-signature-changes">When a hook's signature changes</h2>
+<p>Foundation compares an existing hook's declared parameters with the ones it now passes (interpreted hosts only) and reports a mismatch at startup rather than rewriting your code. <code>Release/UPGRADING.md</code> lists every such change by release.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "releases": [
+    {
+      "version": "6.0.0-beta.1",
+      "date": "2026-11-01",
+      "commit": "",
+      "artefacts": [
+        { "target": "20L", "label": "4D 20 LTS", "dmg": "", "zip": "", "sha256dmg": "", "sha256zip": "" },
+        { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "", "zip": "", "sha256dmg": "", "sha256zip": "" },
+        { "target": "21L", "label": "4D 21 LTS", "dmg": "", "zip": "", "sha256dmg": "", "sha256zip": "" },
+        { "target": "21R", "label": "4D 21 R", "dmg": "", "zip": "", "sha256dmg": "", "sha256zip": "" }
+      ],
+      "checksums": ""
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7. Preferences · Foundation Guide</title>
+<meta name="description" content="7. Preferences, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html" aria-current="page">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>7. Preferences</h1>
+
+<p><code>Fnd_Pref</code> stores named values for you and for Foundation itself: window positions, &quot;open at startup&quot; switches, the user's list layouts, anything your application wants remembered. You read and write them by name and type; where they live is a matter of scope.</p>
+<h2 id="reading-and-writing">Reading and writing</h2>
+<pre><code>If (Fnd_Pref_GetBoolean(&quot;Display Invoices at Startup&quot;; True))
+	Fnd_IO_DisplayTable(-&gt;[Invoices])
+End if
+
+Fnd_Pref_SetBoolean(&quot;Display Invoices at Startup&quot;; False)</code></pre>
+<p>One getter and one setter per type: <code>Fnd_Pref_GetText</code>, <code>GetBoolean</code>, <code>GetLongInt</code>, <code>GetReal</code>, <code>GetObject</code> and their <code>Set</code> partners. A getter takes an optional default, returned when the item does not exist, and stored at that moment so the next read finds it. <code>Fnd_Pref_Remove(name)</code> deletes an item.</p>
+<p>Window positions have their own pair: <code>Fnd_Pref_SetWindow</code> saves the current window's coordinates under the process name, or a name you give, and <code>Fnd_Pref_GetWindow(name; -&gt;left; -&gt;top; -&gt;right; -&gt;bottom)</code> reads them back. Foundation's own windows use these through <code>Fnd_Wnd_*</code>, so a window you open through <code>Fnd_Wnd_OpenWindow</code> is remembered without any call of yours.</p>
+<p>Prefix your names with something of your own (<code>&quot;ACME: Default Branch&quot;</code>); Foundation's are prefixed with the module (<code>&quot;Fnd_Nav: Open at Startup&quot;</code>).</p>
+<h2 id="scope">Scope</h2>
+<p>The optional last parameter of every getter and setter says where an item lives:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Scope</th><th scope="col">Where</th><th scope="col">Follows</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Pref_Local</code> (the default)</td><td>a JSON file on this machine, <code>&lt;DatabaseName&gt;.json</code> in the user's 4D preferences folder</td><td>the machine and OS user</td></tr>
+<tr><td><code>Fnd_Pref_Server</code></td><td>the <code>[Fnd_Pref]</code> table in the data file, under the user's name</td><td>the user, from machine to machine</td></tr>
+<tr><td><code>Fnd_Pref_Shared</code></td><td>the <code>[Fnd_Pref]</code> table, under the shared owner</td><td>everyone</td></tr>
+<tr><td>a text label</td><td>the <code>[Fnd_Pref]</code> table, under that owner</td><td>whatever you mean by the label</td></tr>
+</tbody>
+</table>
+</div>
+<p>The file is named after the <code>DatabaseName</code> you set in <code>Fnd_Hook_Shell_Setup</code>, which is why every database needs its own name. Earlier versions wrote a property list (<code>.plist</code> on macOS, <code>.xml</code> on Windows); the first run of Foundation 6 reads it once and writes the JSON file beside it.</p>
+<p>Server and shared items need the <strong><code>[Fnd_Pref]</code> table</strong> (<code>ID</code>, <code>Owner</code>, <code>Name</code>, <code>Type</code>, <code>Value</code>). <code>Fnd_Pref_Init</code> builds it the first time preferences are used where the host allows a table to be created, which means an interpreted project; a compiled host must carry the table in its structure. Foundation Product Sales has it, so copying the structure from there is the quickest route.</p>
+<p>The user name that server scope files under is <code>Fnd_Pref_UserName</code>, which you may set at login if your application has its own users.</p>
+<h2 id="the-preferences-window">The Preferences window</h2>
+<p><code>Fnd_Pref_Display(&quot;Preferences&quot;)</code> opens your own Preferences form in a new process, with the menu bar and the Window menu handled. FPS has a <code>Preferences</code> project form: three checkboxes bound to interprocess variables, loaded in <code>On Load</code> from <code>Fnd_Pref_GetBoolean</code> and written back from the object methods with <code>Fnd_Pref_SetBoolean</code>. Copy the form and replace the checkboxes.</p>
+<h2 id="the-prefs-explorer">The Prefs Explorer</h2>
+<p><code>Fnd_Pref_Editor</code> opens a developer's view of the store: every local item, its type and value, editable in place and deletable, with a checkbox to show the server-scoped items too. FPS puts it on the navigation palette as &quot;Prefs Explorer&quot; through <code>Fnd_Nav_AddButtonMethod</code>. Useful while developing; leave it off the palette for users.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

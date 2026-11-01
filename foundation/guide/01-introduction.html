@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1. Introduction · Foundation Guide</title>
+<meta name="description" content="1. Introduction, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html" aria-current="page">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>1. Introduction</h1>
+
+<p>Foundation is a <em>shell</em> for 4D: a component that supplies everything an application needs around its data, so that you supply only the tables, fields and forms. Install it, add your structure, and the Custom Menus environment has menus, windows, a navigation palette, list and record windows, Find and Sort dialogs, preferences, an About box, logging, passwords and sequence numbers.</p>
+<h2 id="history">History</h2>
+<p>Dave Batton created Foundation in 1993 and rewrote it as Foundation 4 for 4D 2003; the earliest method headers in this repository carry his name and that date. Walt Nelson and Nelson Consulting, Inc. acquired it in 2008 and produced Foundation 5 for 4D v11, with a group of community developers whose names are in the About box. Wayne Stewart has maintained it since the 64-bit era and was assigned it by deed on 11 September 2026 for release as open source. Foundation 6 is released under the MIT licence. <a href="/licence/#provenance">PROVENANCE.md</a> has the chain of title.</p>
+<h2 id="what-foundation-is-not">What Foundation is not</h2>
+<p>It is not a tutorial on 4D. It assumes you can create tables, fields and forms, write a form method, and find your way around the Custom Menus environment. Once running you will want a working knowledge of pointers, which much of Foundation's generic code relies on, and of processes, since every window runs in its own.</p>
+<p>It is not a data file. Any data file works; Foundation keeps nothing in it except the tables you choose to give it (<code>Fnd_Log</code>, <code>Fnd_Pref</code>, <code>Fnd_Reg</code>, <code>Fnd_SqNo</code>, <code>Fnd_List</code>, all optional).</p>
+<p>It will not be everything to everyone. It is a lot of 4D code, written to be read, pulled apart and overridden through its hooks.</p>
+<h2 id="requirements">Requirements</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">4D</th><th scope="col"><strong>20 LTS or later</strong>: 20 LTS, 20 R, 21 LTS and 21 R each have a build of the component. 4D 19 and earlier are not supported.</th></tr></thead>
+<tbody>
+<tr><td>Platform</td><td>macOS (notarised DMG) and Windows (ZIP of the same component).</td></tr>
+<tr><td>Mode</td><td>4D single-user, 4D Server with remote clients, and built applications. Compile before you deliver: Foundation behaves differently interpreted, on the assumption that an interpreted host is a developer at work.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="support">Support</h2>
+<p>Problems and questions go to GitHub Issues. During the beta that is the Foundation Product Sales repository; from 1 December 2026 the Foundation repository itself. Say which 4D version and which Foundation build you are using.</p>
+<p>The method reference is generated from the headers in the source and published at <a href="https://foundation.open4dshell.com/docs/">https://foundation.open4dshell.com/docs/</a>, with a history of every module and the acknowledgements.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

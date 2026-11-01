@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2. How Foundation works · Foundation Guide</title>
+<meta name="description" content="2. How Foundation works, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html" aria-current="page">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>2. How Foundation works</h1>
+
+<h2 id="component-and-host">Component and host</h2>
+<p>Foundation is a 4D <strong>component</strong>: a project with methods, forms, resources and no tables, loaded by the database that contains your tables, which Foundation calls the <strong>host</strong>. The component cannot see your tables, forms or lists directly. Everything it does with them goes through pointers you pass and through methods you supply in the host:</p>
+<ul>
+<li><strong><code>Fnd_Host_*</code></strong>, eleven methods the host <strong>must</strong> have, because a component cannot do these things itself: run a formula in the host (<code>Fnd_Host_ExecuteFormula</code>), read and write the host's lists (<code>Fnd_Host_ListToArray</code>, <code>Fnd_Host_ArrayToList</code>, <code>Fnd_Host_SaveList</code>), read a form's size, fetch a picture from the host's library, and a few toolbar callbacks. Foundation creates any that are missing the first time it starts in an interpreted host, and reports what it made.</li>
+<li><strong><code>Fnd_Hook_*</code></strong>, twenty-seven methods the host <strong>may</strong> have. Foundation calls each at a defined moment and does something sensible when it is absent. Your customisation lives in them: the database name, the navigation palette, which fields the Find dialog offers, what happens before a record is deleted.</li>
+</ul>
+<p>Chapter 4 lists every one of them.</p>
+<h2 id="modules">Modules</h2>
+<p>Methods are grouped by prefix: <code>Fnd_Dlg_Alert</code>, <code>Fnd_Pref_GetText</code>, <code>Fnd_Wnd_OpenWindow</code>. The module is the unit of documentation and of history. <code>Fnd_Gen</code> is required by everything; <code>Fnd_Shell</code> is the application shell that <code>Fnd_Shell_OnStartup</code> brings up; the rest are used as needed. Each module has an <code>_Init</code> method that runs once per process and an <code>_Info</code> method that answers <code>&quot;version&quot;</code> and <code>&quot;name&quot;</code>.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Module</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Gen</code></td><td>initialisation, database info, strings, utilities</td></tr>
+<tr><td><code>Fnd_Shell</code></td><td>startup, quit, the menu bar, the standard dialogs (Find, Sort, Open Table, Administration, Special Functions)</td></tr>
+<tr><td><code>Fnd_Menu</code>, <code>Fnd_Tlbr</code>, <code>Fnd_Bttn</code></td><td>menus, toolbars, button pictures</td></tr>
+<tr><td><code>Fnd_Nav</code></td><td>the navigation palette</td></tr>
+<tr><td><code>Fnd_IO</code>, <code>Fnd_Rec</code></td><td>record windows, record navigation, new and delete</td></tr>
+<tr><td><code>Fnd_Out</code></td><td>list windows: columns, layouts, View Options, row styles</td></tr>
+<tr><td><code>Fnd_Find</code>, <code>Fnd_Sort</code>, <code>Fnd_List</code></td><td>Find and Sort dialogs, editable lists</td></tr>
+<tr><td><code>Fnd_Wnd</code></td><td>window opening, positions, the Window menu</td></tr>
+<tr><td><code>Fnd_Pref</code>, <code>Fnd_Loc</code>, <code>Fnd_VS</code></td><td>preferences, localisation, virtual structure (renaming tables and fields for the user)</td></tr>
+<tr><td><code>Fnd_Dlg</code>, <code>Fnd_Msg</code>, <code>Fnd_Art</code></td><td>alerts and confirms, progress messages, About box and startup dialog</td></tr>
+<tr><td><code>Fnd_Log</code>, <code>Fnd_Pswd</code>, <code>Fnd_SqNo</code>, <code>Fnd_Date</code>, <code>Fnd_Text</code></td><td>logging, passwords, sequence numbers, dates, text</td></tr>
+<tr><td><code>Fnd_Reg</code>, <code>Fnd_RegG</code></td><td>licensing <em>your</em> application (optional), and generating its unlock codes</td></tr>
+<tr><td><code>Fnd_FCS</code></td><td>build-time tooling; not used at runtime</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="names">Names</h2>
+<p>Every Foundation object begins with <code>Fnd_</code>. Never name anything of your own <code>Fnd_*</code> except the hooks and host methods, whose names Foundation expects. Foundation's own variables end in a type suffix (<code>_t</code>, <code>_i</code>, <code>_b</code>, <code>_ptr</code>, <code>_pic</code>), a convention you will meet in every header and may adopt or not.</p>
+<p>Exposed names are in US spelling (<code>Fnd_Gen_Initialized</code>); the code is American by birth and names are matched by machines.</p>
+<h2 id="windows-and-processes">Windows and processes</h2>
+<p>Each table opens in its own list window and each record in its own window, each in its own process. The Window menu lists them. Opening is always through <code>Fnd_Wnd_*</code> and <code>Fnd_IO_*</code>, never <code>Open window</code> by hand, so that positions are remembered, the menu bar is installed and the quit sequence can close them. <code>Fnd_Shell_OnExit</code> asks every Foundation window to close and waits up to thirty seconds for them.</p>
+<h2 id="state">State</h2>
+<p>Foundation 6 is removing its interprocess variables. Module state lives in objects: per process in <code>Fnd.&lt;Module&gt;</code>, shared across processes in <code>Storage.Fnd.&lt;Module&gt;</code>. From the host you see neither; you see methods. Where you need something to persist, use preferences (chapter 7).</p>
+<h2 id="localisation">Localisation</h2>
+<p>No user-visible string is hard-coded. <code>Fnd_Loc_GetString(&quot;Fnd_Gen&quot;; &quot;Stop&quot;)</code> looks up the label <code>Stop</code> in the list <code>Fnd_Gen</code>, then the translation at the same position in <code>Fnd_Gen_EN</code>, <code>Fnd_Gen_FR</code> or whichever language is current. Your own strings work the same way: a key list and one list per language in the host, read through <code>Fnd_Host_ListToArray</code>. Foundation Product Sales ships <code>Loc_General</code>, <code>Loc_General_EN</code> and <code>Loc_General_FR</code>. Foundation itself carries English and French (eighteen list pairs). Chapter 8 covers adding a language.</p>
+<h2 id="compiled-and-interpreted">Compiled and interpreted</h2>
+<p>Foundation assumes an <strong>interpreted</strong> host is being developed and a <strong>compiled</strong> one is being used. Interpreted, it creates missing host methods and offers to create its optional tables, keeps developer menus visible, and treats Quit as &quot;return to Design&quot;. Compiled, it reports instead of asking, and Quit quits. Test compiled before you ship.</p>
+<h2 id="the-demo">The demo</h2>
+<p>Foundation Product Sales is a complete host: four tables, every hook and host method, input forms, list windows, toolbars, two languages and an About box. When this guide says &quot;see FPS&quot;, that is where to look.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

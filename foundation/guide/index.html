@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundation 6 Developer Guide · Foundation Guide</title>
+<meta name="description" content="Foundation 6 Developer Guide, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/" aria-current="page">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Foundation 6 Developer Guide</h1>
+
+<p>How to build a database on Foundation, the open-source application shell component for 4D. This replaces the first forty pages of the Foundation 5.4 <em>Developer Reference Manual</em> (2011); the per-method reference that made up the rest of that book is now generated from the method headers and published at <a href="https://foundation.open4dshell.com/docs/">https://foundation.open4dshell.com/docs/</a>. The guide is written in plain Markdown so that the web site can render it as its own section, separate from that reference.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Chapter</th><th scope="col">Status</th></tr></thead>
+<tbody>
+<tr><td><a href="/guide/01-introduction.html">1. Introduction</a> — what Foundation is and is not, history, requirements, support</td><td>written</td></tr>
+<tr><td><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a> — component and host, modules, hooks, state, localisation, compiled versus interpreted</td><td>written</td></tr>
+<tr><td><a href="/guide/03-starting-fresh.html">3. Starting fresh</a> — install, the database methods, tables and fields, forms, <code>Fnd_Hook_Shell_Setup</code>, first run</td><td>written</td></tr>
+<tr><td><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a> — every <code>Fnd_Hook_*</code> and <code>Fnd_Host_*</code>, what it is for</td><td>written</td></tr>
+<tr><td><a href="/guide/05-list-windows.html">5. List windows</a> — <code>Fnd_Out</code>: the list form, columns, layouts, View Options, row styles, context menu</td><td>written</td></tr>
+<tr><td><a href="/guide/06-input-forms.html">6. Input forms</a> — building a data-entry form on <code>Fnd_IO_InputForm</code>, parents and children</td><td>written</td></tr>
+<tr><td><a href="/guide/07-preferences.html">7. Preferences</a> — <code>Fnd_Pref</code>, scopes, the Prefs Explorer</td><td>written</td></tr>
+<tr><td><a href="/guide/08-localisation.html">8. Localisation</a> — <code>Fnd_Loc</code>, the list triples, adding a language</td><td>written</td></tr>
+<tr><td><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a> — <code>Fnd_Reg</code> and <code>Fnd_RegG</code></td><td>written</td></tr>
+<tr><td>10. Upgrading from Foundation 5</td><td>see <a href="/guide/upgrading.html">Release/UPGRADING.md</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Conventions for anyone changing Foundation itself are in <a href="/guide/contributing.html">CONTRIBUTING.md</a>. The worked example throughout is <strong>Foundation Product Sales</strong>, the demo database: <a href="https://github.com/open4dshell/Foundation-Product-Sales">https://github.com/open4dshell/Foundation-Product-Sales</a>.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

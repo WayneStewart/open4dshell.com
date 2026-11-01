@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8. Localisation · Foundation Guide</title>
+<meta name="description" content="8. Localisation, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html" aria-current="page">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>8. Localisation</h1>
+
+<p>Nothing the user sees in Foundation is hard-coded. Every menu, button, label and message is looked up at run time in a pair of 4D lists, so the same component runs in English or French and can run in any language a host adds. Your own strings use the same mechanism.</p>
+<h2 id="how-a-string-is-found">How a string is found</h2>
+<pre><code>$label_t:=Fnd_Loc_GetString(&quot;Fnd_Gen&quot;; &quot;Stop&quot;)
+$title_t:=Fnd_Loc_GetString(&quot;Loc_General&quot;; &quot;DatabaseName&quot;)
+$text_t:=Fnd_Loc_GetString(&quot;Loc_Invoices&quot;; &quot;Overdue&quot;; String($days_i))</code></pre>
+<p>The first argument names a <strong>module</strong>: a 4D list of that name holds the lookup codes (<code>Stop</code>, <code>Cancel</code>, <code>DontSave</code>), and a list named <code>&lt;module&gt;_&lt;LANG&gt;</code> holds the translations at the same positions. <code>Fnd_Loc_GetString</code> finds the code in the key list, reads the item at the same position in the current language's list, and substitutes <code>&lt;&lt;1&gt;&gt;</code>, <code>&lt;&lt;2&gt;&gt;</code> and so on with the optional arguments.</p>
+<p>Foundation's own lists are in the component (<code>Fnd_Gen</code>, <code>Fnd_Gen_EN</code>, <code>Fnd_Gen_FR</code>, eighteen such triples); a host's are in the host's <code>lists.json</code> and are read through <code>Fnd_Host_ListToArray</code>. The lookup code is what you write in code, so it never changes; the translation is what the user sees. <code>Fnd_Gen_GetString</code> is the same call with an English fallback for a host without the Localisation module's lists.</p>
+<h2 id="the-language">The language</h2>
+<p><code>Fnd_Loc_LanguageCode</code> returns the two-letter code in force: <code>EN</code>, <code>FR</code> or <code>DE</code>, decided at startup from 4D's own localisation, and settable by the host (<code>Fnd_Loc_LanguageCode(&quot;FR&quot;)</code>) before the first string is read, in <code>Fnd_Hook_Shell_Setup</code>. German's code is <code>DE</code>; Foundation 5 used <code>GR</code>, and a host with <code>_GR</code> lists renames them.</p>
+<h2 id="your-own-strings">Your own strings</h2>
+<p>Foundation Product Sales keeps three lists: <code>Loc_General</code> with the codes, <code>Loc_General_EN</code> and <code>Loc_General_FR</code> with the texts. Its <code>Fnd_Hook_Shell_Setup</code> reads the four database facts from them, so the About box is French when 4D is. To add a module of your own:</p>
+<ol>
+<li>In the 4D list editor, create <code>Loc_Invoices</code> with one item per lookup code, and <code>Loc_Invoices_EN</code> and <code>Loc_Invoices_FR</code> with the texts in the same order. An item beginning with a backtick is a comment and is skipped, which is how FPS groups its codes.</li>
+<li>Read with <code>Fnd_Loc_GetString(&quot;Loc_Invoices&quot;; &quot;Overdue&quot;)</code>.</li>
+<li>Keep the three lists the same length. A triple whose lists differ in length is reported, not guessed at.</li>
+</ol>
+<p><code>Fnd_Loc_Editor</code> opens Foundation's Localisation List Editor, which shows every module, its codes and the translation per language side by side, and saves back to the lists. <code>Fnd_Hook_List_SetEditableLists</code> names the lists your users may edit at run time, through the List Editor; FPS chooses the French or English set by <code>Fnd_Loc_LanguageCode</code>.</p>
+<h2 id="adding-a-language">Adding a language</h2>
+<p>Add a <code>&lt;module&gt;_&lt;LANG&gt;</code> list for every module you use, Foundation's included (<code>Fnd_Gen_DE</code>, <code>Fnd_Shell_DE</code>, …), with the translations in the key list's order, and set <code>Fnd_Loc_LanguageCode(&quot;DE&quot;)</code> at startup. A module with no list for the current language falls back to its <code>_EN</code> list, so a partial translation shows English where it is incomplete rather than failing. A key list that is missing, or a translation list of the wrong length, raises a bug alert naming the module; a code absent from the key list returns an empty string. Foundation 6 ships English and French complete; contributions of other languages are welcome in the repository.</p>
+<h2 id="widths">Widths</h2>
+<p>Translated text is rarely the same length. <code>Fnd_Loc_FixButtonWidths(-&gt;btn1; -&gt;btn2; …)</code> makes a row of buttons as wide as the widest title needs, and <code>Fnd_Loc_FixLabelWidths(-&gt;label; -&gt;field; …)</code> moves each field to its label's width. Call them in <code>On Load</code>, after the titles are set, as FPS's Invoices form does.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

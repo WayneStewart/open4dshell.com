@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contributing to Foundation · Foundation Guide</title>
+<meta name="description" content="Contributing to Foundation, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html" aria-current="page">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Contributing to Foundation</h1>
+
+<p>This is the contract between Foundation and the people who work on it: how a method is written, named, documented and tested, and what a change must not break. Read it once before your first change. It is short because the code is the long version: when in doubt, copy the nearest <code>Fnd_*</code> method that does something similar.</p>
+<p>Foundation is released under the MIT licence. By contributing you agree that your contribution is too.</p>
+<h2 id="what-foundation-is">What Foundation is</h2>
+<p>Foundation (Foundation Shell) is a 4D <strong>component</strong>. It runs inside a <em>host</em> database that supplies its own tables and forms, and it never knows what those are. Everything Foundation does for a host, it does through two kinds of method the host provides:</p>
+<ul>
+<li><strong><code>Fnd_Host_*</code></strong> — a dozen methods the host <em>must</em> supply, because a component cannot do them itself (<code>Fnd_Host_ListToArray</code>, <code>Fnd_Host_ExecuteFormula</code>, <code>Fnd_Host_GetPictureFromLibrary</code>, …).</li>
+<li><strong><code>Fnd_Hook_*</code></strong> — about thirty methods the host <em>may</em> supply to customise behaviour (<code>Fnd_Hook_Shell_Setup</code>, <code>Fnd_Hook_Rec_New</code>, …). Foundation checks for them with <code>Fnd_Shell_DoesMethodExist</code> and calls them with <code>EXECUTE METHOD</code>.</li>
+</ul>
+<p>The demo host, <strong>Foundation Product Sales</strong>, carries a working copy of every one: <a href="https://github.com/open4dshell/Foundation-Product-Sales">https://github.com/open4dshell/Foundation-Product-Sales</a>. <code>HooksAndHosts/</code> holds an annotated example.</p>
+<h2 id="the-floor-is-4d-20-lts">The floor is 4D 20 LTS</h2>
+<p>Foundation compiles on <strong>4D 20 LTS</strong>, 20 R, 21 LTS and 21 R. The LTS line never receives R-release features, so anything that arrived in an R release is out, however old it looks:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Do not use</th><th scope="col">Arrived</th><th scope="col">Use instead</th></tr></thead>
+<tbody>
+<tr><td><code>Try(expression)</code>, <code>Try…Catch…End try</code></td><td>20 R4 / 20 R5</td><td><code>ON ERR CALL(&quot;Fnd_Gen_SilentError&quot;)</code> around the one statement that can raise; restore the previous handler on the next line; test the result</td></tr>
+<tr><td>Direct typing without <code>Compiler_*</code> entries</td><td>20 R4</td><td>keep the <code>Compiler_Fnd_*</code> typing methods current</td></tr>
+<tr><td><code>Process info</code>, <code>Call chain</code>, <code>Application info</code></td><td>20 R10</td><td><code>Process activity</code>, <code>Get call chain</code>, through <code>Fnd_Shell_CommandWrapper</code></td></tr>
+<tr><td><code>...</code> in <code>#DECLARE</code></td><td>20 R3</td><td>the two-form declaration block (see <em>Variadic methods</em>)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Never take a version claim from memory. <code>Development/commands.json</code> lists every command with the version it appeared in; <code>Fnd_FCS_VersionCapabilities</code> gates features at runtime.</p>
+<p><code>ON ERR CALL</code> is not <code>Catch</code>: it <strong>resumes at the next statement</strong>. Guard the single statement that can fail, set the result to <code>Null</code> first, and test it after. <code>Fnd_Gen_SilentError</code> is the component's only no-op method; do not add another.</p>
+<h2 id="modules">Modules</h2>
+<p>Methods are grouped by prefix: <code>Fnd_&lt;Module&gt;_&lt;Subject&gt;&lt;Verb&gt;</code>, for example <code>Fnd_Dlg_SetIcon</code>, <code>Fnd_Pref_GetValue</code>, <code>Fnd_Wnd_OpenWindow</code>. Every module has:</p>
+<ul>
+<li><code>Fnd_&lt;Module&gt;_Init</code> — runs once per process, builds the module's state. It is <strong>never shared</strong>; expose a setter or an <code>_Info</code> key instead.</li>
+<li><code>Fnd_&lt;Module&gt;_Info</code> — answers <code>&quot;version&quot;</code>, <code>&quot;name&quot;</code> and module-specific questions.</li>
+<li><code>Fnd_&lt;Module&gt;_Localize</code> where the module has strings, read from <code>lists.json</code> through <code>Fnd_Loc_GetString</code>.</li>
+</ul>
+<p><code>Fnd_Gen</code> is required by everything; <code>Fnd_Shell</code> is the application shell; <code>Fnd_FCS</code> is build-time tooling that must stay removable, so nothing outside <code>Fnd_FCS</code> may call into it.</p>
+<p>Method and variable names cannot exceed <strong>31 characters</strong>. Class function names and object properties can.</p>
+<p><strong>Spelling.</strong> Anything resolved by name at runtime uses <strong>US</strong> spelling: method names, <code>Storage</code> keys, object properties, list names (<code>Initialized</code>, not <code>Initialised</code>), because Foundation was written by an American in 2003 and names are matched, not read. Comments and local variables are the author's choice.</p>
+<h2 id="state">State</h2>
+<p>Foundation is <strong>thread-safe by default</strong> and is removing its last interprocess variables. Add no new <code>&lt;&gt;</code> variables and no new process variables that outlive a method. Instead:</p>
+<ul>
+<li>per-process state goes in <strong><code>Fnd.&lt;Module&gt;</code></strong>, an object on the <code>Fnd</code> process object made by <code>Fnd_Init</code>; <code>Fnd_&lt;Module&gt;_Init</code> builds it when it is <code>Null</code>, and &quot;reset&quot; is <code>Fnd.&lt;Module&gt;:=Null</code>;</li>
+<li>shared state goes in <strong><code>Storage.Fnd.&lt;Module&gt;</code></strong>, a shared object created under <code>Use (Storage.Fnd)</code> with the test repeated inside the lock; every write is inside <code>Use (Storage.Fnd.&lt;Module&gt;)</code>;</li>
+<li>a form gets its data with <code>DIALOG(form; Fnd.&lt;Module&gt;)</code> and binds <code>Form.x</code>; buttons carry no variable, each object's own method does its work, and <code>OBJECT SET VISIBLE(*; &quot;name&quot;; …)</code> addresses objects by name.</li>
+</ul>
+<p><code>Fnd_Dlg</code> is the worked example of a module converted this way.</p>
+<p>Prefer ORDA (<code>ds</code>, entities, <code>query</code>) over classic record commands in new or changed code. Prefer the native 4D command over a hand-written equivalent, and let the method become a wrapper: prove the two agree first, with assertions written against the old implementation.</p>
+<h2 id="writing-a-method">Writing a method</h2>
+<p>One method per <code>.4dm</code> file. Helpers get their own file, not a <code>Function</code> block. Every project method begins with a boxed header and a <code>#DECLARE</code>:</p>
+<pre><code>//%attributes = {&quot;invisible&quot;:true,&quot;shared&quot;:true,&quot;folder&quot;:&quot;Fnd_Text&quot;,&quot;lang&quot;:&quot;en&quot;}
+// ----------------------------------------------------
+// Project Method: Fnd_Text_Wrap ($text_t : Text {; $width_i : Integer}) --&gt; $wrapped_t : Text
+
+// Wraps the text into lines of at most the given width, joined by carriage
+//   returns. The width is a character count, not a pixel width.
+
+// Access: Shared
+
+// Parameters:
+//   $text_t  : Text    : The text to wrap
+//   $width_i : Integer : Characters per line (optional, default 72)
+
+// Returns:
+//   $wrapped_t : Text : The wrapped text
+
+// Created by Jane Smith on 2026-12-03
+// ----------------------------------------------------
+
+#DECLARE($text_t : Text; $width_i : Integer)-&gt;$wrapped_t : Text
+
+var $numberOfParameters_i : Integer</code></pre>
+<p>Rules the header carries, because <strong>a program reads it</strong>: <code>Fnd_FCS_WriteDocumentation</code> turns these headers into the documentation under <code>Documentation/Methods/</code> and the IDE tooltip, and it keys on the literal tokens.</p>
+<ul>
+<li><code>// Project Method: Name (call syntax) --&gt; $result : Type</code>. Optional parameters in <code>{ }</code>. The arrow is <code>--&gt;</code> here and <code>-&gt;</code> in <code>#DECLARE</code>.</li>
+<li><code>// Access: Shared</code> or <code>// Access: Private</code>, <strong>above</strong> <code>// Parameters:</code>.</li>
+<li><code>// Parameters:</code> then one line per parameter: <code>//   $name_t : Type : Description</code>, with <code> : </code> as the delimiters. <code>// Parameters: None</code> when there are none.</li>
+<li><code>// Returns:</code> then <code>//   $result_t : Type : Description</code>, or <code>// Returns: Nothing</code>.</li>
+<li><code>// Created by &lt;Name&gt; on YYYY-MM-DD</code>. This line <strong>ends the documented header</strong>; history lines follow it, one per change: <code>// &lt;Name&gt;, YYYY-MM-DD - what changed</code>.</li>
+<li>The header says <strong>how to call the method and nothing else</strong>. Why the code is shaped as it is goes in the body, beside the line it explains, if it is needed at all. Nine times out of ten it is not.</li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><strong><code>#DECLARE</code> with named parameters.</strong> No <code>$1</code>, no <code>C_TEXT($1)</code>, and no mixing. A method with no parameters and no return has no <code>#DECLARE</code> at all.</li>
+<li><strong><code>var</code> for every local</strong>, with a type suffix: <code>_t</code> Text, <code>_i</code> Integer, <code>_r</code> Real, <code>_b</code> Boolean, <code>_d</code> Date, <code>_h</code> Time, <code>_o</code> Object, <code>_c</code> Collection, <code>_pic</code> Picture, <code>_ptr</code> Pointer, <code>_x</code> Blob, <code>_e</code> entity, <code>_es</code> entity selection, <code>_file</code>, <code>_folder</code>, <code>_sig</code>, <code>_func</code>, <code>_v</code> Variant. Avoid tautologies: <code>$myPicture_pic</code>, not <code>$pic_pic</code>.</li>
+<li><strong>Read <code>Count parameters</code> once</strong> into <code>$numberOfParameters_i</code> when it is tested more than once.</li>
+<li><strong><code>&amp;&amp;</code> and <code>||</code></strong> for check-then-use guards; <code>&amp;</code> and <code>|</code> evaluate both sides, so <code>(Value type($v)=Is date) &amp; ($v=!00-00-00!)</code> throws for a text.</li>
+<li><strong>No operator precedence.</strong> 4D evaluates left to right. Parenthesise every right-hand side: <code>$key:=($base+&quot;.count&quot;)</code>, <code>If ($n&gt;($max+1))</code>.</li>
+<li><code>#</code> honours the <code>@</code> wildcard like <code>=</code> does.</li>
+<li>Mixed-case commands are functions; ALL-CAPS commands are procedures that return through an output parameter. Check the signature before first use.</li>
+<li><code>If</code>/<code>Else</code> with the shorter block first is the house style; early <code>return</code> is allowed but not used to rewrite working blocks.</li>
+<li>New method → add it to <code>Project/Sources/folders.json</code> and, where a typing entry is needed, to the module's <code>Compiler_Fnd_*</code> method. Deleted method → remove both, and comment its line in <code>aaaMods</code> rather than deleting it.</li>
+</ul>
+<h3 id="variadic-methods">Variadic methods</h3>
+<p>A method with an open-ended parameter list carries <strong>both</strong> declaration forms between literal markers, and <code>Fnd_FCS_ToggleDeclarationBlocks</code> activates the right one at startup:</p>
+<pre><code>// ==== BEGIN COMPILER DECLARATION BLOCK
+// ---- 4D 20 R3 and later
+#DECLARE($module_t : Text; ... : Text)-&gt;$result_t : Text
+// ---- 4D 20 R2 and earlier
+// C_TEXT($0; $1; ${2})
+// var $module_t; $result_t : Text
+// $module_t:=$1
+// ==== END COMPILER DECLARATION BLOCK</code></pre>
+<p>Write the body once with <code>${$i}</code> and <code>Count parameters</code>, and end with <code>return</code>. Never narrow a variadic signature: hosts rely on the open end.</p>
+<h2 id="signatures-are-contract">Signatures are contract</h2>
+<p>Every method with <code>&quot;shared&quot;:true</code> in its attributes is callable by a host, at the signature it has, whatever its header says. Hosts call Foundation by name at runtime, so no static search finds every caller. Therefore:</p>
+<ul>
+<li>a signature may <strong>grow</strong> (a trailing optional parameter, a widened type) and may never shrink or change meaning;</li>
+<li>a shared method is <strong>never made private</strong> on the strength of a comment; in March 2026 the surface was narrowed from 697 to 451 shared methods that way and host databases broke in the field;</li>
+<li>removal is staged: mark the method <code>_DeleteMe:=True</code> in its body, say so in the header, keep it one release, then remove.</li>
+</ul>
+<p>Record every host-visible change in <code>Release/UPGRADING.md</code> as Breaking, Behavioural or Additive.</p>
+<h2 id="history">History</h2>
+<p>Foundation is twenty years of work by many hands, and the names in it are kept. <strong>Never remove or reword a line naming Dave Batton or Walt Nelson</strong>, or any other earlier contributor. Add your own line under <code>// Created by</code> when you change a method, and one line to <code>aaaMods</code>, newest first, inside the current year's <code>Case of</code>. Development churn is squashed to one line per method at each release; the detail lives in the repository history.</p>
+<h2 id="tests">Tests</h2>
+<ul>
+<li>Unit tests are <code>Test_Fnd_&lt;Module&gt;</code>, one or two per module, filed in the <code>Fnd_Test</code> folder, with a <code>//MARK:-</code> section per function under test and an <code>ASSERT</code> message that states the expectation <strong>and</strong> the actual value. Every test ends with <code>ALERT(Current method name+&quot; - all tests done.&quot;)</code>.</li>
+<li>A throwaway probe is <code>bbb_DELETE_&lt;Name&gt;</code>: it sorts to the top, says what to do with it, and is gitignored.</li>
+<li>The test that counts is Foundation <strong>as a component in a host</strong>, in Foundation Product Sales, interpreted and compiled, on 20 LTS and the latest release. A compile check with 0 errors is the gate; warnings are not.</li>
+</ul>
+<h2 id="forms">Forms</h2>
+<p>Foundation has used one form style for twenty years. Three dialogs rewritten in 2026 with all their logic in the form method had to be redone, so:</p>
+<ol>
+<li><strong>Code lives on the objects.</strong> Every interactive object has its own file in <code>ObjectMethods/</code>, even if it is one line calling a project method. No central dispatch on object name in the form method.</li>
+<li><strong>The form method is a thin shell</strong>: <code>On Load</code> setup, cross-object state (enabling buttons), and a tail call to <code>Fnd_Gen_FormMethod</code>, which handles <code>On Activate</code> (menu bar), <code>On Close Box</code> and the close-all and quit machinery. <code>Fnd_SqNo_Editor</code> shows the shape. Enable <code>onActivate</code> and <code>onCloseBox</code> on the form. An object method that handles one event does not test the event code.</li>
+<li><strong>Dialog furniture, right to left along the bottom</strong>: Save (default button, answers Enter), Cancel (Cmd-period), then auxiliary buttons. Return and Enter are different keys on the Mac, so every dialog also carries two off-form traps just below the visible boundary, labelled <strong>Trap Return</strong> (<code>accept</code>) and <strong>Trap Escape</strong> (<code>cancel</code>), <code>sizingY: move</code>, not focusable. Entry fields disable the Return trap while they hold the focus. <code>Fnd_Dlg_OSX_Dialog</code> is the reference. The close box behaves as Cancel.</li>
+<li><strong>Metrics</strong>: a single-line input at the form font is <strong>17 pixels</strong> high, not the 21 the editor draws.</li>
+<li><strong>Multi-page editors</strong>: shared furniture on page 0, one page per mode.</li>
+</ol>
+<p>A host's data-entry forms are a different kind of form, table-bound and inheriting <code>Fnd_IO_InputForm</code>; <code>Guide/06-Input-Forms.md</code> is the guide, with the parent-field and child-listbox patterns and the helpers to copy.</p>
+<p>Object names are <code>prefix_name</code> (<code>btn_save</code>, <code>input_email</code>); form names are <code>Fnd_&lt;Module&gt;_&lt;Purpose&gt;</code>. Event names in <code>form.4DForm</code> must match 4D's schema exactly (<code>onAlternateClick</code>), because a wrong name fails silently. Windows open through <code>Fnd_Wnd_*</code> with the menu bar installed and register with <code>Fnd_Menu_Window_Add</code>; <code>Fnd_Art_About</code> is the model. Menus are built at runtime with <code>Fnd_List_AddItem</code>, never in <code>menus.json</code>.</p>
+<h2 id="commits-and-branches">Commits and branches</h2>
+<ul>
+<li>One branch per change, named for its ticket or subject in lower case (<code>fnd-92</code>, <code>dlg-objects</code>), from <code>main</code>.</li>
+<li>Commit the whole tree every time. Nothing is left uncommitted at the end of a change.</li>
+<li>The message says what changed and why in plain sentences; the ticket number goes in it, not in method headers.</li>
+<li>Do not commit <code>Data/</code>, <code>DerivedData/</code>, <code>Libraries/</code>, local preferences, caches or builds; <code>.gitignore</code> already knows them.</li>
+<li>Run <code>git config core.hooksPath .githooks</code> once per clone: the pre-commit hook sorts 4D's own rewrites from real edits and reports, never blocks.</li>
+</ul>
+<h2 id="building">Building</h2>
+<p>Open <code>Project/Foundation 6.4DProject</code> in the target 4D and run <code>__BuildComponent</code>. The version lives only in <code>Resources/InfoPlist.json</code>; the build derives the target from the running 4D and picks <code>Release/BuildSettings/buildApp-&lt;target&gt;.4DSettings</code>. <code>Release/README.md</code> is the release process and is the source of truth where a script disagrees.</p>
+<h2 id="asking">Asking</h2>
+<p>Open an Issue with the 4D version, the target, and what you saw. A failing <code>Test_Fnd_*</code> section or a ten-line method that reproduces it is worth more than a description.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

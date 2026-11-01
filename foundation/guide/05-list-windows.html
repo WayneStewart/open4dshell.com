@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5. List windows · Foundation Guide</title>
+<meta name="description" content="5. List windows, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html" aria-current="page">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/upgrading.html">10. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>5. List windows</h1>
+
+<p>A list window shows a table's records in a listbox with a toolbar above it. In Foundation 6 this is the <code>Fnd_Out</code> module: one shared form, columns built at run time from an entity selection, and a <strong>View Options</strong> palette through which the user chooses, orders, sizes and styles the columns and saves the result as a layout. The developer decides which fields are offered, which are hidden, and what the list looks like before anyone has touched it.</p>
+<p>This replaces the classic output form of the 5.4 manual, a per-table <code>Output</code> form with Header, Detail and Footer lines inheriting <code>Fnd_Tlbr_Toolbar</code>. That form still works where a host has one and <code>Fnd_Out</code> is not switched on; nothing here requires you to convert it. New hosts should not build one.</p>
+<h2 id="what-you-need">What you need</h2>
+<ol>
+<li><strong>The <code>Fnd_Out</code> form</strong>, a project form named exactly that, once per host and shared by every table. Foundation cannot carry it, because a component's forms cannot be the host's. Copy the folder <code>HooksAndHosts/Fnd_Out/</code> into your <code>Project/Sources/Forms/</code>. It holds one collection listbox named <code>Fnd_Out_ListBox</code> with no columns, bound to <code>Form.listData</code>, plus two invisible buttons for Cmd-W and Cmd-Option-W, and a three-line form method:</li>
+</ol>
+<pre><code>   Fnd_Gen_FormMethod
+   Fnd_Tlbr_FormMethod
+   Fnd_Out_FormMethod</code></pre>
+<p>The listbox's object method is <code>Fnd_Out_ListBoxMethod</code>. The form inherits <code>Fnd_Tlbr_Toolbar</code>, which gives it the toolbar and status line.</p>
+<ol start="2">
+<li><strong><code>Fnd_Out_Active(True)</code> in <code>Fnd_Hook_IO_DisplayTable</code>.</strong> The switch is per process and per opening, so the hook sets it every time. Without it Foundation looks for the classic <code>Output</code> form.</li>
+<li><strong>An <code>Input</code> form</strong> for the table (chapter 6), so that double-click opens a record.</li>
+</ol>
+<p>Then <code>Fnd_IO_DisplayTable(-&gt;[Invoices])</code> opens the list: from the navigation palette, the Open Table dialog, a related-records command or your own code. Foundation supplies the rest: toolbar, status line, Find and Sort, the Window menu, the View Options palette, saved widths and order, and the two hooks below.</p>
+<h2 id="the-standard-columns">The standard columns</h2>
+<p>With nothing else said, Foundation picks a few of the table's own fields in field order, skipping the primary key. Say what you want instead in the same hook, per table:</p>
+<pre><code>Case of
+	: (Fnd_Gen_CurrentTable=(-&gt;[Invoices]))
+		Fnd_Out_Active(True)
+		Fnd_Out_AddField(&quot;InvoiceNumber&quot;; 0; &quot;Inv. No&quot;)
+		Fnd_Out_AddField(&quot;InvoiceDate&quot;; 0; &quot;Date&quot;)
+		Fnd_Out_AddField(&quot;contact.reversedFullName()&quot;; 0; &quot;Contact&quot;)
+		Fnd_Out_AddField(&quot;Total&quot;; 0; &quot;&quot;; 0; &lt;&gt;Gen_MoneyFormat_t)
+End case</code></pre>
+<p><code>Fnd_Out_AddField</code> takes a field pointer, a path through the relations in ORDA form (<code>contact.Company</code>, <code>invoice.contact.City</code>), a formula on the entity (<code>contact.reversedFullName()</code>, an exposed function of your entity class), or an object with <code>fo_field</code>, <code>fo_title</code>, <code>fo_type</code>, <code>fo_format</code>, <code>fo_hAlign</code>, <code>fo_vAlign</code>, <code>fo_width</code>, <code>fo_minWidth</code>, <code>fo_maxWidth</code>, <code>fo_style</code> and <code>fo_visible</code>. Width 0 means &quot;estimate from the type&quot;: text 100, numbers 65 right-aligned, dates and times 65, booleans 19. This set is the layout called <strong>Standard</strong>; &quot;Reset to Standard&quot; in the palette returns the user to it.</p>
+<p>Columns are formula columns over <code>This</code>, the row's entity, so a path or a function of the entity class is a column like any field. Headers sort nothing by themselves: Sort is on the Select menu, as before.</p>
+<h2 id="what-the-user-may-add">What the user may add</h2>
+<p>The palette offers the table's own fields and, block by block, the fields of every related table up to five relations deep. Narrow that in the hook:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Call</th><th scope="col">Effect</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Out_HideField(&quot;Password&quot;)</code>, <code>Fnd_Out_HideField(&quot;@.Password&quot;)</code></td><td>never offer this path; <code>@</code> wildcards</td></tr>
+<tr><td><code>Fnd_Out_OfferField(&quot;Subtotal&quot;)</code></td><td>the first call for a table switches to &quot;offer only what is listed&quot;</td></tr>
+<tr><td><code>Fnd_Out_OfferFormula(&quot;This.fullName()&quot;; &quot;Contact&quot;; Is text)</code></td><td>offer a formula under Other Columns</td></tr>
+<tr><td><code>Fnd_Out_MaxRelationDepth(1)</code></td><td>how far to walk the relations; 0 is the table's own fields only</td></tr>
+<tr><td><code>Fnd_Out_AllowCustomColumns(False)</code></td><td>the user may not add formulas of their own to this list</td></tr>
+</tbody>
+</table>
+</div>
+<p>None of these touches a column you added with <code>Fnd_Out_AddField</code>. The same rules can be written once, declaratively, in the host's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code>: <code>offer.hide</code>, <code>offer.only</code>, <code>formulas</code>, <code>appearance</code>, <code>allowCustomColumns</code>, and <code>builtInLayouts</code>. FPS has three such files to copy from.</p>
+<h2 id="appearance-for-every-list">Appearance for every list</h2>
+<p><code>Fnd_Out_Default(tag; value)</code> sets a programmed default for every list in the session; one argument reads it back. Tags are the constants <code>Fnd_Out_FontName</code>, <code>Fnd_Out_TextSize</code>, <code>Fnd_Out_RowHeight</code>, <code>Fnd_Out_RowPixels</code>, <code>Fnd_Out_VAlign</code>, <code>Fnd_Out_Fill</code>, <code>Fnd_Out_AltFill</code>, <code>Fnd_Out_RelationDepth</code>, <code>Fnd_Out_MaxColumns</code>, <code>Fnd_Out_AllowCustom</code> and <code>Fnd_Out_AllowPublish</code>. Set them in <code>Fnd_Hook_Shell_Setup</code> or at the top of <code>Fnd_Hook_IO_DisplayTable</code>, as FPS sets <code>Fnd_Out_Default(&quot;allowPublish&quot;; True)</code>.</p>
+<h2 id="what-the-user-sees">What the user sees</h2>
+<p><strong>Select &gt; View Options…</strong> opens one floating palette that follows whichever list window is in front.</p>
+<ul>
+<li><strong>Appearance</strong>: a Layout menu, text size (with a custom size), row height in lines or pixels, vertical alignment, background and alternate colours. <strong>Save</strong> makes the size, height and colours the default for every list on this machine; <strong>Reset</strong> returns this list to the programmed default.</li>
+<li><strong>Columns</strong>: a tick list in blocks, the table's own fields first, then one block per related table, then Custom Columns. Ticking inserts the column; dragging a header in the window reorders; dragging a border resizes, and the last column fills the window. <strong>Reset to Standard</strong> discards every change.</li>
+<li><strong>Advanced</strong> widens the palette for the highlighted column: title, horizontal and vertical alignment, bold, italic, format, and <strong>Use Default</strong> to drop the overrides; below it, <strong>Row Styles</strong> (next section) and the formula box for custom columns, when the developer allows them.</li>
+</ul>
+<p>Everything the user does is saved when the window closes, in <code>&lt;4D application folder&gt;/&lt;DatabaseName&gt;/Fnd_Out/&lt;Table&gt;.json</code> on that machine, and comes back next time. Hold Option and Shift while a list opens to ignore the saved order and widths once.</p>
+<h2 id="layouts">Layouts</h2>
+<p>A layout is a named set of visible columns, order, widths, text size, row height and row-style rules. The Layout menu lists them and <strong>Manage Layouts…</strong> renames, deletes and sets defaults.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Kind</th><th scope="col">Who makes it</th><th scope="col">Where it lives</th><th scope="col">Shown as</th></tr></thead>
+<tbody>
+<tr><td>Standard</td><td>the developer's <code>AddField</code> calls</td><td>not stored</td><td>Standard</td></tr>
+<tr><td>User</td><td>any user, Save As…</td><td>the user's <code>Fnd_Out/&lt;Table&gt;.json</code></td><td>Name</td></tr>
+<tr><td>Shared</td><td>a user with publish rights, Publish…</td><td>the data file, as a shared preference</td><td>Name (Shared)</td></tr>
+<tr><td>Built-in</td><td>the developer, in an interpreted host</td><td>the host's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code></td><td>Name (Built-in)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Publish rights are the Designer, the Administrator and the Administration group, or whatever <code>Fnd_Out_Default(&quot;allowPublish&quot;; …)</code> says. A layout marked default opens for every new user of that table, built-in first, then shared.</p>
+<h2 id="developer-mode">Developer mode</h2>
+<p>An <strong>interpreted</strong> host is developer mode; nothing switches it on. The palette then shows an <strong>offer</strong> tick per candidate column, which writes <code>offer.hide</code> and <code>offer.only</code> into the table's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code> for you, and the Layout menu gains <strong>Save as Application Layout…</strong> and <strong>Delete Application Layout</strong>, which write <code>builtInLayouts</code> there. Compiled, those two refuse to run and hidden candidates are not even listed. Ship the JSON files with your application.</p>
+<h2 id="row-styles">Row styles</h2>
+<p>Two sources, the first that applies wins: a layout's <strong>row-style rules</strong>, made in the Advanced panel from a condition written in the formula editor and a style (bold, italic, underline, text and fill colour); and the hook <code>Fnd_Hook_Out_RowStyle</code>, evaluated for every row with <code>This</code> as the entity:</p>
+<pre><code>#DECLARE()-&gt;$style_o : Object
+
+$style_o:=New object
+
+Case of
+	: (Fnd_Gen_CurrentTable=(-&gt;[Invoices]))
+		If (This.Total&gt;500)
+			$style_o.fontWeight:=&quot;bold&quot;
+		End if
+	: (Fnd_Gen_CurrentTable=(-&gt;[Products]))
+		If (This.ListPrice&gt;500)
+			$style_o.fontWeight:=&quot;bold&quot;
+			$style_o.stroke:=&quot;red&quot;
+		End if
+End case</code></pre>
+<p>Return any of <code>fontWeight</code>, <code>fontStyle</code>, <code>textDecoration</code>, <code>stroke</code>, <code>fill</code>; an empty object leaves the row alone. It is a 4D meta-info expression, so keep it cheap: it runs for every visible row on every redraw.</p>
+<h2 id="the-context-menu">The context menu</h2>
+<p>A right-click (Control-click on the Mac) in a list calls <code>Fnd_Hook_Out_ContextMenu(-&gt;table; $selected_es; $clicked_e; $row_i)</code> with the table, the highlighted records as an entity selection, the entity under the pointer (Null over empty space) and the clicked row number. The hook builds and shows the menu itself. The generated template, which FPS uses as it stands, offers New, Edit Record(s) up to a limit, Delete, Show Subset and Omit Subset, calling <code>Fnd_Rec_NewRecord</code>, <code>Fnd_Out_EditRecord($row_i)</code>, <code>Fnd_Out_EditSelection($selected_es)</code>, <code>Fnd_Rec_DeleteUserSet</code>, <code>Fnd_Rec_ShowSubset</code> and <code>Fnd_Rec_OmitSubset</code>. Add your own items after them; a commented example in the template archives the selection through ORDA.</p>
+<h2 id="working-with-the-list-from-your-code">Working with the list from your code</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Call</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Out_Update</code></td><td>redraw the list after you changed records, and refresh the status line</td></tr>
+<tr><td><code>Fnd_Out_SynchroniseSelection</code></td><td>make the classic current selection match what the list shows, before a classic command such as a print or export</td></tr>
+<tr><td><code>Fnd_Out_EditRecord($row_i)</code>, <code>Fnd_Out_EditSelection($selected_es)</code></td><td>open a row, or every highlighted record in turn</td></tr>
+<tr><td><code>Fnd_Out_Info(&quot;highlighted&quot;)</code>, <code>(&quot;inSelection&quot;)</code>, <code>(&quot;state&quot;)</code></td><td>counts and state for your own status text</td></tr>
+<tr><td><code>Fnd_IO_MultiWindow(False)</code></td><td>show the record in the list's own window rather than a new one (FPS Products)</td></tr>
+<tr><td><code>Fnd_IO_AddMultipleRecords(True)</code></td><td>after Save, offer another new record until Cancel (FPS Products)</td></tr>
+</tbody>
+</table>
+</div>
+<p>The selection the list shows is an entity selection in <code>Form.listData</code>; Find, Sort, Show Subset and the rest replace it and the list follows. Foundation's classic current selection is kept in step at the moments it matters, which is what <code>Fnd_Out_SynchroniseSelection</code> is for when you need it yourself.</p>
+<h2 id="known-limits-in-beta1">Known limits in beta.1</h2>
+<ul>
+<li>Clicking a column header does not sort; use Sort.</li>
+<li>View Options has no keyboard shortcut yet.</li>
+<li>Computed attributes of an entity class are not offered as candidates; add them with <code>Fnd_Out_AddField</code> or <code>Fnd_Out_OfferFormula</code>.</li>
+<li>Layouts are per machine user, not per Foundation user.</li>
+</ul>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>
