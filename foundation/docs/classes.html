@@ -50,6 +50,7 @@
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
 		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
 		<li><a href="/docs/file.html">Fnd_File</a></li>
 		<li><a href="/docs/find.html">Fnd_Find</a></li>
@@ -92,7 +93,6 @@
 		<li><a href="#pref">cs.fnd.pref</a></li>
 		<li><a href="#pswd">cs.fnd.pswd</a></li>
 		<li><a href="#text">cs.fnd.text</a></li>
-		<li><a href="#wnd">cs.fnd.wnd</a></li>
 	</ul>
 	</section>
 </aside>
@@ -109,7 +109,6 @@
 <li><a href="#pref">cs.fnd.pref</a></li>
 <li><a href="#pswd">cs.fnd.pswd</a></li>
 <li><a href="#text">cs.fnd.text</a></li>
-<li><a href="#wnd">cs.fnd.wnd</a></li>
 </ul>
 
 <section class="class" id="date">
@@ -438,27 +437,6 @@ Inside Foundation: cs.text.new().capitalize(&quot;hello world&quot;)</pre>
 <h3 id="text.decodeBase64"><a href="#text.decodeBase64">decodeBase64</a></h3>
 <pre><code>decodeBase64($theBlob_x : Blob)-&gt;$result_x : Blob</code></pre>
 <p>Takes and returns a blob, rather than the pointer the method wants.</p>
-</section>
-
-<section class="class" id="wnd">
-<h2><a href="#wnd">cs.fnd.wnd</a></h2>
-<h3 id="wnd.title"><a href="#wnd.title">title</a></h3>
-<pre><code>title($title_t : Text) : Text</code></pre>
-<h3 id="wnd.type"><a href="#wnd.type">type</a></h3>
-<pre><code>type($type_i : Integer)-&gt;$result_i : Integer</code></pre>
-<h3 id="wnd.position"><a href="#wnd.position">position</a></h3>
-<pre><code>position($position_i : Integer)-&gt;$result_i : Integer</code></pre>
-<h3 id="wnd.closeBox"><a href="#wnd.closeBox">closeBox</a></h3>
-<pre><code>closeBox($enabled_b : Boolean)-&gt;$result_b : Boolean</code></pre>
-<h3 id="wnd.openWindow"><a href="#wnd.openWindow">openWindow</a></h3>
-<pre><code>openWindow($width_i : Integer; $height_i : Integer)-&gt;$result_i : Integer</code></pre>
-<h3 id="wnd.openFormWindow"><a href="#wnd.openFormWindow">openFormWindow</a></h3>
-<pre><code>openFormWindow($table_ptr : Pointer; $formName_t : Text)-&gt;$result_i : Integer</code></pre>
-<h3 id="wnd.useSavedPosition"><a href="#wnd.useSavedPosition">useSavedPosition</a></h3>
-<pre><code>useSavedPosition($name_t : Text)-&gt;$result_b : Boolean</code></pre>
-<h3 id="wnd.closeNow"><a href="#wnd.closeNow">closeNow</a></h3>
-<pre><code>closeNow-&gt;$result_b : Boolean</code></pre>
-<p>$result_b:=Process_IsClosing</p>
 </section>
 
 </main>

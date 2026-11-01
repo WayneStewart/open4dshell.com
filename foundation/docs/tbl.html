@@ -50,6 +50,7 @@
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
 		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
 		<li><a href="/docs/file.html">Fnd_File</a></li>
 		<li><a href="/docs/find.html">Fnd_Find</a></li>
@@ -85,6 +86,7 @@
 	<section class="box">
 	<h2>Fnd_Tbl</h2>
 	<ul class="nav methods">
+		<li><a href="#Fnd_Tbl_Info">Fnd_Tbl_Info</a></li>
 		<li><a href="#Fnd_Tbl_UserCanAccess">Fnd_Tbl_UserCanAccess</a></li>
 	</ul>
 	</section>
@@ -94,11 +96,25 @@
 
 <h1>Fnd_Tbl</h1>
 
-<p>1 shared method.</p>
+<p>2 shared methods.</p>
 
 <ul class="jump">
+<li><a href="#Fnd_Tbl_Info">Fnd_Tbl_Info</a></li>
 <li><a href="#Fnd_Tbl_UserCanAccess">Fnd_Tbl_UserCanAccess</a></li>
 </ul>
+
+<section class="method" id="Fnd_Tbl_Info">
+<h2><a href="#Fnd_Tbl_Info">Fnd_Tbl_Info</a></h2>
+<p class="syntax"><code>Fnd_Tbl_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
 
 <section class="method" id="Fnd_Tbl_UserCanAccess">
 <h2><a href="#Fnd_Tbl_UserCanAccess">Fnd_Tbl_UserCanAccess</a></h2>

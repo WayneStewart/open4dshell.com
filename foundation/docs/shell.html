@@ -50,6 +50,7 @@
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
 		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
 		<li><a href="/docs/file.html">Fnd_File</a></li>
 		<li><a href="/docs/find.html">Fnd_Find</a></li>
@@ -88,9 +89,11 @@
 		<li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
 		<li><a href="#Fnd_Shell_CommandWrapper">Fnd_Shell_CommandWrapper</a></li>
 		<li><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></li>
+		<li><a href="#Fnd_Shell_DoesMethodExist">Fnd_Shell_DoesMethodExist</a></li>
 		<li><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></li>
 		<li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
 		<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
+		<li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 		<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 		<li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
 		<li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
@@ -113,15 +116,17 @@
 
 <h1>Fnd_Shell</h1>
 
-<p>20 shared methods.</p>
+<p>22 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
 <li><a href="#Fnd_Shell_CommandWrapper">Fnd_Shell_CommandWrapper</a></li>
 <li><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></li>
+<li><a href="#Fnd_Shell_DoesMethodExist">Fnd_Shell_DoesMethodExist</a></li>
 <li><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></li>
 <li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
 <li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
+<li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 <li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 <li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
 <li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
@@ -180,6 +185,19 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <p class="noparams">No parameters.</p>
 </section>
 
+<section class="method" id="Fnd_Shell_DoesMethodExist">
+<h2><a href="#Fnd_Shell_DoesMethodExist">Fnd_Shell_DoesMethodExist</a></h2>
+<p class="syntax"><code>Fnd_Shell_DoesMethodExist ($methodName_t) --&gt; Longint</code></p>
+<p>Replaces call to the old plugin which was deprecated in V14</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>methodName</code></td><td>Text</td><td>in</td><td>$methodName_t</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>-&gt; 1 if method exists</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Shell_ExcludeFromQuit">
 <h2><a href="#Fnd_Shell_ExcludeFromQuit">Fnd_Shell_ExcludeFromQuit</a></h2>
 <p class="syntax"><code>Fnd_Shell_ExcludeFromQuit (process name)</code></p>
@@ -207,6 +225,19 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>Result</code></td><td>Object</td><td>out</td><td>The Fnd objects</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Shell_Info">
+<h2><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></h2>
+<p class="syntax"><code>Fnd_Shell_Info (label) --&gt; Text</code></p>
+<p>Returns requested information.  See the Fnd_Gen_ComponentInfo method for more information.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
 </tbody>
 </table>
 </section>
