@@ -174,7 +174,7 @@ var $numberOfParameters_i : Integer</code></pre>
 </ul>
 <p>Record every host-visible change in <code>Release/UPGRADING.md</code> as Breaking, Behavioural or Additive.</p>
 <h2 id="history">History</h2>
-<p>Foundation is twenty years of work by many hands, and the names in it are kept. <strong>Never remove or reword a line naming Dave Batton or Walt Nelson</strong>, or any other earlier contributor. Add your own line under <code>// Created by</code> when you change a method, and one line to <code>aaaMods</code>, newest first, inside the current year's <code>Case of</code>. Development churn is squashed to one line per method at each release; the detail lives in the repository history.</p>
+<p>Foundation is more than thirty years of work by many hands, since 1993, and the names in it are kept. <strong>Never remove or reword a line naming Dave Batton or Walt Nelson</strong>, or any other earlier contributor. Add your own line under <code>// Created by</code> when you change a method, and one line to <code>aaaMods</code>, newest first, inside the current year's <code>Case of</code>. Development churn is squashed to one line per method at each release; the detail lives in the repository history.</p>
 <h2 id="tests">Tests</h2>
 <ul>
 <li>Unit tests are <code>Test_Fnd_&lt;Module&gt;</code>, one or two per module, filed in the <code>Fnd_Test</code> folder, with a <code>//MARK:-</code> section per function under test and an <code>ASSERT</code> message that states the expectation <strong>and</strong> the actual value. Every test ends with <code>ALERT(Current method name+&quot; - all tests done.&quot;)</code>.</li>
@@ -182,7 +182,7 @@ var $numberOfParameters_i : Integer</code></pre>
 <li>The test that counts is Foundation <strong>as a component in a host</strong>, in Foundation Product Sales, interpreted and compiled, on 20 LTS and the latest release. A compile check with 0 errors is the gate; warnings are not.</li>
 </ul>
 <h2 id="forms">Forms</h2>
-<p>Foundation has used one form style for twenty years. Three dialogs rewritten in 2026 with all their logic in the form method had to be redone, so:</p>
+<p>Foundation has used one form style since 1993. Three dialogs rewritten in 2026 with all their logic in the form method had to be redone, so:</p>
 <ol>
 <li><strong>Code lives on the objects.</strong> Every interactive object has its own file in <code>ObjectMethods/</code>, even if it is one line calling a project method. No central dispatch on object name in the form method.</li>
 <li><strong>The form method is a thin shell</strong>: <code>On Load</code> setup, cross-object state (enabling buttons), and a tail call to <code>Fnd_Gen_FormMethod</code>, which handles <code>On Activate</code> (menu bar), <code>On Close Box</code> and the close-all and quit machinery. <code>Fnd_SqNo_Editor</code> shows the shape. Enable <code>onActivate</code> and <code>onCloseBox</code> on the form. An object method that handles one event does not test the event code.</li>

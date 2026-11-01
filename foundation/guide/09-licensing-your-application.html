@@ -118,7 +118,7 @@ End case</code></pre>
 <h2 id="dialogs">Dialogs</h2>
 <p>The demo and registration dialogs are Foundation's, localised through <code>Fnd_Loc</code>, and show your <code>DatabaseName</code>. <code>Fnd_Reg_Reset(featureCode)</code> clears a feature's registration and demo start for testing.</p>
 <h2 id="testing">Testing</h2>
-<p><code>AgentNotes</code> in the development repository carries a 127-assertion test of the module as run before release; the useful fact from it for a host is that the <code>[Fnd_Reg]</code> table must exist when 4D starts, so a table created by <code>Fnd_Reg_CreateTable</code> needs a restart before the first real run.</p>
+<p>The module was exercised before release with a 127-assertion test of every call that opens no dialog. The one fact from it a host needs: the <code>[Fnd_Reg]</code> table must exist when 4D starts, so a table created by <code>Fnd_Reg_CreateTable</code> needs a restart before the first real run.</p>
 
 </main>
 
