@@ -85,7 +85,6 @@
 	<section class="box">
 	<h2>Fnd_Gen</h2>
 	<ul class="nav methods">
-		<li><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></li>
 		<li><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></li>
 		<li><a href="#Fnd_Gen_BugAlert2">Fnd_Gen_BugAlert2</a></li>
 		<li><a href="#Fnd_Gen_ButtonText">Fnd_Gen_ButtonText</a></li>
@@ -98,7 +97,6 @@
 		<li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
 		<li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
 		<li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
-		<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
 		<li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
 		<li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
 		<li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
@@ -108,7 +106,6 @@
 		<li><a href="#Fnd_Gen_Info">Fnd_Gen_Info</a></li>
 		<li><a href="#Fnd_Gen_IsRunning">Fnd_Gen_IsRunning</a></li>
 		<li><a href="#Fnd_Gen_LaunchAsNewProcess">Fnd_Gen_LaunchAsNewProcess</a></li>
-		<li><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></li>
 		<li><a href="#Fnd_Gen_MenuBar">Fnd_Gen_MenuBar</a></li>
 		<li><a href="#Fnd_Gen_Platform">Fnd_Gen_Platform</a></li>
 		<li><a href="#Fnd_Gen_PlugInAvailable">Fnd_Gen_PlugInAvailable</a></li>
@@ -136,10 +133,9 @@
 
 <h1>Fnd_Gen</h1>
 
-<p>43 shared methods.</p>
+<p>40 shared methods.</p>
 
 <ul class="jump">
-<li><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></li>
 <li><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></li>
 <li><a href="#Fnd_Gen_BugAlert2">Fnd_Gen_BugAlert2</a></li>
 <li><a href="#Fnd_Gen_ButtonText">Fnd_Gen_ButtonText</a></li>
@@ -152,7 +148,6 @@
 <li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
 <li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
 <li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
-<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
 <li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
 <li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
 <li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
@@ -162,7 +157,6 @@
 <li><a href="#Fnd_Gen_Info">Fnd_Gen_Info</a></li>
 <li><a href="#Fnd_Gen_IsRunning">Fnd_Gen_IsRunning</a></li>
 <li><a href="#Fnd_Gen_LaunchAsNewProcess">Fnd_Gen_LaunchAsNewProcess</a></li>
-<li><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></li>
 <li><a href="#Fnd_Gen_MenuBar">Fnd_Gen_MenuBar</a></li>
 <li><a href="#Fnd_Gen_Platform">Fnd_Gen_Platform</a></li>
 <li><a href="#Fnd_Gen_PlugInAvailable">Fnd_Gen_PlugInAvailable</a></li>
@@ -183,19 +177,6 @@
 <li><a href="#Fnd_Gen_VerifyStructureItem">Fnd_Gen_VerifyStructureItem</a></li>
 <li><a href="#Fnd_Gen_WaitToContinue">Fnd_Gen_WaitToContinue</a></li>
 </ul>
-
-<section class="method" id="Fnd_Gen_Alert">
-<h2><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></h2>
-<p class="syntax"><code>Fnd_Gen_Alert (message{; button text})</code></p>
-<p>Displays an alert message.  Uses the Foundation Dialog module alert if available.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>message</code></td><td>Text</td><td>in</td><td>The alert message text</td></tr>
-<tr><td><code>button</code></td><td>Text</td><td>in</td><td>The button label (optional)</td></tr>
-</tbody>
-</table>
-</section>
 
 <section class="method" id="Fnd_Gen_BugAlert">
 <h2><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></h2>
@@ -375,16 +356,6 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 </table>
 </section>
 
-<section class="method" id="Fnd_Gen_DummyMethod">
-<h2><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></h2>
-<p class="syntax"><code>Fnd_Gen_DummyMethod</code></p>
-<p>A generic method with no code.  This is useful for assigning as the close box method</p>
-<p>for new windows (handle the close in the form method) or to use with ON ERR CALL</p>
-<p>to disable any automatic reaction to errors.</p>
-<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served six ON ERR CALL sites and one Open window close box.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
 <section class="method" id="Fnd_Gen_FieldIsVisible">
 <h2><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></h2>
 <p class="syntax"><code>Fnd_Gen_FieldIsVisible ( fieldPtr | tableNum {; fieldNum}  --&gt; ReturnType</code></p>
@@ -507,13 +478,6 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if we're in a new process</td></tr>
 </tbody>
 </table>
-</section>
-
-<section class="method" id="Fnd_Gen_Localize">
-<h2><a href="#Fnd_Gen_Localize">Fnd_Gen_Localize</a></h2>
-<p class="syntax"><code>Fnd_Gen_Localize</code></p>
-<p>Passed the localization strings to the General and (if available) Localization components.</p>
-<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Gen_MenuBar">

@@ -89,12 +89,8 @@
 		<li><a href="#Fnd_Wnd_Cancel">Fnd_Wnd_Cancel</a></li>
 		<li><a href="#Fnd_Wnd_CancelCloseAll">Fnd_Wnd_CancelCloseAll</a></li>
 		<li><a href="#Fnd_Wnd_CloseAllWindows">Fnd_Wnd_CloseAllWindows</a></li>
-		<li><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></li>
 		<li><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></li>
-		<li><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></li>
 		<li><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></li>
-		<li><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></li>
-		<li><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></li>
 		<li><a href="#Fnd_Wnd_Info">Fnd_Wnd_Info</a></li>
 		<li><a href="#Fnd_Wnd_MoveOnScreen">Fnd_Wnd_MoveOnScreen</a></li>
 		<li><a href="#Fnd_Wnd_OpenFormWindow">Fnd_Wnd_OpenFormWindow</a></li>
@@ -114,19 +110,15 @@
 
 <h1>Fnd_Wnd</h1>
 
-<p>21 shared methods.</p>
+<p>17 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Wnd_BringToFront">Fnd_Wnd_BringToFront</a></li>
 <li><a href="#Fnd_Wnd_Cancel">Fnd_Wnd_Cancel</a></li>
 <li><a href="#Fnd_Wnd_CancelCloseAll">Fnd_Wnd_CancelCloseAll</a></li>
 <li><a href="#Fnd_Wnd_CloseAllWindows">Fnd_Wnd_CloseAllWindows</a></li>
-<li><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></li>
 <li><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></li>
-<li><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></li>
 <li><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></li>
-<li><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></li>
-<li><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></li>
 <li><a href="#Fnd_Wnd_Info">Fnd_Wnd_Info</a></li>
 <li><a href="#Fnd_Wnd_MoveOnScreen">Fnd_Wnd_MoveOnScreen</a></li>
 <li><a href="#Fnd_Wnd_OpenFormWindow">Fnd_Wnd_OpenFormWindow</a></li>
@@ -183,14 +175,6 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Wnd_CloseAllWindows2">
-<h2><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></h2>
-<p class="syntax"><code>Fnd_Wnd_CloseAllWindows2</code></p>
-<p>This process tries to tell all of the other processes to close their windows.</p>
-<p>Called as a new process from Fnd_Wnd_CloseAllWindows.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
 <section class="method" id="Fnd_Wnd_CloseBox">
 <h2><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></h2>
 <p class="syntax"><code>Fnd_Wnd_CloseBox ({add close box?}) --&gt; Boolean</code></p>
@@ -205,13 +189,6 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Wnd_CloseBoxMethod">
-<h2><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></h2>
-<p class="syntax"><code>Fnd_Wnd_CloseBoxMethod</code></p>
-<p>A generic method with no code. Used by the Fnd_Wnd_OpenWindow method as the close box method for new windows (handle the close in the form method).</p>
-<p class="noparams">No parameters.</p>
-</section>
-
 <section class="method" id="Fnd_Wnd_CloseNow">
 <h2><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></h2>
 <p class="syntax"><code>Fnd_Wnd_CloseNow --&gt; Boolean</code></p>
@@ -220,31 +197,6 @@
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>$0</code></td><td>Boolean</td><td>out</td><td>True if it's time to close the window</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Wnd_GetNextStackElement">
-<h2><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></h2>
-<p class="syntax"><code>Fnd_Wnd_GetNextStackElement --&gt; Number</code></p>
-<p>Gets (and reserves) the element number of the next available position in the window stack arrays.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>$0</code></td><td>Longint</td><td>out</td><td>The array element number to use</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Wnd_GetProcessWindowRef">
-<h2><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></h2>
-<p class="syntax"><code>Fnd_Wnd_GetProcessWindowRef (process number) --&gt; Number</code></p>
-<p>Returns the window ref for the frontmost window of the specified process.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>processNumber</code></td><td>Longint</td><td>in</td><td>A process number</td></tr>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>A window reference or 0</td></tr>
 </tbody>
 </table>
 </section>

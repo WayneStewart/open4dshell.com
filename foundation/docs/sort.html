@@ -86,16 +86,12 @@
 	<h2>Fnd_Sort</h2>
 	<ul class="nav methods">
 		<li><a href="#Fnd_Sort_AddField">Fnd_Sort_AddField</a></li>
-		<li><a href="#Fnd_Sort_AddItem">Fnd_Sort_AddItem</a></li>
 		<li><a href="#Fnd_Sort_AddSeparator">Fnd_Sort_AddSeparator</a></li>
 		<li><a href="#Fnd_Sort_AddTable">Fnd_Sort_AddTable</a></li>
 		<li><a href="#Fnd_Sort_Direction">Fnd_Sort_Direction</a></li>
 		<li><a href="#Fnd_Sort_Display">Fnd_Sort_Display</a></li>
 		<li><a href="#Fnd_Sort_Info">Fnd_Sort_Info</a></li>
-		<li><a href="#Fnd_Sort_Localize">Fnd_Sort_Localize</a></li>
 		<li><a href="#Fnd_Sort_OrderByEditor">Fnd_Sort_OrderByEditor</a></li>
-		<li><a href="#Fnd_Sort_PrefsGet">Fnd_Sort_PrefsGet</a></li>
-		<li><a href="#Fnd_Sort_PrefsPut">Fnd_Sort_PrefsPut</a></li>
 		<li><a href="#Fnd_Sort_SelectedField">Fnd_Sort_SelectedField</a></li>
 	</ul>
 	</section>
@@ -105,20 +101,16 @@
 
 <h1>Fnd_Sort</h1>
 
-<p>12 shared methods.</p>
+<p>8 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Sort_AddField">Fnd_Sort_AddField</a></li>
-<li><a href="#Fnd_Sort_AddItem">Fnd_Sort_AddItem</a></li>
 <li><a href="#Fnd_Sort_AddSeparator">Fnd_Sort_AddSeparator</a></li>
 <li><a href="#Fnd_Sort_AddTable">Fnd_Sort_AddTable</a></li>
 <li><a href="#Fnd_Sort_Direction">Fnd_Sort_Direction</a></li>
 <li><a href="#Fnd_Sort_Display">Fnd_Sort_Display</a></li>
 <li><a href="#Fnd_Sort_Info">Fnd_Sort_Info</a></li>
-<li><a href="#Fnd_Sort_Localize">Fnd_Sort_Localize</a></li>
 <li><a href="#Fnd_Sort_OrderByEditor">Fnd_Sort_OrderByEditor</a></li>
-<li><a href="#Fnd_Sort_PrefsGet">Fnd_Sort_PrefsGet</a></li>
-<li><a href="#Fnd_Sort_PrefsPut">Fnd_Sort_PrefsPut</a></li>
 <li><a href="#Fnd_Sort_SelectedField">Fnd_Sort_SelectedField</a></li>
 </ul>
 
@@ -131,23 +123,6 @@
 <tbody>
 <tr><td><code>field</code></td><td>Pointer</td><td>in</td><td>A pointer to the field to add</td></tr>
 <tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position in which to add the item (optional)</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Sort_AddItem">
-<h2><a href="#Fnd_Sort_AddItem">Fnd_Sort_AddItem</a></h2>
-<p class="syntax"><code>Fnd_Sort_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
-<p>Called by the protected &quot;Fnd_Sort_Add&quot; routines to add stuff to the arrays.</p>
-<p>If the label is blank, the field name will be used.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>inPosition</code></td><td>Position</td><td>in</td><td>The position</td></tr>
-<tr><td><code>inFieldName</code></td><td>Text</td><td>in</td><td>The label</td></tr>
-<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method</td></tr>
-<tr><td><code>inField</code></td><td>Pointer</td><td>in</td><td>The field (optional)</td></tr>
-<tr><td><code>inFieldType</code></td><td>Longint</td><td>in</td><td>The field's type (optional)</td></tr>
 </tbody>
 </table>
 </section>
@@ -216,44 +191,11 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Sort_Localize">
-<h2><a href="#Fnd_Sort_Localize">Fnd_Sort_Localize</a></h2>
-<p class="syntax"><code>Fnd_Sort_Localize</code></p>
-<p>Passed the localization strings to the General and (if available) Localization components.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
 <section class="method" id="Fnd_Sort_OrderByEditor">
 <h2><a href="#Fnd_Sort_OrderByEditor">Fnd_Sort_OrderByEditor</a></h2>
 <p class="syntax"><code>Fnd_Sort_OrderByEditor</code></p>
 <p>Displays the simple Sort dialog.  If the Macintosh Option key or Windows Alt key is down, 4D's Order By editor is displayed instead.</p>
 <p class="noparams">No parameters.</p>
-</section>
-
-<section class="method" id="Fnd_Sort_PrefsGet">
-<h2><a href="#Fnd_Sort_PrefsGet">Fnd_Sort_PrefsGet</a></h2>
-<p class="syntax"><code>Fnd_Sort_PrefsGet (pref name) --&gt; Text</code></p>
-<p>Gets a value from the user preferences if the Fnd_Pref component is available.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The preference name</td></tr>
-<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The saved value</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Sort_PrefsPut">
-<h2><a href="#Fnd_Sort_PrefsPut">Fnd_Sort_PrefsPut</a></h2>
-<p class="syntax"><code>Fnd_Sort_PrefsPut (pref name; text value)</code></p>
-<p>Adds an item to the user's preferences if the Fnd_Pref component is available.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>prefName</code></td><td>Text</td><td>in</td><td>The preference name</td></tr>
-<tr><td><code>textValue</code></td><td>Text</td><td>in</td><td>The value to store</td></tr>
-</tbody>
-</table>
 </section>
 
 <section class="method" id="Fnd_Sort_SelectedField">

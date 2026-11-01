@@ -98,23 +98,16 @@
 		<li><a href="#Fnd_Tlbr_Button_OnShortcut">Fnd_Tlbr_Button_OnShortcut</a></li>
 		<li><a href="#Fnd_Tlbr_Button_Position">Fnd_Tlbr_Button_Position</a></li>
 		<li><a href="#Fnd_Tlbr_Button_Remove">Fnd_Tlbr_Button_Remove</a></li>
-		<li><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></li>
 		<li><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></li>
 		<li><a href="#Fnd_Tlbr_CurrentButton">Fnd_Tlbr_CurrentButton</a></li>
 		<li><a href="#Fnd_Tlbr_Divider_Add">Fnd_Tlbr_Divider_Add</a></li>
-		<li><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></li>
 		<li><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></li>
 		<li><a href="#Fnd_Tlbr_Info">Fnd_Tlbr_Info</a></li>
-		<li><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></li>
-		<li><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></li>
 		<li><a href="#Fnd_Tlbr_Platform">Fnd_Tlbr_Platform</a></li>
 		<li><a href="#Fnd_Tlbr_Redraw">Fnd_Tlbr_Redraw</a></li>
 		<li><a href="#Fnd_Tlbr_SetHostVars">Fnd_Tlbr_SetHostVars</a></li>
-		<li><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></li>
-		<li><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></li>
 		<li><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></li>
 		<li><a href="#Fnd_Tlbr_Style">Fnd_Tlbr_Style</a></li>
-		<li><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></li>
 		<li><a href="#Fnd_Tlbr_UpdateButtons">Fnd_Tlbr_UpdateButtons</a></li>
 	</ul>
 	</section>
@@ -124,7 +117,7 @@
 
 <h1>Fnd_Tlbr</h1>
 
-<p>31 shared methods.</p>
+<p>24 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Tlbr_Button_Add">Fnd_Tlbr_Button_Add</a></li>
@@ -140,23 +133,16 @@
 <li><a href="#Fnd_Tlbr_Button_OnShortcut">Fnd_Tlbr_Button_OnShortcut</a></li>
 <li><a href="#Fnd_Tlbr_Button_Position">Fnd_Tlbr_Button_Position</a></li>
 <li><a href="#Fnd_Tlbr_Button_Remove">Fnd_Tlbr_Button_Remove</a></li>
-<li><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></li>
 <li><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></li>
 <li><a href="#Fnd_Tlbr_CurrentButton">Fnd_Tlbr_CurrentButton</a></li>
 <li><a href="#Fnd_Tlbr_Divider_Add">Fnd_Tlbr_Divider_Add</a></li>
-<li><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></li>
 <li><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></li>
 <li><a href="#Fnd_Tlbr_Info">Fnd_Tlbr_Info</a></li>
-<li><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></li>
-<li><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></li>
 <li><a href="#Fnd_Tlbr_Platform">Fnd_Tlbr_Platform</a></li>
 <li><a href="#Fnd_Tlbr_Redraw">Fnd_Tlbr_Redraw</a></li>
 <li><a href="#Fnd_Tlbr_SetHostVars">Fnd_Tlbr_SetHostVars</a></li>
-<li><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></li>
-<li><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></li>
 <li><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></li>
 <li><a href="#Fnd_Tlbr_Style">Fnd_Tlbr_Style</a></li>
-<li><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></li>
 <li><a href="#Fnd_Tlbr_UpdateButtons">Fnd_Tlbr_UpdateButtons</a></li>
 </ul>
 
@@ -340,19 +326,6 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Tlbr_Button_Shortcut">
-<h2><a href="#Fnd_Tlbr_Button_Shortcut">Fnd_Tlbr_Button_Shortcut</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_Button_Shortcut (buttonName; shortcutKey)</code></p>
-<p>Associates a Command key shortcut with the button.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>buttonName</code></td><td>Text</td><td>in</td><td>A button name</td></tr>
-<tr><td><code>shortcutKey</code></td><td>Text</td><td>in</td><td>The shortcut letter to assign</td></tr>
-</tbody>
-</table>
-</section>
-
 <section class="method" id="Fnd_Tlbr_Clear">
 <h2><a href="#Fnd_Tlbr_Clear">Fnd_Tlbr_Clear</a></h2>
 <p class="syntax"><code>Fnd_Tlbr_Clear</code></p>
@@ -381,20 +354,6 @@
 <p class="noparams">No parameters.</p>
 </section>
 
-<section class="method" id="Fnd_Tlbr_Divider_GetPicture">
-<h2><a href="#Fnd_Tlbr_Divider_GetPicture">Fnd_Tlbr_Divider_GetPicture</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_Divider_GetPicture (divider picture name) --&gt; Picture</code></p>
-<p>Returns the toolbar divider picture * 4 so it works as a button object.</p>
-<p>This is the divider version of the Fnd_Bttn_GetPicture method.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>pictureName</code></td><td>Text</td><td>in</td><td>The name of the toolbar divider picture</td></tr>
-<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The buttonized toolbar divider picture</td></tr>
-</tbody>
-</table>
-</section>
-
 <section class="method" id="Fnd_Tlbr_FormMethod">
 <h2><a href="#Fnd_Tlbr_FormMethod">Fnd_Tlbr_FormMethod</a></h2>
 <p class="syntax"><code>Fnd_Tlbr_FormMethod</code></p>
@@ -412,34 +371,6 @@
 <tbody>
 <tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Tlbr_Object_Draw">
-<h2><a href="#Fnd_Tlbr_Object_Draw">Fnd_Tlbr_Object_Draw</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_Object_Draw (object number; variation; left offset; top offset)</code></p>
-<p>Draws a toolbar object in the specified position. Doesn't actually do any drawing. It just moves a picture button into the right location and makes it visible.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>objectNumber</code></td><td>Text</td><td>in</td><td>The object number</td></tr>
-<tr><td><code>variation</code></td><td>Text</td><td>in</td><td>The object's variation</td></tr>
-<tr><td><code>leftOffset</code></td><td>Longint</td><td>in</td><td>The left offset</td></tr>
-<tr><td><code>topOffset</code></td><td>Longint</td><td>in</td><td>The top offset</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Tlbr_Object_GetNumber">
-<h2><a href="#Fnd_Tlbr_Object_GetNumber">Fnd_Tlbr_Object_GetNumber</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_Object_GetNumber (object name) --&gt; Number</code></p>
-<p>Returns the object number (array element number) for the specified object name.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>objectName</code></td><td>Text</td><td>in</td><td>A toolbar object name</td></tr>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The array element number</td></tr>
 </tbody>
 </table>
 </section>
@@ -479,26 +410,6 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Tlbr_SetVariables">
-<h2><a href="#Fnd_Tlbr_SetVariables">Fnd_Tlbr_SetVariables</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_SetVariables</code></p>
-<p>Updates the toolbar variables depending on the current platform and size settings.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
-<section class="method" id="Fnd_Tlbr_ShortcutKeyName_Get">
-<h2><a href="#Fnd_Tlbr_ShortcutKeyName_Get">Fnd_Tlbr_ShortcutKeyName_Get</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_ShortcutKeyName_Get (Character) --&gt; Text</code></p>
-<p>Because it's not easy putting the actual keycode into the buttons on the toolbar Master form for trapping shortcuts, we have names for some of them, and this routine converts the single character keycode into that name.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>keyCodeChar</code></td><td>Text</td><td>in</td><td>The Key Code character</td></tr>
-<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The Key Code Alias Name //Author: Mark Mitchenall //Created: 16/4/02 at 2:20 AM //Toolbar Component - © mitchenall.com 2002 WBS 03 December 2024: Swap to var syntax for declarations ---------------------------------------------------- #DECLARE($keyCodeChar_t : Text)-&gt;$keyCodeName_t : Text ARRAY TEXT($keyCodeNames; 127) $keyCodeNames{3}:=&quot;Enter&quot; $keyCodeNames{127}:=&quot;Del&quot; $keyCodeNames{28}:=&quot;Left&quot; $keyCodeNames{29}:=&quot;Right&quot; $keyCodeNames{30}:=&quot;Up&quot; $keyCodeNames{31}:=&quot;Down&quot; $keyCodeNames{8}:=&quot;Backspace&quot; $keyCodeNames{27}:=&quot;Esc&quot; $keyCodeNames{Character code(&quot;.&quot;)}:=&quot;Period&quot; If ((Character code($keyCodeChar_t[[1]])&gt;0) &amp; (Character code($keyCodeChar_t[[1]])&lt;128)) 	If ($keyCodeNames{Character code($keyCodeChar_t[[1]])}#&quot;&quot;) 		$keyCodeName_t:=$keyCodeNames{Character code($keyCodeChar_t[[1]])} 	Else 		$keyCodeName_t:=$keyCodeChar_t 	End if Else 	$keyCodeName_t:=$keyCodeChar_t End if</td></tr>
-</tbody>
-</table>
-</section>
-
 <section class="method" id="Fnd_Tlbr_StatusMessage">
 <h2><a href="#Fnd_Tlbr_StatusMessage">Fnd_Tlbr_StatusMessage</a></h2>
 <p class="syntax"><code>Fnd_Tlbr_StatusMessage ({new text}) --&gt; Text</code></p>
@@ -524,13 +435,6 @@
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The selected style</td></tr>
 </tbody>
 </table>
-</section>
-
-<section class="method" id="Fnd_Tlbr_UpdateBackground">
-<h2><a href="#Fnd_Tlbr_UpdateBackground">Fnd_Tlbr_UpdateBackground</a></h2>
-<p class="syntax"><code>Fnd_Tlbr_UpdateBackground</code></p>
-<p>Updates the toolbar background.</p>
-<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Tlbr_UpdateButtons">

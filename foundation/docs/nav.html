@@ -85,18 +85,11 @@
 	<section class="box">
 	<h2>Fnd_Nav</h2>
 	<ul class="nav methods">
-		<li><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></li>
 		<li><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></li>
 		<li><a href="#Fnd_Nav_AddButtonTable">Fnd_Nav_AddButtonTable</a></li>
-		<li><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></li>
-		<li><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></li>
 		<li><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></li>
 		<li><a href="#Fnd_Nav_Display">Fnd_Nav_Display</a></li>
-		<li><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></li>
 		<li><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></li>
-		<li><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></li>
-		<li><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></li>
-		<li><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></li>
 	</ul>
 	</section>
 </aside>
@@ -105,38 +98,15 @@
 
 <h1>Fnd_Nav</h1>
 
-<p>12 shared methods.</p>
+<p>5 shared methods.</p>
 
 <ul class="jump">
-<li><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></li>
 <li><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></li>
 <li><a href="#Fnd_Nav_AddButtonTable">Fnd_Nav_AddButtonTable</a></li>
-<li><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></li>
-<li><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></li>
 <li><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></li>
 <li><a href="#Fnd_Nav_Display">Fnd_Nav_Display</a></li>
-<li><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></li>
 <li><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></li>
-<li><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></li>
-<li><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></li>
-<li><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></li>
 </ul>
-
-<section class="method" id="Fnd_Nav_Add">
-<h2><a href="#Fnd_Nav_Add">Fnd_Nav_Add</a></h2>
-<p class="syntax"><code>Fnd_Nav_Add (label) --&gt; Number</code></p>
-<p>Adds a button with the specified label to the navigation palette arrays.</p>
-<p>If a button with that label already exists, no new button is added.</p>
-<p>Assumes the semaphore work is handled by the calling method.</p>
-<p>Returns the number of the new or found button.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The new button's label</td></tr>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The new button's number</td></tr>
-</tbody>
-</table>
-</section>
 
 <section class="method" id="Fnd_Nav_AddButtonMethod">
 <h2><a href="#Fnd_Nav_AddButtonMethod">Fnd_Nav_AddButtonMethod</a></h2>
@@ -170,25 +140,6 @@
 </table>
 </section>
 
-<section class="method" id="Fnd_Nav_AutoConfigure">
-<h2><a href="#Fnd_Nav_AutoConfigure">Fnd_Nav_AutoConfigure</a></h2>
-<p class="syntax"><code>Fnd_Nav_AutoConfigure</code></p>
-<p>Automatically determines the contents of the Navigation Palette.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
-<section class="method" id="Fnd_Nav_ButtonMethod">
-<h2><a href="#Fnd_Nav_ButtonMethod">Fnd_Nav_ButtonMethod</a></h2>
-<p class="syntax"><code>Fnd_Nav_ButtonMethod (button number)</code></p>
-<p>Called from the navigation palette buttons.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>buttonNumber</code></td><td>Longint</td><td>in</td><td>The button number</td></tr>
-</tbody>
-</table>
-</section>
-
 <section class="method" id="Fnd_Nav_Delete">
 <h2><a href="#Fnd_Nav_Delete">Fnd_Nav_Delete</a></h2>
 <p class="syntax"><code>Fnd_Nav_Delete ({label})</code></p>
@@ -209,14 +160,6 @@
 <p class="noparams">No parameters.</p>
 </section>
 
-<section class="method" id="Fnd_Nav_DummyMethod">
-<h2><a href="#Fnd_Nav_DummyMethod">Fnd_Nav_DummyMethod</a></h2>
-<p class="syntax"><code>Fnd_Nav_DummyMethod</code></p>
-<p>A generic method with no code.  This is useful for assigning as the close box method for new windows (handle the close in the form method) or to use with ON ERR CALL to disable any automatic reaction to errors.</p>
-<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served one Open window close box in Fnd_Nav_Display.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
 <section class="method" id="Fnd_Nav_Info">
 <h2><a href="#Fnd_Nav_Info">Fnd_Nav_Info</a></h2>
 <p class="syntax"><code>Fnd_Nav_Info (label) --&gt; Text</code></p>
@@ -226,38 +169,6 @@
 <tbody>
 <tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Nav_UpdateColors">
-<h2><a href="#Fnd_Nav_UpdateColors">Fnd_Nav_UpdateColors</a></h2>
-<p class="syntax"><code>Fnd_Nav_UpdateColors</code></p>
-<p>Updates the form's object colors.</p>
-<p>Assumes the calling method handles the necessary semaphore work.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
-<section class="method" id="Fnd_Nav_WindowHeight">
-<h2><a href="#Fnd_Nav_WindowHeight">Fnd_Nav_WindowHeight</a></h2>
-<p class="syntax"><code>Fnd_Nav_WindowHeight --&gt; Number</code></p>
-<p>Returns the height to use for the navigation palette.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The height to use</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Nav_WindowWidth">
-<h2><a href="#Fnd_Nav_WindowWidth">Fnd_Nav_WindowWidth</a></h2>
-<p class="syntax"><code>Fnd_Nav_WindowWidth --&gt; Number</code></p>
-<p>Returns the width to use for the navigation palette.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The width to use</td></tr>
 </tbody>
 </table>
 </section>
