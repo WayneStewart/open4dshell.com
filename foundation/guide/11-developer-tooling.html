@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11. Developer tooling: Fnd_FCS and the Constants module · Foundation Guide</title>
+<meta name="description" content="11. Developer tooling: Fnd_FCS and the Constants module, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/10-logging.html">10. Logging</a></li>
+			<li><a href="/guide/11-developer-tooling.html" aria-current="page">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
+			<li><a href="/guide/upgrading.html">12. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>11. Developer tooling: <code>Fnd_FCS</code> and the Constants module</h1>
+
+<p>This chapter is for the person working on <strong>Foundation itself</strong>, not on a host. Nothing in it is called by a host, and nothing in it is part of the published API. It documents the <em>Foundation Construction Set</em>, the <code>Fnd_FCS</code> methods that compile-check, test, document, build and version-adapt the component, together with the two developer folders they live in and the third-party modules Foundation's development depends on.</p>
+<h2 id="what-fndfcs-is-and-what-it-is-not">What <code>Fnd_FCS</code> is, and what it is not</h2>
+<p><code>FCS</code> stands for <em>Foundation Construction Set</em>, a name Dave Batton used for the development-only methods in 2005 (<code>Fnd_FCS_ResizeDesignWindows</code> still carries his comment: &quot;this routine is not included in any of the components&quot;). In Foundation 6 the set is larger and the rule has changed in one respect: the methods <strong>do</strong> ship inside the built component, because <code>Fnd_FCS_BuildComponent</code> excludes nothing. They are <code>invisible</code> and, with one exception noted below, unshared, so a host never sees them. Being unreachable from a host is the property that matters; being absent from the bundle is not.</p>
+<p>Three rules govern the set, all ruled on 23 August 2026 and recorded in AgentNotes/Reference/Fnd_FCS-Classification.md (<code>AgentNotes/Reference/Fnd_FCS-Classification.md</code>):</p>
+<ol>
+<li><strong><code>Fnd_FCS</code> is never published.</strong> No <code>Fnd_FCS_*</code> method is shared, so none is callable from a host. If a host ever needs something the set does, the owning module gets an <code>Fnd_XXX_*</code> wrapper and <em>that</em> is shared.</li>
+<li><strong>A Foundation method may call into <code>Fnd_FCS</code>.</strong> Both are internal to the component, so <code>Fnd_Pswd_Init</code> reading <code>Fnd_FCS_VersionCapabilities</code> is fine. The earlier and vaguer rule, &quot;nothing outside FCS may call into it&quot;, is superseded.</li>
+<li><strong>Interpreted only.</strong> Every method that changes source, reloads the project or runs arbitrary code tests <code>Is compiled mode</code> first and does nothing in a compiled build.</li>
+</ol>
+<p>The one apparent exception to rule 1 is <code>Fnd_FCS_Info</code>, which is shared because all thirty-three <code>Fnd_&lt;Module&gt;_Info</code> methods are, and <code>Fnd_Gen_ComponentInfo</code> reaches each by building the name. It answers <code>&quot;version&quot;</code>, <code>&quot;name&quot;</code>, <code>&quot;devSync&quot;</code>, <code>&quot;min4DVersion&quot;</code>, <code>&quot;dependencies&quot;</code> and <code>&quot;manifest&quot;</code>, and nothing else.</p>
+<h2 id="two-folders">Two folders</h2>
+<p>The methods sit in two Explorer folders, and the split is deliberate.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Folder</th><th scope="col">Holds</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_FCS</code></td><td>the twenty-four methods that are general 4D development tooling: the scheduler, the compile check, the test runner and harness, the documentation writers, the command-table tools, version detection</td><td>this folder is the unit that <strong>DevSync</strong> (below) copies between projects, and it pairs folders by name, so everything in it must make sense in a project that is not Foundation</td></tr>
+<tr><td><code>Fnd_FCS_Local</code></td><td><code>Fnd_FCS_BuildComponent</code>, <code>__BuildComponent</code>, <code>Fnd_FCS_Constants</code>, <code>Fnd_FCS_SuggestRestart</code>, <code>Fnd_FCS_DeveloperTools</code>, <code>Fnd_FCS_ToggleDeclarationBlocks</code>, <code>Fnd_FCS_ToggleTypingBlock</code>, <code>Fnd_FCS_ListToTextFile</code>, <code>Fnd_FCS_TrnsListToJSON</code>, <code>Compiler_DeleteThese</code>, <code>MethodExport</code></td><td>Foundation-specific: they build <em>this</em> component, write <em>its</em> constants, or are wired to its method names; a name that pairs with nothing is what keeps them from travelling</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>Fnd_FCS_Manifest</code> lists the first folder's membership as JSON, and hands it to <code>DevSync_ManifestCheck</code> for verification when that method exists in the project. Inside Foundation it does not, so the manifest comes back marked <code>verified: false</code>, which is the normal answer here. A method's folder is recorded twice, in <code>folders.json</code> and in the <code>folder</code> key of its own <code>//%attributes</code> line, and the two must agree. Promotion into or demotion out of the sync unit is a file move between the two folders, nothing more.</p>
+<p><code>Compiler_Fnd_FCS</code> carries the folder's <code>C_XX</code> typing entries <strong>commented out</strong>, so the folder arrives complete in a project that still compiles with typing methods. Foundation's live entries are in <code>Compiler_Fnd_MethodParameters</code>; do not uncomment them in <code>Compiler_Fnd_FCS</code>, because from 20 R7 a live <code>C_XX(MethodName; $1)</code> is a compile error, and an edit there is drift against every other copy of the folder.</p>
+<h2 id="startup-fndfcsdevelopertools">Startup: <code>Fnd_FCS_DeveloperTools</code></h2>
+<p>Foundation's own <code>On Startup</code> and <code>On Exit</code> database methods each make one call, <code>Fnd_FCS_DeveloperTools(Current method name)</code>. Interpreted, at startup it:</p>
+<ol>
+<li>starts the compile-check watcher (<code>Fnd_FCS_SchedStart</code>);</li>
+<li>reads what the running 4D can do (<code>Fnd_FCS_VersionCapabilities</code>) and sets the source to match: <code>Fnd_FCS_ToggleDeclarationBlocks</code> for the variadic methods, <code>Fnd_FCS_ToggleTypingBlock</code> for the typing block;</li>
+<li>rebuilds the constants file if its stamp is stale (<code>Fnd_FCS_Constants(True)</code>), restarting 4D once if it did;</li>
+<li>records the running 4D in the command table (<code>Fnd_FCS_CommandTableUpdate</code>), logging to the <code>Fnd_FCS</code> log when anything was written;</li>
+<li>deletes the syntax file (<code>Fnd_FCS_DeleteSyntaxFile</code>).</li>
+</ol>
+<p>At exit it stops the watcher and deletes the syntax file again. Compiled, the whole method is a no-op. This is why opening the project in a different 4D rewrites tracked files (see <em>Release/README.md</em>, step 5): the toggles are doing their job, and <code>git restore .</code> afterwards is part of the build procedure.</p>
+<h2 id="the-compile-check-and-test-scheduler">The compile-check and test scheduler</h2>
+<p>A watcher process, <code>$Fnd_FCS_SchedStart</code>, polls one request file every five seconds and answers in one result file, both in the project's <code>Resources/</code>:</p>
+<pre><code>Resources/schedulerRequest.json     you (or a script, or an agent) write this
+Resources/schedulerResult.json      4D writes this</code></pre>
+<p>Both are gitignored: the pair is rewritten on every tick. The request's <code>action</code> chooses what runs; a request with no action, or an empty file, is a compile check, which is what an empty request has always meant.</p>
+<pre><code>{ &quot;action&quot;: &quot;compile&quot;, &quot;expectedVersion&quot;: &quot;2009&quot;, &quot;requestedAt&quot;: &quot;2026-11-01T09:15:00&quot; }
+{ &quot;action&quot;: &quot;test&quot;, &quot;filter&quot;: &quot;Test_Fnd_@&quot; }
+{ &quot;action&quot;: &quot;test&quot;, &quot;method&quot;: &quot;Fnd_FCS_WriteDocumentation&quot;, &quot;parameters&quot;: [{ &quot;silent&quot;: true, &quot;inline&quot;: true }] }
+{ &quot;action&quot;: &quot;relaunch&quot; }
+{ &quot;action&quot;: &quot;restart&quot; }</code></pre>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Action</th><th scope="col">Runs</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><td><code>compile</code> (or none)</td><td><code>Fnd_FCS_CompilerCheck</code></td><td><code>RELOAD PROJECT</code>, then <code>Compile project</code> with an <strong>empty</strong> <code>targets</code> collection, which is what makes it a syntax check rather than a build. The result carries <code>syntaxCheckDone</code>, <code>errorCount</code>, <code>warningCount</code>, <code>compilationPath</code>, the error <code>messages</code> with their method and line, and <code>timeInMilliSeconds</code>. <strong>Trust <code>errorCount</code></strong>: <code>syntaxCheckDone</code> only says the compiler finished.</td></tr>
+<tr><td><code>test</code></td><td><code>Fnd_FCS_TestRunner</code></td><td>runs the methods named by <code>method</code>, <code>methods</code> or <code>filter</code> (wildcards honoured), passing up to five <code>parameters</code>; an empty request runs every <code>Test_Fnd_@</code> and <code>Fnd_Test_@</code> method. The result lists each method's <code>passed</code>, <code>failed</code>, <code>failures</code> and <code>error</code>, and an overall <code>success</code>.</td></tr>
+<tr><td><code>relaunch</code></td><td><code>Fnd_FCS_SchedRelaunch</code></td><td>stops the watcher and starts it again. The only way an edit to <code>Fnd_FCS_SchedStart</code> itself takes effect, because <code>RELOAD PROJECT</code> refreshes the child processes but not the running loop.</td></tr>
+<tr><td><code>restart</code></td><td><code>RESTART 4D</code></td><td>after a short delay.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Every result begins with the object <code>Fnd_FCS_RequestEcho</code> builds: the 4D version that answered (<code>v4D</code>), when the watcher took the request (<code>requestedAt</code>) and, where the client supplied them, <code>expectedVersion</code> with a <code>versionMatch</code> verdict and <code>requestAgeSeconds</code>. Send <code>expectedVersion</code> on every request. With several 4D versions open on the same project, whichever watcher polls first takes the request, and <code>versionMatch: false</code> is the only way to know it was the wrong one.</p>
+<p>A result file is written on <strong>every</strong> path. <code>Fnd_FCS_CompilerCheckOnErr</code> and <code>Fnd_FCS_TestRunnerOnErr</code> are the error handlers installed around the compile and around each test, and <code>Fnd_FCS_WriteFailedResult</code> writes a payload with <code>errorCount: -1</code> when the compiler was never reached, so a polling client is never left waiting for a file that will not appear.</p>
+<p><code>Fnd_FCS_CompilerCheck</code> also runs interactively: execute it from the Explorer and the summary goes to the pasteboard (indented JSON, or concise with Option or Alt held) and to an alert. <code>Fnd_FCS_SchedStop</code> asks the watcher to stop; it notices on its next tick.</p>
+<p>Four hazards, learned the hard way and written down in AgentNotes/Reference/Scheduler-Port-Guide.md (<code>AgentNotes/Reference/Scheduler-Port-Guide.md</code>):</p>
+<ul>
+<li><code>RELOAD PROJECT</code> is not thread-safe, so nothing here is preemptive, and it does not reload components: editing a component the project hosts needs a restart of both.</li>
+<li>A modal dialog in a test hangs the test action silently while compile actions keep answering. Pass a silent flag to anything that might report.</li>
+<li>Editing <code>Fnd_FCS_CompilerCheck</code> takes two runs to take effect, because its body is loaded before its own <code>RELOAD PROJECT</code>.</li>
+<li>On Windows, write the request to a temporary name in <code>Resources/</code> and rename it into place; streaming into the watched name lets the watcher read a half-written file and then fail to delete it.</li>
+</ul>
+<p>The scheduler is a developer tool, driven by the developer and by AI tooling working alongside them, and it is the channel through which the release procedure's compile check and test run can be made unattended. The port guide lists the sixteen methods another project needs to copy to have it.</p>
+<h2 id="tests">Tests</h2>
+<p>Unit tests are <code>Test_Fnd_&lt;Module&gt;</code>, one or two per module, in the <code>Fnd_Test</code> folder (<code>CONTRIBUTING.md</code>, <em>Tests</em>). They record assertions through <code>Fnd_Test_Assert($ok_b; $message_t)</code> and close with <code>Fnd_Test_End</code>, writing to the <code>Fnd_Test</code> log and tallying in <code>Storage.test</code>, which is what the runner reports. A test runs identically from the Explorer and under the scheduler, because nothing in the harness is interactive.</p>
+<p><code>Fnd_FCS</code> carries a second, portable pair, <code>Fnd_FCS_TestAssert</code> and <code>Fnd_FCS_TestEnd</code>. They keep the same <code>Storage.test</code> contract, so <code>Fnd_FCS_TestRunner</code> reads either, but write their own <code>Fnd_FCS_Test</code> log and reach <code>Fnd_Log</code> only by name, through <code>EXECUTE METHOD</code>, so the folder compiles in a project without it. They exist because DevSync pairs folders by name and a folder whose harness lives in another folder is not a unit. Foundation's own tests keep calling <code>Fnd_Test_Assert</code>; the portable pair earns its place only where the folder is synced.</p>
+<h2 id="the-documentation-writers">The documentation writers</h2>
+<p><strong><code>Fnd_FCS_WriteDocumentation</code></strong> reads the boxed header of every project method and writes two things from it: the method's comment, set with <code>METHOD SET COMMENTS</code> so the code editor's tooltip shows the call syntax and parameters, and a Markdown page in <code>Documentation/Methods/&lt;method&gt;.md</code>. It keys on the literal header tokens listed in <code>CONTRIBUTING.md</code> (<em>Writing a method</em>): <code>// Project Method:</code>, <code>// Access:</code>, <code>// Parameters:</code>, <code>// Returns:</code>, <code>// Created by</code>. A header that departs from them documents nothing.</p>
+<p>It takes an options object or the older positional form:</p>
+<pre><code>Fnd_FCS_WriteDocumentation({methodName: &quot;Fnd_Art&quot;; silent: True; inline: True})
+Fnd_FCS_WriteDocumentation(&quot;&quot;; True; True)   // all methods, tooltips, exclude private</code></pre>
+<p><code>methodName</code> is <code>&quot;&quot;</code> for every method, a prefix such as <code>Fnd_Art</code>, or one name. <code>excludePrivate</code> leaves out methods whose header says <code>Access: Private</code>, and an inline pass with it set clears <code>Documentation/Methods/</code> first, so the folder holds exactly the public set. <code>silent</code> suppresses the final alert and <code>inline</code> runs in the calling process rather than spawning <code>$WriteDocumentation</code>; use both under the scheduler.</p>
+<p><strong><code>Fnd_FCS_WriteClassDocumentation</code></strong> is the companion for classes, which have no <code>METHOD SET COMMENTS</code> equivalent. It writes <code>Documentation/Classes/&lt;class&gt;.md</code> from the block comment at the top of each class file and the comment lines under each <code>Function</code>, the same lines the editor shows as help, so the two cannot disagree. Functions beginning with an underscore are left out. It takes no parameters and alerts about nothing.</p>
+<p>The Markdown is <strong>tracked in git</strong> on purpose (<code>.gitignore</code> says why): only the 4D IDE can regenerate it, output is deterministic, and a diff appears only when a header actually changed. <code>Fnd_FCS_BuildComponent</code> brackets <code>BUILD APPLICATION</code> with two passes, first excluding private methods so the component carries the publishable set, then with every method so the repository's copy is restored. A build stopped between the two leaves the private pages deleted; <code>Fnd_FCS_WriteDocumentation(&quot;&quot;; True; False)</code> recovers them. <code>Release/Scripts/package.sh</code> copies the public set out of the built component for the web site, so the site never reads the repository's own <code>Documentation/</code>. <code>Fnd_FCS_ParseParameterLine</code> is the parser <code>Fnd_FCS_WriteDocumentation</code> uses for a <code>//   $name : Type : Description</code> line, returning its name, type and description.</p>
+<h2 id="version-adaptation">Version adaptation</h2>
+<p>Foundation compiles on 20 LTS, 20 R, 21 LTS and 21 R from one source tree. Four methods make that possible.</p>
+<p><strong><code>Fnd_FCS_VersionCapabilities</code></strong> decodes <code>Application version</code> (two characters of major, one hex digit of R-release, one of revision, so <code>&quot;20A0&quot;</code> is 20 R10) into <code>{ version; major; release; key; ellipsis; directTyping; uuidVersion }</code>. <code>ellipsis</code> is True from 20 R3, <code>directTyping</code> from 20 R4, <code>uuidVersion</code> from 20 R10. The setting <code>compilation_path</code> is <strong>not</strong> a safe signal for any of these, since 20.7 leaves it at <code>&quot;4&quot;</code> while having none of them, which is why the running version decides. <code>Fnd_Pswd_Init</code>, <code>Fnd_Gen_RequiredCompilerMethod</code> and <code>Fnd_Test_VersionCapabilities</code> read it too.</p>
+<p><strong><code>Fnd_FCS_ToggleDeclarationBlocks($ellipsis_b)</code></strong> finds every method carrying the literal markers <code>// ==== BEGIN COMPILER DECLARATION BLOCK</code> and <code>// ==== END COMPILER DECLARATION BLOCK</code>, and activates the <code>#DECLARE</code> with <code>...</code> on 20 R3 and later or the <code>C_TEXT($0; $1; ${2})</code> form before it. Seven methods carry the block at the time of writing (<code>Fnd_Gen_ButtonText</code>, <code>Fnd_Loc_FixButtonWidths</code>, <code>Fnd_Loc_FixLabelWidths</code>, <code>Fnd_Loc_GetString</code>, <code>Fnd_Log_AddEntry</code>, <code>Fnd_Msg_PackParameters</code>, <code>Fnd_Shell_OpenTableAdd</code>). It returns <code>{ target; changed; alreadyCorrect; unmarked }</code> and writes a method only when its text changed.</p>
+<p><strong><code>Fnd_FCS_ToggleTypingBlock($commentOut_b)</code></strong> wraps or unwraps the block in <code>Compiler_Fnd_MethodParameters</code> between <code>// ==== BEGIN COMPILER TYPING BLOCK</code> and <code>// ==== END COMPILER TYPING BLOCK</code> in <code>/* */</code>. Direct typing rejects <code>C_XX(MethodName; $1)</code> entries outright (788 errors measured on 2026-08-08) while the lower compilation paths require them, so the same source carries the block in one state or the other.</p>
+<p><strong><code>Fnd_FCS_CompilationPath</code></strong> reads <code>compilation_path</code> from <code>settings.4DSettings</code> and puts it in every compile result, because two results at different paths are not comparable.</p>
+<p><strong><code>Fnd_FCS_DeleteSyntaxFile</code></strong> removes <code>Resources/en.lproj/syntaxEN.json</code>. 4D writes it during a full compilation and reads it when the project opens, and a file written by one version misdescribes the parameters to another: one written by 20 makes 21 R reject nearly every call. It is useful only in a built component, where the build recreates it.</p>
+<h2 id="the-command-table">The command table</h2>
+<p>4D renames commands between releases, and a method that depended on a renamed one (<code>Fnd_Gen_ProcessName</code> was lost that way) fails with no warning. Two methods keep a record.</p>
+<p><strong><code>Fnd_FCS_GetCommandNames</code></strong> reads every command name out of the running 4D as <code>{ number : name }</code>; pass True to also write <code>Development/&lt;version key&gt;.txt</code>, the listing format the tables were first captured in (<code>21R3.txt</code>, <code>21r4.txt</code>).</p>
+<p><strong><code>Fnd_FCS_CommandTableUpdate</code></strong> makes sure <code>Development/commands.json</code> knows the running 4D. If the version already has a table, or is already recorded as an alias of one, it does nothing. Otherwise it compares the live table with every one held: identical to one and an alias is recorded under <code>_aliases</code>, costing thirty bytes rather than another thirty thousand (21 R3 is 21 LTS exactly); different and the full table is added under the version key. A new R release therefore costs nothing until 4D actually changes a name, and the change is captured the first time that version opens the project. The file lives in <code>Development/</code>, not <code>Resources/</code>, so it is never built into the component. <code>CONTRIBUTING.md</code> points at it as the source of truth for &quot;when did this command arrive&quot;; never take that from memory.</p>
+<h2 id="constants-and-the-constants-module">Constants, and the Constants module</h2>
+<p>Foundation's constants (<code>Fnd_Wnd_CenterOnScreen</code>, <code>Fnd_Gen_InputForm</code>, <code>Fnd_Log_LevelError</code>, the <code>fo_*</code> listbox keys and so on) are <strong>user-created constants</strong>: 4D reads any <code>.xlf</code> file at the top level of <code>Resources/</code>, and Foundation's is <code>Resources/Foundation Constants.xlf</code>. The file is generated, never edited by hand.</p>
+<p><strong><code>Fnd_FCS_Constants</code></strong> holds the definitive list, one <code>Constants_Add*</code> call per constant, grouped by theme. It rebuilds the file only when the stamp <code>$lastConstantUpdate_t</code> in its body differs from the constant <code>Fnd_LastConstantUpdate</code> compiled into the running project, which is itself the first constant written. To add, remove or change a constant:</p>
+<ol>
+<li>edit the group in <code>Fnd_FCS_Constants</code>;</li>
+<li>bump <code>$lastConstantUpdate_t</code> to today's date;</li>
+<li>let the next startup rebuild the file, or run the method yourself;</li>
+<li>restart 4D so the new constants are recognised.</li>
+</ol>
+<p>At startup <code>Fnd_FCS_DeveloperTools</code> passes True, so the rebuild restarts without asking (a <code>CONFIRM</code> on worker 1 would hang an unattended scheduler). Run by hand it offers the restart through <code>Fnd_FCS_SuggestRestart</code>, called via <code>CALL WORKER</code> so the dialog does not hold up whatever triggered it. It restarts at most once, because after the restart the two stamps agree.</p>
+<p>The writing itself is done by the <strong>Constants module</strong>, eight methods in the <code>Constants</code> folder written by <strong>Cannon Smith</strong> of Synergy Farm Solutions and included in Foundation with his headers intact:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Method</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>Constants_NewFile(&quot;name.xlf&quot;)</code></td><td>opens a new XLIFF document in the 4D constants dialect</td></tr>
+<tr><td><code>Constants_NewGroup(&quot;Theme&quot;)</code></td><td>starts a group, which 4D shows as a theme</td></tr>
+<tr><td><code>Constants_AddLong(name; value)</code>, <code>Constants_AddReal</code>, <code>Constants_AddString</code></td><td>add a constant to the current group; <code>AddString</code> with one argument uses the name as the value</td></tr>
+<tr><td><code>Constants_SaveFile</code></td><td>writes the document to <code>Resources/</code></td></tr>
+<tr><td><code>Constants__Readme</code></td><td>the module's own notes and a worked example</td></tr>
+<tr><td><code>Compiler_Constants</code></td><td>the module's typing declarations</td></tr>
+</tbody>
+</table>
+</div>
+<p>The files it writes are compatible with the 4DPop Constants Editor. The module creates files; it does not read existing ones. The convention Cannon's readme sets, and Foundation follows, is that a module needing constants gets a <code>&lt;module&gt;_Constants</code> method called from <code>Fnd_FCS_Constants</code>.</p>
+<h2 id="building-the-component">Building the component</h2>
+<p><code>__BuildComponent</code> is a bare call to <code>Fnd_FCS_BuildComponent</code>, which reads the version from <code>Resources/InfoPlist.json</code>, derives the target (<code>20L</code>, <code>20R</code>, <code>21L</code>, <code>21R</code>) from the running 4D, chooses <code>Release/BuildSettings/buildApp-&lt;target&gt;.4DSettings</code>, rewrites <code>InfoPlist.json</code> and <code>InfoPlist.strings</code>, deletes the scheduler's scratch files so they do not ship, runs the two documentation passes around <code>BUILD APPLICATION</code>, and leaves the result in <code>Builds/Components/Foundation-&lt;target&gt;/</code>. A successful build is logged, not alerted, so it can run unattended; a failed one still stops for a human. Release/README.md (<code>Release/README.md</code>) is the release procedure and the source of truth where a script disagrees.</p>
+<h2 id="the-rest-of-the-set">The rest of the set</h2>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Method</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_FCS_ResizeDesignWindows</code></td><td>moves and resizes every open Structure, Explorer, Method and Form window to one rectangle; Dave Batton's, from 2005, and the oldest method in the set</td></tr>
+<tr><td><code>Fnd_FCS_ConfirmListExists(name)</code></td><td>True if a list of that name is in the toolbox</td></tr>
+<tr><td><code>Fnd_FCS_ListToTextFile({name})</code></td><td>dumps a toolbox list to <code>Resources/Lists/&lt;name&gt;.txt</code>, prompting for the name if none is passed</td></tr>
+<tr><td><code>Fnd_FCS_TrnsListToJSON({name})</code></td><td>gathers a localisation key list and its <code>_EN</code>, <code>_FR</code>, … translations into one JSON object and saves it; a quick tool for inspecting the list triples of chapter 8</td></tr>
+<tr><td><code>Compiler_DeleteThese</code></td><td>a holding pen for variables and methods awaiting deletion, so they still compile while the decision is pending; also where <code>_DeleteMe</code> is declared</td></tr>
+<tr><td><code>MethodExport</code></td><td>an empty placeholder kept for its history; it once backed up method code</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="third-party-modules-used-in-foundations-development">Third-party modules used in Foundation's development</h2>
+<p>Foundation's development process stands on three pieces of work by <strong>Cannon Smith</strong> (Synergy Farm Solutions, Hill Spring, Alberta), published for the 4D community and used here with thanks:</p>
+<ul>
+<li><strong>Constants</strong> (<a href="https://www.synergyfarmsolutions.com">https://www.synergyfarmsolutions.com</a>, under <em>Code</em>): the eight <code>Constants_*</code> methods above, shipped inside Foundation and the means by which every Foundation constant is written. Cannon published the module with his UITimer module as code available &quot;as is&quot; to anyone who would like it; his attribution is kept in every method header. His <strong>Object</strong> module (OBJ_Module) is the model for <code>Fnd_Obj_SaveToFile</code>, which the set uses to write JSON files.</li>
+<li><strong>DevSync</strong> (<a href="https://github.com/cannonsmith/DevSync">https://github.com/cannonsmith/DevSync</a>, MIT licence): copies an Explorer folder, with its child folders, methods, classes, forms and their documentation, from the running project to one or more other projects, and updates each target's <code>folders.json</code>. It is how the <code>Fnd_FCS</code> folder is kept identical across the maintainer's projects, and it is the reason the folder is split as described above. DevSync is not part of Foundation; Foundation only arranges itself so that DevSync can carry the folder.</li>
+<li><strong>DevQuickOpen</strong> (<a href="https://github.com/cannonsmith/DevQuickOpen">https://github.com/cannonsmith/DevQuickOpen</a>, MIT licence): Option-Space opens a window that finds methods, classes, forms, database methods, triggers and documentation by partial name, sorted by relevance, in the spirit of Xcode's Open Quickly. Foundation 6 was written with it open; nothing in the repository depends on it.</li>
+</ul>
+<p>Neither DevSync nor DevQuickOpen is distributed with Foundation. Install them from Cannon's repositories if you want the same workflow.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

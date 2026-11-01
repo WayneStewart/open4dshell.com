@@ -137,8 +137,8 @@ Foundation source, not a complete record.</p>
 <dd>Registration-dialog fixes and a correction to placement of the Quit menu command.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Reg_DemoDialog.4dm</code></li><li><code>Project/Sources/Methods/Fnd_Menu_BuildMenuBar.4dm</code></li></ul></dd>
 <dt>Cannon Smith</dt>
-<dd>Author of the Constants module, credited with Synergy Farm Solutions.
-<ul class="sources"><li><code>Project/Sources/Methods/Constants__Readme.4dm</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li></ul></dd>
+<dd>Author of the Constants module (Synergy Farm Solutions), which writes Foundation's user constants file and ships inside the component, and of the Object module on which Fnd_Obj_SaveToFile is based; also the author of DevSync and DevQuickOpen, the MIT-licensed developer tools Foundation 6 was developed with. DevSync keeps the Fnd_FCS folder in step across projects and is why that folder is organised as it is.
+<ul class="sources"><li><code>Project/Sources/Methods/Constants__Readme.4dm</code></li><li><code>Project/Sources/Methods/Fnd_FCS_Manifest.4dm</code></li><li><code>Guide/11-Developer-Tooling.md</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li><li><code>https://github.com/cannonsmith/DevSync</code></li><li><code>https://github.com/cannonsmith/DevQuickOpen</code></li></ul></dd>
 <dt>Dave Batton</dt>
 <dd>Creator and original author of Foundation; original design and implementation across its methods and forms.
 <ul class="sources"><li><code>Resources/Fnd_Shell_Documentation/manual.html#page-13</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li></ul></dd>
@@ -178,6 +178,9 @@ Foundation source, not a complete record.</p>
 <dt>Jean Pierre Ribreau</dt>
 <dd>Text-to-picture and BLOB-to-picture routines; recorded as JPR in the developer key.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Bttn_TextToPict.4dm</code></li><li><code>Project/Sources/Methods/Fnd_Msg_BlobToPicture.4dm</code></li></ul></dd>
+<dt>Jérôme Pupier</dt>
+<dd>Donated the WasSubtable method on which the virtual-structure subtable test is based.
+<ul class="sources"><li><code>Project/Sources/Methods/Fnd_VS_WasSubtable.4dm</code></li></ul></dd>
 <dt>John Craig</dt>
 <dd>Button and picture-library work, user-interface refinements and output-form performance improvements.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Bttn_LibraryToResource.4dm</code></li><li><code>Project/Sources/Methods/Fnd_IO_OutputFormMethod.4dm</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li></ul></dd>
@@ -191,7 +194,7 @@ Foundation source, not a complete record.</p>
 <dd>The text-wrapping routine credited in Fnd_Text_Wrap.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Text_Wrap.4dm</code></li></ul></dd>
 <dt>Mark Mitchenall</dt>
-<dd>Original toolbar and rollover/button component code incorporated into Foundation.
+<dd>Original toolbar and rollover/button component code incorporated into Foundation (Toolbar Component, © 2001–2002 mitchenall.com, used with permission); Fnd_Tlbr and Fnd_Bttn are built on it.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Bttn_SetVariables.4dm</code></li><li><code>Project/Sources/Methods/Fnd_Tlbr_Button_Add.4dm</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li></ul></dd>
 <dt>Mark Schaake</dt>
 <dd>Acknowledged by Walt for help and support in bringing Foundation 5 to market.
@@ -206,10 +209,10 @@ Foundation source, not a complete record.</p>
 <dd>Base64 code shared through 4DToday.com and acknowledged in Foundation's source history.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Text_DecodeBase64Blob.4dm</code></li><li><code>Project/Sources/Methods/aaaMods.4dm</code></li></ul></dd>
 <dt>Rob Laveaux</dt>
-<dd>Original dictionary module methods.
+<dd>Author of the dictionary module incorporated as Fnd_Dict; 39 of its 41 methods carry his name.
 <ul class="sources"><li><code>Project/Sources/Methods/Fnd_Dict_GetText.4dm</code></li><li><code>Project/Sources/Methods/Compiler_Fnd_Dict.4dm</code></li></ul></dd>
 <dt>Tom Dillon</dt>
-<dd>Date Entry component and calendar code incorporated into Foundation.
+<dd>Author of the Date Entry component, incorporated as Fnd_Date_Calendar and the Fnd_Date_CalendarPopup form.
 <ul class="sources"><li><code>Project/Sources/Forms/Fnd_Date_CalendarPopup/method.4dm</code></li><li><code>Project/Sources/Forms/Fnd_Date_CalendarPopup/ObjectMethods/Fnd_Date_CalendarDayCell.4dm</code></li></ul></dd>
 <dt>Vincent Tournier</dt>
 <dd>Localization, virtual-structure and related compiler-declaration improvements.
@@ -227,7 +230,7 @@ Foundation source, not a complete record.</p>
 
 <h2>Community</h2>
 
-<p>Foundation also owes thanks to the Seattle 4D SIG, the beta testers, customers and developers whose reports, suggestions and testing helped the project over the years. Its source records contributions shared through the 4D community and 4DToday.com, the Constants module from Cannon Smith / Synergy Farm Solutions, and historical integration with Automated Solutions Group's components. These acknowledgements preserve the distinction between contributions to Foundation and the third-party tools with which it worked.</p>
+<p>Foundation also owes thanks to the Seattle 4D SIG, the beta testers, customers and developers whose reports, suggestions and testing helped the project over the years. Its source records contributions shared through the 4D community and 4DToday.com, the Constants module from Cannon Smith / Synergy Farm Solutions (whose DevSync and DevQuickOpen tools also served Foundation 6's development), and historical integration with Automated Solutions Group's components. These acknowledgements preserve the distinction between contributions to Foundation and the third-party tools with which it worked.</p>
 
 <h2>About this record</h2>
 

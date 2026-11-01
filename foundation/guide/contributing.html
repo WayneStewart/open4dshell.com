@@ -45,7 +45,8 @@
 			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
 			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
 			<li><a href="/guide/10-logging.html">10. Logging</a></li>
-			<li><a href="/guide/upgrading.html">11. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/11-developer-tooling.html">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
+			<li><a href="/guide/upgrading.html">12. Upgrading from Foundation 5</a></li>
 			<li><a href="/guide/contributing.html" aria-current="page">Contributing</a></li>
 		</ul>
 	</section>
@@ -98,7 +99,7 @@
 <li><code>Fnd_&lt;Module&gt;_Info</code> — answers <code>&quot;version&quot;</code>, <code>&quot;name&quot;</code> and module-specific questions.</li>
 <li><code>Fnd_&lt;Module&gt;_Localize</code> where the module has strings, read from <code>lists.json</code> through <code>Fnd_Loc_GetString</code>.</li>
 </ul>
-<p><code>Fnd_Gen</code> is required by everything; <code>Fnd_Shell</code> is the application shell; <code>Fnd_FCS</code> is build-time tooling that must stay removable, so nothing outside <code>Fnd_FCS</code> may call into it.</p>
+<p><code>Fnd_Gen</code> is required by everything; <code>Fnd_Shell</code> is the application shell; <code>Fnd_FCS</code> is build-time tooling for Foundation's own developers. It is never published: no <code>Fnd_FCS_*</code> method is shared, and a host that needs something it does gets an <code>Fnd_XXX_*</code> wrapper in the owning module instead. A Foundation method may call into it (ruled 2026-08-23). The <code>Fnd_FCS</code> folder is kept in step with other projects by DevSync, so Foundation-specific tooling goes in <code>Fnd_FCS_Local</code>; <code>Guide/11-Developer-Tooling.md</code> describes the set and <code>AgentNotes/Reference/Fnd_FCS-Classification.md</code> the split.</p>
 <p>Method and variable names cannot exceed <strong>31 characters</strong>. Class function names and object properties can.</p>
 <p><strong>Spelling.</strong> Anything resolved by name at runtime uses <strong>US</strong> spelling: method names, <code>Storage</code> keys, object properties, list names (<code>Initialized</code>, not <code>Initialised</code>), because Foundation was written by an American in 2003 and names are matched, not read. Comments and local variables are the author's choice.</p>
 <h2 id="state">State</h2>

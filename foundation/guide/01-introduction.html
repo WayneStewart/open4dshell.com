@@ -45,7 +45,8 @@
 			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
 			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
 			<li><a href="/guide/10-logging.html">10. Logging</a></li>
-			<li><a href="/guide/upgrading.html">11. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/11-developer-tooling.html">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
+			<li><a href="/guide/upgrading.html">12. Upgrading from Foundation 5</a></li>
 			<li><a href="/guide/contributing.html">Contributing</a></li>
 		</ul>
 	</section>
@@ -70,6 +71,7 @@
 <p>Foundation is a <em>shell</em> for 4D: a component that supplies everything an application needs around its data, so that you supply only the tables, fields and forms. Install it, add your structure, and the Custom Menus environment has menus, windows, a navigation palette, list and record windows, Find and Sort dialogs, preferences, an About box, logging, passwords and sequence numbers.</p>
 <h2 id="history">History</h2>
 <p>Dave Batton created Foundation in 1993 and rewrote it as Foundation 4 for 4D 2003; the earliest method headers in this repository carry his name and that date. Walt Nelson and Nelson Consulting, Inc. acquired it in 2008 and produced Foundation 5 for 4D v11, with a group of community developers whose names are in the About box. Wayne Stewart has maintained it since the 64-bit era and was assigned it by deed on 11 September 2026 for release as open source. Foundation 6 is released under the MIT licence. <a href="/licence/#provenance">PROVENANCE.md</a> has the chain of title.</p>
+<p>Foundation's constants are written by the <strong>Constants</strong> module of Cannon Smith (Synergy Farm Solutions), which ships inside the component, and Foundation 6 was developed with his <strong>DevSync</strong> and <strong>DevQuickOpen</strong> tools. Chapter 11 describes all three and where to find them. Three modules were other people's components before they were Foundation's: the toolbar and button modules are Mark Mitchenall's Toolbar Component, used with permission; the calendar is Tom Dillon's Date Entry component; the dictionary module is Rob Laveaux's. Their headers say so, and the About box names every contributor.</p>
 <h2 id="what-foundation-is-not">What Foundation is not</h2>
 <p>It is not a tutorial on 4D. It assumes you can create tables, fields and forms, write a form method, and find your way around the Custom Menus environment. Once running you will want a working knowledge of pointers, which much of Foundation's generic code relies on, and of processes, since every window runs in its own.</p>
 <p>It is not a data file. Any data file works; Foundation keeps nothing in it except the tables you choose to give it (<code>Fnd_Log</code>, <code>Fnd_Pref</code>, <code>Fnd_Reg</code>, <code>Fnd_SqNo</code>, <code>Fnd_List</code>, all optional).</p>

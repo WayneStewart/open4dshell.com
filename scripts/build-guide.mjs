@@ -40,7 +40,7 @@ const chapterFiles = readdirSync(join(f6, 'Guide')).filter((f) => /^\d\d-.*\.md$
 const sources = [
 	{ path: 'Guide/README.md', out: 'index.html', label: null },
 	...chapterFiles.map((f) => ({ path: `Guide/${f}`, out: pageName(f), label: null })),
-	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '11. Upgrading from Foundation 5' },
+	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '12. Upgrading from Foundation 5' },
 	{ path: 'CONTRIBUTING.md', out: 'contributing.html', label: 'Contributing' },
 ];
 for (const s of sources) {
@@ -48,7 +48,9 @@ for (const s of sources) {
 	const h1 = s.lines.findIndex((l) => /^#\s+/.test(l));
 	s.h1Index = h1;
 	s.h1 = h1 >= 0 ? s.lines[h1].replace(/^#\s+/, '').trim() : s.path;
-	if (s.label === null) s.label = s.out === 'index.html' ? 'Overview' : s.h1;
+	// Plain-text form for the sidebar, <title> and description; the body <h1> renders the inline code.
+	s.plain = s.h1.replace(/`/g, '');
+	if (s.label === null) s.label = s.out === 'index.html' ? 'Overview' : s.plain;
 }
 // Chapter 6's heading is not numbered in the source; the sidebar numbers it.
 for (const s of sources) {
@@ -100,8 +102,8 @@ for (const s of sources) {
 	};
 	const body = guideBlocks(s.lines, ctx);
 	files[s.out] = frame({
-		title: `${s.h1} · Foundation Guide`,
-		description: `${s.h1}, from the Foundation 6 Developer Guide.`,
+		title: `${s.plain} · Foundation Guide`,
+		description: `${s.plain}, from the Foundation 6 Developer Guide.`,
 		docs: true,
 		current: 'guide',
 		sidebar: sidebar(s.out),
