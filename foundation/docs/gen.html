@@ -116,6 +116,7 @@
 		<li><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></li>
 		<li><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></li>
 		<li><a href="#Fnd_Gen_Reset">Fnd_Gen_Reset</a></li>
+		<li><a href="#Fnd_Gen_RunningInHost">Fnd_Gen_RunningInHost</a></li>
 		<li><a href="#Fnd_Gen_SelectionChanged">Fnd_Gen_SelectionChanged</a></li>
 		<li><a href="#Fnd_Gen_SetDatabaseInfo">Fnd_Gen_SetDatabaseInfo</a></li>
 		<li><a href="#Fnd_Gen_SetLocalizationStrings">Fnd_Gen_SetLocalizationStrings</a></li>
@@ -134,7 +135,7 @@
 
 <h1>Fnd_Gen</h1>
 
-<p>40 shared methods.</p>
+<p>41 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Gen_BugAlert">Fnd_Gen_BugAlert</a></li>
@@ -167,6 +168,7 @@
 <li><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></li>
 <li><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></li>
 <li><a href="#Fnd_Gen_Reset">Fnd_Gen_Reset</a></li>
+<li><a href="#Fnd_Gen_RunningInHost">Fnd_Gen_RunningInHost</a></li>
 <li><a href="#Fnd_Gen_SelectionChanged">Fnd_Gen_SelectionChanged</a></li>
 <li><a href="#Fnd_Gen_SetDatabaseInfo">Fnd_Gen_SetDatabaseInfo</a></li>
 <li><a href="#Fnd_Gen_SetLocalizationStrings">Fnd_Gen_SetLocalizationStrings</a></li>
@@ -593,6 +595,19 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <p class="syntax"><code>Fnd_Gen_Reset</code></p>
 <p>Resets all of the available Foundation components.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Gen_RunningInHost">
+<h2><a href="#Fnd_Gen_RunningInHost">Fnd_Gen_RunningInHost</a></h2>
+<p class="syntax"><code>Fnd_Gen_RunningInHost ({running in host?}) --&gt; Boolean</code></p>
+<p>Tells whether Foundation is running as a component inside a host database. With a parameter, records the answer; without one, returns it.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>setFnd_Gen_RunningInHost</code></td><td>Boolean</td><td>in</td><td>True when Foundation is a component in a host (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True when running in a host</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Gen_SelectionChanged">

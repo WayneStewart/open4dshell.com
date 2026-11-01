@@ -98,8 +98,8 @@
 <li><strong><code>Fnd_VS_zProbeHostLists</code></strong> is published, as a diagnostic: it reports which route to a host's choice lists works in that database.</li>
 </ul>
 <hr>
-<h2 id="also-in-600-beta1-since-31aa2c9-2026-08-12">Also in 6.0.0-beta.1 — since <code>31aa2c9</code> (2026-08-12)</h2>
-<p>Nineteen commits on <code>basis-for-change</code>. The <code>Fnd_Text</code> and <code>Fnd_Data</code> modules were modernised: hand-written MD5 and Base64 replaced by the 4D commands that now do the same work, and module state moved out of interprocess variables into <code>Storage</code>.</p>
+<h2 id="also-in-600-beta1-the-august-2026-modernisation-of-fndtext-and-fnddata">Also in 6.0.0-beta.1 — the August 2026 modernisation of Fnd_Text and Fnd_Data</h2>
+<p>The <code>Fnd_Text</code> and <code>Fnd_Data</code> modules were modernised: hand-written MD5 and Base64 replaced by the 4D commands that now do the same work, and module state moved out of interprocess variables into <code>Storage</code>.</p>
 <h3 id="breaking-2">Breaking</h3>
 <p><strong>63 methods are no longer callable from a host.</strong> They carried <code>&quot;shared&quot;:true</code> and no longer do — 33 <code>Compiler_Fnd_*</code> methods and 30 <code>Fnd_*_Init</code> methods, including <code>Fnd_Init</code> itself. The shared surface went from 698 to 633.</p>
 <p><strong>This is deliberate and settled</strong> (Wayne, 2026-08-13). Neither family is part of the published API: <code>Compiler_Fnd_*</code> methods are declaration scaffolding a host has no reason to name, and <code>Fnd_*_Init</code> is called by every public method in its module on entry — and has been since 2004 — so a host calling one was calling it a second time for no effect.</p>
