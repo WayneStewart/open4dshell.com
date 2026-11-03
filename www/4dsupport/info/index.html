@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="robots" content="index, follow" />
+		<meta name="generator" content="RapidWeaver" />
+		
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Info Component | 4D Support Guru">
+	<meta name="twitter:url" content="/info/index.html">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="4D Support Guru">
+	<meta property="og:title" content="Info Component | 4D Support Guru">
+	<meta property="og:url" content="/info/index.html">
+		<title>Info Component | 4D Support Guru</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/simplebusiness/consolidated-5.css" />
+		
+		
+		
+		
+		
+		<style type="text/css" media="all">.rowheight {
+	height: 48px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.disclaimer {
+	border: 5px solid green;
+	text-align: center;
+	width: 75%;
+	vertical-align: middle;
+	
+}
+
+.colwidth {
+	text-align: center;
+	width: 128px;
+	vertical-align: middle;
+	
+}
+
+hr {
+	
+	text-align: center;
+	width: 50%;
+}</style>
+		
+		<script type="text/javascript" src="../rw_common/themes/simplebusiness/javascript.js"></script>
+		
+		
+		
+	</head>
+<body>
+<div id="sidebarContainer"><!-- Start Sidebar wrapper -->
+	<div id="navcontainer"><!-- Start Navigation -->
+		<ul><li><a href="../" rel="">Home</a></li><li><a href="../help/" rel="">Help</a></li><li><a href="../previous/" rel="">Previous Versions</a></li><li><a href="./" rel="" id="current">Info Component</a></li></ul>
+	</div><!-- End navigation --> 
+	<div id="sidebar"><!-- Start sidebar content -->
+		<h1 class="sideHeader"></h1><!-- Sidebar header -->
+		 <br /><!-- sidebar content you enter in the page inspector -->
+		 <!-- sidebar content such as the blog archive links -->
+	</div><!-- End sidebar content -->
+</div><!-- End sidebar wrapper -->
+	
+<div id="container"><!-- Start container -->	
+	<div id="pageHeader"><!-- Start page header -->
+		<img src="../rw_common/images/4DSupport8.png" width="260" height="234" alt="4D Support Guru"/>
+		<h1>4D Support Guru</h1>
+		<h2></h2>
+	</div><!-- End page header -->
+	
+	<div id="contentContainer"><!-- Start main content wrapper -->
+		<div id="content"><!-- Start content -->
+			<style type="text/css">
+			table.dl { border-collapse: collapse; margin: 1em 0; }
+			table.dl th, table.dl td { border: 1px solid #999; padding: 4px 10px; text-align: left; vertical-align: top; }
+			</style>
+			<h2>4D Info Component</h2>
+			<p>The component 4D_Info_Report v4 (&ldquo;the information component&rdquo;), written by Thomas Schlumberger of 4D France, produces readable text reports describing the computer (hardware and operating system), the 4D application version, and the host database&rsquo;s settings and table summary.</p>
+			<p>It needs no plug-ins or other components, creates no tables or records in the host database, and never reads record content &mdash; only structure counts (tables, fields, indexes and record counts). Reports can be produced in English or French.</p>
+
+			<h2>Current release &mdash; v4.71 (May 2024)</h2>
+			<ul>
+				<li>4D 20 (up to 20 R4 and later R releases): <a href="../downloads/info/4D_Info_Report_v4_71_IS_20.zip">4D_Info_Report_v4_71_IS_20.zip</a></li>
+				<li>4D 19 R6 and later 19 R releases: <a href="../downloads/info/4D_Info_Report_v4_71_IS_19R6.zip">4D_Info_Report_v4_71_IS_19R6.zip</a></li>
+				<li>4D 19 (up to 19 R5): <a href="../downloads/info/4D_Info_Report_v4_71_IS_19.zip">4D_Info_Report_v4_71_IS_19.zip</a></li>
+				<li>Host template database (4D 19 and later): <a href="../downloads/info/4D_Info_Report_Host_T_v9_19.zip">4D_Info_Report_Host_T_v9_19.zip</a></li>
+				<li>Reference manual, revision 39 (28 February 2024, describes v4.70): <a href="../downloads/info/4D_Info_Report_v4_70_Ref_v39.pdf">4D_Info_Report_v4_70_Ref_v39.pdf</a></li>
+			</ul>
+
+			<h2>Installing</h2>
+			<p>Put <code>4D_Info_Report_v4.4dbase</code> in the host database&rsquo;s Components folder.</p>
+			<p>From the host template, drag these methods into your host database, keep their names, and set each to &ldquo;Shared by components and host database&rdquo;:</p>
+			<ul>
+				<li><code>aa4D_H__Startup</code> (call from On Startup)</li>
+				<li><code>aa4D_H_On_Server_Startup</code> (call from On Server Startup)</li>
+				<li><code>aa4D_Host_GetDBParam</code></li>
+				<li><code>aa4D_M_Host_Manage_Info_Report</code></li>
+				<li><code>aa4D_M_Host_Attention_Reported</code></li>
+				<li><code>aa4D_M_Host_Allow_Report_access</code></li>
+				<li><code>aa4D_M_Host_SP_Scheduler</code> (required if you use <code>aa4D_H_On_Server_Startup</code>)</li>
+			</ul>
+			<p>The methods do no harm if the component is later removed.</p>
+			<p>To call a shared method only when the component is present (so the database still compiles without it):</p>
+<pre>ARRAY TEXT($at_Components;0)
+COMPONENT LIST($at_Components)
+If (Find in array($at_Components;"4D_Info_Report@")&gt;0)
+  EXECUTE METHOD("aa4D_NP_Schedule_Reports_Server";*;30;-2)  // start the server stored procedure
+  // EXECUTE METHOD("aa4D_NP_Schedule_Reports_Server";*;0)  // stop it
+End if</pre>
+			<p>The reference manual covers every shared method, the preferences and deployment in full.</p>
+
+			<h2>Archived versions</h2>
+			<p>These versions are no longer updated.</p>
+			<table class="dl">
+				<tr><th>4D version</th><th>Download</th></tr>
+				<tr><td>4D 18</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZK_v18.zip">4D_Info_Report_v4_9rZK_v18.zip</a> (v4.9rZK)</td></tr>
+				<tr><td>4D 17</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZK_v17.zip">4D_Info_Report_v4_9rZK_v17.zip</a><br /><a href="../downloads/info/4D_Info_Report_v4_9rZK_64-bit_v17.zip">4D_Info_Report_v4_9rZK_64-bit_v17.zip</a> (64-bit)</td></tr>
+				<tr><td>4D 16</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZC_rev1_v16.zip">4D_Info_Report_v4_9rZC_rev1_v16.zip</a></td></tr>
+				<tr><td>4D 15</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZ8_rev1_v15.zip">4D_Info_Report_v4_9rZ8_rev1_v15.zip</a></td></tr>
+				<tr><td>4D 14</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZ2_v14_rev1.zip">4D_Info_Report_v4_9rZ2_v14_rev1.zip</a></td></tr>
+				<tr><td>4D 13</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZ2_v13_rev1.zip">4D_Info_Report_v4_9rZ2_v13_rev1.zip</a></td></tr>
+				<tr><td>4D 12</td><td><a href="../downloads/info/4D_Info_Report_v4_9rZ_v12.zip">4D_Info_Report_v4_9rZ_v12.zip</a></td></tr>
+				<tr><td>Host template, 4D 15&ndash;17</td><td><a href="../downloads/info/4D_Info_Report_Host_T_v7_v17.zip">4D_Info_Report_Host_T_v7_v17.zip</a></td></tr>
+				<tr><td>Host template, 4D 12 and earlier</td><td><a href="../downloads/info/4D_Info_Report_Host_T_v6_v12.zip">4D_Info_Report_Host_T_v6_v12.zip</a></td></tr>
+				<tr><td>Reference for v4.9, revision 29</td><td><a href="../downloads/info/4D_Info_Report_v4_9_Ref_v29.pdf">4D_Info_Report_v4_9_Ref_v29.pdf</a></td></tr>
+			</table>
+
+			<h2>Example report graph</h2>
+			<p><img src="../downloads/info/Example_Graph.png" alt="Example graph from a 4D Info Report" style="max-width:100%" /></p>
+		</div><!-- End content -->
+	</div><!-- End main content wrapper -->
+	
+	<div class="clearer"></div>
+	<div id="breadcrumbcontainer"><!-- Start the breadcrumb wrapper -->
+		<ul><li><a href="../">Home</a>&nbsp;/&nbsp;</li><li><a href="./">Info Component</a>&nbsp;/&nbsp;</li></ul>
+	</div><!-- End breadcrumb -->
+	
+	<div id="footer"><!-- Start Footer -->
+		<p>&copy; 2014-17 Wayne Stewart <a href="#" id="rw_email_contact">Contact Me</a><script type="text/javascript">var _rwObsfuscatedHref0 = "mai";var _rwObsfuscatedHref1 = "lto";var _rwObsfuscatedHref2 = ":wa";var _rwObsfuscatedHref3 = "yne";var _rwObsfuscatedHref4 = "@4d";var _rwObsfuscatedHref5 = "sup";var _rwObsfuscatedHref6 = "por";var _rwObsfuscatedHref7 = "t.g";var _rwObsfuscatedHref8 = "uru";var _rwObsfuscatedHref = _rwObsfuscatedHref0+_rwObsfuscatedHref1+_rwObsfuscatedHref2+_rwObsfuscatedHref3+_rwObsfuscatedHref4+_rwObsfuscatedHref5+_rwObsfuscatedHref6+_rwObsfuscatedHref7+_rwObsfuscatedHref8; document.getElementById("rw_email_contact").href = _rwObsfuscatedHref;</script></p>
+	</div><!-- End Footer -->
+
+</div><!-- End container -->
+</body>
+</html>
