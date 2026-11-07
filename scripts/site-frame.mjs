@@ -67,6 +67,9 @@ ${body}
 // Sidebar boxes common to the generated pages outside the Developer Reference.
 export const newsBox = `\t<section class="box">
 \t\t<h2>News</h2>
+\t\t<p><time datetime="2026-11-08">8 Nov 2026</time>: Foundation
+\t\t6.0.0-beta.2 adds a search box and font choices to the list window.
+\t\t<a href="/guide/upgrading.html#600-beta2-private-beta-8-november-2026">What changed</a>.</p>
 \t\t<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
 \t\t6.0.0-beta.1 opens as a private beta.</p>
 \t</section>`;

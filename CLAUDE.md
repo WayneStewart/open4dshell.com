@@ -46,6 +46,13 @@ adds what an agent needs to work here safely.
 - `foundation/LICENSE` and `foundation/PROVENANCE.md` are verbatim copies of
   the Foundation repository's root `LICENSE` and `PROVENANCE.md`, written by
   `scripts/build-docs.mjs`. Change them there first, then rebuild.
+- The sidebar News box exists in three copies: `newsBox` in
+  `scripts/site-frame.mjs` (every generated page) and the hand-written
+  `foundation/index.html` and `foundation/start/index.html`. Change all
+  three together, newest item first, then rebuild the generated pages.
+- Each release: add it to `releases.json`, add a News item linking to its
+  Upgrading section, update the version on the home and Getting started
+  pages, and rebuild the guide and docs from f6.
 - Commit with `git add -A`; keep the tree clean. Pushing to `main` deploys.
 
 ## Hosting
@@ -107,7 +114,9 @@ copies. Foundation's own history is in `foundation/docs/history.html`;
 the authoritative source for it is `Documentation/Foundation-History.json`
 in the Foundation repository.
 
-Foundation 6.0.0-beta.1 opened as a private beta on 1 November 2026. The
+Foundation 6.0.0-beta.1 opened as a private beta on 1 November 2026, and
+6.0.0-beta.2 followed on 8 November; its files are in one shared Dropbox
+folder, which `releases.json` gives as the release's `folder`. The
 beta snapshot and its GitHub Releases live in
 `github.com/open4dshell/Foundation-Shell` (private until 1 December 2026,
 public from then); the demo database is public at
