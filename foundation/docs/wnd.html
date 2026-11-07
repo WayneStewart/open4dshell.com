@@ -90,19 +90,27 @@
 		<li><a href="#Fnd_Wnd_Cancel">Fnd_Wnd_Cancel</a></li>
 		<li><a href="#Fnd_Wnd_CancelCloseAll">Fnd_Wnd_CancelCloseAll</a></li>
 		<li><a href="#Fnd_Wnd_CloseAllWindows">Fnd_Wnd_CloseAllWindows</a></li>
+		<li><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></li>
 		<li><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></li>
+		<li><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></li>
 		<li><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></li>
+		<li><a href="#Fnd_Wnd_CloseWindow">Fnd_Wnd_CloseWindow</a></li>
+		<li><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></li>
+		<li><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></li>
 		<li><a href="#Fnd_Wnd_Info">Fnd_Wnd_Info</a></li>
 		<li><a href="#Fnd_Wnd_MoveOnScreen">Fnd_Wnd_MoveOnScreen</a></li>
 		<li><a href="#Fnd_Wnd_OpenFormWindow">Fnd_Wnd_OpenFormWindow</a></li>
 		<li><a href="#Fnd_Wnd_OpenWindow">Fnd_Wnd_OpenWindow</a></li>
 		<li><a href="#Fnd_Wnd_Position">Fnd_Wnd_Position</a></li>
+		<li><a href="#Fnd_Wnd_Register">Fnd_Wnd_Register</a></li>
 		<li><a href="#Fnd_Wnd_SavePosition">Fnd_Wnd_SavePosition</a></li>
 		<li><a href="#Fnd_Wnd_SendCloseRequests">Fnd_Wnd_SendCloseRequests</a></li>
 		<li><a href="#Fnd_Wnd_Title">Fnd_Wnd_Title</a></li>
 		<li><a href="#Fnd_Wnd_ToolbarHeight">Fnd_Wnd_ToolbarHeight</a></li>
 		<li><a href="#Fnd_Wnd_Type">Fnd_Wnd_Type</a></li>
+		<li><a href="#Fnd_Wnd_Unregister">Fnd_Wnd_Unregister</a></li>
 		<li><a href="#Fnd_Wnd_UseSavedPosition">Fnd_Wnd_UseSavedPosition</a></li>
+		<li><a href="#Fnd_Wnd_Windows">Fnd_Wnd_Windows</a></li>
 	</ul>
 	</section>
 </aside>
@@ -111,32 +119,40 @@
 
 <h1>Fnd_Wnd</h1>
 
-<p>17 shared methods.</p>
+<p>25 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Wnd_BringToFront">Fnd_Wnd_BringToFront</a></li>
 <li><a href="#Fnd_Wnd_Cancel">Fnd_Wnd_Cancel</a></li>
 <li><a href="#Fnd_Wnd_CancelCloseAll">Fnd_Wnd_CancelCloseAll</a></li>
 <li><a href="#Fnd_Wnd_CloseAllWindows">Fnd_Wnd_CloseAllWindows</a></li>
+<li><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></li>
 <li><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></li>
+<li><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></li>
 <li><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></li>
+<li><a href="#Fnd_Wnd_CloseWindow">Fnd_Wnd_CloseWindow</a></li>
+<li><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></li>
+<li><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></li>
 <li><a href="#Fnd_Wnd_Info">Fnd_Wnd_Info</a></li>
 <li><a href="#Fnd_Wnd_MoveOnScreen">Fnd_Wnd_MoveOnScreen</a></li>
 <li><a href="#Fnd_Wnd_OpenFormWindow">Fnd_Wnd_OpenFormWindow</a></li>
 <li><a href="#Fnd_Wnd_OpenWindow">Fnd_Wnd_OpenWindow</a></li>
 <li><a href="#Fnd_Wnd_Position">Fnd_Wnd_Position</a></li>
+<li><a href="#Fnd_Wnd_Register">Fnd_Wnd_Register</a></li>
 <li><a href="#Fnd_Wnd_SavePosition">Fnd_Wnd_SavePosition</a></li>
 <li><a href="#Fnd_Wnd_SendCloseRequests">Fnd_Wnd_SendCloseRequests</a></li>
 <li><a href="#Fnd_Wnd_Title">Fnd_Wnd_Title</a></li>
 <li><a href="#Fnd_Wnd_ToolbarHeight">Fnd_Wnd_ToolbarHeight</a></li>
 <li><a href="#Fnd_Wnd_Type">Fnd_Wnd_Type</a></li>
+<li><a href="#Fnd_Wnd_Unregister">Fnd_Wnd_Unregister</a></li>
 <li><a href="#Fnd_Wnd_UseSavedPosition">Fnd_Wnd_UseSavedPosition</a></li>
+<li><a href="#Fnd_Wnd_Windows">Fnd_Wnd_Windows</a></li>
 </ul>
 
 <section class="method" id="Fnd_Wnd_BringToFront">
 <h2><a href="#Fnd_Wnd_BringToFront">Fnd_Wnd_BringToFront</a></h2>
 <p class="syntax"><code>Fnd_Wnd_BringToFront ($windowID_i : Integer)</code></p>
-<p>Pass a window ID and that window is brought to the front, a more precise version than bringing an entire process to the front. Does nothing when the window does not exist.</p>
+<p>Pass a window ID and that window is brought to the front, a more precise version than bringing an entire process to the front. If the window's process is hidden it is shown first. Does nothing when the window does not exist.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -176,6 +192,20 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Wnd_CloseAllWindows2">
+<h2><a href="#Fnd_Wnd_CloseAllWindows2">Fnd_Wnd_CloseAllWindows2</a></h2>
+<p class="syntax"><code>Fnd_Wnd_CloseAllWindows2</code></p>
+<p>This process asks every closeable window to close, one request each, and keeps looking for new ones until none are left, Close All is cancelled, or 30 seconds pass.</p>
+<p>Called as a new process from Fnd_Wnd_CloseAllWindows.</p>
+<p>Called with a window by Fnd_Wnd_CloseWindow, it asks only that window's process, and only asks that window (a prime) once every closeable sibling has closed. Close All is untouched.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>targetWindow</code></td><td>Integer</td><td>in</td><td>A prime window to close after its siblings (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Wnd_CloseBox">
 <h2><a href="#Fnd_Wnd_CloseBox">Fnd_Wnd_CloseBox</a></h2>
 <p class="syntax"><code>Fnd_Wnd_CloseBox ({add close box?}) --&gt; Boolean</code></p>
@@ -190,14 +220,59 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Wnd_CloseBoxMethod">
+<h2><a href="#Fnd_Wnd_CloseBoxMethod">Fnd_Wnd_CloseBoxMethod</a></h2>
+<p class="syntax"><code>Fnd_Wnd_CloseBoxMethod</code></p>
+<p>A generic method with no code. Used by the Fnd_Wnd_OpenWindow method as the close box method for new windows (handle the close in the form method).</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Wnd_CloseNow">
 <h2><a href="#Fnd_Wnd_CloseNow">Fnd_Wnd_CloseNow</a></h2>
 <p class="syntax"><code>Fnd_Wnd_CloseNow --&gt; Boolean</code></p>
-<p>Returns True if Foundation is trying to close all windows due to the user Option-clicking a window's close box.</p>
+<p>Returns True if Foundation is trying to close all windows due to the user Option-clicking a window's close box, or if the current form's window has been asked to close by Fnd_Wnd_CloseWindow or Close All.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>$0</code></td><td>Boolean</td><td>out</td><td>True if it's time to close the window</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Wnd_CloseWindow">
+<h2><a href="#Fnd_Wnd_CloseWindow">Fnd_Wnd_CloseWindow</a></h2>
+<p class="syntax"><code>Fnd_Wnd_CloseWindow (window)</code></p>
+<p>Asks one window to close, as if it had been closed with Close All: its onClose method, its On Outside Call handler, or a plain CANCEL. The window may veto.</p>
+<p>A prime window with closeable siblings waits: the siblings are asked first, and the prime only once they have all closed. That happens in a background process. Does nothing if the window does not exist.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>window</code></td><td>Integer</td><td>in</td><td>The window reference</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Wnd_GetNextStackElement">
+<h2><a href="#Fnd_Wnd_GetNextStackElement">Fnd_Wnd_GetNextStackElement</a></h2>
+<p class="syntax"><code>Fnd_Wnd_GetNextStackElement --&gt; Number</code></p>
+<p>Gets (and reserves) the number of the next available slot in the window cascade. The slot's position is the seed plus (slot-1) times the offset.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>$0</code></td><td>Longint</td><td>out</td><td>The cascade slot number to use, from 1</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Wnd_GetProcessWindowRef">
+<h2><a href="#Fnd_Wnd_GetProcessWindowRef">Fnd_Wnd_GetProcessWindowRef</a></h2>
+<p class="syntax"><code>Fnd_Wnd_GetProcessWindowRef (process number) --&gt; Number</code></p>
+<p>Returns the window ref for the frontmost window of the specified process.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>processNumber</code></td><td>Longint</td><td>in</td><td>A process number</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>A window reference or 0</td></tr>
 </tbody>
 </table>
 </section>
@@ -219,7 +294,7 @@
 <h2><a href="#Fnd_Wnd_MoveOnScreen">Fnd_Wnd_MoveOnScreen</a></h2>
 <p class="syntax"><code>Fnd_Wnd_MoveOnScreen (-&gt;left; -&gt;top; -&gt;right; -&gt;bottom; {window type})</code></p>
 <p>Modifies the window coordinates so the window will be opened completely onscreen.</p>
-<p>Alternate syntax #1: do not pass any parameters and Foundation will use the settings in the Fnd.Wnd object Alternate syntax #2: pass an object with the desired parameters</p>
+<p>Alternate syntax #1: pass no parameters and the per-process properties Fnd.Wnd.Left_i, Fnd.Wnd.Top_i, Fnd.Wnd.Right_i, Fnd.Wnd.Bottom_i and Fnd.Wnd.WindowType_i are used and updated Alternate syntax #2: pass an object with the desired parameters; the property names are capitalised, as below, and the object is updated in place</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -255,7 +330,7 @@
 <section class="method" id="Fnd_Wnd_OpenWindow">
 <h2><a href="#Fnd_Wnd_OpenWindow">Fnd_Wnd_OpenWindow</a></h2>
 <p class="syntax"><code>Fnd_Wnd_OpenWindow (width; height) --&gt; Number Alternate parameters: Fnd_Wnd_OpenWindow (left; top; right; bottom)</code></p>
-<p>Opens a new window centered on the screen or over the frontmost window (depending on the value of Fnd_Wnd_WindowPosition_i).</p>
+<p>Opens a new window centered on the screen or over the frontmost window (depending on the value of Fnd.Wnd.WindowPosition_i).</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -290,6 +365,25 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Wnd_Register">
+<h2><a href="#Fnd_Wnd_Register">Fnd_Wnd_Register</a></h2>
+<p class="syntax"><code>Fnd_Wnd_Register (window {; options})</code></p>
+<p>Adds a window to the window registry, or merges the options into its entry if it is already there. Windows opened by Fnd_Wnd_OpenWindow are registered automatically, but are kept out of the Window menu and out of Close All until they opt in.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>window</code></td><td>Integer</td><td>in</td><td>The window reference</td></tr>
+<tr><td><code>options</code></td><td>Object</td><td>in</td><td>Any of the properties below (optional)</td></tr>
+<tr><td><code>options</code></td><td>Text</td><td>in</td><td>The Window-menu text</td></tr>
+<tr><td><code>options</code></td><td>Boolean</td><td>in</td><td>List the window in the Window menu</td></tr>
+<tr><td><code>options</code></td><td>Boolean</td><td>in</td><td>Include the window in Close All</td></tr>
+<tr><td><code>options</code></td><td>Boolean</td><td>in</td><td>See below</td></tr>
+<tr><td><code>options</code></td><td>Boolean</td><td>in</td><td>See below</td></tr>
+<tr><td><code>options</code></td><td>Text</td><td>in</td><td>A project method run inside the window when it is asked to</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Wnd_SavePosition">
 <h2><a href="#Fnd_Wnd_SavePosition">Fnd_Wnd_SavePosition</a></h2>
 <p class="syntax"><code>Fnd_Wnd_SavePosition ({name{; window ref}})</code></p>
@@ -307,8 +401,7 @@
 <section class="method" id="Fnd_Wnd_SendCloseRequests">
 <h2><a href="#Fnd_Wnd_SendCloseRequests">Fnd_Wnd_SendCloseRequests</a></h2>
 <p class="syntax"><code>Fnd_Wnd_SendCloseRequests ({process number})</code></p>
-<p>Adds the current process to the list of processes with windows that should be closed if the user option-closes a window or selects Close All Windows from a menu.</p>
-<p>Both the process name and number are stored, to make sure we're trying to close the same process that was submitted here.</p>
+<p>Marks the frontmost window of the current process (or of the process passed) as one that should be closed if the user option-closes a window or selects Close All Windows from a menu. A window already marked is not added again. If the current process has no window yet, the next one it opens with Fnd_Wnd_OpenWindow or Fnd_Wnd_OpenFormWindow is marked. Nothing happens if another process has no window. See Fnd_Wnd_Register for the prime window, which this claims in the same way.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -357,6 +450,18 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Wnd_Unregister">
+<h2><a href="#Fnd_Wnd_Unregister">Fnd_Wnd_Unregister</a></h2>
+<p class="syntax"><code>Fnd_Wnd_Unregister ({window})</code></p>
+<p>Removes a window from the window registry. With no parameter it removes the current process's most recently registered window, which is the one CLOSE WINDOW would close. Does nothing if there is no such entry.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>window</code></td><td>Integer</td><td>in</td><td>The window reference (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Wnd_UseSavedPosition">
 <h2><a href="#Fnd_Wnd_UseSavedPosition">Fnd_Wnd_UseSavedPosition</a></h2>
 <p class="syntax"><code>Fnd_Wnd_UseSavedPosition ({pref name})</code></p>
@@ -366,6 +471,20 @@
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>processName</code></td><td>Text</td><td>in</td><td>The name of the saved position (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Wnd_Windows">
+<h2><a href="#Fnd_Wnd_Windows">Fnd_Wnd_Windows</a></h2>
+<p class="syntax"><code>Fnd_Wnd_Windows ({filter}) --&gt; Collection</code></p>
+<p>Returns the live entries of the window registry, after dropping the dead ones. Each entry is an object: window, process, processName, title, inMenu, closeable, prime, disposable, slot and onClose.</p>
+<p>The result is a copy: changing it does not change the registry.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>filter</code></td><td>Object</td><td>in</td><td>Return only entries having every property of this object, e.g. {process: 3} or {inMenu: True} (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Collection</td><td>out</td><td>A non-shared collection of entry objects, oldest first</td></tr>
 </tbody>
 </table>
 </section>

@@ -86,11 +86,14 @@
 	<section class="box">
 	<h2>Fnd_Msg</h2>
 	<ul class="nav methods">
+		<li><a href="#Fnd_Msg_BackgroundProcess">Fnd_Msg_BackgroundProcess</a></li>
+		<li><a href="#Fnd_Msg_BlobToPicture">Fnd_Msg_BlobToPicture</a></li>
 		<li><a href="#Fnd_Msg_Broadcast">Fnd_Msg_Broadcast</a></li>
 		<li><a href="#Fnd_Msg_Get">Fnd_Msg_Get</a></li>
 		<li><a href="#Fnd_Msg_GetParameter">Fnd_Msg_GetParameter</a></li>
 		<li><a href="#Fnd_Msg_Info">Fnd_Msg_Info</a></li>
 		<li><a href="#Fnd_Msg_PackParameters">Fnd_Msg_PackParameters</a></li>
+		<li><a href="#Fnd_Msg_PictureToBlob">Fnd_Msg_PictureToBlob</a></li>
 		<li><a href="#Fnd_Msg_QuitBackgroundProcess">Fnd_Msg_QuitBackgroundProcess</a></li>
 		<li><a href="#Fnd_Msg_Send">Fnd_Msg_Send</a></li>
 	</ul>
@@ -101,17 +104,41 @@
 
 <h1>Fnd_Msg</h1>
 
-<p>7 shared methods.</p>
+<p>10 shared methods.</p>
 
 <ul class="jump">
+<li><a href="#Fnd_Msg_BackgroundProcess">Fnd_Msg_BackgroundProcess</a></li>
+<li><a href="#Fnd_Msg_BlobToPicture">Fnd_Msg_BlobToPicture</a></li>
 <li><a href="#Fnd_Msg_Broadcast">Fnd_Msg_Broadcast</a></li>
 <li><a href="#Fnd_Msg_Get">Fnd_Msg_Get</a></li>
 <li><a href="#Fnd_Msg_GetParameter">Fnd_Msg_GetParameter</a></li>
 <li><a href="#Fnd_Msg_Info">Fnd_Msg_Info</a></li>
 <li><a href="#Fnd_Msg_PackParameters">Fnd_Msg_PackParameters</a></li>
+<li><a href="#Fnd_Msg_PictureToBlob">Fnd_Msg_PictureToBlob</a></li>
 <li><a href="#Fnd_Msg_QuitBackgroundProcess">Fnd_Msg_QuitBackgroundProcess</a></li>
 <li><a href="#Fnd_Msg_Send">Fnd_Msg_Send</a></li>
 </ul>
+
+<section class="method" id="Fnd_Msg_BackgroundProcess">
+<h2><a href="#Fnd_Msg_BackgroundProcess">Fnd_Msg_BackgroundProcess</a></h2>
+<p class="syntax"><code>Fnd_Msg_BackgroundProcess</code></p>
+<p>Runs in a background process that diligently tries to make sure everybody receives their messages.</p>
+<p>Called as a new process from the Fnd_Msg_Send method.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Msg_BlobToPicture">
+<h2><a href="#Fnd_Msg_BlobToPicture">Fnd_Msg_BlobToPicture</a></h2>
+<p class="syntax"><code>Fnd_Msg_BlobToPicture (-&gt;blob; -&gt;picture)</code></p>
+<p>Converts a blob to a picture.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>blob</code></td><td>Pointer</td><td>in</td><td>A pointer to a blob</td></tr>
+<tr><td><code>picture</code></td><td>Pointer</td><td>in</td><td>The same blob as a picture variable</td></tr>
+</tbody>
+</table>
+</section>
 
 <section class="method" id="Fnd_Msg_Broadcast">
 <h2><a href="#Fnd_Msg_Broadcast">Fnd_Msg_Broadcast</a></h2>
@@ -177,6 +204,19 @@
 <tr><td><code>$1</code></td><td>Text</td><td>in</td><td>The message to append parameter to</td></tr>
 <tr><td><code>$2..$n</code></td><td>Text</td><td>in</td><td>The parameters to add to the message</td></tr>
 <tr><td><code>$0</code></td><td>Text</td><td>out</td><td>The delimited paramters</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Msg_PictureToBlob">
+<h2><a href="#Fnd_Msg_PictureToBlob">Fnd_Msg_PictureToBlob</a></h2>
+<p class="syntax"><code>Fnd_Msg_PictureToBlob (-&gt;picture; -&gt;blob)</code></p>
+<p>Converts a picture to a blob.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>picture</code></td><td>Pointer</td><td>in</td><td>A pointer to the picture</td></tr>
+<tr><td><code>blob</code></td><td>Pointer</td><td>in</td><td>A pointer to the blob to fill</td></tr>
 </tbody>
 </table>
 </section>

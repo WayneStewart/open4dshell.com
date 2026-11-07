@@ -1,6 +1,19 @@
 {
   "releases": [
     {
+      "version": "6.0.0-beta.2",
+      "date": "2026-11-08",
+      "commit": "4f0f6d0c",
+      "folder": "https://www.dropbox.com/scl/fo/65s7j8k1pdjka8n3b9ncu/AGjXxXq6iXJW1Yg26Tj1y1Y?rlkey=gg4mo6jpxjhu7zmhup5xp2zr7&dl=0",
+      "artefacts": [
+        { "target": "20L", "label": "4D 20 LTS", "dmg": "", "zip": "", "sha256dmg": "5e323161bdc47d10208054fb32719712401fe70f97220d76de0d97f219d15581", "sha256zip": "02aff87e3e542a6773378c57e90ae2622a3cc75a65c738ce37953f9501d726ef" },
+        { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "", "zip": "", "sha256dmg": "55d50b98979fa3f9babf37e9da73126cf5da6b351fd239391a47df7e4293bc2d", "sha256zip": "780f4d8532bc18120615f2c5683e14e00390a9da0a02ee83779c82fac878c9c9" },
+        { "target": "21L", "label": "4D 21 LTS", "dmg": "", "zip": "", "sha256dmg": "bfa76df3a57dc921a38d4faaded90e74eff7567cae8d3d53f8caf33ef5da5031", "sha256zip": "b3b7c3f53d3428dc82d4064d8c02c7a65ad3ef8a7e2fb760274c20663e5d9700" },
+        { "target": "21R", "label": "4D 21 R", "dmg": "", "zip": "", "sha256dmg": "70ccb16b3c3debd21879570f792e11c8cc76d99a5172e26569380ab0791170a5", "sha256zip": "9c739f0150d427bef41fa9ce7e0efbac80fec470898045a336d5d492d5cbb91b" }
+      ],
+      "checksums": ""
+    },
+    {
       "version": "6.0.0-beta.1",
       "date": "2026-11-01",
       "commit": "0e6ae933",

@@ -89,11 +89,22 @@
 		<li><a href="#Fnd_Loc_ArrayToList">Fnd_Loc_ArrayToList</a></li>
 		<li><a href="#Fnd_Loc_DuplicateList">Fnd_Loc_DuplicateList</a></li>
 		<li><a href="#Fnd_Loc_Editor">Fnd_Loc_Editor</a></li>
+		<li><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></li>
+		<li><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></li>
+		<li><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></li>
+		<li><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></li>
+		<li><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></li>
+		<li><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></li>
+		<li><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></li>
 		<li><a href="#Fnd_Loc_FixButtonWidths">Fnd_Loc_FixButtonWidths</a></li>
 		<li><a href="#Fnd_Loc_FixLabelWidths">Fnd_Loc_FixLabelWidths</a></li>
 		<li><a href="#Fnd_Loc_GetString">Fnd_Loc_GetString</a></li>
 		<li><a href="#Fnd_Loc_Info">Fnd_Loc_Info</a></li>
 		<li><a href="#Fnd_Loc_LanguageCode">Fnd_Loc_LanguageCode</a></li>
+		<li><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></li>
+		<li><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></li>
 		<li><a href="#Fnd_Loc_SetLocalizationStrings">Fnd_Loc_SetLocalizationStrings</a></li>
 	</ul>
 	</section>
@@ -103,17 +114,28 @@
 
 <h1>Fnd_Loc</h1>
 
-<p>9 shared methods.</p>
+<p>20 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Loc_ArrayToList">Fnd_Loc_ArrayToList</a></li>
 <li><a href="#Fnd_Loc_DuplicateList">Fnd_Loc_DuplicateList</a></li>
 <li><a href="#Fnd_Loc_Editor">Fnd_Loc_Editor</a></li>
+<li><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></li>
+<li><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></li>
+<li><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></li>
+<li><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></li>
+<li><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></li>
+<li><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></li>
+<li><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></li>
 <li><a href="#Fnd_Loc_FixButtonWidths">Fnd_Loc_FixButtonWidths</a></li>
 <li><a href="#Fnd_Loc_FixLabelWidths">Fnd_Loc_FixLabelWidths</a></li>
 <li><a href="#Fnd_Loc_GetString">Fnd_Loc_GetString</a></li>
 <li><a href="#Fnd_Loc_Info">Fnd_Loc_Info</a></li>
 <li><a href="#Fnd_Loc_LanguageCode">Fnd_Loc_LanguageCode</a></li>
+<li><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></li>
+<li><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></li>
 <li><a href="#Fnd_Loc_SetLocalizationStrings">Fnd_Loc_SetLocalizationStrings</a></li>
 </ul>
 
@@ -147,6 +169,83 @@
 <tr><td><code>inNumber</code></td><td>Longint</td><td>in</td><td>Used internally by this method</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ArrayToList">
+<h2><a href="#Fnd_Loc_Editor_ArrayToList">Fnd_Loc_Editor_ArrayToList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ArrayToList (-&gt;array; list name)</code></p>
+<p>A wrapper for 4D's ARRAY TO LIST command. This routine always appends an asterisk to the list name, so that we don't mess up the original.</p>
+<p>See also the Fnd_Loc_ListToArray method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array</td></tr>
+<tr><td><code>inListName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnCodesList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnCodesList">Fnd_Loc_Editor_ClickOnCodesList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnCodesList</code></p>
+<p>Called from the localization editor when a lookup code is clicked, or when a higher-level list is clicked.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnGroupList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnGroupList">Fnd_Loc_Editor_ClickOnGroupList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnGroupList</code></p>
+<p>Called from the localization editor when a group item is clicked, or when a higher-level list is clicked.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_ClickOnModsList">
+<h2><a href="#Fnd_Loc_Editor_ClickOnModsList">Fnd_Loc_Editor_ClickOnModsList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_ClickOnModsList</code></p>
+<p>Called from the localization editor when a module name is clicked, or when another object changes the selected list item</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_EditorClosed">
+<h2><a href="#Fnd_Loc_Editor_EditorClosed">Fnd_Loc_Editor_EditorClosed</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_EditorClosed --&gt; Boolean</code></p>
+<p>Makes sure 4D's List Editor window isn't open. If it is, the user is asked to close it.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the List Editor is not open</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_Export">
+<h2><a href="#Fnd_Loc_Editor_Export">Fnd_Loc_Editor_Export</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_Export</code></p>
+<p>Exports a text file and saves it as a 4D list.</p>
+<p>Designed to be called from the Localization Editor dialog.  Don't call directly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_Import">
+<h2><a href="#Fnd_Loc_Editor_Import">Fnd_Loc_Editor_Import</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_Import</code></p>
+<p>Imports Foundation localization lists.</p>
+<p>Designed to be called from the Localization Editor dialog.  Don't call directly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_LoadModules">
+<h2><a href="#Fnd_Loc_Editor_LoadModules">Fnd_Loc_Editor_LoadModules</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_LoadModules</code></p>
+<p>Loads the array of Modules names in the Localization Editor window.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Loc_Editor_SaveList">
+<h2><a href="#Fnd_Loc_Editor_SaveList">Fnd_Loc_Editor_SaveList</a></h2>
+<p class="syntax"><code>Fnd_Loc_Editor_SaveList</code></p>
+<p>Saves changes back to the 4D Lists.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Loc_FixButtonWidths">
@@ -214,6 +313,33 @@
 <tbody>
 <tr><td><code>inCode</code></td><td>Text</td><td>in</td><td>The language code to use (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current langauge code</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_ListToArray">
+<h2><a href="#Fnd_Loc_ListToArray">Fnd_Loc_ListToArray</a></h2>
+<p class="syntax"><code>Fnd_Loc_ListToArray (list name; -&gt;array)</code></p>
+<p>A wrapper for 4D's LIST TO ARRAY command.  Tries to read in a list with an asterisk appended to the name first.  If all it gets is an empty list (which probably indicates no list) then it tries to read in a list without the asterisk.</p>
+<p>A host without a Fnd_Host_ListToArray method gets an empty array and one bug report per session naming the missing method.</p>
+<p>See also the Fnd_Loc_Editor_ArrayToList method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The text array</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Loc_LoadStringList">
+<h2><a href="#Fnd_Loc_LoadStringList">Fnd_Loc_LoadStringList</a></h2>
+<p class="syntax"><code>Fnd_Loc_LoadStringList (module name)</code></p>
+<p>Loads arrays with localized strings.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>moduleName</code></td><td>Text</td><td>in</td><td>The Foundation module name (eg: &quot;Fnd_Dlg&quot;)</td></tr>
 </tbody>
 </table>
 </section>

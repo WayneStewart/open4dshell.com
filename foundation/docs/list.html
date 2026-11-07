@@ -95,11 +95,21 @@
 		<li><a href="#Fnd_List_CreateTable">Fnd_List_CreateTable</a></li>
 		<li><a href="#Fnd_List_DoesListExist">Fnd_List_DoesListExist</a></li>
 		<li><a href="#Fnd_List_EditOne">Fnd_List_EditOne</a></li>
+		<li><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></li>
 		<li><a href="#Fnd_List_Editor">Fnd_List_Editor</a></li>
 		<li><a href="#Fnd_List_Info">Fnd_List_Info</a></li>
+		<li><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></li>
+		<li><a href="#Fnd_List_Localize">Fnd_List_Localize</a></li>
 		<li><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></li>
 		<li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
+		<li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
+		<li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+		<li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
+		<li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
 		<li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
+		<li><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></li>
+		<li><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></li>
+		<li><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></li>
 	</ul>
 	</section>
 </aside>
@@ -108,7 +118,7 @@
 
 <h1>Fnd_List</h1>
 
-<p>14 shared methods.</p>
+<p>24 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_List_AddButton">Fnd_List_AddButton</a></li>
@@ -120,11 +130,21 @@
 <li><a href="#Fnd_List_CreateTable">Fnd_List_CreateTable</a></li>
 <li><a href="#Fnd_List_DoesListExist">Fnd_List_DoesListExist</a></li>
 <li><a href="#Fnd_List_EditOne">Fnd_List_EditOne</a></li>
+<li><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></li>
 <li><a href="#Fnd_List_Editor">Fnd_List_Editor</a></li>
 <li><a href="#Fnd_List_Info">Fnd_List_Info</a></li>
+<li><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></li>
+<li><a href="#Fnd_List_Localize">Fnd_List_Localize</a></li>
 <li><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></li>
 <li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
+<li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
+<li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+<li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
+<li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
 <li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
+<li><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></li>
+<li><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></li>
+<li><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></li>
 </ul>
 
 <section class="method" id="Fnd_List_AddButton">
@@ -231,6 +251,18 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_List_EditOne2">
+<h2><a href="#Fnd_List_EditOne2">Fnd_List_EditOne2</a></h2>
+<p class="syntax"><code>Fnd_List_EditOne2 (list name)</code></p>
+<p>Called as a new process by Fnd_List_EditOne to edit a list.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The list name</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_List_Editor">
 <h2><a href="#Fnd_List_Editor">Fnd_List_Editor</a></h2>
 <p class="syntax"><code>Fnd_List_Editor</code></p>
@@ -251,6 +283,25 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_List_ListToRecord">
+<h2><a href="#Fnd_List_ListToRecord">Fnd_List_ListToRecord</a></h2>
+<p class="syntax"><code>Fnd_List_ListToRecord (list name)</code></p>
+<p>Saves the list as a 4D list and as a record.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>listName</code></td><td>Text</td><td>in</td><td>The name of the list to save</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_Localize">
+<h2><a href="#Fnd_List_Localize">Fnd_List_Localize</a></h2>
+<p class="syntax"><code>Fnd_List_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_List_OnExit">
 <h2><a href="#Fnd_List_OnExit">Fnd_List_OnExit</a></h2>
 <p class="syntax"><code>Fnd_List_OnExit</code></p>
@@ -265,6 +316,45 @@
 <p class="noparams">No parameters.</p>
 </section>
 
+<section class="method" id="Fnd_List_RecordLoaded">
+<h2><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></h2>
+<p class="syntax"><code>Fnd_List_RecordLoaded (-&gt;table{; timeout in seconds}) --&gt; Boolean</code></p>
+<p>Makes sure the current record is not locked.  If it is, it waits a while to see if the record becomes avaialble.</p>
+<p>If no timeout period is specified control is returned immediately if the record is locked.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The record's table</td></tr>
+<tr><td><code>inSecondsToWait</code></td><td>Longint</td><td>in</td><td>Number of seconds to wait if it's locked (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the record isn't locked</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_SaveListItems">
+<h2><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></h2>
+<p class="syntax"><code>Fnd_List_SaveListItems</code></p>
+<p>Assumes the proper [Fnd_List] record is loaded.</p>
+<p>Called from the Fnd_List_Editor and ListsCreateSystemLists2 methods.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_UpdateItemsList">
+<h2><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></h2>
+<p class="syntax"><code>Fnd_List_UpdateItemsList</code></p>
+<p>Assumes the proper [Lists] record is loaded.</p>
+<p>Assumes any previous changes to the list have been saved.</p>
+<p>Called from the [Constants].ListEditor form.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_UpdateStructureLists">
+<h2><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></h2>
+<p class="syntax"><code>Fnd_List_UpdateStructureLists</code></p>
+<p>Copies the Foundation maintained lists to the 4D structure file.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_List_UseTypeAhead">
 <h2><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></h2>
 <p class="syntax"><code>Fnd_List_UseTypeAhead ({$inBoolean_b : Boolean}) --&gt; Boolean</code></p>
@@ -275,6 +365,42 @@
 <tbody>
 <tr><td><code>inBoolean</code></td><td>Boolean</td><td>in</td><td>Turns type-ahead on or off (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The setting after any change</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_FilePath">
+<h2><a href="#Fnd_List_XML_FilePath">Fnd_List_XML_FilePath</a></h2>
+<p class="syntax"><code>Fnd_List_XML_FilePath --&gt; Text</code></p>
+<p>Returns the path to the Fnd_List.xml file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The file path</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_GetDateTime">
+<h2><a href="#Fnd_List_XML_GetDateTime">Fnd_List_XML_GetDateTime</a></h2>
+<p class="syntax"><code>Fnd_List_XML_GetDateTime --&gt; Text</code></p>
+<p>Returns the date-time value stored in the Fnd_List.xml file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The date-time value</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_List_XML_SetDateTime">
+<h2><a href="#Fnd_List_XML_SetDateTime">Fnd_List_XML_SetDateTime</a></h2>
+<p class="syntax"><code>Fnd_List_XML_SetDateTime (date-time string)</code></p>
+<p>Updates the Fnd_List.xml file with the last use date for this structure file.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>dateTime</code></td><td>Text</td><td>in</td><td>A date-time string (e.g.: &quot;2007-10-16T17:55:04&quot;)</td></tr>
 </tbody>
 </table>
 </section>

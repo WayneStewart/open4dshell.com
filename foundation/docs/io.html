@@ -89,16 +89,26 @@
 		<li><a href="#Fnd_IO_AddMultipleRecords">Fnd_IO_AddMultipleRecords</a></li>
 		<li><a href="#Fnd_IO_DisplayNavButtons">Fnd_IO_DisplayNavButtons</a></li>
 		<li><a href="#Fnd_IO_DisplayRecord">Fnd_IO_DisplayRecord</a></li>
+		<li><a href="#Fnd_IO_DisplayRecord2">Fnd_IO_DisplayRecord2</a></li>
+		<li><a href="#Fnd_IO_DisplayRecord3">Fnd_IO_DisplayRecord3</a></li>
 		<li><a href="#Fnd_IO_DisplayTable">Fnd_IO_DisplayTable</a></li>
+		<li><a href="#Fnd_IO_DisplayTable2">Fnd_IO_DisplayTable2</a></li>
+		<li><a href="#Fnd_IO_GetWindowTitle">Fnd_IO_GetWindowTitle</a></li>
 		<li><a href="#Fnd_IO_Info">Fnd_IO_Info</a></li>
+		<li><a href="#Fnd_IO_InputDrawButtons">Fnd_IO_InputDrawButtons</a></li>
+		<li><a href="#Fnd_IO_InputFormClose">Fnd_IO_InputFormClose</a></li>
 		<li><a href="#Fnd_IO_InputFormMethod">Fnd_IO_InputFormMethod</a></li>
 		<li><a href="#Fnd_IO_InputFormName">Fnd_IO_InputFormName</a></li>
 		<li><a href="#Fnd_IO_InputFormObjectMethod">Fnd_IO_InputFormObjectMethod</a></li>
+		<li><a href="#Fnd_IO_InputFormResize">Fnd_IO_InputFormResize</a></li>
+		<li><a href="#Fnd_IO_Localize">Fnd_IO_Localize</a></li>
 		<li><a href="#Fnd_IO_MultiWindow">Fnd_IO_MultiWindow</a></li>
 		<li><a href="#Fnd_IO_OutputFormMethod">Fnd_IO_OutputFormMethod</a></li>
 		<li><a href="#Fnd_IO_OutputFormName">Fnd_IO_OutputFormName</a></li>
 		<li><a href="#Fnd_IO_RecordEdited">Fnd_IO_RecordEdited</a></li>
+		<li><a href="#Fnd_IO_SetupToolbar">Fnd_IO_SetupToolbar</a></li>
 		<li><a href="#Fnd_IO_ToolbarIconGroup">Fnd_IO_ToolbarIconGroup</a></li>
+		<li><a href="#Fnd_IO_UpdateToolbar">Fnd_IO_UpdateToolbar</a></li>
 	</ul>
 	</section>
 </aside>
@@ -107,22 +117,32 @@
 
 <h1>Fnd_IO</h1>
 
-<p>13 shared methods.</p>
+<p>23 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_IO_AddMultipleRecords">Fnd_IO_AddMultipleRecords</a></li>
 <li><a href="#Fnd_IO_DisplayNavButtons">Fnd_IO_DisplayNavButtons</a></li>
 <li><a href="#Fnd_IO_DisplayRecord">Fnd_IO_DisplayRecord</a></li>
+<li><a href="#Fnd_IO_DisplayRecord2">Fnd_IO_DisplayRecord2</a></li>
+<li><a href="#Fnd_IO_DisplayRecord3">Fnd_IO_DisplayRecord3</a></li>
 <li><a href="#Fnd_IO_DisplayTable">Fnd_IO_DisplayTable</a></li>
+<li><a href="#Fnd_IO_DisplayTable2">Fnd_IO_DisplayTable2</a></li>
+<li><a href="#Fnd_IO_GetWindowTitle">Fnd_IO_GetWindowTitle</a></li>
 <li><a href="#Fnd_IO_Info">Fnd_IO_Info</a></li>
+<li><a href="#Fnd_IO_InputDrawButtons">Fnd_IO_InputDrawButtons</a></li>
+<li><a href="#Fnd_IO_InputFormClose">Fnd_IO_InputFormClose</a></li>
 <li><a href="#Fnd_IO_InputFormMethod">Fnd_IO_InputFormMethod</a></li>
 <li><a href="#Fnd_IO_InputFormName">Fnd_IO_InputFormName</a></li>
 <li><a href="#Fnd_IO_InputFormObjectMethod">Fnd_IO_InputFormObjectMethod</a></li>
+<li><a href="#Fnd_IO_InputFormResize">Fnd_IO_InputFormResize</a></li>
+<li><a href="#Fnd_IO_Localize">Fnd_IO_Localize</a></li>
 <li><a href="#Fnd_IO_MultiWindow">Fnd_IO_MultiWindow</a></li>
 <li><a href="#Fnd_IO_OutputFormMethod">Fnd_IO_OutputFormMethod</a></li>
 <li><a href="#Fnd_IO_OutputFormName">Fnd_IO_OutputFormName</a></li>
 <li><a href="#Fnd_IO_RecordEdited">Fnd_IO_RecordEdited</a></li>
+<li><a href="#Fnd_IO_SetupToolbar">Fnd_IO_SetupToolbar</a></li>
 <li><a href="#Fnd_IO_ToolbarIconGroup">Fnd_IO_ToolbarIconGroup</a></li>
+<li><a href="#Fnd_IO_UpdateToolbar">Fnd_IO_UpdateToolbar</a></li>
 </ul>
 
 <section class="method" id="Fnd_IO_AddMultipleRecords">
@@ -166,6 +186,28 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_IO_DisplayRecord2">
+<h2><a href="#Fnd_IO_DisplayRecord2">Fnd_IO_DisplayRecord2</a></h2>
+<p class="syntax"><code>Fnd_IO_DisplayRecord2 (-&gt;table; record number{; calling process})</code></p>
+<p>Called from Fnd_IO_DisplayRecord to display an input form in a new window. If a calling process number is passed ($3) then that process is called if the record is saved.  In this case, Fnd_IO_AddRecordNumber_i will contain the record number of the modified record.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>pointerTableDisplay</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to display</td></tr>
+<tr><td><code>recordNumber</code></td><td>Longint</td><td>in</td><td>Record number</td></tr>
+<tr><td><code>inCallingProcess</code></td><td>Longint</td><td>in</td><td>Number of the calling process (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_IO_DisplayRecord3">
+<h2><a href="#Fnd_IO_DisplayRecord3">Fnd_IO_DisplayRecord3</a></h2>
+<p class="syntax"><code>Fnd_IO_DisplayRecord3 (record number)</code></p>
+<p>Similar to Fnd_IO_DisplayRecord2, but assumes we're displaying the record in the current process rather than in a new one.</p>
+<p>Called from Fnd_IO_DisplayRecord.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_IO_DisplayTable">
 <h2><a href="#Fnd_IO_DisplayTable">Fnd_IO_DisplayTable</a></h2>
 <p class="syntax"><code>Fnd_IO_DisplayTable (-&gt;table{; force new window})</code></p>
@@ -181,6 +223,32 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_IO_DisplayTable2">
+<h2><a href="#Fnd_IO_DisplayTable2">Fnd_IO_DisplayTable2</a></h2>
+<p class="syntax"><code>Fnd_IO_DisplayTable2 (-&gt;table)</code></p>
+<p>Called from Fnd_IO_DisplayTable to display an output form in a new window.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>pointerTableDisplay</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to display</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_IO_GetWindowTitle">
+<h2><a href="#Fnd_IO_GetWindowTitle">Fnd_IO_GetWindowTitle</a></h2>
+<p class="syntax"><code>Fnd_IO_GetWindowTitle ({-&gt;table{; record number}}) -&gt; Text</code></p>
+<p>Returns the suggested title for the current window for input forms.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inTable</code></td><td>Pointer</td><td>in</td><td>The table (optional)</td></tr>
+<tr><td><code>inRecordNumber</code></td><td>Longint</td><td>in</td><td>The record number (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Suggested title</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_IO_Info">
 <h2><a href="#Fnd_IO_Info">Fnd_IO_Info</a></h2>
 <p class="syntax"><code>Fnd_IO_Info (label) --&gt; Text</code></p>
@@ -190,6 +258,26 @@
 <tbody>
 <tr><td><code>request</code></td><td>Text</td><td>in</td><td>Info desired (&quot;version&quot; or &quot;name&quot;)</td></tr>
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_IO_InputDrawButtons">
+<h2><a href="#Fnd_IO_InputDrawButtons">Fnd_IO_InputDrawButtons</a></h2>
+<p class="syntax"><code>Fnd_IO_InputDrawButtons</code></p>
+<p>Called from Fnd_IO_InputFormMethod when the window is first open to draw the buttons from the inherited form.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_IO_InputFormClose">
+<h2><a href="#Fnd_IO_InputFormClose">Fnd_IO_InputFormClose</a></h2>
+<p class="syntax"><code>Fnd_IO_InputFormClose --&gt; Boolean</code></p>
+<p>Called from the Fnd_IO_InputFormMethod when the user clicks the close box or quits the database.  Basically we need to ask the user if the record should be saved if it has been modified.</p>
+<p>Returns True if the window gets closed.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the window will be closed.</td></tr>
 </tbody>
 </table>
 </section>
@@ -224,6 +312,20 @@
 <tr><td><code>object</code></td><td>Pointer</td><td>in</td><td>Form object</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_IO_InputFormResize">
+<h2><a href="#Fnd_IO_InputFormResize">Fnd_IO_InputFormResize</a></h2>
+<p class="syntax"><code>Fnd_IO_InputFormResize</code></p>
+<p>Called by the Fnd_IO_InputFormMethod to move the inherited buttons around.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_IO_Localize">
+<h2><a href="#Fnd_IO_Localize">Fnd_IO_Localize</a></h2>
+<p class="syntax"><code>Fnd_IO_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_IO_MultiWindow">
@@ -276,6 +378,13 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_IO_SetupToolbar">
+<h2><a href="#Fnd_IO_SetupToolbar">Fnd_IO_SetupToolbar</a></h2>
+<p class="syntax"><code>Fnd_IO_SetupToolbar</code></p>
+<p>Handles the toolbar setup for the input and output forms.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_IO_ToolbarIconGroup">
 <h2><a href="#Fnd_IO_ToolbarIconGroup">Fnd_IO_ToolbarIconGroup</a></h2>
 <p class="syntax"><code>Fnd_IO_ToolbarIconGroup ({style name}) --&gt; Text</code></p>
@@ -287,6 +396,13 @@
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current style</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_IO_UpdateToolbar">
+<h2><a href="#Fnd_IO_UpdateToolbar">Fnd_IO_UpdateToolbar</a></h2>
+<p class="syntax"><code>Fnd_IO_UpdateToolbar</code></p>
+<p>Enables and disables the toolbar buttons based on whether or not the window is frontmost, the selection of records, and the highlighted records.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 </main>

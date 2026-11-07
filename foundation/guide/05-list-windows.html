@@ -115,13 +115,13 @@ End case</code></pre>
 <h2 id="what-the-user-sees">What the user sees</h2>
 <p><strong>Select &gt; View Options…</strong> opens one floating palette that follows whichever list window is in front.</p>
 <ul>
-<li><strong>Appearance</strong>: a Layout menu, text size (with a custom size), row height in lines or pixels, vertical alignment, background and alternate colours. <strong>Save</strong> makes the size, height and colours the default for every list on this machine; <strong>Reset</strong> returns this list to the programmed default.</li>
+<li><strong>Appearance</strong>: a Layout menu, the list's font (Default is the application's list font), text size (with a custom size), row height in lines or pixels, vertical alignment, background and alternate colours. <strong>Save</strong> makes the font, size, height and colours the default for every list on this machine; <strong>Reset</strong> returns this list to the programmed default.</li>
 <li><strong>Columns</strong>: a tick list in blocks, the table's own fields first, then one block per related table, then Custom Columns. Ticking inserts the column; dragging a header in the window reorders; dragging a border resizes, and the last column fills the window. <strong>Reset to Standard</strong> discards every change.</li>
-<li><strong>Advanced</strong> widens the palette for the highlighted column: title, horizontal and vertical alignment, bold, italic, format, and <strong>Use Default</strong> to drop the overrides; below it, <strong>Row Styles</strong> (next section) and the formula box for custom columns, when the developer allows them.</li>
+<li><strong>Advanced</strong> widens the palette for the highlighted column: title, font (the column's cells only; its header keeps the list's font), horizontal and vertical alignment, bold, italic, format, and <strong>Use Default</strong> to drop the overrides; below it, <strong>Row Styles</strong> (next section) and the formula box for custom columns, when the developer allows them.</li>
 </ul>
 <p>Everything the user does is saved when the window closes, in <code>&lt;4D application folder&gt;/&lt;DatabaseName&gt;/Fnd_Out/&lt;Table&gt;.json</code> on that machine, and comes back next time. Hold Option and Shift while a list opens to ignore the saved order and widths once.</p>
 <h2 id="layouts">Layouts</h2>
-<p>A layout is a named set of visible columns, order, widths, text size, row height and row-style rules. The Layout menu lists them and <strong>Manage Layouts…</strong> renames, deletes and sets defaults.</p>
+<p>A layout is a named set of visible columns, order, widths, font, text size, row height and row-style rules. The Layout menu lists them and <strong>Manage Layouts…</strong> renames, deletes and sets defaults.</p>
 <div class="table-wrap">
 <table class="provenance">
 <thead><tr><th scope="col">Kind</th><th scope="col">Who makes it</th><th scope="col">Where it lives</th><th scope="col">Shown as</th></tr></thead>
@@ -156,6 +156,33 @@ End case</code></pre>
 <p>Return any of <code>fontWeight</code>, <code>fontStyle</code>, <code>textDecoration</code>, <code>stroke</code>, <code>fill</code>; an empty object leaves the row alone. It is a 4D meta-info expression, so keep it cheap: it runs for every visible row on every redraw.</p>
 <h2 id="the-context-menu">The context menu</h2>
 <p>A right-click (Control-click on the Mac) in a list calls <code>Fnd_Hook_Out_ContextMenu(-&gt;table; $selected_es; $clicked_e; $row_i)</code> with the table, the highlighted records as an entity selection, the entity under the pointer (Null over empty space) and the clicked row number. The hook builds and shows the menu itself. The generated template, which FPS uses as it stands, offers New, Edit Record(s) up to a limit, Delete, Show Subset and Omit Subset, calling <code>Fnd_Rec_NewRecord</code>, <code>Fnd_Out_EditRecord($row_i)</code>, <code>Fnd_Out_EditSelection($selected_es)</code>, <code>Fnd_Rec_DeleteUserSet</code>, <code>Fnd_Rec_ShowSubset</code> and <code>Fnd_Rec_OmitSubset</code>. Add your own items after them; a commented example in the template archives the selection through ORDA.</p>
+<h2 id="the-search-box">The search box</h2>
+<p>A list can show a search box in its toolbar band. It searches the whole table, not the current selection, as the user types; Enter searches at once, and emptying the box shows every record.</p>
+<p>Add a subform object named exactly <code>Fnd_Out_Search</code>, with detail form <code>Fnd_Out_Search</code>, to your <code>Fnd_Out</code> form once, drawn anywhere in the toolbar band at about 192 × 26. Foundation places it when the list opens and on every resize, and hides it when the window is too narrow.</p>
+<p>Then declare what each table searches, in <code>Fnd_Hook_Out_SearchFields</code>, which Foundation generates the first time <code>Fnd_Out</code> runs. FPS does this for three tables:</p>
+<pre><code>Case of
+	: ($table_ptr=(-&gt;[Contacts]))
+		Fnd_Out_AddSearchField(-&gt;[Contacts]LastName; &quot;contains&quot;)
+		Fnd_Out_AddSearchField(-&gt;[Contacts]FirstName; &quot;contains&quot;)
+		Fnd_Out_AddSearchField(-&gt;[Contacts]Company; &quot;contains&quot;)
+
+	: ($table_ptr=(-&gt;[Invoices]))
+		Fnd_Out_AddSearchField(-&gt;[Invoices]InvoiceNumber; &quot;&quot;; &quot;Inv. #&quot;)
+		Fnd_Out_AddSearchField(-&gt;[Invoices]InvoiceDate)
+		Fnd_Out_AddSearchField(&quot;contact.LastName&quot;; &quot;&quot;; &quot;Customer&quot;)
+
+	: ($table_ptr=(-&gt;[Products]))
+		Fnd_Out_AddSearchField(-&gt;[Products]ProductNumber)
+		Fnd_Out_AddSearchField(-&gt;[Products]ProductName; &quot;keyword&quot;)
+		Fnd_Out_SearchHint(&quot;Number or name&quot;; &quot;Product numbers match from the start; names match whole words.&quot;+Char(Carriage return)+&quot;Searches: &quot;+Fnd_Out_SearchHelp)
+End case</code></pre>
+<p>The empty box shows the fields it searches in grey, as many as fit, and hovering over it lists them all.</p>
+<p>Each field has a title, which is the name used in the hint and the tip. It is the field's virtual field name by default, and <code>Fnd_VS_SetFieldTitle</code> changes it everywhere. The optional third parameter changes it for the search box only. A path with no virtual field name shows its last segment. The second parameter may be <code>&quot;&quot;</code>, which means <code>begins</code>.</p>
+<p>The object form is for the tech-savvy. It takes the same three things as keys, using the constants <code>fo_field</code>, <code>fo_operator</code> and <code>fo_title</code>, and a key outranks the matching parameter:</p>
+<pre><code>Fnd_Out_AddSearchField(New object(fo_field; &quot;contact.LastName&quot;; fo_title; &quot;Customer&quot;))</code></pre>
+<p>To replace the hint or the tip altogether, call <code>Fnd_Out_SearchHint(hint; tooltip)</code> after the declarations. The hint is shown as written. The tip may run to several lines. An empty text keeps Foundation's own. <code>Fnd_Out_SearchHelp</code> returns the generated list of field names, so the tip can include it, as the Products branch does.</p>
+<p>A table with no declared fields has no box. A field is a pointer, or a text path for one reached through relations. A text field takes an operator: <code>begins</code> (the default), <code>contains</code>, <code>keyword</code> or <code>exact</code>. A number field is searched only when the text is a number. A date field is searched only when the text is a date, which <code>Fnd_Out_SearchDate</code> reads: a full date, today, yesterday, a bare day of this month, or a day and month in the system's order.</p>
+<p>For anything the declared fields cannot express, <code>Fnd_Hook_Out_Search</code> is called first and may return an entity selection to display; returning Null falls back to the declared fields.</p>
 <h2 id="working-with-the-list-from-your-code">Working with the list from your code</h2>
 <div class="table-wrap">
 <table class="provenance">
@@ -171,7 +198,7 @@ End case</code></pre>
 </table>
 </div>
 <p>The selection the list shows is an entity selection in <code>Form.listData</code>; Find, Sort, Show Subset and the rest replace it and the list follows. Foundation's classic current selection is kept in step at the moments it matters, which is what <code>Fnd_Out_SynchroniseSelection</code> is for when you need it yourself.</p>
-<h2 id="known-limits-in-beta1">Known limits in beta.1</h2>
+<h2 id="known-limits-in-the-beta">Known limits in the beta</h2>
 <ul>
 <li>Clicking a column header does not sort; use Sort.</li>
 <li>View Options has no keyboard shortcut yet.</li>

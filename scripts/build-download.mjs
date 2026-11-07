@@ -6,9 +6,11 @@
 //
 // releases.json lists releases, newest first; each has a version, date, commit,
 // four artefacts (target, label, dmg, zip, sha256dmg, sha256zip) and a
-// checksums URL. An empty string means "not yet published". URLs are used
-// exactly as written (Dropbox links carry ?dl=1). Plain Node, no dependencies,
-// no JavaScript in the generated page.
+// checksums URL. An empty string means "not yet published". A release may
+// instead carry a folder URL holding every file: the file names are then shown
+// without links and the folder is linked once below the table. URLs are used
+// exactly as written (Dropbox file links carry ?dl=1). Plain Node, no
+// dependencies, no JavaScript in the generated page.
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -28,13 +30,14 @@ const longDate = (iso) => {
 };
 
 function releaseHtml(r) {
+	const file = (url, name) => (!url && r.folder ? esc(name) : link(url, name));
 	const rows = (r.artefacts || []).map((a) => {
 		const base = `Foundation-${r.version}-${a.target}`;
 		const sums = [a.sha256dmg, a.sha256zip].filter(Boolean);
 		const sha = sums.length
 			? sums.map((h) => `<code>${esc(h)}</code>`).join('<br>')
 			: pending;
-		return `<tr><td>${esc(a.target)}</td><td>${esc(a.label)}</td><td>${link(a.dmg, base + '.dmg')}</td><td>${link(a.zip, base + '.zip')}</td><td class="hash">${sha}</td></tr>`;
+		return `<tr><td>${esc(a.target)}</td><td>${esc(a.label)}</td><td>${file(a.dmg, base + '.dmg')}</td><td>${file(a.zip, base + '.zip')}</td><td class="hash">${sha}</td></tr>`;
 	}).join('\n');
 	const date = longDate(r.date);
 	return `<h2>Foundation ${esc(r.version)}</h2>
@@ -48,7 +51,9 @@ ${rows}
 </table>
 </div>
 
-<p>Checksums for every file: ${r.checksums ? `<a href="${esc(r.checksums)}">checksums file</a>` : pending}.</p>`;
+${r.folder
+	? `<p><a href="${esc(r.folder)}">Open the download folder</a> on Dropbox and download the files you need. The checksums file is there too.</p>`
+	: `<p>Checksums for every file: ${r.checksums ? `<a href="${esc(r.checksums)}">checksums file</a>` : pending}.</p>`}`;
 }
 
 const html = frame({

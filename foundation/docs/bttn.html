@@ -87,17 +87,33 @@
 	<h2>Fnd_Bttn</h2>
 	<ul class="nav methods">
 		<li><a href="#Fnd_Bttn_AlternativePicturePath">Fnd_Bttn_AlternativePicturePath</a></li>
+		<li><a href="#Fnd_Bttn_Cache_Image_Add">Fnd_Bttn_Cache_Image_Add</a></li>
+		<li><a href="#Fnd_Bttn_Cache_Image_Delete">Fnd_Bttn_Cache_Image_Delete</a></li>
+		<li><a href="#Fnd_Bttn_Cache_Image_Get">Fnd_Bttn_Cache_Image_Get</a></li>
+		<li><a href="#Fnd_Bttn_Cache_Startup">Fnd_Bttn_Cache_Startup</a></li>
 		<li><a href="#Fnd_Bttn_CacheMaximumSize">Fnd_Bttn_CacheMaximumSize</a></li>
+		<li><a href="#Fnd_Bttn_ColorToString">Fnd_Bttn_ColorToString</a></li>
+		<li><a href="#Fnd_Bttn_CreateBackgrounds">Fnd_Bttn_CreateBackgrounds</a></li>
 		<li><a href="#Fnd_Bttn_CreateButton">Fnd_Bttn_CreateButton</a></li>
+		<li><a href="#Fnd_Bttn_GetIcon">Fnd_Bttn_GetIcon</a></li>
 		<li><a href="#Fnd_Bttn_GetPicture">Fnd_Bttn_GetPicture</a></li>
 		<li><a href="#Fnd_Bttn_GetPictureName">Fnd_Bttn_GetPictureName</a></li>
 		<li><a href="#Fnd_Bttn_GetPictureWidth">Fnd_Bttn_GetPictureWidth</a></li>
+		<li><a href="#Fnd_Bttn_GetSizedIconName">Fnd_Bttn_GetSizedIconName</a></li>
 		<li><a href="#Fnd_Bttn_Info">Fnd_Bttn_Info</a></li>
 		<li><a href="#Fnd_Bttn_LibraryToResource">Fnd_Bttn_LibraryToResource</a></li>
+		<li><a href="#Fnd_Bttn_MakeBackground">Fnd_Bttn_MakeBackground</a></li>
+		<li><a href="#Fnd_Bttn_MakeButton">Fnd_Bttn_MakeButton</a></li>
+		<li><a href="#Fnd_Bttn_MakeCrntBackground">Fnd_Bttn_MakeCrntBackground</a></li>
+		<li><a href="#Fnd_Bttn_MakeIconPicture">Fnd_Bttn_MakeIconPicture</a></li>
+		<li><a href="#Fnd_Bttn_MakeMenuIndicatorPic">Fnd_Bttn_MakeMenuIndicatorPic</a></li>
+		<li><a href="#Fnd_Bttn_MakeTextPicture">Fnd_Bttn_MakeTextPicture</a></li>
 		<li><a href="#Fnd_Bttn_Platform">Fnd_Bttn_Platform</a></li>
 		<li><a href="#Fnd_Bttn_SetBackgroundPict">Fnd_Bttn_SetBackgroundPict</a></li>
 		<li><a href="#Fnd_Bttn_SetTextProperties">Fnd_Bttn_SetTextProperties</a></li>
+		<li><a href="#Fnd_Bttn_SetVariables">Fnd_Bttn_SetVariables</a></li>
 		<li><a href="#Fnd_Bttn_Style">Fnd_Bttn_Style</a></li>
+		<li><a href="#Fnd_Bttn_TextToPict">Fnd_Bttn_TextToPict</a></li>
 	</ul>
 	</section>
 </aside>
@@ -106,21 +122,37 @@
 
 <h1>Fnd_Bttn</h1>
 
-<p>12 shared methods.</p>
+<p>28 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Bttn_AlternativePicturePath">Fnd_Bttn_AlternativePicturePath</a></li>
+<li><a href="#Fnd_Bttn_Cache_Image_Add">Fnd_Bttn_Cache_Image_Add</a></li>
+<li><a href="#Fnd_Bttn_Cache_Image_Delete">Fnd_Bttn_Cache_Image_Delete</a></li>
+<li><a href="#Fnd_Bttn_Cache_Image_Get">Fnd_Bttn_Cache_Image_Get</a></li>
+<li><a href="#Fnd_Bttn_Cache_Startup">Fnd_Bttn_Cache_Startup</a></li>
 <li><a href="#Fnd_Bttn_CacheMaximumSize">Fnd_Bttn_CacheMaximumSize</a></li>
+<li><a href="#Fnd_Bttn_ColorToString">Fnd_Bttn_ColorToString</a></li>
+<li><a href="#Fnd_Bttn_CreateBackgrounds">Fnd_Bttn_CreateBackgrounds</a></li>
 <li><a href="#Fnd_Bttn_CreateButton">Fnd_Bttn_CreateButton</a></li>
+<li><a href="#Fnd_Bttn_GetIcon">Fnd_Bttn_GetIcon</a></li>
 <li><a href="#Fnd_Bttn_GetPicture">Fnd_Bttn_GetPicture</a></li>
 <li><a href="#Fnd_Bttn_GetPictureName">Fnd_Bttn_GetPictureName</a></li>
 <li><a href="#Fnd_Bttn_GetPictureWidth">Fnd_Bttn_GetPictureWidth</a></li>
+<li><a href="#Fnd_Bttn_GetSizedIconName">Fnd_Bttn_GetSizedIconName</a></li>
 <li><a href="#Fnd_Bttn_Info">Fnd_Bttn_Info</a></li>
 <li><a href="#Fnd_Bttn_LibraryToResource">Fnd_Bttn_LibraryToResource</a></li>
+<li><a href="#Fnd_Bttn_MakeBackground">Fnd_Bttn_MakeBackground</a></li>
+<li><a href="#Fnd_Bttn_MakeButton">Fnd_Bttn_MakeButton</a></li>
+<li><a href="#Fnd_Bttn_MakeCrntBackground">Fnd_Bttn_MakeCrntBackground</a></li>
+<li><a href="#Fnd_Bttn_MakeIconPicture">Fnd_Bttn_MakeIconPicture</a></li>
+<li><a href="#Fnd_Bttn_MakeMenuIndicatorPic">Fnd_Bttn_MakeMenuIndicatorPic</a></li>
+<li><a href="#Fnd_Bttn_MakeTextPicture">Fnd_Bttn_MakeTextPicture</a></li>
 <li><a href="#Fnd_Bttn_Platform">Fnd_Bttn_Platform</a></li>
 <li><a href="#Fnd_Bttn_SetBackgroundPict">Fnd_Bttn_SetBackgroundPict</a></li>
 <li><a href="#Fnd_Bttn_SetTextProperties">Fnd_Bttn_SetTextProperties</a></li>
+<li><a href="#Fnd_Bttn_SetVariables">Fnd_Bttn_SetVariables</a></li>
 <li><a href="#Fnd_Bttn_Style">Fnd_Bttn_Style</a></li>
+<li><a href="#Fnd_Bttn_TextToPict">Fnd_Bttn_TextToPict</a></li>
 </ul>
 
 <section class="method" id="Fnd_Bttn_AlternativePicturePath">
@@ -136,6 +168,54 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Bttn_Cache_Image_Add">
+<h2><a href="#Fnd_Bttn_Cache_Image_Add">Fnd_Bttn_Cache_Image_Add</a></h2>
+<p class="syntax"><code>Fnd_Bttn_Cache_Image_Add (composite name; image)</code></p>
+<p>Adds an image to the RAM cache of button images.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>compositeName</code></td><td>Text</td><td>in</td><td>The name returned by the Fnd_Bttn_GetPictureName function</td></tr>
+<tr><td><code>image</code></td><td>Picture</td><td>in</td><td>The picture to add to the cache</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_Cache_Image_Delete">
+<h2><a href="#Fnd_Bttn_Cache_Image_Delete">Fnd_Bttn_Cache_Image_Delete</a></h2>
+<p class="syntax"><code>Fnd_Bttn_Cache_Image_Delete (composite image name)</code></p>
+<p>Deletes an image from the cache using its composite name as the key.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>compositeName</code></td><td>Text</td><td>in</td><td>The image name returned by Fnd_Bttn_GetPictureName</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_Cache_Image_Get">
+<h2><a href="#Fnd_Bttn_Cache_Image_Get">Fnd_Bttn_Cache_Image_Get</a></h2>
+<p class="syntax"><code>Fnd_Bttn_Cache_Image_Get (composite name) --&gt; Picture</code></p>
+<p>Returns an image from the cache using its composite name.</p>
+<p>Modified from Mark's original design. This routine no longer displays an alert</p>
+<p>if the image isn't found in the cache.  It just returns a blank image, so the</p>
+<p>developer needs to check to see if an image was returned.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>name</code></td><td>Text</td><td>in</td><td>The name returned by the Fnd_Bttn_GetPictureName function</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The image from the cache</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_Cache_Startup">
+<h2><a href="#Fnd_Bttn_Cache_Startup">Fnd_Bttn_Cache_Startup</a></h2>
+<p class="syntax"><code>Fnd_Bttn_Cache_Startup</code></p>
+<p>These arrays keep track of those Rollovers we've created in the application.  We will only be rollovers as well need them, then not creating the picture again. This allows us to easily switch languages and have all the text in the rollovers be easily converted without storing loads of pictures in different languages.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Bttn_CacheMaximumSize">
 <h2><a href="#Fnd_Bttn_CacheMaximumSize">Fnd_Bttn_CacheMaximumSize</a></h2>
 <p class="syntax"><code>Fnd_Bttn_CacheMaximumSize {(New Cache size)}  --&gt; longint</code></p>
@@ -147,6 +227,27 @@
 <tr><td><code>Result</code></td><td>longint</td><td>out</td><td>The cache size</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_Bttn_ColorToString">
+<h2><a href="#Fnd_Bttn_ColorToString">Fnd_Bttn_ColorToString</a></h2>
+<p class="syntax"><code>Fnd_Bttn_ColorToString (rgb color) --&gt; Text</code></p>
+<p>Converts a 4D RGB color value to a CSS2-compatible string in the format &quot;#rrggbb&quot;.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>color</code></td><td>Longint</td><td>in</td><td>The 4D RGB color</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The color string</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_CreateBackgrounds">
+<h2><a href="#Fnd_Bttn_CreateBackgrounds">Fnd_Bttn_CreateBackgrounds</a></h2>
+<p class="syntax"><code>Fnd_Bttn_CreateBackgrounds</code></p>
+<p>Because of the time to do the picture maths for the middle bit of the button, we</p>
+<p>will pre-build different sized middle slices and store them in an array.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Bttn_CreateButton">
@@ -161,6 +262,20 @@
 <tr><td><code>picture</code></td><td>Pointer</td><td>in</td><td>A picture variable</td></tr>
 <tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>An icon name</td></tr>
 <tr><td><code>label</code></td><td>Text</td><td>in</td><td>Any text</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_GetIcon">
+<h2><a href="#Fnd_Bttn_GetIcon">Fnd_Bttn_GetIcon</a></h2>
+<p class="syntax"><code>Fnd_Bttn_GetIcon (name{; state}) --&gt; Picture</code></p>
+<p>This method just wraps the GET PICTURE FROM LIBRARY command, but if you wanted to store your pictures in resources or some other way, you could modify this command for getting the pictures.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inIconName</code></td><td>Text</td><td>in</td><td>The picture name</td></tr>
+<tr><td><code>inState</code></td><td>Text</td><td>in</td><td>The icon state: &quot;selected&quot; or &quot;disabled&quot; (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The picture</td></tr>
 </tbody>
 </table>
 </section>
@@ -212,6 +327,19 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Bttn_GetSizedIconName">
+<h2><a href="#Fnd_Bttn_GetSizedIconName">Fnd_Bttn_GetSizedIconName</a></h2>
+<p class="syntax"><code>Fnd_Bttn_GetSizedIconName (icon name) -&gt; Text</code></p>
+<p>Returns the name of the icon with the size embeded.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inIconName</code></td><td>Text</td><td>in</td><td>The icon name without the size</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The icon name with the size</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Bttn_Info">
 <h2><a href="#Fnd_Bttn_Info">Fnd_Bttn_Info</a></h2>
 <p class="syntax"><code>Fnd_Bttn_Info (label) --&gt; Text</code></p>
@@ -232,6 +360,86 @@
 <p>Used by Fnd_Bttn subcomponent to allow developer to easily edit or replace the icons used throughout Foundation.</p>
 <p>Special thanks to John Craig for this implementation.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeBackground">
+<h2><a href="#Fnd_Bttn_MakeBackground">Fnd_Bttn_MakeBackground</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeBackground (width) --&gt; Picture</code></p>
+<p>Builds a button background to the specified width.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inWidth</code></td><td>Longint</td><td>in</td><td>The width needed</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The buton background image of the right width</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeButton">
+<h2><a href="#Fnd_Bttn_MakeButton">Fnd_Bttn_MakeButton</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeButton (icon name; button label; variation) --&gt; Picture</code></p>
+<p>Returns a picture of the button * 4 for use as a 4D picture button.</p>
+<p>Assumes the button style has been previously defined.</p>
+<p>This isn't called directly. Call Fnd_Bttn_GetPicture. It will check the cache first, then call this only if necessary.</p>
+<p>Supports these variations: &quot;&quot; : A standard button &quot;current&quot; : The currently selected button (Mac OS X Prefs style) &quot;menu&quot; : Adds a menu indicator triangle</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>The name of the icon to use from the 4D picture library</td></tr>
+<tr><td><code>buttonText</code></td><td>Text</td><td>in</td><td>The label for the button</td></tr>
+<tr><td><code>variation</code></td><td>Text</td><td>in</td><td>The variation name</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>A picture to use for a 4D picture rollover button</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeCrntBackground">
+<h2><a href="#Fnd_Bttn_MakeCrntBackground">Fnd_Bttn_MakeCrntBackground</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeCrntBackground (width) --&gt; Picture</code></p>
+<p>Returns the background to use with the currently selected &quot;Pref&quot; style button.</p>
+<p>Similar to Fnd_Bttn_MakeBackground, but designed for the background of the currently selected button (Mac OS X Prefs style).</p>
+<p>This routine also isn't as optimized as Fnd_Bttn_MakeBackground.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inWidth</code></td><td>Longint</td><td>in</td><td>The required width of the background</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>The background picture</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeIconPicture">
+<h2><a href="#Fnd_Bttn_MakeIconPicture">Fnd_Bttn_MakeIconPicture</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeIconPicture (icon name) --&gt; Picture</code></p>
+<p>Creates a picture containing the 4 icons arranged for the rollover button,</p>
+<p>spaced according to the button height.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>iconName</code></td><td>Text</td><td>in</td><td>The name of the icon</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>A picture of the icon over the background</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeMenuIndicatorPic">
+<h2><a href="#Fnd_Bttn_MakeMenuIndicatorPic">Fnd_Bttn_MakeMenuIndicatorPic</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeMenuIndicatorPic --&gt; Picture</code></p>
+<p>Creates a picture of the specified label.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Bttn_MakeTextPicture">
+<h2><a href="#Fnd_Bttn_MakeTextPicture">Fnd_Bttn_MakeTextPicture</a></h2>
+<p class="syntax"><code>Fnd_Bttn_MakeTextPicture (button label) --&gt; Picture</code></p>
+<p>Creates a picture of the specified label.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>buttonText</code></td><td>Text</td><td>in</td><td>The label for the button</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>A picture of the label (x4)</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Bttn_Platform">
@@ -279,6 +487,13 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Bttn_SetVariables">
+<h2><a href="#Fnd_Bttn_SetVariables">Fnd_Bttn_SetVariables</a></h2>
+<p class="syntax"><code>Fnd_Bttn_SetVariables</code></p>
+<p>Updates the toolbar variables depending on the current platform, size, and style settings.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Bttn_Style">
 <h2><a href="#Fnd_Bttn_Style">Fnd_Bttn_Style</a></h2>
 <p class="syntax"><code>Fnd_Bttn_Style ({Style name}) --&gt; Text</code></p>
@@ -289,6 +504,19 @@
 <tbody>
 <tr><td><code>requestedStyle</code></td><td>Text</td><td>in</td><td>The style to use (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The selected style</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Bttn_TextToPict">
+<h2><a href="#Fnd_Bttn_TextToPict">Fnd_Bttn_TextToPict</a></h2>
+<p class="syntax"><code>Fnd_Bttn_TextToPict (text;fontName;fontSize;fontFace;width;height{;color}) --&gt; Picture</code></p>
+<p>Converts a text string to a picture of the text.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>text</code></td><td>Text</td><td>in</td><td>Text to make into picture</td></tr>
+<tr><td><code>Result</code></td><td>Picture</td><td>out</td><td>A picture of the text</td></tr>
 </tbody>
 </table>
 </section>

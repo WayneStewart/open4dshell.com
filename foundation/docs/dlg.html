@@ -90,13 +90,18 @@
 		<li><a href="#Fnd_Dlg_Confirm">Fnd_Dlg_Confirm</a></li>
 		<li><a href="#Fnd_Dlg_CustomIcon">Fnd_Dlg_CustomIcon</a></li>
 		<li><a href="#Fnd_Dlg_Display">Fnd_Dlg_Display</a></li>
+		<li><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></li>
+		<li><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></li>
 		<li><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></li>
 		<li><a href="#Fnd_Dlg_Info">Fnd_Dlg_Info</a></li>
+		<li><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></li>
 		<li><a href="#Fnd_Dlg_Message">Fnd_Dlg_Message</a></li>
 		<li><a href="#Fnd_Dlg_MessageCanceled">Fnd_Dlg_MessageCanceled</a></li>
 		<li><a href="#Fnd_Dlg_MessageClose">Fnd_Dlg_MessageClose</a></li>
 		<li><a href="#Fnd_Dlg_MessageOpen">Fnd_Dlg_MessageOpen</a></li>
+		<li><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></li>
 		<li><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></li>
+		<li><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></li>
 		<li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
 		<li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
 		<li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
@@ -112,20 +117,25 @@
 
 <h1>Fnd_Dlg</h1>
 
-<p>18 shared methods.</p>
+<p>23 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Dlg_Alert">Fnd_Dlg_Alert</a></li>
 <li><a href="#Fnd_Dlg_Confirm">Fnd_Dlg_Confirm</a></li>
 <li><a href="#Fnd_Dlg_CustomIcon">Fnd_Dlg_CustomIcon</a></li>
 <li><a href="#Fnd_Dlg_Display">Fnd_Dlg_Display</a></li>
+<li><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></li>
+<li><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></li>
 <li><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></li>
 <li><a href="#Fnd_Dlg_Info">Fnd_Dlg_Info</a></li>
+<li><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></li>
 <li><a href="#Fnd_Dlg_Message">Fnd_Dlg_Message</a></li>
 <li><a href="#Fnd_Dlg_MessageCanceled">Fnd_Dlg_MessageCanceled</a></li>
 <li><a href="#Fnd_Dlg_MessageClose">Fnd_Dlg_MessageClose</a></li>
 <li><a href="#Fnd_Dlg_MessageOpen">Fnd_Dlg_MessageOpen</a></li>
+<li><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></li>
 <li><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></li>
+<li><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></li>
 <li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
 <li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
 <li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
@@ -191,6 +201,21 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Dlg_FixButtonTexts">
+<h2><a href="#Fnd_Dlg_FixButtonTexts">Fnd_Dlg_FixButtonTexts</a></h2>
+<p class="syntax"><code>Fnd_Dlg_FixButtonTexts</code></p>
+<p>Convert &quot;*&quot; in the button texts to local strings.</p>
+<p>Do this just before displaying the dialog, since they get cleared after that.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dlg_FormAlert">
+<h2><a href="#Fnd_Dlg_FormAlert">Fnd_Dlg_FormAlert</a></h2>
+<p class="syntax"><code>Fnd_Dlg_FormAlert</code></p>
+<p>Displays an alert using a 4D form.  Called from Fnd_Dlg_Display</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Dlg_GetRequest">
 <h2><a href="#Fnd_Dlg_GetRequest">Fnd_Dlg_GetRequest</a></h2>
 <p class="syntax"><code>Fnd_Dlg_GetRequest --&gt; Text</code></p>
@@ -214,6 +239,13 @@
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_Dlg_Localize">
+<h2><a href="#Fnd_Dlg_Localize">Fnd_Dlg_Localize</a></h2>
+<p class="syntax"><code>Fnd_Dlg_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Dlg_Message">
@@ -256,6 +288,18 @@
 <p class="noparams">No parameters.</p>
 </section>
 
+<section class="method" id="Fnd_Dlg_MessageOpen2">
+<h2><a href="#Fnd_Dlg_MessageOpen2">Fnd_Dlg_MessageOpen2</a></h2>
+<p class="syntax"><code>Fnd_Dlg_MessageOpen2 (window title)</code></p>
+<p>Called as a new process from Fnd_Dlg_MessageOpen to display the progress indicator window.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>windowTitle</code></td><td>Text</td><td>in</td><td>The window title</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Dlg_MessageUpdate">
 <h2><a href="#Fnd_Dlg_MessageUpdate">Fnd_Dlg_MessageUpdate</a></h2>
 <p class="syntax"><code>Fnd_Dlg_MessageUpdate (number)</code></p>
@@ -264,6 +308,22 @@
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>current</code></td><td>Longint</td><td>in</td><td>The next number in the sequence.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_PasswordEntry">
+<h2><a href="#Fnd_Dlg_PasswordEntry">Fnd_Dlg_PasswordEntry</a></h2>
+<p class="syntax"><code>Fnd_Dlg_PasswordEntry (-&gt;srcArea; -&gt;curValue) --&gt; Boolean</code></p>
+<p>Replaces typed characters with bullet characters for password entry.</p>
+<p>Returns True if the value has changed.</p>
+<p>Based on the Keystroke function example in the 4D documentation.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>formObject</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
+<tr><td><code>currentValue</code></td><td>Pointer</td><td>in</td><td>A pointer to a text variable that holds the contents</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the current value has changed</td></tr>
 </tbody>
 </table>
 </section>

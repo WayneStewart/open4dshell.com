@@ -86,10 +86,12 @@
 	<section class="box">
 	<h2>Fnd_VS</h2>
 	<ul class="nav methods">
+		<li><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></li>
 		<li><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></li>
 		<li><a href="#Fnd_VS_FieldName">Fnd_VS_FieldName</a></li>
 		<li><a href="#Fnd_VS_GetFields">Fnd_VS_GetFields</a></li>
 		<li><a href="#Fnd_VS_GetTables">Fnd_VS_GetTables</a></li>
+		<li><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></li>
 		<li><a href="#Fnd_VS_Info">Fnd_VS_Info</a></li>
 		<li><a href="#Fnd_VS_NbrValidFields">Fnd_VS_NbrValidFields</a></li>
 		<li><a href="#Fnd_VS_ReplaceString">Fnd_VS_ReplaceString</a></li>
@@ -100,6 +102,7 @@
 		<li><a href="#Fnd_VS_ShowTable">Fnd_VS_ShowTable</a></li>
 		<li><a href="#Fnd_VS_TableName">Fnd_VS_TableName</a></li>
 		<li><a href="#Fnd_VS_UseNameLists">Fnd_VS_UseNameLists</a></li>
+		<li><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></li>
 		<li><a href="#Fnd_VS_zProbeHostLists">Fnd_VS_zProbeHostLists</a></li>
 	</ul>
 	</section>
@@ -109,13 +112,15 @@
 
 <h1>Fnd_VS</h1>
 
-<p>15 shared methods.</p>
+<p>18 shared methods.</p>
 
 <ul class="jump">
+<li><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></li>
 <li><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></li>
 <li><a href="#Fnd_VS_FieldName">Fnd_VS_FieldName</a></li>
 <li><a href="#Fnd_VS_GetFields">Fnd_VS_GetFields</a></li>
 <li><a href="#Fnd_VS_GetTables">Fnd_VS_GetTables</a></li>
+<li><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></li>
 <li><a href="#Fnd_VS_Info">Fnd_VS_Info</a></li>
 <li><a href="#Fnd_VS_NbrValidFields">Fnd_VS_NbrValidFields</a></li>
 <li><a href="#Fnd_VS_ReplaceString">Fnd_VS_ReplaceString</a></li>
@@ -126,8 +131,24 @@
 <li><a href="#Fnd_VS_ShowTable">Fnd_VS_ShowTable</a></li>
 <li><a href="#Fnd_VS_TableName">Fnd_VS_TableName</a></li>
 <li><a href="#Fnd_VS_UseNameLists">Fnd_VS_UseNameLists</a></li>
+<li><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></li>
 <li><a href="#Fnd_VS_zProbeHostLists">Fnd_VS_zProbeHostLists</a></li>
 </ul>
+
+<section class="method" id="Fnd_VS_AddTable">
+<h2><a href="#Fnd_VS_AddTable">Fnd_VS_AddTable</a></h2>
+<p class="syntax"><code>Fnd_VS_AddTable (-&gt;table)</code></p>
+<p>Adds the specified table, and all of its fields, to the virtual structure arrays.</p>
+<p>Doesn't call 4D's SET TABLE TITLES command.</p>
+<p>This is a private method. To add a table the developer will normally call the Fnd_VS_ShowTable method.</p>
+<p>We don't use semaphores here. We assume the calling process is using the semaphore.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>The table to add</td></tr>
+</tbody>
+</table>
+</section>
 
 <section class="method" id="Fnd_VS_CreateNameLists">
 <h2><a href="#Fnd_VS_CreateNameLists">Fnd_VS_CreateNameLists</a></h2>
@@ -175,6 +196,13 @@
 <tr><td><code>tableNamesArray</code></td><td>Pointer</td><td>in</td><td>A pointer to a text array to receive the table names (optional)</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_VS_HandleError">
+<h2><a href="#Fnd_VS_HandleError">Fnd_VS_HandleError</a></h2>
+<p class="syntax"><code>Fnd_VS_HandleError</code></p>
+<p>Special Error handling for the Virtual Structure component.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_VS_Info">
@@ -307,6 +335,19 @@
 <p class="syntax"><code>Fnd_VS_UseNameLists</code></p>
 <p>Uses the virtual structure 4D lists.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_VS_WasSubtable">
+<h2><a href="#Fnd_VS_WasSubtable">Fnd_VS_WasSubtable</a></h2>
+<p class="syntax"><code>Fnd_VS_WasSubtable (-&gt;table) --&gt; Boolean</code></p>
+<p>Returns true if the referenced table was a subtable Test is done on the &quot;id_added_by_converter&quot; field name.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>table</code></td><td>Pointer</td><td>in</td><td>A table</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the table was converted from a subtable Based on the WasSubtable method donated by by Jérôme Pupier WBS 03 December 2024: Swap to var syntax for declarations ---------------------------------------------------- #DECLARE($table_ptr : Pointer)-&gt;$wasSubtable_b : Boolean var $tableNum_i; $loop_i; $lastFieldNumber_i : Integer var $fieldName_t : Text</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_VS_zProbeHostLists">

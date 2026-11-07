@@ -89,6 +89,7 @@
 		<li><a href="#Fnd_Out_Active">Fnd_Out_Active</a></li>
 		<li><a href="#Fnd_Out_AddField">Fnd_Out_AddField</a></li>
 		<li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
+		<li><a href="#Fnd_Out_AddSearchField">Fnd_Out_AddSearchField</a></li>
 		<li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
 		<li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
 		<li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
@@ -105,6 +106,11 @@
 		<li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
 		<li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
 		<li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
+		<li><a href="#Fnd_Out_SearchClear">Fnd_Out_SearchClear</a></li>
+		<li><a href="#Fnd_Out_SearchDate">Fnd_Out_SearchDate</a></li>
+		<li><a href="#Fnd_Out_SearchHelp">Fnd_Out_SearchHelp</a></li>
+		<li><a href="#Fnd_Out_SearchHint">Fnd_Out_SearchHint</a></li>
+		<li><a href="#Fnd_Out_SearchRun">Fnd_Out_SearchRun</a></li>
 		<li><a href="#Fnd_Out_SynchroniseSelection">Fnd_Out_SynchroniseSelection</a></li>
 		<li><a href="#Fnd_Out_Update">Fnd_Out_Update</a></li>
 	</ul>
@@ -115,12 +121,13 @@
 
 <h1>Fnd_Out</h1>
 
-<p>21 shared methods.</p>
+<p>27 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Out_Active">Fnd_Out_Active</a></li>
 <li><a href="#Fnd_Out_AddField">Fnd_Out_AddField</a></li>
 <li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
+<li><a href="#Fnd_Out_AddSearchField">Fnd_Out_AddSearchField</a></li>
 <li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
 <li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
 <li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
@@ -137,6 +144,11 @@
 <li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
 <li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
 <li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
+<li><a href="#Fnd_Out_SearchClear">Fnd_Out_SearchClear</a></li>
+<li><a href="#Fnd_Out_SearchDate">Fnd_Out_SearchDate</a></li>
+<li><a href="#Fnd_Out_SearchHelp">Fnd_Out_SearchHelp</a></li>
+<li><a href="#Fnd_Out_SearchHint">Fnd_Out_SearchHint</a></li>
+<li><a href="#Fnd_Out_SearchRun">Fnd_Out_SearchRun</a></li>
 <li><a href="#Fnd_Out_SynchroniseSelection">Fnd_Out_SynchroniseSelection</a></li>
 <li><a href="#Fnd_Out_Update">Fnd_Out_Update</a></li>
 </ul>
@@ -215,6 +227,36 @@ primary-key column 0 is always invisible regardless of this property)</code></pr
 <tr><td><code>inVisible</code></td><td>Collection</td><td>in</td><td>fo_field values that should be visible</td></tr>
 <tr><td><code>inTextSize</code></td><td>Integer</td><td>in</td><td>Text size the layout sets (optional)</td></tr>
 <tr><td><code>inRowHeight</code></td><td>Integer</td><td>in</td><td>Row height (in lines) the layout sets (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_AddSearchField">
+<h2><a href="#Fnd_Out_AddSearchField">Fnd_Out_AddSearchField</a></h2>
+<p class="syntax"><code>Fnd_Out_AddSearchField (-&gt;field | path | searchObject {; operator {; title}})</code></p>
+<p>Declares one field the output list's search box looks in. Call it once for each field, from Fnd_Hook_Out_SearchFields. A table with no declared fields gets no search box.</p>
+<p>The first parameter is one of:</p>
+<p>1. A field pointer: -&gt;[Contacts]LastName 2. A text attribute path, for a field reached through relations: &quot;contact.LastName&quot;</p>
+<p>3. An object, for the tech-savvy: fo_field is the path, fo_operator the operator and fo_title the title. Each outranks the matching parameter.</p>
+<p>The title is the field's name in the search box's grey hint and its help tip. It defaults to the field's virtual field name, as Fnd_VS_SetFieldTitle gives it; a path with no virtual field name shows its last segment. An operator of &quot;&quot; means begins.</p>
+<pre><code>Fnd_Out_AddSearchField(-&gt;[Contacts]LastName)
+Fnd_Out_AddSearchField(-&gt;[Contacts]Company; &quot;contains&quot;)
+Fnd_Out_AddSearchField(&quot;contact.LastName&quot;)
+Fnd_Out_AddSearchField(New object(fo_field; &quot;contact.LastName&quot;; fo_operator; &quot;keyword&quot;))
+Fnd_Out_AddSearchField(-&gt;[Invoices]InvoiceNumber; &quot;&quot;; &quot;Inv. #&quot;)
+Fnd_Out_AddSearchField(&quot;contact.LastName&quot;; &quot;contains&quot;; &quot;Customer&quot;)
+Fnd_Out_AddSearchField(New object(fo_field; &quot;contact.LastName&quot;; fo_title; &quot;Customer&quot;))</code></pre>
+<p>Operators, for a text field. A number field is searched only when the search text is a number, and a date field only when it is a date; other types are ignored.</p>
+<pre><code>begins    The text starts with the search text. The default.
+contains  The search text appears anywhere in the text.
+keyword   The search text is a whole word in the text (4D's % operator).
+exact     The text is the search text, with @ taken literally.</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inField</code></td><td>Variant</td><td>in</td><td>A field pointer, a text attribute path, or a search object</td></tr>
+<tr><td><code>inOperator</code></td><td>Text</td><td>in</td><td>begins, contains, keyword or exact (optional; default begins)</td></tr>
+<tr><td><code>inTitle</code></td><td>Text</td><td>in</td><td>The name shown in the hint and help tip (optional; default the virtual field name)</td></tr>
 </tbody>
 </table>
 </section>
@@ -419,6 +461,75 @@ primary-key column 0 is always invisible regardless of this property)</code></pr
 <tr><td><code>in</code></td><td>Text</td><td>in</td><td>name of dataclass from which the relation starts</td></tr>
 <tr><td><code>in</code></td><td>Text</td><td>in</td><td>Path to bound attribute</td></tr>
 <tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>Pointer to attribute field</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SearchClear">
+<h2><a href="#Fnd_Out_SearchClear">Fnd_Out_SearchClear</a></h2>
+<p class="syntax"><code>Fnd_Out_SearchClear ({run search})</code></p>
+<p>Empties the search box. Called by the box's clear button, which also shows every record, and by Fnd_Gen_SelectionChanged through EXECUTE METHOD IN SUBFORM, which passes False because the list has already been replaced.</p>
+<p>Runs in the Fnd_Out_Search subform.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>runSearch</code></td><td>Boolean</td><td>in</td><td>Show every record and focus the box (optional, default True)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SearchDate">
+<h2><a href="#Fnd_Out_SearchDate">Fnd_Out_SearchDate</a></h2>
+<p class="syntax"><code>Fnd_Out_SearchDate (searchText) --&gt; Date</code></p>
+<p>Reads the text typed in a list's search box as a date. These are understood: a full date in the system's short format or ISO form; the localised words for today and yesterday; a bare number, which is that day of the current month; and a day and month typed in the system's order, such as 4/11 or 11/4, which is that day of the current year.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchText</code></td><td>Text</td><td>in</td><td>The text typed by the user</td></tr>
+<tr><td><code>Result</code></td><td>Date</td><td>out</td><td>The date, or the blank date !00-00-00! when the text is not one</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SearchHelp">
+<h2><a href="#Fnd_Out_SearchHelp">Fnd_Out_SearchHelp</a></h2>
+<p class="syntax"><code>Fnd_Out_SearchHelp ({maximum length}) --&gt; Text</code></p>
+<p>The names of the fields the list's search box looks in, joined by commas: all of them for its help tip, or, given a maximum length, as many as fit followed by an ellipsis, for its placeholder. A single name is never shortened.</p>
+<p>A host can call it from Fnd_Hook_Out_SearchFields, after the Fnd_Out_AddSearchField lines, to include the list in a tooltip it gives to Fnd_Out_SearchHint.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>maxLength</code></td><td>Integer</td><td>in</td><td>The longest text wanted (optional; default every name)</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The searched fields' names</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SearchHint">
+<h2><a href="#Fnd_Out_SearchHint">Fnd_Out_SearchHint</a></h2>
+<p class="syntax"><code>Fnd_Out_SearchHint (hint {; tooltip})</code></p>
+<p>Replaces the text of the output list's search box. Call it from Fnd_Hook_Out_SearchFields, for the table being opened.</p>
+<p>The hint is the grey text in the empty box. It is shown as written, never shortened. The tooltip is the help tip on the box and its icon; it may be long and may contain carriage returns. An empty hint or tooltip keeps Foundation's own text: for the hint, the field names that fit; for the tooltip, every field name.</p>
+<p>Fnd_Out_SearchHelp returns that list of field names, so a tooltip can include it, provided it is called after the Fnd_Out_AddSearchField lines.</p>
+<pre><code>Fnd_Out_SearchHint(&quot;Invoice no. or customer&quot;; &quot;Invoice numbers match from the start.&quot;+Char(Carriage return)+&quot;Searches: &quot;+Fnd_Out_SearchHelp)</code></pre>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>hint</code></td><td>Text</td><td>in</td><td>The grey text in the empty search box</td></tr>
+<tr><td><code>tooltip</code></td><td>Text</td><td>in</td><td>The help tip (optional; default every searched field's name)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Out_SearchRun">
+<h2><a href="#Fnd_Out_SearchRun">Fnd_Out_SearchRun</a></h2>
+<p class="syntax"><code>Fnd_Out_SearchRun (searchText)</code></p>
+<p>Searches the whole table of the output list for the text and displays the result; empty text shows every record. Runs in the context of the list's own form, so the search box calls it through CALL FORM. Does nothing when the text is the same as in the previous search.</p>
+<p>Fnd_Hook_Out_Search, if the host has it, is tried first; when it returns Null the fields declared by Fnd_Hook_Out_SearchFields are searched.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>searchText</code></td><td>Text</td><td>in</td><td>The text typed in the search box</td></tr>
 </tbody>
 </table>
 </section>

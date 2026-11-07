@@ -86,14 +86,21 @@
 	<section class="box">
 	<h2>Fnd_Rec</h2>
 	<ul class="nav methods">
+		<li><a href="#Fnd_Rec_AddItem">Fnd_Rec_AddItem</a></li>
+		<li><a href="#Fnd_Rec_AddTable">Fnd_Rec_AddTable</a></li>
 		<li><a href="#Fnd_Rec_AddToSelection">Fnd_Rec_AddToSelection</a></li>
+		<li><a href="#Fnd_Rec_BestPopupSize">Fnd_Rec_BestPopupSize</a></li>
 		<li><a href="#Fnd_Rec_DeleteUserSet">Fnd_Rec_DeleteUserSet</a></li>
+		<li><a href="#Fnd_Rec_GetExtraWidth">Fnd_Rec_GetExtraWidth</a></li>
 		<li><a href="#Fnd_Rec_Info">Fnd_Rec_Info</a></li>
+		<li><a href="#Fnd_Rec_Localize">Fnd_Rec_Localize</a></li>
 		<li><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></li>
+		<li><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></li>
 		<li><a href="#Fnd_Rec_NewRecord">Fnd_Rec_NewRecord</a></li>
 		<li><a href="#Fnd_Rec_OmitSubset">Fnd_Rec_OmitSubset</a></li>
 		<li><a href="#Fnd_Rec_ShowAll">Fnd_Rec_ShowAll</a></li>
 		<li><a href="#Fnd_Rec_ShowSubset">Fnd_Rec_ShowSubset</a></li>
+		<li><a href="#Fnd_Rec_SizeArrayObject">Fnd_Rec_SizeArrayObject</a></li>
 	</ul>
 	</section>
 </aside>
@@ -102,18 +109,55 @@
 
 <h1>Fnd_Rec</h1>
 
-<p>8 shared methods.</p>
+<p>15 shared methods.</p>
 
 <ul class="jump">
+<li><a href="#Fnd_Rec_AddItem">Fnd_Rec_AddItem</a></li>
+<li><a href="#Fnd_Rec_AddTable">Fnd_Rec_AddTable</a></li>
 <li><a href="#Fnd_Rec_AddToSelection">Fnd_Rec_AddToSelection</a></li>
+<li><a href="#Fnd_Rec_BestPopupSize">Fnd_Rec_BestPopupSize</a></li>
 <li><a href="#Fnd_Rec_DeleteUserSet">Fnd_Rec_DeleteUserSet</a></li>
+<li><a href="#Fnd_Rec_GetExtraWidth">Fnd_Rec_GetExtraWidth</a></li>
 <li><a href="#Fnd_Rec_Info">Fnd_Rec_Info</a></li>
+<li><a href="#Fnd_Rec_Localize">Fnd_Rec_Localize</a></li>
 <li><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></li>
+<li><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></li>
 <li><a href="#Fnd_Rec_NewRecord">Fnd_Rec_NewRecord</a></li>
 <li><a href="#Fnd_Rec_OmitSubset">Fnd_Rec_OmitSubset</a></li>
 <li><a href="#Fnd_Rec_ShowAll">Fnd_Rec_ShowAll</a></li>
 <li><a href="#Fnd_Rec_ShowSubset">Fnd_Rec_ShowSubset</a></li>
+<li><a href="#Fnd_Rec_SizeArrayObject">Fnd_Rec_SizeArrayObject</a></li>
 </ul>
+
+<section class="method" id="Fnd_Rec_AddItem">
+<h2><a href="#Fnd_Rec_AddItem">Fnd_Rec_AddItem</a></h2>
+<p class="syntax"><code>Fnd_Rec_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
+<p>Called by the protected &quot;Fnd_Rec_Add&quot; routines to add stuff to the arrays.</p>
+<p>If the label is blank, the field name will be used.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inPosition</code></td><td>Position</td><td>in</td><td>The position</td></tr>
+<tr><td><code>label</code></td><td>Text</td><td>in</td><td>The label</td></tr>
+<tr><td><code>method</code></td><td>Text</td><td>in</td><td>The method</td></tr>
+<tr><td><code>inField</code></td><td>Pointer</td><td>in</td><td>The field (optional)</td></tr>
+<tr><td><code>inFieldType</code></td><td>Longint</td><td>in</td><td>The field's type (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Rec_AddTable">
+<h2><a href="#Fnd_Rec_AddTable">Fnd_Rec_AddTable</a></h2>
+<p class="syntax"><code>Fnd_Rec_AddTable (-&gt;table{; position})</code></p>
+<p>Loads the visible fields for the current form's table into an array named Fnd_Rec_Fields_aptr.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inField</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to add</td></tr>
+<tr><td><code>inPosition</code></td><td>Longint</td><td>in</td><td>The position in which to add the item (optional)</td></tr>
+</tbody>
+</table>
+</section>
 
 <section class="method" id="Fnd_Rec_AddToSelection">
 <h2><a href="#Fnd_Rec_AddToSelection">Fnd_Rec_AddToSelection</a></h2>
@@ -127,6 +171,19 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Rec_BestPopupSize">
+<h2><a href="#Fnd_Rec_BestPopupSize">Fnd_Rec_BestPopupSize</a></h2>
+<p class="syntax"><code>Fnd_Rec_BestPopupSize (-&gt;popup array) --&gt; Number</code></p>
+<p>Returns the best object width to use for a pop-up menu form object.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The best object size for the pop-up</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Rec_DeleteUserSet">
 <h2><a href="#Fnd_Rec_DeleteUserSet">Fnd_Rec_DeleteUserSet</a></h2>
 <p class="syntax"><code>Fnd_Rec_DeleteUserSet</code></p>
@@ -134,6 +191,19 @@
 <p>Asks the user first if they're sure the records should be deleted.</p>
 <p>Designed to be called from the Delete button on the toolbar or from a Delete menu item.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Rec_GetExtraWidth">
+<h2><a href="#Fnd_Rec_GetExtraWidth">Fnd_Rec_GetExtraWidth</a></h2>
+<p class="syntax"><code>Fnd_Rec_GetExtraWidth --&gt; Number</code></p>
+<p>Returns the extra width needed to display the Modify Records dialog so none of the text in the pop-up menus gets truncated.</p>
+<p>Lots of stuff is hard-coded here because we can't get it procedurally.  :-(</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The extra width required</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Rec_Info">
@@ -149,10 +219,25 @@
 </table>
 </section>
 
+<section class="method" id="Fnd_Rec_Localize">
+<h2><a href="#Fnd_Rec_Localize">Fnd_Rec_Localize</a></h2>
+<p class="syntax"><code>Fnd_Rec_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Rec_Modify">
 <h2><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></h2>
 <p class="syntax"><code>Fnd_Rec_Modify</code></p>
 <p>Displays a dialog allowing the user to modify all of the records in the current selection.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Rec_ModifyErrorHandler">
+<h2><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></h2>
+<p class="syntax"><code>Fnd_Rec_ModifyErrorHandler</code></p>
+<p>A method with no code, installed as the error handler for the Modify Records dialog. It never handled anything; it silenced.</p>
+<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served one ON ERR CALL site in Fnd_Rec_Modify.</p>
 <p class="noparams">No parameters.</p>
 </section>
 
@@ -192,6 +277,21 @@
 <p class="syntax"><code>Fnd_Rec_ShowSubset</code></p>
 <p>Reduces the current selection to just the highlighted records.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Rec_SizeArrayObject">
+<h2><a href="#Fnd_Rec_SizeArrayObject">Fnd_Rec_SizeArrayObject</a></h2>
+<p class="syntax"><code>Fnd_Rec_SizeArrayObject (-&gt;object; alignment) --&gt; Number</code></p>
+<p>Sets the best size for an array based form object based on the contents it displays.</p>
+<p>Rather than using BEST OBJECT SIZE, we calculate the size the same way we did before opening the dialog using the Fnd_Find_GetExtraWidth method.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>object</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
+<tr><td><code>alignment</code></td><td>Longint</td><td>in</td><td>The alignment (side not to move)</td></tr>
+<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The increase in the button size</td></tr>
+</tbody>
+</table>
 </section>
 
 </main>

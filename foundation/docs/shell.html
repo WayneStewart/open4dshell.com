@@ -95,6 +95,8 @@
 		<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 		<li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 		<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
+		<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
+		<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
 		<li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
 		<li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
 		<li><a href="#Fnd_Shell_OnStartup">Fnd_Shell_OnStartup</a></li>
@@ -102,11 +104,14 @@
 		<li><a href="#Fnd_Shell_OpenTableDialog">Fnd_Shell_OpenTableDialog</a></li>
 		<li><a href="#Fnd_Shell_Print">Fnd_Shell_Print</a></li>
 		<li><a href="#Fnd_Shell_ProcessName">Fnd_Shell_ProcessName</a></li>
+		<li><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></li>
 		<li><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></li>
+		<li><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></li>
 		<li><a href="#Fnd_Shell_Show4DSplashScreen">Fnd_Shell_Show4DSplashScreen</a></li>
 		<li><a href="#Fnd_Shell_ShowAll">Fnd_Shell_ShowAll</a></li>
 		<li><a href="#Fnd_Shell_Sort">Fnd_Shell_Sort</a></li>
 		<li><a href="#Fnd_Shell_SpecialFunctions">Fnd_Shell_SpecialFunctions</a></li>
+		<li><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></li>
 		<li><a href="#Fnd_Shell_WriteComments">Fnd_Shell_WriteComments</a></li>
 	</ul>
 	</section>
@@ -116,7 +121,7 @@
 
 <h1>Fnd_Shell</h1>
 
-<p>22 shared methods.</p>
+<p>27 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
@@ -128,6 +133,8 @@
 <li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 <li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 <li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
+<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
+<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
 <li><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></li>
 <li><a href="#Fnd_Shell_OnExit">Fnd_Shell_OnExit</a></li>
 <li><a href="#Fnd_Shell_OnStartup">Fnd_Shell_OnStartup</a></li>
@@ -135,11 +142,14 @@
 <li><a href="#Fnd_Shell_OpenTableDialog">Fnd_Shell_OpenTableDialog</a></li>
 <li><a href="#Fnd_Shell_Print">Fnd_Shell_Print</a></li>
 <li><a href="#Fnd_Shell_ProcessName">Fnd_Shell_ProcessName</a></li>
+<li><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></li>
 <li><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></li>
+<li><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></li>
 <li><a href="#Fnd_Shell_Show4DSplashScreen">Fnd_Shell_Show4DSplashScreen</a></li>
 <li><a href="#Fnd_Shell_ShowAll">Fnd_Shell_ShowAll</a></li>
 <li><a href="#Fnd_Shell_Sort">Fnd_Shell_Sort</a></li>
 <li><a href="#Fnd_Shell_SpecialFunctions">Fnd_Shell_SpecialFunctions</a></li>
+<li><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></li>
 <li><a href="#Fnd_Shell_WriteComments">Fnd_Shell_WriteComments</a></li>
 </ul>
 
@@ -254,6 +264,26 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 </table>
 </section>
 
+<section class="method" id="Fnd_Shell_Localize">
+<h2><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></h2>
+<p class="syntax"><code>Fnd_Shell_Localize</code></p>
+<p>Passed the localization strings to the General and (if available) Localization components.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_MenuBar">
+<h2><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></h2>
+<p class="syntax"><code>Fnd_Shell_MenuBar</code></p>
+<p>A (hopefully) temporary method that asks the menu bar component to install the menu bar after a short delay. Must be run from a new process, but this method handles that.</p>
+<p>This is necessary because a menu bar can't be installed at startup with the first version of 4D v11 SQL.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inInternally</code></td><td>Longint</td><td>in</td><td>Used internally</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Shell_NavigationPalette">
 <h2><a href="#Fnd_Shell_NavigationPalette">Fnd_Shell_NavigationPalette</a></h2>
 <p class="syntax"><code>Fnd_Shell_NavigationPalette</code></p>
@@ -317,12 +347,39 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 </table>
 </section>
 
+<section class="method" id="Fnd_Shell_QuitAllProcesses">
+<h2><a href="#Fnd_Shell_QuitAllProcesses">Fnd_Shell_QuitAllProcesses</a></h2>
+<p class="syntax"><code>Fnd_Shell_QuitAllProcesses --&gt; Boolean</code></p>
+<p>Attempts to end all processes (except for 4D's) by bugging them until they end.</p>
+<p>Assumes they call the Fnd_Gen_QuitNow method to see if they're supposed to end.</p>
+<p>Doesn't try to end the current process.</p>
+<p>This method will give up (and return False) if any process cancels the Quit attempt or if the timeout value is reached.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if all process ended as expected</td></tr>
+</tbody>
+</table>
+</section>
+
 <section class="method" id="Fnd_Shell_Quitter">
 <h2><a href="#Fnd_Shell_Quitter">Fnd_Shell_Quitter</a></h2>
 <p class="syntax"><code>Fnd_Shell_Quitter</code></p>
 <p>This process tries to tell all of the other processes to quit.</p>
 <p>Called as a new process from Fnd_Gen_QuitNow.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_SelectTable">
+<h2><a href="#Fnd_Shell_SelectTable">Fnd_Shell_SelectTable</a></h2>
+<p class="syntax"><code>Fnd_Shell_SelectTable --&gt; Pointer</code></p>
+<p>Displays a choice list of available tables.  Returns a pointer to the selected table (if any).  Sets the OK variable to 1 if a table is selected.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>A pointer to the selected table</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Shell_Show4DSplashScreen">
@@ -351,6 +408,18 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <p class="syntax"><code>Fnd_Shell_SpecialFunctions</code></p>
 <p>Displays Foundation's Special Functions dialog.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_Storage">
+<h2><a href="#Fnd_Shell_Storage">Fnd_Shell_Storage</a></h2>
+<p class="syntax"><code>Fnd_Shell_Storage -&gt; $storage_t</code></p>
+<p>A developer utility to read the satate of Foundation</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The current state of the Storage.Fnd shared object</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Shell_WriteComments">
