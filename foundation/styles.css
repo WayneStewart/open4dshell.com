@@ -429,3 +429,14 @@ p.release-date {
 td.hash .pending {
 	overflow-wrap: normal;
 }
+
+/* Lists of method and table names, as on the installer page */
+.names {
+	columns: 19em;
+	padding-left: 0;
+	list-style: none;
+}
+
+.names li {
+	break-inside: avoid;
+}

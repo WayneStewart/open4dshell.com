@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The installer · Foundation</title>
+<meta name="description" content="What the Foundation installer adds to your database, and why: three tables, the hook and host methods, and one compiler method.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>News</h2>
+		<p><time datetime="2026-11-08">8 Nov 2026</time>: Foundation
+		6.0.0-beta.2 adds a search box and font choices to the list window.
+		<a href="/guide/upgrading.html#600-beta2-private-beta-8-november-2026">What changed</a>.</p>
+		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
+		6.0.0-beta.1 opens as a private beta.</p>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p>Report problems in the
+		<a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		of Foundation Product Sales.</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>The installer</h1>
+
+<p>Foundation is a component, but parts of it have to live in your
+database: a small set of methods it calls, and the tables some of its
+modules keep their data in. It adds none of them without asking. The
+installer lists what is missing and waits for you to choose
+<strong>Install</strong> or <strong>Cancel</strong>.</p>
+
+<p>This page shows what the installer shows, so you can read it before you
+open your database.</p>
+
+<h2>Running it</h2>
+
+<ol>
+	<li>Copy <code>Foundation.4dbase</code> into your project's
+	<code>Components/</code> folder.</li>
+	<li>Open your database in 4D, in interpreted mode.</li>
+	<li>Run the method <code>Fnd_Shell_Installer</code>. The installer also
+	opens by itself the first time your code calls Foundation.</li>
+	<li>Read the list, then choose Install or Cancel.</li>
+</ol>
+
+<p>Install adds everything listed below that your database does not already
+have. Cancel adds nothing: your database is left untouched and you can
+simply remove the component. A compiled database is never changed.</p>
+
+<p>After installing, restart the database so the new tables are available
+and the new methods compile.</p>
+
+<h2>Tables</h2>
+
+<p>Storage for preferences, choice lists and sequence numbers.</p>
+
+<ul class="names">
+	<li><code>Fnd_Pref</code></li>
+	<li><code>Fnd_List</code></li>
+	<li><code>Fnd_SqNo</code></li>
+</ul>
+
+<h2>Hook methods</h2>
+
+<p>Empty methods where you add your own code. Foundation calls them at set points, such as startup or before a record is deleted.</p>
+
+<ul class="names">
+	<li><code>Fnd_Hook_IO_DisplayRecord</code></li>
+	<li><code>Fnd_Hook_IO_DisplayTable</code></li>
+	<li><code>Fnd_Hook_IO_InputFormButton</code></li>
+	<li><code>Fnd_Hook_IO_InputFormMethod</code></li>
+	<li><code>Fnd_Hook_IO_OutputFormMethod</code></li>
+	<li><code>Fnd_Hook_IO_SelectionChanged</code></li>
+	<li><code>Fnd_Hook_List_SetEditableLists</code></li>
+	<li><code>Fnd_Hook_Menu_UpdateMenuBar</code></li>
+	<li><code>Fnd_Hook_Rec_Delete</code></li>
+	<li><code>Fnd_Hook_Rec_New</code></li>
+	<li><code>Fnd_Hook_Shell_Administration</code></li>
+	<li><code>Fnd_Hook_Shell_Find</code></li>
+	<li><code>Fnd_Hook_Shell_InitPlugins</code></li>
+	<li><code>Fnd_Hook_Shell_ModifyRecords</code></li>
+	<li><code>Fnd_Hook_Shell_NavPalette</code></li>
+	<li><code>Fnd_Hook_Shell_OpenTable</code></li>
+	<li><code>Fnd_Hook_Shell_Print</code></li>
+	<li><code>Fnd_Hook_Shell_QueryEditor</code></li>
+	<li><code>Fnd_Hook_Shell_Quit</code></li>
+	<li><code>Fnd_Hook_Shell_Setup</code></li>
+	<li><code>Fnd_Hook_Shell_Sort</code></li>
+	<li><code>Fnd_Hook_Shell_SpecialFunctions</code></li>
+	<li><code>Fnd_Hook_Shell_Startup</code></li>
+	<li><code>Fnd_Hook_Shell_VirtualStructure</code></li>
+	<li><code>Fnd_Hook_SqNo_SetIDField</code></li>
+	<li><code>Fnd_Hook_Tbl_UserCanDisplay</code></li>
+	<li><code>Fnd_Hook_Out_RowStyle</code></li>
+	<li><code>Fnd_Hook_Out_ContextMenu</code></li>
+	<li><code>Fnd_Hook_Out_SearchFields</code></li>
+	<li><code>Fnd_Hook_Out_Search</code></li>
+</ul>
+
+<h2>Host methods</h2>
+
+<p>Small methods that let the component reach things only your database can, such as its forms, lists and pictures.</p>
+
+<ul class="names">
+	<li><code>Fnd_Host_ExecuteFormula</code></li>
+	<li><code>Fnd_Host_GetIntegerValue</code></li>
+	<li><code>Fnd_Host_GetFormProperties</code></li>
+	<li><code>Fnd_Host_ArrayToList</code></li>
+	<li><code>Fnd_Host_ListToArray</code></li>
+	<li><code>Fnd_Host_GetPictureFromLibrary</code></li>
+	<li><code>Fnd_Host_Tlbr_SetBtnPict</code></li>
+	<li><code>Fnd_Host_Tlbr_SetMessage</code></li>
+	<li><code>Fnd_Host_Tlbr_ButtonClck</code></li>
+	<li><code>Fnd_Host_IO_DisplayDialog</code></li>
+	<li><code>Fnd_Host_SaveList</code></li>
+</ul>
+
+<h2>Compiler method</h2>
+
+<p>Typing declarations for the methods above.</p>
+
+<ul class="names">
+	<li><code>Compiler_Fnd_HookAndHost</code></li>
+</ul>
+
+<h2>What is never changed</h2>
+
+<p>Your own code in a hook method is never changed. A Foundation host method whose parameters are out of date is replaced, with the previous code kept below it as a comment.</p>
+
+<p>The hook and host methods are described in
+<a href="/guide/04-hooks-and-host-methods.html">chapter 4 of the Developer
+Guide</a>; <a href="/guide/03-starting-fresh.html">chapter 3, Starting
+fresh</a>, covers a new database from the beginning.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>
