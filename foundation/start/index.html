@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Getting started · Foundation</title>
-<meta name="description" content="Getting started with Foundation 6.0.0-beta.2: download, install, and upgrade from Foundation 5.">
+<meta name="description" content="Getting started with Foundation 6.0.0-beta.3: download, install, and upgrade from Foundation 5.">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="stylesheet" href="/styles.css">
 </head>
@@ -32,6 +32,10 @@
 <aside class="sidebar">
 	<section class="box">
 		<h2>News</h2>
+		<p><time datetime="2026-11-15">15 Nov 2026</time>: Foundation
+		6.0.0-beta.3 now asks before adding anything to a database, and lists what
+		it would add.
+		<a href="/guide/upgrading.html#600-beta3-private-beta-15-november-2026">What changed</a>.</p>
 		<p><time datetime="2026-11-08">8 Nov 2026</time>: Foundation
 		6.0.0-beta.2 adds a search box and font choices to the list window.
 		<a href="/guide/upgrading.html#600-beta2-private-beta-8-november-2026">What changed</a>.</p>
@@ -58,10 +62,14 @@ on the <a href="/download/">download page</a>.</p>
 	<li><strong>Download</strong> the DMG (macOS) or ZIP (Windows) for your 4D
 	from the <a href="/download/">download page</a>: <code>20L</code> for
 	20 LTS, <code>20R</code> for 20 R10, <code>21L</code> for 21 LTS,
-	<code>21R</code> for 21 R. All are 6.0.0-beta.2 from the same commit.
+	<code>21R</code> for 21 R. All are 6.0.0-beta.3 from the same commit.
 	Check the SHA-256 against the value on the download page.</li>
 	<li><strong>Install</strong>: copy <code>Foundation.4dbase</code> into your
-	project's <code>Components/</code> folder and reopen the project.</li>
+	project's <code>Components/</code> folder and reopen the project. On first
+	start in an interpreted database, Foundation (through
+	<code>Fnd_Shell_Installer</code>) shows an installer that lists what it will
+	add to the database. Cancel adds nothing. After Install, restart the
+	database. The <a href="/install/">installer page</a> has the details.</li>
 	<li><strong>New host?</strong> Clone
 	<a href="https://github.com/open4dshell/Foundation-Product-Sales">Foundation
 	Product Sales</a>, the public demo database, install Foundation into its
