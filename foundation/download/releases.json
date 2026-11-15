@@ -4,7 +4,7 @@
       "version": "6.0.0-beta.3",
       "date": "2026-11-15",
       "commit": "4090db5d",
-      "folder": "FOLDER_LINK_PENDING",
+      "folder": "https://www.dropbox.com/scl/fo/9txlv6chsv4a034tfvvsr/AId8Cv64rRzB0JHMpcIuUi8?rlkey=9d51eowxr4n0zk6z1hcan598f&dl=0",
       "artefacts": [
         { "target": "20L", "label": "4D 20 LTS", "dmg": "", "zip": "", "sha256dmg": "778d4656ce55cafcd0e8dfa692bd9ad27624190e203e4f5b6ac5d68bcbdad1d5", "sha256zip": "f5335ae14d817dde8a7cf2bec852cde9da1f694e1181ad4eb4dae122514db48c" },
         { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "", "zip": "", "sha256dmg": "c97ed03165e3af620bc60f2d0a463ac138e77740ee0cf8e6ddaeb8c09035f907", "sha256zip": "98df4a72de4ff32558b846f6c6e1f0dfae089fa5809140461a06cbb440923bff" },
