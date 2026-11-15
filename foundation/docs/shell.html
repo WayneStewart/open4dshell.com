@@ -94,6 +94,7 @@
 		<li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
 		<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 		<li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
+		<li><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></li>
 		<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 		<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
 		<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
@@ -121,7 +122,7 @@
 
 <h1>Fnd_Shell</h1>
 
-<p>27 shared methods.</p>
+<p>28 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
@@ -132,6 +133,7 @@
 <li><a href="#Fnd_Shell_Find">Fnd_Shell_Find</a></li>
 <li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 <li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
+<li><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></li>
 <li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 <li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
 <li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
@@ -250,6 +252,13 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
 </tbody>
 </table>
+</section>
+
+<section class="method" id="Fnd_Shell_Installer">
+<h2><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></h2>
+<p class="syntax"><code>Fnd_Shell_Installer</code></p>
+<p>Run this in your own database to install the methods and tables Foundation needs. It lists what is missing and adds it all if you choose Install. It is also opened automatically the first time Foundation needs something that is missing.</p>
+<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Shell_IsRunning">

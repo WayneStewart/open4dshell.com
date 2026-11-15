@@ -97,7 +97,6 @@
 		<li><a href="#Fnd_Menu_Find">Fnd_Menu_Find</a></li>
 		<li><a href="#Fnd_Menu_FindRelated">Fnd_Menu_FindRelated</a></li>
 		<li><a href="#Fnd_Menu_Info">Fnd_Menu_Info</a></li>
-		<li><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></li>
 		<li><a href="#Fnd_Menu_Localize">Fnd_Menu_Localize</a></li>
 		<li><a href="#Fnd_Menu_MenuBar">Fnd_Menu_MenuBar</a></li>
 		<li><a href="#Fnd_Menu_MenuBarName">Fnd_Menu_MenuBarName</a></li>
@@ -130,7 +129,7 @@
 
 <h1>Fnd_Menu</h1>
 
-<p>36 shared methods.</p>
+<p>35 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Menu_About">Fnd_Menu_About</a></li>
@@ -144,7 +143,6 @@
 <li><a href="#Fnd_Menu_Find">Fnd_Menu_Find</a></li>
 <li><a href="#Fnd_Menu_FindRelated">Fnd_Menu_FindRelated</a></li>
 <li><a href="#Fnd_Menu_Info">Fnd_Menu_Info</a></li>
-<li><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></li>
 <li><a href="#Fnd_Menu_Localize">Fnd_Menu_Localize</a></li>
 <li><a href="#Fnd_Menu_MenuBar">Fnd_Menu_MenuBar</a></li>
 <li><a href="#Fnd_Menu_MenuBarName">Fnd_Menu_MenuBarName</a></li>
@@ -189,12 +187,11 @@
 <section class="method" id="Fnd_Menu_BuildMenuBar">
 <h2><a href="#Fnd_Menu_BuildMenuBar">Fnd_Menu_BuildMenuBar</a></h2>
 <p class="syntax"><code>Fnd_Menu_BuildMenuBar</code></p>
-<p>Testing</p>
+<p>Builds Foundation's menu bar and its six menus, and stores their references and the item numbers the module enables and disables on Storage.Fnd.Menu. Returns the menu bar's reference.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
-<tr><td><code>$1</code></td><td>Longint</td><td>in</td><td>Description</td></tr>
-<tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>Description</td></tr>
+<tr><td><code>Result</code></td><td>Text</td><td>out</td><td>The menu bar reference, also Storage.Fnd.Menu.menuBar</td></tr>
 </tbody>
 </table>
 </section>
@@ -271,13 +268,6 @@
 <tr><td><code>Result</code></td><td>Text</td><td>out</td><td>Response</td></tr>
 </tbody>
 </table>
-</section>
-
-<section class="method" id="Fnd_Menu_LoadMenuTitles">
-<h2><a href="#Fnd_Menu_LoadMenuTitles">Fnd_Menu_LoadMenuTitles</a></h2>
-<p class="syntax"><code>Fnd_Menu_LoadMenuTitles</code></p>
-<p>Loads the localization for the menu bar.</p>
-<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Menu_Localize">

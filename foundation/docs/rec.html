@@ -95,7 +95,6 @@
 		<li><a href="#Fnd_Rec_Info">Fnd_Rec_Info</a></li>
 		<li><a href="#Fnd_Rec_Localize">Fnd_Rec_Localize</a></li>
 		<li><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></li>
-		<li><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></li>
 		<li><a href="#Fnd_Rec_NewRecord">Fnd_Rec_NewRecord</a></li>
 		<li><a href="#Fnd_Rec_OmitSubset">Fnd_Rec_OmitSubset</a></li>
 		<li><a href="#Fnd_Rec_ShowAll">Fnd_Rec_ShowAll</a></li>
@@ -109,7 +108,7 @@
 
 <h1>Fnd_Rec</h1>
 
-<p>15 shared methods.</p>
+<p>14 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Rec_AddItem">Fnd_Rec_AddItem</a></li>
@@ -121,7 +120,6 @@
 <li><a href="#Fnd_Rec_Info">Fnd_Rec_Info</a></li>
 <li><a href="#Fnd_Rec_Localize">Fnd_Rec_Localize</a></li>
 <li><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></li>
-<li><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></li>
 <li><a href="#Fnd_Rec_NewRecord">Fnd_Rec_NewRecord</a></li>
 <li><a href="#Fnd_Rec_OmitSubset">Fnd_Rec_OmitSubset</a></li>
 <li><a href="#Fnd_Rec_ShowAll">Fnd_Rec_ShowAll</a></li>
@@ -230,14 +228,6 @@
 <h2><a href="#Fnd_Rec_Modify">Fnd_Rec_Modify</a></h2>
 <p class="syntax"><code>Fnd_Rec_Modify</code></p>
 <p>Displays a dialog allowing the user to modify all of the records in the current selection.</p>
-<p class="noparams">No parameters.</p>
-</section>
-
-<section class="method" id="Fnd_Rec_ModifyErrorHandler">
-<h2><a href="#Fnd_Rec_ModifyErrorHandler">Fnd_Rec_ModifyErrorHandler</a></h2>
-<p class="syntax"><code>Fnd_Rec_ModifyErrorHandler</code></p>
-<p>A method with no code, installed as the error handler for the Modify Records dialog. It never handled anything; it silenced.</p>
-<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served one ON ERR CALL site in Fnd_Rec_Modify.</p>
 <p class="noparams">No parameters.</p>
 </section>
 

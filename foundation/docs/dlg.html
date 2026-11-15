@@ -105,6 +105,7 @@
 		<li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
 		<li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
 		<li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
+		<li><a href="#Fnd_Dlg_SetClickToCopy">Fnd_Dlg_SetClickToCopy</a></li>
 		<li><a href="#Fnd_Dlg_SetIcon">Fnd_Dlg_SetIcon</a></li>
 		<li><a href="#Fnd_Dlg_SetProgress">Fnd_Dlg_SetProgress</a></li>
 		<li><a href="#Fnd_Dlg_SetRequest">Fnd_Dlg_SetRequest</a></li>
@@ -117,7 +118,7 @@
 
 <h1>Fnd_Dlg</h1>
 
-<p>23 shared methods.</p>
+<p>24 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Dlg_Alert">Fnd_Dlg_Alert</a></li>
@@ -139,6 +140,7 @@
 <li><a href="#Fnd_Dlg_Request">Fnd_Dlg_Request</a></li>
 <li><a href="#Fnd_Dlg_SetButtons">Fnd_Dlg_SetButtons</a></li>
 <li><a href="#Fnd_Dlg_SetCancelable">Fnd_Dlg_SetCancelable</a></li>
+<li><a href="#Fnd_Dlg_SetClickToCopy">Fnd_Dlg_SetClickToCopy</a></li>
 <li><a href="#Fnd_Dlg_SetIcon">Fnd_Dlg_SetIcon</a></li>
 <li><a href="#Fnd_Dlg_SetProgress">Fnd_Dlg_SetProgress</a></li>
 <li><a href="#Fnd_Dlg_SetRequest">Fnd_Dlg_SetRequest</a></li>
@@ -367,6 +369,19 @@
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>cancelable</code></td><td>Boolean</td><td>in</td><td>True if the message button should be enabled.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="method" id="Fnd_Dlg_SetClickToCopy">
+<h2><a href="#Fnd_Dlg_SetClickToCopy">Fnd_Dlg_SetClickToCopy</a></h2>
+<p class="syntax"><code>Fnd_Dlg_SetClickToCopy (enable?)</code></p>
+<p>Turns click-to-copy on or off for the alert, confirm and request dialogs. While it is on, a click on the dialog's text puts that text on the pasteboard: the heading, a blank line, then the details.</p>
+<p>It is off until this is called, and the setting is shared by every process, so one call at startup is enough.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>enable</code></td><td>Boolean</td><td>in</td><td>True to turn click-to-copy on, False to turn it off</td></tr>
 </tbody>
 </table>
 </section>

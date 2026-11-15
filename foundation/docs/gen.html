@@ -99,7 +99,6 @@
 		<li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
 		<li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
 		<li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
-		<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
 		<li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
 		<li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
 		<li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
@@ -138,7 +137,7 @@
 
 <h1>Fnd_Gen</h1>
 
-<p>44 shared methods.</p>
+<p>43 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Gen_Alert">Fnd_Gen_Alert</a></li>
@@ -154,7 +153,6 @@
 <li><a href="#Fnd_Gen_ComponentInfo">Fnd_Gen_ComponentInfo</a></li>
 <li><a href="#Fnd_Gen_CurrentFormType">Fnd_Gen_CurrentFormType</a></li>
 <li><a href="#Fnd_Gen_CurrentTable">Fnd_Gen_CurrentTable</a></li>
-<li><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></li>
 <li><a href="#Fnd_Gen_FieldIsVisible">Fnd_Gen_FieldIsVisible</a></li>
 <li><a href="#Fnd_Gen_FileName">Fnd_Gen_FileName</a></li>
 <li><a href="#Fnd_Gen_FormMethod">Fnd_Gen_FormMethod</a></li>
@@ -295,6 +293,7 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <h2><a href="#Fnd_Gen_ComponentAvailable">Fnd_Gen_ComponentAvailable</a></h2>
 <p class="syntax"><code>Fnd_Gen_ComponentAvailable (component name) --&gt; Boolean</code></p>
 <p>Returns true if the component is installed.</p>
+<p>&quot;Foundation&quot; is accepted as another name for &quot;Fnd&quot;, Foundation as a whole.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -339,6 +338,7 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <p>If the component doesn't have an _Info routine, &quot;Component Did Not Recognize Request&quot; will be returned.</p>
 <p>We recommend that if a component doesn't recognize a request it should return the text &quot;Fnd_LabelNotRecognized&quot;.  This routine will return this response as &quot;Component Did Not Recognize Request&quot;.</p>
 <p>These values will not be localized so the calling method can test for them.</p>
+<p>&quot;Foundation&quot; is accepted as another name for &quot;Fnd&quot;, Foundation as a whole: see the Fnd_Info method.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -376,16 +376,6 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>The current table</td></tr>
 </tbody>
 </table>
-</section>
-
-<section class="method" id="Fnd_Gen_DummyMethod">
-<h2><a href="#Fnd_Gen_DummyMethod">Fnd_Gen_DummyMethod</a></h2>
-<p class="syntax"><code>Fnd_Gen_DummyMethod</code></p>
-<p>A generic method with no code.  This is useful for assigning as the close box method</p>
-<p>for new windows (handle the close in the form method) or to use with ON ERR CALL</p>
-<p>to disable any automatic reaction to errors.</p>
-<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served six ON ERR CALL sites and one Open window close box.</p>
-<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Gen_FieldIsVisible">
@@ -603,7 +593,7 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <section class="method" id="Fnd_Gen_RequiredHookMethod">
 <h2><a href="#Fnd_Gen_RequiredHookMethod">Fnd_Gen_RequiredHookMethod</a></h2>
 <p class="syntax"><code>Fnd_Gen_RequiredHookMethod (method name)</code></p>
-<p>Creates the specified method in the host database if it doesn't already exist.</p>
+<p>Creates the specified method in the host database if it doesn't already exist, but only with the developer's agreement, asked once per session.</p>
 <p>If it does already exist and the host is interpreted, its declared parameters and return type are compared with those Foundation now uses. A mismatch is recorded for Fnd_Gen_GeneratedReport. A hook holds the host developer's own code, so it is never rewritten. A hook that declares nothing cannot be compared, as its parameters may be typed in a Compiler_ method; where Foundation passes it parameters or expects a result, it is recorded as left unchanged for the developer to check.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
@@ -616,7 +606,7 @@ Fnd_Gen_BugAlert(Current method name; &quot;Lookup failed.&quot;; {columns: [$mo
 <section class="method" id="Fnd_Gen_RequiredHostMethod">
 <h2><a href="#Fnd_Gen_RequiredHostMethod">Fnd_Gen_RequiredHostMethod</a></h2>
 <p class="syntax"><code>Fnd_Gen_RequiredHostMethod (method name)</code></p>
-<p>Creates the specified method in the host database if it doesn't already exist.</p>
+<p>Creates the specified method in the host database if it doesn't already exist, but only with the developer's agreement, asked once per session.</p>
 <p>If it does already exist and the host is interpreted, the parameter and return types it declares are compared with the current template's. A host copy declared differently is replaced by the template, the previous code kept below as a /* comment */, and the replacement is recorded for Fnd_Gen_GeneratedReport. A copy that differs only in how it is written is left alone, as is any method in a compiled host. A copy that declares nothing cannot be judged, so it is left alone and recorded for the developer to check.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>

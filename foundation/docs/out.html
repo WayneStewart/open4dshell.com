@@ -91,7 +91,6 @@
 		<li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
 		<li><a href="#Fnd_Out_AddSearchField">Fnd_Out_AddSearchField</a></li>
 		<li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
-		<li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
 		<li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
 		<li><a href="#Fnd_Out_EditRecord">Fnd_Out_EditRecord</a></li>
 		<li><a href="#Fnd_Out_EditSelection">Fnd_Out_EditSelection</a></li>
@@ -105,7 +104,6 @@
 		<li><a href="#Fnd_Out_MaxRelationDepth">Fnd_Out_MaxRelationDepth</a></li>
 		<li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
 		<li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
-		<li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
 		<li><a href="#Fnd_Out_SearchClear">Fnd_Out_SearchClear</a></li>
 		<li><a href="#Fnd_Out_SearchDate">Fnd_Out_SearchDate</a></li>
 		<li><a href="#Fnd_Out_SearchHelp">Fnd_Out_SearchHelp</a></li>
@@ -121,7 +119,7 @@
 
 <h1>Fnd_Out</h1>
 
-<p>27 shared methods.</p>
+<p>25 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Out_Active">Fnd_Out_Active</a></li>
@@ -129,7 +127,6 @@
 <li><a href="#Fnd_Out_AddLayout">Fnd_Out_AddLayout</a></li>
 <li><a href="#Fnd_Out_AddSearchField">Fnd_Out_AddSearchField</a></li>
 <li><a href="#Fnd_Out_AllowCustomColumns">Fnd_Out_AllowCustomColumns</a></li>
-<li><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></li>
 <li><a href="#Fnd_Out_Default">Fnd_Out_Default</a></li>
 <li><a href="#Fnd_Out_EditRecord">Fnd_Out_EditRecord</a></li>
 <li><a href="#Fnd_Out_EditSelection">Fnd_Out_EditSelection</a></li>
@@ -143,7 +140,6 @@
 <li><a href="#Fnd_Out_MaxRelationDepth">Fnd_Out_MaxRelationDepth</a></li>
 <li><a href="#Fnd_Out_OfferField">Fnd_Out_OfferField</a></li>
 <li><a href="#Fnd_Out_OfferFormula">Fnd_Out_OfferFormula</a></li>
-<li><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></li>
 <li><a href="#Fnd_Out_SearchClear">Fnd_Out_SearchClear</a></li>
 <li><a href="#Fnd_Out_SearchDate">Fnd_Out_SearchDate</a></li>
 <li><a href="#Fnd_Out_SearchHelp">Fnd_Out_SearchHelp</a></li>
@@ -270,20 +266,6 @@ exact     The text is the search text, with @ taken literally.</code></pre>
 <tbody>
 <tr><td><code>allow</code></td><td>Boolean</td><td>in</td><td>False to forbid custom columns in this list (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>Whether custom columns are allowed in this list</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Out_ConfigureList">
-<h2><a href="#Fnd_Out_ConfigureList">Fnd_Out_ConfigureList</a></h2>
-<p class="syntax"><code>Fnd_Out_ConfigureList (font{; size{; row height}})</code></p>
-<p>Retired: use Fnd_Out_Default, or the &quot;appearance&quot; of Resources/Fnd_Out/&lt;Table&gt;.json. Still honoured: writes the current table's in-memory appearance.</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>font</code></td><td>Text</td><td>in</td><td>Font Name</td></tr>
-<tr><td><code>inSize</code></td><td>Longint</td><td>in</td><td>Font Size</td></tr>
-<tr><td><code>inRowHeight</code></td><td>Longint</td><td>in</td><td>Row height, in lines (matching lk lines, the row height</td></tr>
 </tbody>
 </table>
 </section>
@@ -446,21 +428,6 @@ exact     The text is the search text, with @ taken literally.</code></pre>
 <tr><td><code>inFormula</code></td><td>Text</td><td>in</td><td>The formula expression, e.g. &quot;This.fullName()&quot;</td></tr>
 <tr><td><code>inTitle</code></td><td>Text</td><td>in</td><td>The column header offered for it</td></tr>
 <tr><td><code>inType</code></td><td>Integer</td><td>in</td><td>The 4D field type the formula returns</td></tr>
-</tbody>
-</table>
-</section>
-
-<section class="method" id="Fnd_Out_ORDARelatedField">
-<h2><a href="#Fnd_Out_ORDARelatedField">Fnd_Out_ORDARelatedField</a></h2>
-<p class="syntax"><code>Fnd_Out_ORDARelatedField --&gt; ReturnType</code></p>
-<p>Returns a pointer</p>
-<table class="params">
-<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
-<tbody>
-<tr><td><code>in</code></td><td>Object</td><td>in</td><td>Parameter block</td></tr>
-<tr><td><code>in</code></td><td>Text</td><td>in</td><td>name of dataclass from which the relation starts</td></tr>
-<tr><td><code>in</code></td><td>Text</td><td>in</td><td>Path to bound attribute</td></tr>
-<tr><td><code>Result</code></td><td>Pointer</td><td>out</td><td>Pointer to attribute field</td></tr>
 </tbody>
 </table>
 </section>

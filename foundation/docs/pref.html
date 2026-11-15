@@ -89,7 +89,6 @@
 		<li><a href="#Fnd_Pref_Alert">Fnd_Pref_Alert</a></li>
 		<li><a href="#Fnd_Pref_CreateTable">Fnd_Pref_CreateTable</a></li>
 		<li><a href="#Fnd_Pref_Display">Fnd_Pref_Display</a></li>
-		<li><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></li>
 		<li><a href="#Fnd_Pref_Editor">Fnd_Pref_Editor</a></li>
 		<li><a href="#Fnd_Pref_ErrorHandler">Fnd_Pref_ErrorHandler</a></li>
 		<li><a href="#Fnd_Pref_GetBoolean">Fnd_Pref_GetBoolean</a></li>
@@ -134,13 +133,12 @@
 
 <h1>Fnd_Pref</h1>
 
-<p>40 shared methods.</p>
+<p>39 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Pref_Alert">Fnd_Pref_Alert</a></li>
 <li><a href="#Fnd_Pref_CreateTable">Fnd_Pref_CreateTable</a></li>
 <li><a href="#Fnd_Pref_Display">Fnd_Pref_Display</a></li>
-<li><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></li>
 <li><a href="#Fnd_Pref_Editor">Fnd_Pref_Editor</a></li>
 <li><a href="#Fnd_Pref_ErrorHandler">Fnd_Pref_ErrorHandler</a></li>
 <li><a href="#Fnd_Pref_GetBoolean">Fnd_Pref_GetBoolean</a></li>
@@ -213,14 +211,6 @@
 <tr><td><code>inPreferencesFormName</code></td><td>Text</td><td>in</td><td>The name of the project form to display</td></tr>
 </tbody>
 </table>
-</section>
-
-<section class="method" id="Fnd_Pref_DummyMethod">
-<h2><a href="#Fnd_Pref_DummyMethod">Fnd_Pref_DummyMethod</a></h2>
-<p class="syntax"><code>Fnd_Pref_DummyMethod</code></p>
-<p>A generic method with no code.  This is useful for assigning as the close box method for new windows (handle the close in the form method) or to use with ON ERR CALL to disable any automatic reaction to errors.</p>
-<p><strong>Deprecated 2026-08-22. Call Fnd_Gen_SilentError instead.</strong> The body was always empty, so the two methods were never different. This one served nothing — it had no caller in Foundation at all.</p>
-<p class="noparams">No parameters.</p>
 </section>
 
 <section class="method" id="Fnd_Pref_Editor">
@@ -692,13 +682,14 @@
 
 <section class="method" id="Fnd_Pref_XmlParse">
 <h2><a href="#Fnd_Pref_XmlParse">Fnd_Pref_XmlParse</a></h2>
-<p class="syntax"><code>Fnd_Pref_XmlParse (element)</code></p>
+<p class="syntax"><code>Fnd_Pref_XmlParse (element; state)</code></p>
 <p>Parses the XML reference into an array of element IDs and a 2D array of values.</p>
 <p>Reads the legacy property list only. Nothing writes that format any more, so this is the conversion path and not a round trip.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>inElement</code></td><td>Text</td><td>in</td><td>A 4D XML reference</td></tr>
+<tr><td><code>state</code></td><td>Object</td><td>in</td><td>The parser's state, shared by every level of the recursion:</td></tr>
 </tbody>
 </table>
 </section>
