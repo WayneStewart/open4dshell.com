@@ -32,6 +32,10 @@
 <aside class="sidebar">
 	<section class="box">
 		<h2>News</h2>
+		<p><time datetime="2026-11-22">22 Nov 2026</time>: Foundation
+		6.0.0-beta.4, the last beta: the installer now supplies the forms and
+		pictures a database needs, and upgrades older Foundation tables.
+		<a href="/guide/upgrading.html#600-beta4-private-beta-22-november-2026">What changed</a>.</p>
 		<p><time datetime="2026-11-15">15 Nov 2026</time>: Foundation
 		6.0.0-beta.3 now asks before adding anything to a database, and lists what
 		it would add.
@@ -39,8 +43,6 @@
 		<p><time datetime="2026-11-08">8 Nov 2026</time>: Foundation
 		6.0.0-beta.2 adds a search box and font choices to the list window.
 		<a href="/guide/upgrading.html#600-beta2-private-beta-8-november-2026">What changed</a>.</p>
-		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
-		6.0.0-beta.1 opens as a private beta.</p>
 	</section>
 	<section class="box">
 		<h2>Support</h2>
@@ -54,76 +56,43 @@
 
 <h1>Download</h1>
 
-<p>Each release ships the compiled component for four 4D targets: as a
-code-signed, notarised DMG for macOS, and as a ZIP of the same component for
-Windows. The floor is 4D 20 LTS. Pick the file that matches the 4D your host
-database runs on.</p>
+<p>Foundation is a compiled 4D component. The floor is 4D 20 LTS.</p>
 
-<h2>Foundation 6.0.0-beta.3</h2>
+<h2>Foundation 6.0.0-beta.4</h2>
 
-<p class="release-date"><time datetime="2026-11-15">15 November 2026</time></p>
+<p class="release-date"><time datetime="2026-11-22">22 November 2026</time></p>
 
-<div class="table-wrap">
-<table class="data">
-<thead><tr><th scope="col">Target</th><th scope="col">4D</th><th scope="col">macOS (DMG)</th><th scope="col">Windows (ZIP)</th><th scope="col">SHA-256</th></tr></thead>
-<tbody>
-<tr><td>20L</td><td>4D 20 LTS</td><td>Foundation-6.0.0-beta.3-20L.dmg</td><td>Foundation-6.0.0-beta.3-20L.zip</td><td class="hash"><code>778d4656ce55cafcd0e8dfa692bd9ad27624190e203e4f5b6ac5d68bcbdad1d5</code><br><code>f5335ae14d817dde8a7cf2bec852cde9da1f694e1181ad4eb4dae122514db48c</code></td></tr>
-<tr><td>20R</td><td>4D 20 R (20 R10)</td><td>Foundation-6.0.0-beta.3-20R.dmg</td><td>Foundation-6.0.0-beta.3-20R.zip</td><td class="hash"><code>c97ed03165e3af620bc60f2d0a463ac138e77740ee0cf8e6ddaeb8c09035f907</code><br><code>98df4a72de4ff32558b846f6c6e1f0dfae089fa5809140461a06cbb440923bff</code></td></tr>
-<tr><td>21L</td><td>4D 21 LTS</td><td>Foundation-6.0.0-beta.3-21L.dmg</td><td>Foundation-6.0.0-beta.3-21L.zip</td><td class="hash"><code>8c8cc5b3c3157be7bfd96c23fcb8df88e53df93c6c14fae06487ae45f4a810d0</code><br><code>0bad0f59830c0b8dd9b47cd965405fd10c349828fdb3274b5999deb05b42f47c</code></td></tr>
-<tr><td>21R</td><td>4D 21 R</td><td>Foundation-6.0.0-beta.3-21R.dmg</td><td>Foundation-6.0.0-beta.3-21R.zip</td><td class="hash"><code>63b50697847b6ec5ece9b92af33ba5ea5ee12f4717d9914a7e9a552add26eb2a</code><br><code>202d199a9c330e60b85b761ab966db4966f1ad5194ec30f82a15cc66df34de7f</code></td></tr>
-</tbody>
-</table>
-</div>
+<p>Contains builds for 4D 20 and 21, LTS and the latest R release, for Mac
+(DMG) and Windows (ZIP).</p>
 
-<p><a href="https://www.dropbox.com/scl/fo/9txlv6chsv4a034tfvvsr/AId8Cv64rRzB0JHMpcIuUi8?rlkey=9d51eowxr4n0zk6z1hcan598f&amp;dl=0">Open the download folder</a> on Dropbox and download the files you need. The checksums file is there too.</p>
+<p class="download"><a href="https://www.dropbox.com/scl/fo/ubuwydyxndttcnkoumu7k/AAPNhs81NgjC81Dkaq7XUlY?rlkey=hur55ipvzvhmyaeb30y9o6nk7&amp;dl=0">Open the download folder on Dropbox</a></p>
 
-<h2>Foundation 6.0.0-beta.2</h2>
-
-<p class="release-date"><time datetime="2026-11-08">8 November 2026</time></p>
-
-<div class="table-wrap">
-<table class="data">
-<thead><tr><th scope="col">Target</th><th scope="col">4D</th><th scope="col">macOS (DMG)</th><th scope="col">Windows (ZIP)</th><th scope="col">SHA-256</th></tr></thead>
-<tbody>
-<tr><td>20L</td><td>4D 20 LTS</td><td>Foundation-6.0.0-beta.2-20L.dmg</td><td>Foundation-6.0.0-beta.2-20L.zip</td><td class="hash"><code>5e323161bdc47d10208054fb32719712401fe70f97220d76de0d97f219d15581</code><br><code>02aff87e3e542a6773378c57e90ae2622a3cc75a65c738ce37953f9501d726ef</code></td></tr>
-<tr><td>20R</td><td>4D 20 R (20 R10)</td><td>Foundation-6.0.0-beta.2-20R.dmg</td><td>Foundation-6.0.0-beta.2-20R.zip</td><td class="hash"><code>55d50b98979fa3f9babf37e9da73126cf5da6b351fd239391a47df7e4293bc2d</code><br><code>780f4d8532bc18120615f2c5683e14e00390a9da0a02ee83779c82fac878c9c9</code></td></tr>
-<tr><td>21L</td><td>4D 21 LTS</td><td>Foundation-6.0.0-beta.2-21L.dmg</td><td>Foundation-6.0.0-beta.2-21L.zip</td><td class="hash"><code>bfa76df3a57dc921a38d4faaded90e74eff7567cae8d3d53f8caf33ef5da5031</code><br><code>b3b7c3f53d3428dc82d4064d8c02c7a65ad3ef8a7e2fb760274c20663e5d9700</code></td></tr>
-<tr><td>21R</td><td>4D 21 R</td><td>Foundation-6.0.0-beta.2-21R.dmg</td><td>Foundation-6.0.0-beta.2-21R.zip</td><td class="hash"><code>70ccb16b3c3debd21879570f792e11c8cc76d99a5172e26569380ab0791170a5</code><br><code>9c739f0150d427bef41fa9ce7e0efbac80fec470898045a336d5d492d5cbb91b</code></td></tr>
-</tbody>
-</table>
-</div>
-
-<p><a href="https://www.dropbox.com/scl/fo/65s7j8k1pdjka8n3b9ncu/AGjXxXq6iXJW1Yg26Tj1y1Y?rlkey=gg4mo6jpxjhu7zmhup5xp2zr7&amp;dl=0">Open the download folder</a> on Dropbox and download the files you need. The checksums file is there too.</p>
-
-<h2>Foundation 6.0.0-beta.1</h2>
-
-<p class="release-date"><time datetime="2026-11-01">1 November 2026</time></p>
-
-<div class="table-wrap">
-<table class="data">
-<thead><tr><th scope="col">Target</th><th scope="col">4D</th><th scope="col">macOS (DMG)</th><th scope="col">Windows (ZIP)</th><th scope="col">SHA-256</th></tr></thead>
-<tbody>
-<tr><td>20L</td><td>4D 20 LTS</td><td><a href="https://www.dropbox.com/scl/fi/nr9qf88imjx7swsqk1oah/Foundation-6.0.0-beta.1-20L.dmg?rlkey=vfl8cfjjzbndtyq3on4ll89wy&amp;dl=1">Foundation-6.0.0-beta.1-20L.dmg</a></td><td><a href="https://www.dropbox.com/scl/fi/i80azcjwnf14u5mebwzbk/Foundation-6.0.0-beta.1-20L.zip?rlkey=mxsh5974i7wt7ec6zfh5m7m51&amp;dl=1">Foundation-6.0.0-beta.1-20L.zip</a></td><td class="hash"><code>93e1b7008dcff15659da034d22f2a65ea62cfba67e20904080c4b8591737d005</code><br><code>c4017739c7ef5e47d4c1864214c617f24bbda7c4946eca8f8fc1ca54510dbfc6</code></td></tr>
-<tr><td>20R</td><td>4D 20 R (20 R10)</td><td><a href="https://www.dropbox.com/scl/fi/f0u0y7r8u9vqh76mf8dyu/Foundation-6.0.0-beta.1-20R.dmg?rlkey=doj93zwoasosccz1m3bqzomyg&amp;dl=1">Foundation-6.0.0-beta.1-20R.dmg</a></td><td><a href="https://www.dropbox.com/scl/fi/z1m7o3j6e8u4uk2dltj9n/Foundation-6.0.0-beta.1-20R.zip?rlkey=wje9q3di8hmu3ou94tyvwcezk&amp;dl=1">Foundation-6.0.0-beta.1-20R.zip</a></td><td class="hash"><code>e0e015a07883d5a2143affa2541b4f05ddd2a5bf13a0dbe70e3356b86c7f688a</code><br><code>943e21d1ecdeac58e11a57150035f54431cd5df4e5fd604edd374e7524a60ddf</code></td></tr>
-<tr><td>21L</td><td>4D 21 LTS</td><td><a href="https://www.dropbox.com/scl/fi/kxov9zltu799bj34o2mwd/Foundation-6.0.0-beta.1-21L.dmg?rlkey=0ldesaw005ktoontu8otlwtui&amp;dl=1">Foundation-6.0.0-beta.1-21L.dmg</a></td><td><a href="https://www.dropbox.com/scl/fi/kmymuvw84m2zcln4fiuy7/Foundation-6.0.0-beta.1-21L.zip?rlkey=hao8sucs2d7ays7u6bmeporp8&amp;dl=1">Foundation-6.0.0-beta.1-21L.zip</a></td><td class="hash"><code>a03672383ab9a70f10f2c3fcab1f8395c36e6219ca700a9f2180b9667755c924</code><br><code>c6d82326badb042aac843ed655f69ee1f7e1d7f1b2a90eca56fc0b7e1204134f</code></td></tr>
-<tr><td>21R</td><td>4D 21 R</td><td><a href="https://www.dropbox.com/scl/fi/b8axd5hmtb18c8bnh1xo8/Foundation-6.0.0-beta.1-21R.dmg?rlkey=t049vhpcscjspqs28lw3ybaxk&amp;dl=1">Foundation-6.0.0-beta.1-21R.dmg</a></td><td><a href="https://www.dropbox.com/scl/fi/4kj9nmvxxdrku3h8kf1m5/Foundation-6.0.0-beta.1-21R.zip?rlkey=h92st5gctujqdct2g0eyw8k9d&amp;dl=1">Foundation-6.0.0-beta.1-21R.zip</a></td><td class="hash"><code>458d9171336e2cd29d4ad10dd9105c5db8b2ea1e492c6a8172609878cb7c35dd</code><br><code>dcc4883b2287dcb36e1997da1db7ce3eb4065b0ee2ad01118a2ed460d3f4fe52</code></td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Checksums for every file: <a href="https://www.dropbox.com/scl/fi/2exwt5s7mfiuaf76n8yj6/Foundation-6.0.0-beta.1-checksums.txt?rlkey=hux3orhaf8m4vqkj06ujvreqj&amp;dl=1">checksums file</a>.</p>
-
-<h2>Verifying a download</h2>
-
-<p>Compare the SHA-256 of the file you downloaded with the value above. On
-macOS run <code>shasum -a 256 &lt;file&gt;</code>; on Windows run
-<code>certutil -hashfile &lt;file&gt; SHA256</code>.</p>
+<p>Download the files you need from the folder. Each file name ends with its
+4D target: <code>20L</code> and <code>21L</code> for the LTS releases,
+<code>20R</code> and <code>21R</code> for the R releases. A checksums file
+is in the folder too.</p>
 
 <h2>Installing</h2>
 
 <p>Copy <code>Foundation.4dbase</code> into your project's
 <code>Components/</code> folder. <a href="/start/">Getting started</a> walks
 through the rest.</p>
+
+<h2>Verifying a download</h2>
+
+<p>Compare the SHA-256 of the file you downloaded with its line in the
+checksums file. On macOS run <code>shasum -a 256 &lt;file&gt;</code>; on
+Windows run <code>certutil -hashfile &lt;file&gt; SHA256</code>.</p>
+
+<h2>Earlier releases</h2>
+
+<p>No longer available; each was replaced by the one after it.</p>
+
+<ul>
+<li>Foundation 6.0.0-beta.3, <time datetime="2026-11-15">15 November 2026</time></li>
+<li>Foundation 6.0.0-beta.2, <time datetime="2026-11-08">8 November 2026</time></li>
+<li>Foundation 6.0.0-beta.1, <time datetime="2026-11-01">1 November 2026</time></li>
+</ul>
 
 </main>
 

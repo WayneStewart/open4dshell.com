@@ -1,17 +1,52 @@
 {
   "releases": [
     {
+      "version": "6.0.0-beta.4",
+      "date": "2026-11-22",
+      "commit": "fdd33214",
+      "folder": "https://www.dropbox.com/scl/fo/ubuwydyxndttcnkoumu7k/AAPNhs81NgjC81Dkaq7XUlY?rlkey=hur55ipvzvhmyaeb30y9o6nk7&dl=0"
+    },
+    {
       "version": "6.0.0-beta.3",
       "date": "2026-11-15",
       "commit": "4090db5d",
       "folder": "https://www.dropbox.com/scl/fo/9txlv6chsv4a034tfvvsr/AId8Cv64rRzB0JHMpcIuUi8?rlkey=9d51eowxr4n0zk6z1hcan598f&dl=0",
       "artefacts": [
-        { "target": "20L", "label": "4D 20 LTS", "dmg": "", "zip": "", "sha256dmg": "778d4656ce55cafcd0e8dfa692bd9ad27624190e203e4f5b6ac5d68bcbdad1d5", "sha256zip": "f5335ae14d817dde8a7cf2bec852cde9da1f694e1181ad4eb4dae122514db48c" },
-        { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "", "zip": "", "sha256dmg": "c97ed03165e3af620bc60f2d0a463ac138e77740ee0cf8e6ddaeb8c09035f907", "sha256zip": "98df4a72de4ff32558b846f6c6e1f0dfae089fa5809140461a06cbb440923bff" },
-        { "target": "21L", "label": "4D 21 LTS", "dmg": "", "zip": "", "sha256dmg": "8c8cc5b3c3157be7bfd96c23fcb8df88e53df93c6c14fae06487ae45f4a810d0", "sha256zip": "0bad0f59830c0b8dd9b47cd965405fd10c349828fdb3274b5999deb05b42f47c" },
-        { "target": "21R", "label": "4D 21 R", "dmg": "", "zip": "", "sha256dmg": "63b50697847b6ec5ece9b92af33ba5ea5ee12f4717d9914a7e9a552add26eb2a", "sha256zip": "202d199a9c330e60b85b761ab966db4966f1ad5194ec30f82a15cc66df34de7f" }
+        {
+          "target": "20L",
+          "label": "4D 20 LTS",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "778d4656ce55cafcd0e8dfa692bd9ad27624190e203e4f5b6ac5d68bcbdad1d5",
+          "sha256zip": "f5335ae14d817dde8a7cf2bec852cde9da1f694e1181ad4eb4dae122514db48c"
+        },
+        {
+          "target": "20R",
+          "label": "4D 20 R (20 R10)",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "c97ed03165e3af620bc60f2d0a463ac138e77740ee0cf8e6ddaeb8c09035f907",
+          "sha256zip": "98df4a72de4ff32558b846f6c6e1f0dfae089fa5809140461a06cbb440923bff"
+        },
+        {
+          "target": "21L",
+          "label": "4D 21 LTS",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "8c8cc5b3c3157be7bfd96c23fcb8df88e53df93c6c14fae06487ae45f4a810d0",
+          "sha256zip": "0bad0f59830c0b8dd9b47cd965405fd10c349828fdb3274b5999deb05b42f47c"
+        },
+        {
+          "target": "21R",
+          "label": "4D 21 R",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "63b50697847b6ec5ece9b92af33ba5ea5ee12f4717d9914a7e9a552add26eb2a",
+          "sha256zip": "202d199a9c330e60b85b761ab966db4966f1ad5194ec30f82a15cc66df34de7f"
+        }
       ],
-      "checksums": ""
+      "checksums": "",
+      "withdrawn": true
     },
     {
       "version": "6.0.0-beta.2",
@@ -19,24 +54,82 @@
       "commit": "4f0f6d0c",
       "folder": "https://www.dropbox.com/scl/fo/65s7j8k1pdjka8n3b9ncu/AGjXxXq6iXJW1Yg26Tj1y1Y?rlkey=gg4mo6jpxjhu7zmhup5xp2zr7&dl=0",
       "artefacts": [
-        { "target": "20L", "label": "4D 20 LTS", "dmg": "", "zip": "", "sha256dmg": "5e323161bdc47d10208054fb32719712401fe70f97220d76de0d97f219d15581", "sha256zip": "02aff87e3e542a6773378c57e90ae2622a3cc75a65c738ce37953f9501d726ef" },
-        { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "", "zip": "", "sha256dmg": "55d50b98979fa3f9babf37e9da73126cf5da6b351fd239391a47df7e4293bc2d", "sha256zip": "780f4d8532bc18120615f2c5683e14e00390a9da0a02ee83779c82fac878c9c9" },
-        { "target": "21L", "label": "4D 21 LTS", "dmg": "", "zip": "", "sha256dmg": "bfa76df3a57dc921a38d4faaded90e74eff7567cae8d3d53f8caf33ef5da5031", "sha256zip": "b3b7c3f53d3428dc82d4064d8c02c7a65ad3ef8a7e2fb760274c20663e5d9700" },
-        { "target": "21R", "label": "4D 21 R", "dmg": "", "zip": "", "sha256dmg": "70ccb16b3c3debd21879570f792e11c8cc76d99a5172e26569380ab0791170a5", "sha256zip": "9c739f0150d427bef41fa9ce7e0efbac80fec470898045a336d5d492d5cbb91b" }
+        {
+          "target": "20L",
+          "label": "4D 20 LTS",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "5e323161bdc47d10208054fb32719712401fe70f97220d76de0d97f219d15581",
+          "sha256zip": "02aff87e3e542a6773378c57e90ae2622a3cc75a65c738ce37953f9501d726ef"
+        },
+        {
+          "target": "20R",
+          "label": "4D 20 R (20 R10)",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "55d50b98979fa3f9babf37e9da73126cf5da6b351fd239391a47df7e4293bc2d",
+          "sha256zip": "780f4d8532bc18120615f2c5683e14e00390a9da0a02ee83779c82fac878c9c9"
+        },
+        {
+          "target": "21L",
+          "label": "4D 21 LTS",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "bfa76df3a57dc921a38d4faaded90e74eff7567cae8d3d53f8caf33ef5da5031",
+          "sha256zip": "b3b7c3f53d3428dc82d4064d8c02c7a65ad3ef8a7e2fb760274c20663e5d9700"
+        },
+        {
+          "target": "21R",
+          "label": "4D 21 R",
+          "dmg": "",
+          "zip": "",
+          "sha256dmg": "70ccb16b3c3debd21879570f792e11c8cc76d99a5172e26569380ab0791170a5",
+          "sha256zip": "9c739f0150d427bef41fa9ce7e0efbac80fec470898045a336d5d492d5cbb91b"
+        }
       ],
-      "checksums": ""
+      "checksums": "",
+      "withdrawn": true
     },
     {
       "version": "6.0.0-beta.1",
       "date": "2026-11-01",
       "commit": "0e6ae933",
       "artefacts": [
-        { "target": "20L", "label": "4D 20 LTS", "dmg": "https://www.dropbox.com/scl/fi/nr9qf88imjx7swsqk1oah/Foundation-6.0.0-beta.1-20L.dmg?rlkey=vfl8cfjjzbndtyq3on4ll89wy&dl=1", "zip": "https://www.dropbox.com/scl/fi/i80azcjwnf14u5mebwzbk/Foundation-6.0.0-beta.1-20L.zip?rlkey=mxsh5974i7wt7ec6zfh5m7m51&dl=1", "sha256dmg": "93e1b7008dcff15659da034d22f2a65ea62cfba67e20904080c4b8591737d005", "sha256zip": "c4017739c7ef5e47d4c1864214c617f24bbda7c4946eca8f8fc1ca54510dbfc6" },
-        { "target": "20R", "label": "4D 20 R (20 R10)", "dmg": "https://www.dropbox.com/scl/fi/f0u0y7r8u9vqh76mf8dyu/Foundation-6.0.0-beta.1-20R.dmg?rlkey=doj93zwoasosccz1m3bqzomyg&dl=1", "zip": "https://www.dropbox.com/scl/fi/z1m7o3j6e8u4uk2dltj9n/Foundation-6.0.0-beta.1-20R.zip?rlkey=wje9q3di8hmu3ou94tyvwcezk&dl=1", "sha256dmg": "e0e015a07883d5a2143affa2541b4f05ddd2a5bf13a0dbe70e3356b86c7f688a", "sha256zip": "943e21d1ecdeac58e11a57150035f54431cd5df4e5fd604edd374e7524a60ddf" },
-        { "target": "21L", "label": "4D 21 LTS", "dmg": "https://www.dropbox.com/scl/fi/kxov9zltu799bj34o2mwd/Foundation-6.0.0-beta.1-21L.dmg?rlkey=0ldesaw005ktoontu8otlwtui&dl=1", "zip": "https://www.dropbox.com/scl/fi/kmymuvw84m2zcln4fiuy7/Foundation-6.0.0-beta.1-21L.zip?rlkey=hao8sucs2d7ays7u6bmeporp8&dl=1", "sha256dmg": "a03672383ab9a70f10f2c3fcab1f8395c36e6219ca700a9f2180b9667755c924", "sha256zip": "c6d82326badb042aac843ed655f69ee1f7e1d7f1b2a90eca56fc0b7e1204134f" },
-        { "target": "21R", "label": "4D 21 R", "dmg": "https://www.dropbox.com/scl/fi/b8axd5hmtb18c8bnh1xo8/Foundation-6.0.0-beta.1-21R.dmg?rlkey=t049vhpcscjspqs28lw3ybaxk&dl=1", "zip": "https://www.dropbox.com/scl/fi/4kj9nmvxxdrku3h8kf1m5/Foundation-6.0.0-beta.1-21R.zip?rlkey=h92st5gctujqdct2g0eyw8k9d&dl=1", "sha256dmg": "458d9171336e2cd29d4ad10dd9105c5db8b2ea1e492c6a8172609878cb7c35dd", "sha256zip": "dcc4883b2287dcb36e1997da1db7ce3eb4065b0ee2ad01118a2ed460d3f4fe52" }
+        {
+          "target": "20L",
+          "label": "4D 20 LTS",
+          "dmg": "https://www.dropbox.com/scl/fi/nr9qf88imjx7swsqk1oah/Foundation-6.0.0-beta.1-20L.dmg?rlkey=vfl8cfjjzbndtyq3on4ll89wy&dl=1",
+          "zip": "https://www.dropbox.com/scl/fi/i80azcjwnf14u5mebwzbk/Foundation-6.0.0-beta.1-20L.zip?rlkey=mxsh5974i7wt7ec6zfh5m7m51&dl=1",
+          "sha256dmg": "93e1b7008dcff15659da034d22f2a65ea62cfba67e20904080c4b8591737d005",
+          "sha256zip": "c4017739c7ef5e47d4c1864214c617f24bbda7c4946eca8f8fc1ca54510dbfc6"
+        },
+        {
+          "target": "20R",
+          "label": "4D 20 R (20 R10)",
+          "dmg": "https://www.dropbox.com/scl/fi/f0u0y7r8u9vqh76mf8dyu/Foundation-6.0.0-beta.1-20R.dmg?rlkey=doj93zwoasosccz1m3bqzomyg&dl=1",
+          "zip": "https://www.dropbox.com/scl/fi/z1m7o3j6e8u4uk2dltj9n/Foundation-6.0.0-beta.1-20R.zip?rlkey=wje9q3di8hmu3ou94tyvwcezk&dl=1",
+          "sha256dmg": "e0e015a07883d5a2143affa2541b4f05ddd2a5bf13a0dbe70e3356b86c7f688a",
+          "sha256zip": "943e21d1ecdeac58e11a57150035f54431cd5df4e5fd604edd374e7524a60ddf"
+        },
+        {
+          "target": "21L",
+          "label": "4D 21 LTS",
+          "dmg": "https://www.dropbox.com/scl/fi/kxov9zltu799bj34o2mwd/Foundation-6.0.0-beta.1-21L.dmg?rlkey=0ldesaw005ktoontu8otlwtui&dl=1",
+          "zip": "https://www.dropbox.com/scl/fi/kmymuvw84m2zcln4fiuy7/Foundation-6.0.0-beta.1-21L.zip?rlkey=hao8sucs2d7ays7u6bmeporp8&dl=1",
+          "sha256dmg": "a03672383ab9a70f10f2c3fcab1f8395c36e6219ca700a9f2180b9667755c924",
+          "sha256zip": "c6d82326badb042aac843ed655f69ee1f7e1d7f1b2a90eca56fc0b7e1204134f"
+        },
+        {
+          "target": "21R",
+          "label": "4D 21 R",
+          "dmg": "https://www.dropbox.com/scl/fi/b8axd5hmtb18c8bnh1xo8/Foundation-6.0.0-beta.1-21R.dmg?rlkey=t049vhpcscjspqs28lw3ybaxk&dl=1",
+          "zip": "https://www.dropbox.com/scl/fi/4kj9nmvxxdrku3h8kf1m5/Foundation-6.0.0-beta.1-21R.zip?rlkey=h92st5gctujqdct2g0eyw8k9d&dl=1",
+          "sha256dmg": "458d9171336e2cd29d4ad10dd9105c5db8b2ea1e492c6a8172609878cb7c35dd",
+          "sha256zip": "dcc4883b2287dcb36e1997da1db7ce3eb4065b0ee2ad01118a2ed460d3f4fe52"
+        }
       ],
-      "checksums": "https://www.dropbox.com/scl/fi/2exwt5s7mfiuaf76n8yj6/Foundation-6.0.0-beta.1-checksums.txt?rlkey=hux3orhaf8m4vqkj06ujvreqj&dl=1"
+      "checksums": "https://www.dropbox.com/scl/fi/2exwt5s7mfiuaf76n8yj6/Foundation-6.0.0-beta.1-checksums.txt?rlkey=hux3orhaf8m4vqkj06ujvreqj&dl=1",
+      "withdrawn": true
     }
   ]
 }

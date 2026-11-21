@@ -130,7 +130,7 @@
 <section class="method" id="Fnd_Rec_AddItem">
 <h2><a href="#Fnd_Rec_AddItem">Fnd_Rec_AddItem</a></h2>
 <p class="syntax"><code>Fnd_Rec_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
-<p>Called by the protected &quot;Fnd_Rec_Add&quot; routines to add stuff to the arrays.</p>
+<p>Called by the protected &quot;Fnd_Rec_Add&quot; routines to add stuff to the collections on Fnd.Rec.</p>
 <p>If the label is blank, the field name will be used.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
@@ -147,7 +147,7 @@
 <section class="method" id="Fnd_Rec_AddTable">
 <h2><a href="#Fnd_Rec_AddTable">Fnd_Rec_AddTable</a></h2>
 <p class="syntax"><code>Fnd_Rec_AddTable (-&gt;table{; position})</code></p>
-<p>Loads the visible fields for the current form's table into an array named Fnd_Rec_Fields_aptr.</p>
+<p>Loads the visible fields for the current form's table into the Fnd.Rec collections.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -171,12 +171,13 @@
 
 <section class="method" id="Fnd_Rec_BestPopupSize">
 <h2><a href="#Fnd_Rec_BestPopupSize">Fnd_Rec_BestPopupSize</a></h2>
-<p class="syntax"><code>Fnd_Rec_BestPopupSize (-&gt;popup array) --&gt; Number</code></p>
+<p class="syntax"><code>Fnd_Rec_BestPopupSize (-&gt;popup array{; form object name}) --&gt; Number</code></p>
 <p>Returns the best object width to use for a pop-up menu form object.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
-<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup (ignored when an object name is given)</td></tr>
+<tr><td><code>inObjectName</code></td><td>Text</td><td>in</td><td>&quot;Fnd_Rec_FieldNames_at&quot; or &quot;Fnd_Rec_Values_at&quot;, the Modify dialog's pop-ups (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The best object size for the pop-up</td></tr>
 </tbody>
 </table>
@@ -271,7 +272,7 @@
 
 <section class="method" id="Fnd_Rec_SizeArrayObject">
 <h2><a href="#Fnd_Rec_SizeArrayObject">Fnd_Rec_SizeArrayObject</a></h2>
-<p class="syntax"><code>Fnd_Rec_SizeArrayObject (-&gt;object; alignment) --&gt; Number</code></p>
+<p class="syntax"><code>Fnd_Rec_SizeArrayObject (-&gt;object; alignment{; form object name}) --&gt; Number</code></p>
 <p>Sets the best size for an array based form object based on the contents it displays.</p>
 <p>Rather than using BEST OBJECT SIZE, we calculate the size the same way we did before opening the dialog using the Fnd_Find_GetExtraWidth method.</p>
 <table class="params">
@@ -279,6 +280,7 @@
 <tbody>
 <tr><td><code>object</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
 <tr><td><code>alignment</code></td><td>Longint</td><td>in</td><td>The alignment (side not to move)</td></tr>
+<tr><td><code>inObjectName</code></td><td>Text</td><td>in</td><td>The form object's name; when given it is used instead of the pointer (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The increase in the button size</td></tr>
 </tbody>
 </table>

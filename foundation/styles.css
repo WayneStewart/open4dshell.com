@@ -421,6 +421,11 @@ span.pending {
 	font-style: italic;
 }
 
+p.download a {
+	font-weight: bold;
+	font-size: 1.15rem;
+}
+
 p.release-date {
 	margin-top: -0.5rem;
 	opacity: 0.8;

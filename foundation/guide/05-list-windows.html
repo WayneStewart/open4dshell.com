@@ -72,14 +72,14 @@
 <p>This replaces the classic output form of the 5.4 manual, a per-table <code>Output</code> form with Header, Detail and Footer lines inheriting <code>Fnd_Tlbr_Toolbar</code>. That form still works where a host has one and <code>Fnd_Out</code> is not switched on; nothing here requires you to convert it. New hosts should not build one.</p>
 <h2 id="what-you-need">What you need</h2>
 <ol>
-<li><strong>The <code>Fnd_Out</code> form</strong>, a project form named exactly that, once per host and shared by every table. Foundation cannot carry it, because a component's forms cannot be the host's. Copy the folder <code>HooksAndHosts/Fnd_Out/</code> into your <code>Project/Sources/Forms/</code>. It holds one collection listbox named <code>Fnd_Out_ListBox</code> with no columns, bound to <code>Form.listData</code>, plus two invisible buttons for Cmd-W and Cmd-Option-W, and a three-line form method:</li>
+<li><strong>The <code>Fnd_Out</code> form</strong>, a project form named exactly that, once per host and shared by every table. A component's forms cannot be the host's, so the installer (chapter 3) copies it into your <code>Project/Sources/Forms/</code>, along with <code>Fnd_Tlbr_Toolbar</code>. If it is not there, run <code>Fnd_Shell_Installer</code>. It holds one collection listbox named <code>Fnd_Out_ListBox</code> with no columns, bound to <code>Form.listData</code>, a subform for the search box, two invisible buttons for Cmd-W and Cmd-Option-W, and a three-line form method:</li>
 </ol>
 <pre><code>   Fnd_Gen_FormMethod
    Fnd_Tlbr_FormMethod
    Fnd_Out_FormMethod</code></pre>
 <p>The listbox's object method is <code>Fnd_Out_ListBoxMethod</code>. The form inherits <code>Fnd_Tlbr_Toolbar</code>, which gives it the toolbar and status line.</p>
 <ol start="2">
-<li><strong><code>Fnd_Out_Active(True)</code> in <code>Fnd_Hook_IO_DisplayTable</code>.</strong> The switch is per process and per opening, so the hook sets it every time. Without it Foundation looks for the classic <code>Output</code> form.</li>
+<li><strong><code>Fnd_Out_Active(True)</code> in <code>Fnd_Hook_IO_DisplayTable</code>.</strong> The switch is per process and per opening, so the hook sets it every time. Without it Foundation looks for the classic <code>Output</code> form. The hook the installer writes already has the line; a hook from an earlier version does not.</li>
 <li><strong>An <code>Input</code> form</strong> for the table (chapter 6), so that double-click opens a record.</li>
 </ol>
 <p>Then <code>Fnd_IO_DisplayTable(-&gt;[Invoices])</code> opens the list: from the navigation palette, the Open Table dialog, a related-records command or your own code. Foundation supplies the rest: toolbar, status line, Find and Sort, the Window menu, the View Options palette, saved widths and order, and the two hooks below.</p>
@@ -93,7 +93,7 @@
 		Fnd_Out_AddField(&quot;contact.reversedFullName()&quot;; 0; &quot;Contact&quot;)
 		Fnd_Out_AddField(&quot;Total&quot;; 0; &quot;&quot;; 0; &lt;&gt;Gen_MoneyFormat_t)
 End case</code></pre>
-<p><code>Fnd_Out_AddField</code> takes a field pointer, a path through the relations in ORDA form (<code>contact.Company</code>, <code>invoice.contact.City</code>), a formula on the entity (<code>contact.reversedFullName()</code>, an exposed function of your entity class), or an object with <code>fo_field</code>, <code>fo_title</code>, <code>fo_type</code>, <code>fo_format</code>, <code>fo_hAlign</code>, <code>fo_vAlign</code>, <code>fo_width</code>, <code>fo_minWidth</code>, <code>fo_maxWidth</code>, <code>fo_style</code> and <code>fo_visible</code>. Width 0 means &quot;estimate from the type&quot;: text 100, numbers 65 right-aligned, dates and times 65, booleans 19. This set is the layout called <strong>Standard</strong>; &quot;Reset to Standard&quot; in the palette returns the user to it.</p>
+<p><code>Fnd_Out_AddField</code> takes a field pointer, a path through the relations in ORDA form (<code>contact.Company</code>, <code>invoice.contact.City</code>), a formula on the entity (<code>contact.reversedFullName()</code>, an exposed function of your entity class), or an object with <code>fo_field</code>, <code>fo_title</code>, <code>fo_type</code>, <code>fo_format</code>, <code>fo_hAlign</code>, <code>fo_vAlign</code>, <code>fo_width</code>, <code>fo_minWidth</code>, <code>fo_maxWidth</code>, <code>fo_style</code> and <code>fo_visible</code>. Width 0 means &quot;estimate from the type&quot;: text 100, numbers 65 right-aligned, dates and times 65, booleans 19. This set is the layout called <strong>Standard</strong>; &quot;Reset to Standard&quot; in the palette returns the user to it. An interpreted host can replace it for a table with <strong>Layout &gt; Save</strong> while Standard is in force (see Layouts, below).</p>
 <p>Columns are formula columns over <code>This</code>, the row's entity, so a path or a function of the entity class is a column like any field. Headers sort nothing by themselves: Sort is on the Select menu, as before.</p>
 <h2 id="what-the-user-may-add">What the user may add</h2>
 <p>The palette offers the table's own fields and, block by block, the fields of every related table up to five relations deep. Narrow that in the hook:</p>
@@ -109,7 +109,7 @@ End case</code></pre>
 </tbody>
 </table>
 </div>
-<p>None of these touches a column you added with <code>Fnd_Out_AddField</code>. The same rules can be written once, declaratively, in the host's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code>: <code>offer.hide</code>, <code>offer.only</code>, <code>formulas</code>, <code>appearance</code>, <code>allowCustomColumns</code>, and <code>builtInLayouts</code>. FPS has three such files to copy from.</p>
+<p>None of these touches a column you added with <code>Fnd_Out_AddField</code>. The same rules can be written once, declaratively, in the host's <code>Resources/Foundation/Fnd_Out/&lt;Table&gt;.json</code>: <code>offer.hide</code>, <code>offer.only</code>, <code>formulas</code>, <code>appearance</code>, <code>allowCustomColumns</code>, and <code>builtInLayouts</code>. FPS has three such files to copy from.</p>
 <h2 id="appearance-for-every-list">Appearance for every list</h2>
 <p><code>Fnd_Out_Default(tag; value)</code> sets a programmed default for every list in the session; one argument reads it back. Tags are the constants <code>Fnd_Out_FontName</code>, <code>Fnd_Out_TextSize</code>, <code>Fnd_Out_RowHeight</code>, <code>Fnd_Out_RowPixels</code>, <code>Fnd_Out_VAlign</code>, <code>Fnd_Out_Fill</code>, <code>Fnd_Out_AltFill</code>, <code>Fnd_Out_RelationDepth</code>, <code>Fnd_Out_MaxColumns</code>, <code>Fnd_Out_AllowCustom</code> and <code>Fnd_Out_AllowPublish</code>. Set them in <code>Fnd_Hook_Shell_Setup</code> or at the top of <code>Fnd_Hook_IO_DisplayTable</code>, as FPS sets <code>Fnd_Out_Default(&quot;allowPublish&quot;; True)</code>.</p>
 <h2 id="what-the-user-sees">What the user sees</h2>
@@ -119,23 +119,24 @@ End case</code></pre>
 <li><strong>Columns</strong>: a tick list in blocks, the table's own fields first, then one block per related table, then Custom Columns. Ticking inserts the column; dragging a header in the window reorders; dragging a border resizes, and the last column fills the window. <strong>Reset to Standard</strong> discards every change.</li>
 <li><strong>Advanced</strong> widens the palette for the highlighted column: title, font (the column's cells only; its header keeps the list's font), horizontal and vertical alignment, bold, italic, format, and <strong>Use Default</strong> to drop the overrides; below it, <strong>Row Styles</strong> (next section) and the formula box for custom columns, when the developer allows them.</li>
 </ul>
-<p>Everything the user does is saved when the window closes, in <code>&lt;4D application folder&gt;/&lt;DatabaseName&gt;/Fnd_Out/&lt;Table&gt;.json</code> on that machine, and comes back next time. Hold Option and Shift while a list opens to ignore the saved order and widths once.</p>
+<p>Everything the user does is saved when the window closes, in <code>&lt;active 4D folder&gt;/&lt;DatabaseName&gt;/Fnd_Out/&lt;Table&gt;.json</code> on that machine (on a Mac, <code>~/Library/Application Support/4D</code>), and comes back next time. Hold Option and Shift while a list opens to ignore the saved order and widths once.</p>
 <h2 id="layouts">Layouts</h2>
 <p>A layout is a named set of visible columns, order, widths, font, text size, row height and row-style rules. The Layout menu lists them and <strong>Manage Layouts…</strong> renames, deletes and sets defaults.</p>
 <div class="table-wrap">
 <table class="provenance">
 <thead><tr><th scope="col">Kind</th><th scope="col">Who makes it</th><th scope="col">Where it lives</th><th scope="col">Shown as</th></tr></thead>
 <tbody>
-<tr><td>Standard</td><td>the developer's <code>AddField</code> calls</td><td>not stored</td><td>Standard</td></tr>
+<tr><td>Standard</td><td>the developer's <code>AddField</code> calls, or Layout &gt; Save on Standard in an interpreted host</td><td>the latter in the table's <code>Fnd_Out/&lt;Table&gt;.json</code>, as <code>standard</code></td><td>Standard</td></tr>
 <tr><td>User</td><td>any user, Save As…</td><td>the user's <code>Fnd_Out/&lt;Table&gt;.json</code></td><td>Name</td></tr>
 <tr><td>Shared</td><td>a user with publish rights, Publish…</td><td>the data file, as a shared preference</td><td>Name (Shared)</td></tr>
-<tr><td>Built-in</td><td>the developer, in an interpreted host</td><td>the host's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code></td><td>Name (Built-in)</td></tr>
+<tr><td>Built-in</td><td>the developer, in an interpreted host</td><td>the host's <code>Resources/Foundation/Fnd_Out/&lt;Table&gt;.json</code></td><td>Name (Built-in)</td></tr>
 </tbody>
 </table>
 </div>
+<p><strong>Save</strong> in the Layout menu saves whatever kind of layout is in force: a user layout is replaced; a shared one is republished when the user has publish rights; a built-in layout, or Standard, is written to the table's developer file from an interpreted host. A compiled host refuses the last two, and the user uses Save As… instead.</p>
 <p>Publish rights are the Designer, the Administrator and the Administration group, or whatever <code>Fnd_Out_Default(&quot;allowPublish&quot;; …)</code> says. A layout marked default opens for every new user of that table, built-in first, then shared.</p>
 <h2 id="developer-mode">Developer mode</h2>
-<p>An <strong>interpreted</strong> host is developer mode; nothing switches it on. The palette then shows an <strong>offer</strong> tick per candidate column, which writes <code>offer.hide</code> and <code>offer.only</code> into the table's <code>Resources/Fnd_Out/&lt;Table&gt;.json</code> for you, and the Layout menu gains <strong>Save as Application Layout…</strong> and <strong>Delete Application Layout</strong>, which write <code>builtInLayouts</code> there. Compiled, those two refuse to run and hidden candidates are not even listed. Ship the JSON files with your application.</p>
+<p>An <strong>interpreted</strong> host is developer mode; nothing switches it on. The palette then shows an <strong>offer</strong> tick per candidate column, which writes <code>offer.hide</code> and <code>offer.only</code> into the table's <code>Resources/Foundation/Fnd_Out/&lt;Table&gt;.json</code> for you, and the Layout menu gains <strong>Save as Application Layout…</strong> and <strong>Delete Application Layout</strong>, which write <code>builtInLayouts</code> there. <strong>Delete Application Layout</strong> on Standard removes a saved Standard and returns it to the one your <code>AddField</code> calls describe. Compiled, those two refuse to run and hidden candidates are not even listed. Ship the JSON files with your application.</p>
 <h2 id="row-styles">Row styles</h2>
 <p>Two sources, the first that applies wins: a layout's <strong>row-style rules</strong>, made in the Advanced panel from a condition written in the formula editor and a style (bold, italic, underline, text and fill colour); and the hook <code>Fnd_Hook_Out_RowStyle</code>, evaluated for every row with <code>This</code> as the entity:</p>
 <pre><code>#DECLARE()-&gt;$style_o : Object

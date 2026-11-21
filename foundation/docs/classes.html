@@ -88,6 +88,7 @@
 	<ul class="nav">
 		<li><a href="#date">cs.fnd.date</a></li>
 		<li><a href="#fnd">cs.fnd.fnd</a></li>
+		<li><a href="#Fnd_Pref">cs.fnd.Fnd_Pref</a></li>
 		<li><a href="#Fnd_PrefEntity">cs.fnd.Fnd_PrefEntity</a></li>
 		<li><a href="#log">cs.fnd.log</a></li>
 		<li><a href="#pref">cs.fnd.pref</a></li>
@@ -104,6 +105,7 @@
 <ul class="jump">
 <li><a href="#date">cs.fnd.date</a></li>
 <li><a href="#fnd">cs.fnd.fnd</a></li>
+<li><a href="#Fnd_Pref">cs.fnd.Fnd_Pref</a></li>
 <li><a href="#Fnd_PrefEntity">cs.fnd.Fnd_PrefEntity</a></li>
 <li><a href="#log">cs.fnd.log</a></li>
 <li><a href="#pref">cs.fnd.pref</a></li>
@@ -191,6 +193,35 @@ Inside Foundation: cs.date.new().toISO(Current date; Current time)</pre>
 <h3 id="fnd.componentCheck"><a href="#fnd.componentCheck">componentCheck</a></h3>
 <pre><code>componentCheck($calling_t : Text; $required_t : Text)-&gt;$result_b : Boolean</code></pre>
 <p>True when the required component answers. False alerts the developer first, and does not stop the caller — test the result and decide.</p>
+</section>
+
+<section class="class" id="Fnd_Pref">
+<h2><a href="#Fnd_Pref">cs.fnd.Fnd_Pref</a></h2>
+<p>Created by: Wayne Stewart, Created: 2026-04-28 DataClass extension for [Fnd_Pref].</p>
+<p>Provides a typed, thread-safe getter and setter for the preferences held in the data file. Replaces the pointer-based v4_FndPrefGetSharedValue reader and the classic-record v4_FndPrefSaveServerPreference writer.</p>
+<p>The Owner column is the namespace. Three conventions live in it: the string Fnd_Pref_SharedName for preferences everyone shares, a user name for the ones that follow a user between machines, and any other label the caller chooses. getNamed and setNamed take the owner; getShared and setShared are those two with Fnd_Pref_SharedName filled in.</p>
+<p>Numeric type matching: Is longint and Is real are treated as a single numeric bucket so that an integer-stored value and a real default (or vice versa) do not silently fall back to default. The classic reader Fnd_Pref_GetSharedValue matches the two types exactly, so it is stricter than this is; that difference is deliberate and stays.</p>
+<h3 id="Fnd_Pref.getShared"><a href="#Fnd_Pref.getShared">getShared</a></h3>
+<pre><code>getShared($name : Text; $default : Variant) : Variant</code></pre>
+<p>The shared preference value for $name. See getNamed, which this is.</p>
+<h3 id="Fnd_Pref.setShared"><a href="#Fnd_Pref.setShared">setShared</a></h3>
+<pre><code>setShared($name : Text; $value : Variant)</code></pre>
+<p>Writes the shared preference value for $name. See setNamed, which this is.</p>
+<h3 id="Fnd_Pref.getNamed"><a href="#Fnd_Pref.getNamed">getNamed</a></h3>
+<pre><code>getNamed($owner : Text; $name : Text; $default : Variant) : Variant</code></pre>
+<p>Returns the preference value for $name within the $owner namespace, decoded from (Type, Value). If the row exists and no default was supplied (Undefined), the stored value is returned as-is — matching the behaviour of Fnd_Pref_GetText with no default, which returns the stored value unconditionally when found. If a default IS supplied, type-matching applies: returns $default when the stored Type does not match the type of $default, or when no row exists.</p>
+<h3 id="Fnd_Pref.setNamed"><a href="#Fnd_Pref.setNamed">setNamed</a></h3>
+<pre><code>setNamed($owner : Text; $name : Text; $value : Variant)</code></pre>
+<p>Writes the value for $name within the $owner namespace. Find-or-create on (Owner, Name); Type and Value columns are encoded by Fnd_PrefEntity.setTypedValue.</p>
+<h3 id="Fnd_Pref.removeNamed"><a href="#Fnd_Pref.removeNamed">removeNamed</a></h3>
+<pre><code>removeNamed($owner : Text; $name : Text) : Boolean</code></pre>
+<p>Drops the preference $name from the $owner namespace. True if there was one to drop.</p>
+<h3 id="Fnd_Pref.namesFor"><a href="#Fnd_Pref.namesFor">namesFor</a></h3>
+<pre><code>namesFor($owner : Text) : Collection</code></pre>
+<p>The preference names held in the $owner namespace, sorted.</p>
+<h3 id="Fnd_Pref.owners"><a href="#Fnd_Pref.owners">owners</a></h3>
+<pre><code>owners() : Collection</code></pre>
+<p>Every namespace present in the table, sorted. The shared name and the user names are in here alongside the labels; the table does not distinguish them.</p>
 </section>
 
 <section class="class" id="Fnd_PrefEntity">

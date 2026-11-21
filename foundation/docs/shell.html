@@ -257,7 +257,7 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <section class="method" id="Fnd_Shell_Installer">
 <h2><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></h2>
 <p class="syntax"><code>Fnd_Shell_Installer</code></p>
-<p>Run this in your own database to install the methods and tables Foundation needs. It lists what is missing and adds it all if you choose Install. It is also opened automatically the first time Foundation needs something that is missing.</p>
+<p>Run this in your own database to install the methods, tables and forms Foundation needs. It lists what is missing and adds it all if you choose Install. A form is copied only if your Forms folder has none of that name, together with the pictures it uses that your Resources folder lacks. It also lists Foundation tables from an earlier version that need a primary key or journaling, and upgrades them; only this method offers an upgrade on its own. It is opened automatically the first time Foundation needs something that is missing, and then lists any upgrades and missing forms too; a missing form alone never opens it. Forms and pictures already in your database that differ from Foundation's are listed for information, marked superseded or edited; Install never changes them, and they alone never open the installer. When nothing is missing, it still opens the page, which says so and lists what has changed in this release, with a Close button.</p>
 <p class="noparams">No parameters.</p>
 </section>
 

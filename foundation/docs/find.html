@@ -171,7 +171,7 @@
 <section class="method" id="Fnd_Find_AddItem">
 <h2><a href="#Fnd_Find_AddItem">Fnd_Find_AddItem</a></h2>
 <p class="syntax"><code>Fnd_Find_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
-<p>Called by the protected &quot;Fnd_Find_Add&quot; routines to add stuff to the arrays.</p>
+<p>Called by the protected &quot;Fnd_Find_Add&quot; routines to add stuff to the collections on Fnd.Find.</p>
 <p>If the label is blank, the field name will be used.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
@@ -228,7 +228,7 @@
 <section class="method" id="Fnd_Find_AddTable">
 <h2><a href="#Fnd_Find_AddTable">Fnd_Find_AddTable</a></h2>
 <p class="syntax"><code>Fnd_Find_AddTable (-&gt;table{; position})</code></p>
-<p>Loads the visible, searchable fields for the specified table into an array named Fnd_Find_Fields_aptr.</p>
+<p>Loads the visible, searchable fields for the specified table into the Fnd.Find collections.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -240,12 +240,13 @@
 
 <section class="method" id="Fnd_Find_BestPopupSize">
 <h2><a href="#Fnd_Find_BestPopupSize">Fnd_Find_BestPopupSize</a></h2>
-<p class="syntax"><code>Fnd_Find_BestPopupSize (-&gt;popup array) --&gt; Number</code></p>
+<p class="syntax"><code>Fnd_Find_BestPopupSize (-&gt;popup array{; form object name}) --&gt; Number</code></p>
 <p>Returns the best object width to use for a pop-up menu form object.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
-<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup</td></tr>
+<tr><td><code>array</code></td><td>Pointer</td><td>in</td><td>The array associated with the popup (ignored when an object name is given)</td></tr>
+<tr><td><code>inObjectName</code></td><td>Text</td><td>in</td><td>&quot;Fnd_Find_FieldNames_at&quot; or &quot;Fnd_Find_OperatorStrs_at&quot;, the Find dialog's pop-ups (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The best object size for the pop-up</td></tr>
 </tbody>
 </table>
@@ -260,12 +261,13 @@
 
 <section class="method" id="Fnd_Find_Engine">
 <h2><a href="#Fnd_Find_Engine">Fnd_Find_Engine</a></h2>
-<p class="syntax"><code>Fnd_Find_Engine (&quot;Query&quot; or &quot;Query Selection&quot;)</code></p>
+<p class="syntax"><code>Fnd_Find_Engine (&quot;Query&quot; or &quot;Query Selection&quot; {; radio button code})</code></p>
 <p>Does the grunt work.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
 <tr><td><code>searchScope</code></td><td>Text</td><td>in</td><td>Either &quot;Query&quot; or &quot;Query Selection&quot;</td></tr>
+<tr><td><code>radioButton</code></td><td>Integer</td><td>in</td><td>1 search all, 2 search selection, 3 add to selection, 4 omit from selection (optional; passed on to a custom search method)</td></tr>
 </tbody>
 </table>
 </section>
@@ -385,7 +387,7 @@
 
 <section class="method" id="Fnd_Find_SizeArrayObject">
 <h2><a href="#Fnd_Find_SizeArrayObject">Fnd_Find_SizeArrayObject</a></h2>
-<p class="syntax"><code>Fnd_Find_SizeArrayObject (-&gt;object; alignment) --&gt; Number</code></p>
+<p class="syntax"><code>Fnd_Find_SizeArrayObject (-&gt;object; alignment{; form object name}) --&gt; Number</code></p>
 <p>Sets the best size for an array based form object based on the contents it displays.</p>
 <p>Rather than using BEST OBJECT SIZE, we calculate the size the same way we did before opening the dialog using the Fnd_Find_GetExtraWidth method.</p>
 <table class="params">
@@ -393,6 +395,7 @@
 <tbody>
 <tr><td><code>object</code></td><td>Pointer</td><td>in</td><td>A pointer to the form object</td></tr>
 <tr><td><code>alignment</code></td><td>Longint</td><td>in</td><td>The alignment (side not to move)</td></tr>
+<tr><td><code>inObjectName</code></td><td>Text</td><td>in</td><td>The form object's name; when given it is used instead of the pointer (optional)</td></tr>
 <tr><td><code>Result</code></td><td>Longint</td><td>out</td><td>The increase in the button size</td></tr>
 </tbody>
 </table>
@@ -400,9 +403,16 @@
 
 <section class="method" id="Fnd_Find_UpdateOperators">
 <h2><a href="#Fnd_Find_UpdateOperators">Fnd_Find_UpdateOperators</a></h2>
-<p class="syntax"><code>Fnd_Find_UpdateOperators</code></p>
-<p>Updates the Search Operators pop-up menu depending on the type of the selected field.</p>
-<p class="noparams">No parameters.</p>
+<p class="syntax"><code>Fnd_Find_UpdateOperators ({field index{; form object}})</code></p>
+<p>Builds Fnd.Find.OperatorStrs_c and OperatorCodes_c for the type of a field.</p>
+<p>When the Find dialog's Form object is passed, its Operators pop-up object and the search value entry area are brought into line as well.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>inFieldIndex</code></td><td>Longint</td><td>in</td><td>The 0-based position of the field in Fnd.Find.FieldNames_c (optional, default 0)</td></tr>
+<tr><td><code>form</code></td><td>Object</td><td>in</td><td>The Find dialog's Form object (optional)</td></tr>
+</tbody>
+</table>
 </section>
 
 </main>

@@ -32,6 +32,10 @@
 <aside class="sidebar">
 	<section class="box">
 		<h2>News</h2>
+		<p><time datetime="2026-11-22">22 Nov 2026</time>: Foundation
+		6.0.0-beta.4, the last beta: the installer now supplies the forms and
+		pictures a database needs, and upgrades older Foundation tables.
+		<a href="/guide/upgrading.html#600-beta4-private-beta-22-november-2026">What changed</a>.</p>
 		<p><time datetime="2026-11-15">15 Nov 2026</time>: Foundation
 		6.0.0-beta.3 now asks before adding anything to a database, and lists what
 		it would add.
@@ -39,8 +43,6 @@
 		<p><time datetime="2026-11-08">8 Nov 2026</time>: Foundation
 		6.0.0-beta.2 adds a search box and font choices to the list window.
 		<a href="/guide/upgrading.html#600-beta2-private-beta-8-november-2026">What changed</a>.</p>
-		<p><time datetime="2026-11-01">1 Nov 2026</time>: Foundation
-		6.0.0-beta.1 opens as a private beta.</p>
 	</section>
 	<section class="box">
 		<h2>Support</h2>
@@ -56,8 +58,9 @@
 <h1>The installer</h1>
 
 <p>Foundation is a component, but parts of it have to live in your
-database: a small set of methods it calls, and the tables some of its
-modules keep their data in. It adds none of them without asking. The
+database: a small set of methods it calls, the tables some of its
+modules keep their data in, and the forms its windows are built on. It adds
+none of them without asking. The
 installer lists what is missing and waits for you to choose
 <strong>Install</strong> or <strong>Cancel</strong>.</p>
 
@@ -71,7 +74,7 @@ open your database.</p>
 	<code>Components/</code> folder.</li>
 	<li>Open your database in 4D, in interpreted mode.</li>
 	<li>Run the method <code>Fnd_Shell_Installer</code>. The installer also
-	opens by itself the first time your code calls Foundation.</li>
+	opens by itself at start-up when something is missing.</li>
 	<li>Read the list, then choose Install or Cancel.</li>
 </ol>
 
@@ -155,9 +158,33 @@ and the new methods compile.</p>
 	<li><code>Compiler_Fnd_HookAndHost</code></li>
 </ul>
 
+<h2>Forms</h2>
+
+<p>The forms Foundation's windows are built on. They are copied into your database's Forms folder, with the pictures they use into a folder named Foundation in its Resources folder. A form or picture already there is never replaced.</p>
+
+<ul class="names">
+	<li><code>Fnd_Tlbr_Toolbar</code></li>
+	<li><code>Fnd_IO_InputForm</code></li>
+	<li><code>Fnd_IO_InputTemplate</code></li>
+	<li><code>Fnd_IO_OutputTemplate</code></li>
+	<li><code>Fnd_Out</code></li>
+</ul>
+
+<h2>Table upgrades</h2>
+
+<p>These tables were made by an earlier Foundation and lack something it now expects: a primary key, or a place in your database's journal. Each is listed with what it needs. Where a primary key is added, any row whose ID is empty, or the same as another row's, is given a new ID.</p>
+
+<p>Listed only when one of your tables needs it. Back up before choosing Install.</p>
+
+<h2>Installed earlier, since changed</h2>
+
+<p>These forms and pictures are in your database already and differ from the ones this Foundation carries. Nothing here is changed by Install. Superseded: Foundation has a newer version and yours is as Foundation supplied it. Edited: yours has been changed since it was installed.</p>
+
+<p>To take the current version of a superseded form, delete its folder from your Forms folder and run the installer again. Keep a form marked edited.</p>
+
 <h2>What is never changed</h2>
 
-<p>Your own code in a hook method is never changed. A Foundation host method whose parameters are out of date is replaced, with the previous code kept below it as a comment.</p>
+<p>Your own code in a hook method is never changed, and neither is a form or picture already in your database. A Foundation host method whose parameters are out of date is replaced, with the previous code kept below it as a comment.</p>
 
 <p>The hook and host methods are described in
 <a href="/guide/04-hooks-and-host-methods.html">chapter 4 of the Developer

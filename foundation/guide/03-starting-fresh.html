@@ -76,17 +76,19 @@
 <li>Reopen the project. The Foundation methods appear in the Explorer under Component Methods.</li>
 </ol>
 <p>To develop with Foundation's source instead, put the Foundation project folder itself in <code>Components/</code> or declare its path; it then runs interpreted inside your host.</p>
-<h2 id="let-foundation-install-its-methods-and-tables">Let Foundation install its methods and tables</h2>
-<p>Parts of Foundation have to live in your database: a small set of methods it calls, and the tables some of its modules keep their data in. Foundation adds nothing by itself. On the first start in an interpreted host, if anything is missing, it shows the <strong>installer dialog</strong>, which lists what it will add:</p>
+<h2 id="let-foundation-install-its-methods-tables-and-forms">Let Foundation install its methods, tables and forms</h2>
+<p>Parts of Foundation have to live in your database: a small set of methods it calls, the tables some of its modules keep their data in, and the forms its windows are built on. Foundation adds nothing by itself. On the first start in an interpreted host, if anything is missing, it shows the <strong>installer dialog</strong>, which lists what it will add:</p>
 <ul>
 <li>three tables: <code>Fnd_Pref</code>, <code>Fnd_List</code> and <code>Fnd_SqNo</code>;</li>
 <li>30 <code>Fnd_Hook_</code> methods, empty methods where you add your own code;</li>
 <li>11 <code>Fnd_Host_</code> methods, which let the component reach your forms, lists and pictures;</li>
-<li><code>Compiler_Fnd_HookAndHost</code>, the typing declarations for the methods above.</li>
+<li><code>Compiler_Fnd_HookAndHost</code>, the typing declarations for the methods above;</li>
+<li>five forms, in a project host: <code>Fnd_Tlbr_Toolbar</code>, <code>Fnd_IO_InputForm</code>, <code>Fnd_IO_InputTemplate</code>, <code>Fnd_IO_OutputTemplate</code> and <code>Fnd_Out</code>. They go into <code>Project/Sources/Forms/</code>, and the pictures they use into your <code>Resources</code> folder (<code>Fnd_Tlbr_Images</code> and <code>Images</code>).</li>
 </ul>
 <p>Choose <strong>Install</strong> to add them all at once, or <strong>Cancel</strong> to add nothing; the database is then left untouched. <strong>Read More</strong> opens <a href="https://foundation.open4dshell.com/install/">https://foundation.open4dshell.com/install/</a>. A compiled host is never changed.</p>
-<p>When the installer finishes, <strong>restart the database</strong>, so that the new tables exist and the new methods compile.</p>
-<p>You can run the installer yourself at any time with <code>Fnd_Shell_Installer</code>, which is shared. It lists what is missing, or says that nothing is.</p>
+<p>A form or picture already in your database is never replaced, so a form you have edited is safe. There is no choice form by form: if you delete one you do not use, the installer lists it again the next time it opens.</p>
+<p>When the installer finishes, <strong>restart the database</strong>, so that the new tables exist and the new methods compile. The forms need no restart.</p>
+<p>You can run the installer yourself at any time with <code>Fnd_Shell_Installer</code>, which is shared. It lists what is missing, or says that nothing is. A missing form alone does not open the installer at start-up, so this is how you get a form back.</p>
 <h2 id="call-foundation-from-the-database-methods">Call Foundation from the database methods</h2>
 <pre><code>// On Startup, and On Server Startup
 Fnd_Shell_OnStartup
@@ -105,7 +107,7 @@ Fnd_Shell_OnExit</code></pre>
 <h2 id="forms">Forms</h2>
 <p>Each visible table needs two forms:</p>
 <ul>
-<li>an <strong>input form</strong>, the record window, named <code>Input</code>, inheriting <code>Fnd_IO_InputForm</code>. Chapter 6 is the full guide. The short version: copy <code>Forms/Fnd_IO_InputTemplate</code> from Foundation Product Sales, enable the eight events it lists, call <code>Fnd_IO_InputFormMethod</code> from the form method, replace the sample fields with yours.</li>
+<li>an <strong>input form</strong>, the record window, named <code>Input</code>, inheriting <code>Fnd_IO_InputForm</code>. Chapter 6 is the full guide. The short version: copy the objects of <code>Forms/Fnd_IO_InputTemplate</code>, which the installer put in your project, enable the eight events it lists, call <code>Fnd_IO_InputFormMethod</code> from the form method, replace the sample fields with yours.</li>
 <li>a <strong>list window</strong>, which in Foundation 6 is not a classic output form at all. <code>Fnd_Out</code> draws a listbox over an entity selection and lets the user choose, order, size and style the columns; the developer decides which fields are offered. Chapter 5 is the guide. The classic <code>Output</code> form inheriting <code>Fnd_Tlbr_Toolbar</code>, with Header, Detail and Footer lines, still works for a host that has one, and is what the 5.4 manual describes.</li>
 </ul>
 <h2 id="tell-foundation-about-your-database">Tell Foundation about your database</h2>
