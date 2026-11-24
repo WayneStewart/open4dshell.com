@@ -86,7 +86,8 @@ simply remove the component. A compiled database is never changed.</p>
 and the new methods compile.</p>
 
 <p>When nothing is missing, the installer says so and offers only
-<strong>Done</strong>. If it also has changes to offer for hook methods
+<strong>Done</strong>; the page then shows nothing else unless there are
+hook updates or you came from the new-release notice. If it also has changes to offer for hook methods
 you already have, it offers <strong>Apply</strong> and
 <strong>Cancel</strong> instead (see
 <a href="#hook-updates">Hook methods Foundation has changed</a>).
@@ -117,8 +118,7 @@ compiled database, a server and a remote client never ask, so the people
 who use your application never see it.</p>
 
 <p>The sections below follow the order of the installer's page. Each
-appears only when it has something to show, apart from Database methods,
-which is always first.</p>
+appears only when it has something to show.</p>
 
 <h2>Database methods</h2>
 
@@ -130,8 +130,9 @@ Add each line to its method, creating the method if you have none:</p>
 	<li>On Exit: <code>Fnd_Shell_OnExit</code></li>
 </ul>
 
-<p>The installer never reads your database methods, so it shows these two
-lines every time, whether or not your methods already call them. If your
+<p>This section appears whenever there is something to install. The
+installer never reads your database methods, so it cannot tell whether
+yours already call Foundation. If your
 database lacks either method, the installer also offers a ticked box,
 <strong>Start Foundation when this database opens</strong>; with it ticked,
 Install creates whichever of the two is missing, with its one line. A
@@ -140,8 +141,7 @@ method you already have is never changed: add the line to it yourself.</p>
 <h2>What has changed in this release</h2>
 
 <p>A short list of what this release changes for your database. It appears
-when you open the installer yourself or choose Review now, not when the
-installer opens by itself because something is missing. The full notes are
+when you choose Review now in the new-release notice. The full notes are
 in <a href="/guide/upgrading.html">Upgrading</a>.</p>
 
 <h2>Tables</h2>
