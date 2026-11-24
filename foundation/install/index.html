@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The installer · Foundation</title>
-<meta name="description" content="What the Foundation installer adds to your database, and why: three tables, the hook and host methods, and one compiler method.">
+<meta name="description" content="What the Foundation installer adds to your database, and why: the database method lines, three tables, the hook and host methods, one compiler method and the forms; and how it updates hook methods and announces a new release.">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="stylesheet" href="/styles.css">
 </head>
@@ -85,6 +85,65 @@ simply remove the component. A compiled database is never changed.</p>
 <p>After installing, restart the database so the new tables are available
 and the new methods compile.</p>
 
+<p>When nothing is missing, the installer says so and offers only
+<strong>Done</strong>. If it also has changes to offer for hook methods
+you already have, it offers <strong>Apply</strong> and
+<strong>Cancel</strong> instead (see
+<a href="#hook-updates">Hook methods Foundation has changed</a>).
+Run <code>Fnd_Shell_Installer</code> at any time to see the page;
+<strong>Read More</strong> on it opens this page.</p>
+
+<h2 id="new-release">When a new release is installed</h2>
+
+<p>The first time your database opens interpreted after you put a new
+release of Foundation in its <code>Components/</code> folder, Foundation
+says so and offers three answers:</p>
+
+<ul>
+	<li><strong>Review now</strong> opens the installer page, which leads
+	with what has changed in this release. Nothing is changed unless you
+	choose Install there.</li>
+	<li><strong>Skip this release</strong> asks again at the next
+	release.</li>
+	<li><strong>Never ask</strong> stops the question for this database.
+	The installer is still there to run by hand.</li>
+</ul>
+
+<p>The answer is kept in <code>Settings/Foundation.json</code>, in the
+database's folder beside its <code>Project</code> folder. Installing a
+release, or opening the installer when there is nothing to add, counts as
+an answer, so you are not asked about a release you have just installed. A
+compiled database, a server and a remote client never ask, so the people
+who use your application never see it.</p>
+
+<p>The sections below follow the order of the installer's page. Each
+appears only when it has something to show, apart from Database methods,
+which is always first.</p>
+
+<h2>Database methods</h2>
+
+<p>Foundation starts and quits only when your database methods call it.
+Add each line to its method, creating the method if you have none:</p>
+
+<ul class="names">
+	<li>On Startup: <code>Fnd_Shell_OnStartup</code></li>
+	<li>On Exit: <code>Fnd_Shell_OnExit</code></li>
+</ul>
+
+<p>The installer never reads your database methods, so it shows these two
+lines every time, whether or not your methods already call them. If your
+database lacks either method, the installer also offers a ticked box,
+<strong>Start Foundation when this database opens</strong>; with it ticked,
+Install creates whichever of the two is missing, with its one line. A
+method you already have is never changed: add the line to it yourself.</p>
+
+<h2>What has changed in this release</h2>
+
+<p>A short list of what this release changes for your database. It appears
+when you open the installer yourself or choose Review now, not when the
+installer opens by itself because something is missing. The full notes are
+in <a href="/guide/upgrading.html">Upgrading</a>.</p>
+
 <h2>Tables</h2>
 
 <p>Storage for preferences, choice lists and sequence numbers.</p>
@@ -144,7 +203,6 @@ and the new methods compile.</p>
 	<li><code>Fnd_Host_ListToArray</code></li>
 	<li><code>Fnd_Host_GetPictureFromLibrary</code></li>
 	<li><code>Fnd_Host_Tlbr_SetBtnPict</code></li>
-	<li><code>Fnd_Host_Tlbr_SetMessage</code></li>
 	<li><code>Fnd_Host_Tlbr_ButtonClck</code></li>
 	<li><code>Fnd_Host_IO_DisplayDialog</code></li>
 	<li><code>Fnd_Host_SaveList</code></li>
@@ -176,6 +234,34 @@ and the new methods compile.</p>
 
 <p>Listed only when one of your tables needs it. Back up before choosing Install.</p>
 
+<h2 id="hook-updates">Hook methods Foundation has changed</h2>
+
+<p>These hook methods are in your database already, and the version
+Foundation supplies has changed since. Nothing is written unless you tick a
+box and choose Apply (or Install, when other items are missing too). Your
+present code for each ticked method is first saved in a folder named
+<code>Foundation Backups</code>, in your database's folder. Each method is
+listed in one of four ways:</p>
+
+<ul>
+	<li><strong>Replace</strong>: yours is as Foundation supplied it in an
+	earlier release, so ticking it replaces it with the current version.</li>
+	<li><strong>Apply Foundation's changes</strong>: you have added code,
+	and Foundation's changes do not overlap yours, so ticking it applies
+	them and keeps your code.</li>
+	<li><strong>Overlapping changes</strong>: Foundation's changes overlap
+	yours. There is no box; copy what you want by hand.</li>
+	<li><strong>Not traceable</strong>: yours differs from the current
+	version and Foundation cannot tell which version it began from, usually
+	because it was written for a much earlier Foundation. There is no box;
+	these are folded together under one line at the end, for reference
+	only.</li>
+</ul>
+
+<p><strong>Show changes</strong> under each method opens the
+difference, so you can decide before ticking. The closing alert names the
+methods updated and where their backups are.</p>
+
 <h2>Installed earlier, since changed</h2>
 
 <p>These forms and pictures are in your database already and differ from the ones this Foundation carries. Nothing here is changed by Install. Superseded: Foundation has a newer version and yours is as Foundation supplied it. Edited: yours has been changed since it was installed.</p>
@@ -184,7 +270,10 @@ and the new methods compile.</p>
 
 <h2>What is never changed</h2>
 
-<p>Your own code in a hook method is never changed, and neither is a form or picture already in your database. A Foundation host method whose parameters are out of date is replaced, with the previous code kept below it as a comment.</p>
+<p>Your own code in a hook method is never changed unless you tick it under
+<a href="#hook-updates">Hook methods Foundation has changed</a>, and then
+only after a backup. A form or picture already in your database is never
+changed, and neither is a database method you already have. A Foundation host method whose parameters are out of date is replaced, with the previous code kept below it as a comment.</p>
 
 <p>The hook and host methods are described in
 <a href="/guide/04-hooks-and-host-methods.html">chapter 4 of the Developer
