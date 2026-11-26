@@ -48,6 +48,7 @@
 		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
 		<li><a href="/docs/data.html">Fnd_Data</a></li>
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dev.html">Fnd_Dev</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
 		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
@@ -76,6 +77,7 @@
 		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
 		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
 		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/test.html">Fnd_Test</a></li>
 		<li><a href="/docs/text.html">Fnd_Text</a></li>
 		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
 		<li><a href="/docs/vs.html">Fnd_VS</a></li>
@@ -116,6 +118,7 @@
 <section class="class" id="date">
 <h2><a href="#date">cs.fnd.date</a></h2>
 <p>Created by: Wayne Stewart (Claude Opus 5) (2026-08-14) The Fnd_Date module as a class, so a host can reach it through the class store instead of the method names.</p>
+<p>Status: a first step, not a complete API. This class covers part of the Fnd_Date module and shows the direction Foundation's code is taking; the Fnd_Date_ methods remain the complete, supported interface, and more functions will follow in later releases.</p>
 <pre>In a host:         cs.fnd.date.new().toISO(Current date; Current time)
 Inside Foundation: cs.date.new().toISO(Current date; Current time)</pre>
 <p>The namespace is the &quot;Component namespace in the class store&quot; setting, which is &quot;fnd&quot; here. It governs how the host sees these classes; inside the component they are plain cs.&lt;name&gt;.</p>
@@ -172,21 +175,32 @@ Inside Foundation: cs.date.new().toISO(Current date; Current time)</pre>
 
 <section class="class" id="fnd">
 <h2><a href="#fnd">cs.fnd.fnd</a></h2>
+<p>Created by: Wayne Stewart, Foundation 5 Wayne Stewart (Claude) 2026-08-01 -&gt; 2026-12-01 - Prepare Foundation 6 release Foundation as a whole through the class store: its release information, the current table and form type, and the labels components publish to each other.</p>
+<p>Status: a first step, not a complete API. This class covers part of the Fnd_Gen module and shows the direction Foundation's code is taking; the Fnd_Info and Fnd_Gen_ methods remain the complete, supported interface, and more functions will follow in later releases.</p>
+<pre>In a host:         cs.fnd.fnd.new().info(&quot;version&quot;)
+Inside Foundation: cs.fnd.new().info(&quot;version&quot;)</pre>
+<p>The namespace is the &quot;Component namespace in the class store&quot; setting, which is &quot;fnd&quot; here. It governs how the host sees these classes; inside the component they are plain cs.&lt;name&gt;.</p>
+<p>Design decisions and assumptions:</p>
+<ul>
+<li>Every function delegates to the shared Foundation method of the same behaviour, so the class cannot drift from it.</li>
+<li>Stateless, so new() is cheap and instances are interchangeable. The current table and form type are Foundation's per-process state, the same ones the methods read and set.</li>
+<li>The component-label store lives on the Form object, so setComponentInfo, getComponentInfo and componentCheck only work while a form is loaded.</li>
+</ul>
 <h3 id="fnd.info"><a href="#fnd.info">info</a></h3>
 <pre><code>info($infoRequested_t : Text)-&gt;$result_t : Text</code></pre>
-<p>The component's own labels — &quot;name&quot; and &quot;version&quot;. Anything else answers &quot;Component Did Not Recognize Request&quot;.</p>
+<p>Foundation's own labels: &quot;version&quot; (the release version, e.g. 6.0.0-rc.1), &quot;info&quot; (the full Get Info string) and &quot;name&quot;. Anything else is not recognised.</p>
 <h3 id="fnd.getCurrentTable"><a href="#fnd.getCurrentTable">getCurrentTable</a></h3>
 <pre><code>getCurrentTable-&gt;$result_ptr : Pointer</code></pre>
-<p>The table this instance was told to work on, or Null if it was never set.</p>
+<p>The current table, or a nil pointer when none is current. Falls back to the current form's table, then the current trigger's.</p>
 <h3 id="fnd.setCurrentTable"><a href="#fnd.setCurrentTable">setCurrentTable</a></h3>
 <pre><code>setCurrentTable($table_ptr : Pointer)-&gt;$result_ptr : Pointer</code></pre>
-<p>Records the table to work on, and returns it.</p>
+<p>Makes the table the current one, and returns it.</p>
 <h3 id="fnd.getCurrentFormType"><a href="#fnd.getCurrentFormType">getCurrentFormType</a></h3>
 <pre><code>getCurrentFormType-&gt;$result_i : Integer</code></pre>
-<p>The form type this instance was told to work on. Fnd_Gen_NoForm when none.</p>
+<p>The type of the displayed form: 0 Fnd_Gen_NoForm, 1 Fnd_Gen_UnknownForm, 2 Fnd_Gen_OutputForm, 3 Fnd_Gen_InputForm, 4 Fnd_Gen_PreferencesForm, 5 Fnd_Gen_AboutForm.</p>
 <h3 id="fnd.setComponentInfo"><a href="#fnd.setComponentInfo">setComponentInfo</a></h3>
 <pre><code>setComponentInfo($key_t : Text; $value_t : Text)-&gt;$result_t : Text</code></pre>
-<p>Publishes one label for another component to read. The store lives on the Form object, so this only works while a form is loaded.</p>
+<p>Publishes one label for another component to read, and returns it. The store lives on the Form object, so this only works while a form is loaded.</p>
 <h3 id="fnd.getComponentInfo"><a href="#fnd.getComponentInfo">getComponentInfo</a></h3>
 <pre><code>getComponentInfo($key_t : Text)-&gt;$result_t : Text</code></pre>
 <p>Reads back a label another component published. Empty when there is none, or when no form is loaded.</p>
@@ -237,7 +251,7 @@ Inside Foundation: cs.date.new().toISO(Current date; Current time)</pre>
 
 <section class="class" id="log">
 <h2><a href="#log">cs.fnd.log</a></h2>
-<p>Created by WBS, 2026-09-12 (FND-26) Logging access for hosts: cs.fnd.log.new(). No shared singleton syntax. Delegates to methods; enabled/selection remain in the calling process. A future 21 singleton can use the same functions without sharing process state.</p>
+<p>Created by WBS, 2026-09-12 (FND-26) Logging access for hosts: cs.fnd.log.new(). No shared singleton syntax. Status: a first step, not a complete API. This class covers part of the Fnd_Log module and shows the direction Foundation's code is taking; the Fnd_Log_ methods remain the complete, supported interface, and more functions will follow in later releases. Delegates to methods; enabled/selection remain in the calling process. A future 21 singleton can use the same functions without sharing process state.</p>
 <h3 id="log.enable"><a href="#log.enable">enable</a></h3>
 <pre><code>enable($enabled_b : Boolean)-&gt;$result_b : Boolean</code></pre>
 <p>Read or set the current process enable flag.</p>
@@ -291,6 +305,7 @@ Inside Foundation: cs.date.new().toISO(Current date; Current time)</pre>
 <section class="class" id="pref">
 <h2><a href="#pref">cs.fnd.pref</a></h2>
 <p>Created by: Wayne Stewart (Claude Opus 5) (2026-08-14) The Fnd_Pref module as a class, so a host can reach it through the class store instead of the method names.</p>
+<p>Status: a first step, not a complete API. This class covers part of the Fnd_Pref module and shows the direction Foundation's code is taking; the Fnd_Pref_ methods remain the complete, supported interface, and more functions will follow in later releases.</p>
 <pre>In a host:         cs.fnd.pref.new().getText(&quot;Report: Last Folder&quot;; &quot;&quot;)
 Inside Foundation: cs.pref.new().getText(&quot;Report: Last Folder&quot;; &quot;&quot;)</pre>
 <p>The namespace is the &quot;Component namespace in the class store&quot; setting, which is &quot;fnd&quot; here. It governs how the host sees these classes; inside the component they are plain cs.&lt;name&gt;.</p>
@@ -359,6 +374,7 @@ Inside Foundation: cs.pref.new().getText(&quot;Report: Last Folder&quot;; &quot;
 <section class="class" id="pswd">
 <h2><a href="#pswd">cs.fnd.pswd</a></h2>
 <p>Created by: Wayne Stewart (Claude Opus 5) (2026-08-14) The Fnd_Pswd module as a class, so a host can reach it through the class store instead of the method names.</p>
+<p>Status: a first step, not a complete API. This class covers part of the Fnd_Pswd module and shows the direction Foundation's code is taking; the Fnd_Pswd_ methods remain the complete, supported interface, and more functions will follow in later releases.</p>
 <pre>In a host:         cs.fnd.pswd.new().generate({length: 16})
 Inside Foundation: cs.pswd.new().generate({length: 16})</pre>
 <p>The namespace is the &quot;Component namespace in the class store&quot; setting, which is &quot;fnd&quot; here. It governs how the host sees these classes; inside the component they are plain cs.&lt;name&gt;.</p>
@@ -413,6 +429,7 @@ Inside Foundation: cs.pswd.new().generate({length: 16})</pre>
 <section class="class" id="text">
 <h2><a href="#text">cs.fnd.text</a></h2>
 <p>Created by: Wayne Stewart (Claude Opus 5) (2026-08-13) WBS, 2026-09-12 - Expose existing whitespace trim through the class. The Fnd_Text module as a class, so a host can reach it through the class store instead of the method names.</p>
+<p>Status: a first step, not a complete API. This class covers part of the Fnd_Text module and shows the direction Foundation's code is taking; the Fnd_Text_ methods remain the complete, supported interface, and more functions will follow in later releases.</p>
 <pre>In a host:        cs.fnd.text.new().capitalize(&quot;hello world&quot;)
 Inside Foundation: cs.text.new().capitalize(&quot;hello world&quot;)</pre>
 <p>The namespace is the &quot;Component namespace in the class store&quot; setting, which is &quot;fnd&quot; here. It governs how the host sees these classes; inside the component they are plain cs.&lt;name&gt;.</p>

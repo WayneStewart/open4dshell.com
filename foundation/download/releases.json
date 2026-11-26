@@ -1,10 +1,17 @@
 {
   "releases": [
     {
+      "version": "6.0.0-rc.1",
+      "date": "2026-11-27",
+      "commit": "24ec5bf9",
+      "folder": "https://www.dropbox.com/scl/fo/lbz49p6mi5nm2kkkeb9b1/AB9OBXsI1Rrsz-WkJf6hLCc?rlkey=bp06doicuayng0rrd392lvsdz&dl=0"
+    },
+    {
       "version": "6.0.0-beta.4",
       "date": "2026-11-22",
       "commit": "fdd33214",
-      "folder": "https://www.dropbox.com/scl/fo/ubuwydyxndttcnkoumu7k/AAPNhs81NgjC81Dkaq7XUlY?rlkey=hur55ipvzvhmyaeb30y9o6nk7&dl=0"
+      "folder": "https://www.dropbox.com/scl/fo/ubuwydyxndttcnkoumu7k/AAPNhs81NgjC81Dkaq7XUlY?rlkey=hur55ipvzvhmyaeb30y9o6nk7&dl=0",
+      "withdrawn": true
     },
     {
       "version": "6.0.0-beta.3",

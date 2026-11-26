@@ -48,6 +48,7 @@
 		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
 		<li><a href="/docs/data.html">Fnd_Data</a></li>
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dev.html">Fnd_Dev</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
 		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
@@ -76,6 +77,7 @@
 		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
 		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
 		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/test.html">Fnd_Test</a></li>
 		<li><a href="/docs/text.html">Fnd_Text</a></li>
 		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
 		<li><a href="/docs/vs.html">Fnd_VS</a></li>
@@ -95,6 +97,7 @@
 		<li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 		<li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 		<li><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></li>
+		<li><a href="#Fnd_Shell_IsPreemptive">Fnd_Shell_IsPreemptive</a></li>
 		<li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 		<li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
 		<li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
@@ -122,7 +125,7 @@
 
 <h1>Fnd_Shell</h1>
 
-<p>28 shared methods.</p>
+<p>29 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></li>
@@ -134,6 +137,7 @@
 <li><a href="#Fnd_Shell_GetFndObject">Fnd_Shell_GetFndObject</a></li>
 <li><a href="#Fnd_Shell_Info">Fnd_Shell_Info</a></li>
 <li><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></li>
+<li><a href="#Fnd_Shell_IsPreemptive">Fnd_Shell_IsPreemptive</a></li>
 <li><a href="#Fnd_Shell_IsRunning">Fnd_Shell_IsRunning</a></li>
 <li><a href="#Fnd_Shell_Localize">Fnd_Shell_Localize</a></li>
 <li><a href="#Fnd_Shell_MenuBar">Fnd_Shell_MenuBar</a></li>
@@ -158,7 +162,7 @@
 <section class="method" id="Fnd_Shell_Administration">
 <h2><a href="#Fnd_Shell_Administration">Fnd_Shell_Administration</a></h2>
 <p class="syntax"><code>Fnd_Shell_Administration</code></p>
-<p>Displays Foundation's Administration dialog.</p>
+<p>Displays Foundation's Administration dialog. Every user can open it; 4D's Password Editor is offered only to the Designer, the Administrator and the Administration group.</p>
 <p class="noparams">No parameters.</p>
 </section>
 
@@ -193,7 +197,7 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <section class="method" id="Fnd_Shell_Documentation">
 <h2><a href="#Fnd_Shell_Documentation">Fnd_Shell_Documentation</a></h2>
 <p class="syntax"><code>Fnd_Shell_Documentation</code></p>
-<p>Opens the Foundation Developer Reference (foundation.open4dshell.com/docs) in a web area.</p>
+<p>Opens the Foundation Developer Reference (foundation.open4dshell.com/docs) in a web area. It can be opened before Foundation is installed or running, and does not start it.</p>
 <p class="noparams">No parameters.</p>
 </section>
 
@@ -258,7 +262,21 @@ Fnd_Shell_CommandWrapper($command; New collection($a; $b))  --&gt;  a collection
 <h2><a href="#Fnd_Shell_Installer">Fnd_Shell_Installer</a></h2>
 <p class="syntax"><code>Fnd_Shell_Installer</code></p>
 <p>Run this in your own database to install the methods, tables and forms Foundation needs. It lists what is missing and adds it all if you choose Install. A form is copied only if your Forms folder has none of that name, together with the pictures it uses that your Resources folder lacks. It also lists Foundation tables from an earlier version that need a primary key or journaling, and upgrades them; only this method offers an upgrade on its own. It is opened automatically the first time Foundation needs something that is missing, and then lists any upgrades and missing forms too; a missing form alone never opens it. Forms and pictures already in your database that differ from Foundation's are listed for information, marked superseded or edited; Install never changes them, and they alone never open the installer. When nothing is missing, it still opens the page, which says so and lists what has changed in this release, with a Close button.</p>
+<p>It runs in a process of its own, one at a time; the call returns at once.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Shell_IsPreemptive">
+<h2><a href="#Fnd_Shell_IsPreemptive">Fnd_Shell_IsPreemptive</a></h2>
+<p class="syntax"><code>Fnd_Shell_IsPreemptive --&gt; Boolean</code></p>
+<p>Returns True if the current process is running preemptively.</p>
+<p>Always False in interpreted mode, and in any process whose method is not thread-safe.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>True if the current process is preemptive</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Shell_IsRunning">

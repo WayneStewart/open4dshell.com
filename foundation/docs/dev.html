@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fnd_Dev — Foundation Developer Reference</title>
+<meta name="description" content="Shared methods of Foundation's Fnd_Dev module.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/">Guide</a></li>
+		<li><a href="/docs/" aria-current="page">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+	<h2>Reference</h2>
+	<ul class="nav">
+		<li><a href="/docs/">Contents</a></li>
+		<li><a href="/docs/all.html">All methods</a></li>
+		<li><a href="/docs/classes.html">Classes</a></li>
+		<li><a href="/docs/history.html">History</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Modules</h2>
+	<ul class="nav">
+		<li><a href="/docs/art.html">Fnd_Art</a></li>
+		<li><a href="/docs/bttn.html">Fnd_Bttn</a></li>
+		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
+		<li><a href="/docs/data.html">Fnd_Data</a></li>
+		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dev.html" aria-current="page">Fnd_Dev</a></li>
+		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
+		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
+		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
+		<li><a href="/docs/fcs.html">Fnd_FCS</a></li>
+		<li><a href="/docs/file.html">Fnd_File</a></li>
+		<li><a href="/docs/find.html">Fnd_Find</a></li>
+		<li><a href="/docs/gen.html">Fnd_Gen</a></li>
+		<li><a href="/docs/io.html">Fnd_IO</a></li>
+		<li><a href="/docs/list.html">Fnd_List</a></li>
+		<li><a href="/docs/loc.html">Fnd_Loc</a></li>
+		<li><a href="/docs/log.html">Fnd_Log</a></li>
+		<li><a href="/docs/menu.html">Fnd_Menu</a></li>
+		<li><a href="/docs/msg.html">Fnd_Msg</a></li>
+		<li><a href="/docs/nav.html">Fnd_Nav</a></li>
+		<li><a href="/docs/obj.html">Fnd_Obj</a></li>
+		<li><a href="/docs/out.html">Fnd_Out</a></li>
+		<li><a href="/docs/pref.html">Fnd_Pref</a></li>
+		<li><a href="/docs/prnt.html">Fnd_Prnt</a></li>
+		<li><a href="/docs/pswd.html">Fnd_Pswd</a></li>
+		<li><a href="/docs/rec.html">Fnd_Rec</a></li>
+		<li><a href="/docs/reg.html">Fnd_Reg</a></li>
+		<li><a href="/docs/regg.html">Fnd_RegG</a></li>
+		<li><a href="/docs/reltd.html">Fnd_Reltd</a></li>
+		<li><a href="/docs/shell.html">Fnd_Shell</a></li>
+		<li><a href="/docs/sort.html">Fnd_Sort</a></li>
+		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
+		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
+		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/test.html">Fnd_Test</a></li>
+		<li><a href="/docs/text.html">Fnd_Text</a></li>
+		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
+		<li><a href="/docs/vs.html">Fnd_VS</a></li>
+		<li><a href="/docs/wnd.html">Fnd_Wnd</a></li>
+		<li><a href="/docs/other.html">Other shared methods</a></li>
+	</ul>
+	</section>
+	<section class="box">
+	<h2>Fnd_Dev</h2>
+	<ul class="nav methods">
+		<li><a href="#Fnd_Dev_CompilerCheck">Fnd_Dev_CompilerCheck</a></li>
+		<li><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></li>
+		<li><a href="#Fnd_Dev_SchedStart">Fnd_Dev_SchedStart</a></li>
+		<li><a href="#Fnd_Dev_SchedStop">Fnd_Dev_SchedStop</a></li>
+		<li><a href="#Fnd_Dev_WriteClassDocumentation">Fnd_Dev_WriteClassDocumentation</a></li>
+		<li><a href="#Fnd_Dev_WriteDocumentation">Fnd_Dev_WriteDocumentation</a></li>
+	</ul>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>Fnd_Dev</h1>
+
+<p>6 shared methods.</p>
+
+<ul class="jump">
+<li><a href="#Fnd_Dev_CompilerCheck">Fnd_Dev_CompilerCheck</a></li>
+<li><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></li>
+<li><a href="#Fnd_Dev_SchedStart">Fnd_Dev_SchedStart</a></li>
+<li><a href="#Fnd_Dev_SchedStop">Fnd_Dev_SchedStop</a></li>
+<li><a href="#Fnd_Dev_WriteClassDocumentation">Fnd_Dev_WriteClassDocumentation</a></li>
+<li><a href="#Fnd_Dev_WriteDocumentation">Fnd_Dev_WriteDocumentation</a></li>
+</ul>
+
+<section class="method" id="Fnd_Dev_CompilerCheck">
+<h2><a href="#Fnd_Dev_CompilerCheck">Fnd_Dev_CompilerCheck</a></h2>
+<p class="syntax"><code>Fnd_Dev_CompilerCheck</code></p>
+<p>Runs a syntax check of your project (Compile project with no targets) and reports the result: a summary goes to the pasteboard and an alert shows it. Holding Option (Alt on Windows) while the check finishes puts the concise rather than the indented JSON on the pasteboard.</p>
+<p>Files edited outside the 4D IDE are picked up first, so the check sees the current source.</p>
+<p>Interpreted mode only.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_ResizeDesignWindows">
+<h2><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></h2>
+<p class="syntax"><code>Fnd_Dev_ResizeDesignWindows</code></p>
+<p>Resizes any open Method, Form or Explorer windows in your database's design environment. Used to resize the windows while developing.</p>
+<p>To use it, open the windows you want resized, switch to the User environment and select this method from the Execute dialog.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_SchedStart">
+<h2><a href="#Fnd_Dev_SchedStart">Fnd_Dev_SchedStart</a></h2>
+<p class="syntax"><code>Fnd_Dev_SchedStart</code></p>
+<p>Starts the compile-check watcher in your database. The watcher polls &lt;Resources&gt;/schedulerRequest.json in your database's Resources folder every 5 seconds, runs the action it names (a compile check, a test run or a relaunch), and writes the outcome to &lt;Resources&gt;/schedulerResult.json. Your project is the one checked.</p>
+<p>Call it once from On Startup.</p>
+<p>A developer tool, driven by the developer and by AI working alongside them.</p>
+<p>Interpreted mode only. In compiled mode this is a no-op.</p>
+<p>Stop the watcher with Fnd_Dev_SchedStop.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_SchedStop">
+<h2><a href="#Fnd_Dev_SchedStop">Fnd_Dev_SchedStop</a></h2>
+<p class="syntax"><code>Fnd_Dev_SchedStop</code></p>
+<p>Asks the watcher started by Fnd_Dev_SchedStart to stop. It exits on its next 5 second tick. Calling this with no watcher running does nothing.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_WriteClassDocumentation">
+<h2><a href="#Fnd_Dev_WriteClassDocumentation">Fnd_Dev_WriteClassDocumentation</a></h2>
+<p class="syntax"><code>Fnd_Dev_WriteClassDocumentation</code></p>
+<p>Writes Documentation/Classes/&lt;class&gt;.md in your database for every class in your project, so a class has a page in the Explorer's preview area the way a method does.</p>
+<p>The page is built from what is already in the class file: the block comment at the top becomes the description; each Function line becomes a heading and a prototype; the comment lines immediately under a Function line become that function's description. Functions whose names begin with an underscore are left out. A class with no live code has no page, and any page it had is removed.</p>
+<p>Takes no parameters and shows no alert, so it is safe to drive headlessly.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_WriteDocumentation">
+<h2><a href="#Fnd_Dev_WriteDocumentation">Fnd_Dev_WriteDocumentation</a></h2>
+<p class="syntax"><code>Fnd_Dev_WriteDocumentation {($options_o : Object)}</code></p>
+<p>Writes documentation comments for your project's methods, into your database's Documentation/Methods folder. It assumes your method header comments are formatted the way Foundation's are.</p>
+<pre>$options_o is optional; any property left out takes the default shown: methodName     - &quot;&quot; or omitted: all methods; a prefix (Eg. Inv_); or one specific method name tooltip        - default True. True writes the leading &lt;!-- --&gt; block into each method's comments; False strips it from every method it touches excludePrivate - default False. True: exclude Private methods and shared aaa methods silent         - default False. True: don't show a final &quot;Finished&quot; alert inline         - default False. True: run in the calling process rather than spawning one. Use in headless/CI contexts</pre>
+<p>Fnd_Dev_WriteDocumentation({methodName: &quot;Inv_&quot;; silent: True})</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>options</code></td><td>Object</td><td>in</td><td>Options, as described above (optional)</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

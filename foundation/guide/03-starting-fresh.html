@@ -101,7 +101,7 @@ Fnd_Shell_OnExit</code></pre>
 <ul>
 <li>A table or field marked <strong>invisible</strong> in the structure never appears: not in the navigation palette, the Open Table dialog, Find, Sort or a list window.</li>
 <li>A field's <strong>indexed</strong> and <strong>searchable/sortable</strong> attributes decide whether Find and Sort offer it, unless a hook says otherwise.</li>
-<li>The <strong>first field</strong> of each table is taken to be its key, a long integer, for sequence numbers and record identity. If yours is elsewhere, say so in <code>Fnd_Hook_SqNo_SetIDField</code> (an example is in <code>HooksAndHosts/</code>).</li>
+<li>The <strong>first field</strong> of each table is taken to be its key, a long integer, for sequence numbers and record identity. If yours is elsewhere, say so in <code>Fnd_Hook_SqNo_SetIDField</code>, which the installer adds.</li>
 </ul>
 <p>Foundation's own tables, <code>Fnd_Pref</code> for shared preferences, <code>Fnd_List</code> and <code>Fnd_SqNo</code>, are added by the installer described above. The optional tables (<code>Fnd_Log</code> for a log kept in the data, <code>Fnd_Reg</code> for licensing) are created on request: in an interpreted host the module offers to add the table the first time it is needed; compiled, it reports and does without.</p>
 <h2 id="forms">Forms</h2>

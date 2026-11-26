@@ -48,6 +48,7 @@
 		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
 		<li><a href="/docs/data.html">Fnd_Data</a></li>
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dev.html">Fnd_Dev</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
 		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
@@ -76,6 +77,7 @@
 		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
 		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
 		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/test.html">Fnd_Test</a></li>
 		<li><a href="/docs/text.html">Fnd_Text</a></li>
 		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
 		<li><a href="/docs/vs.html">Fnd_VS</a></li>
@@ -104,6 +106,7 @@
 		<li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
 		<li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
 		<li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+		<li><a href="#Fnd_List_SortList">Fnd_List_SortList</a></li>
 		<li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
 		<li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
 		<li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
@@ -118,7 +121,7 @@
 
 <h1>Fnd_List</h1>
 
-<p>24 shared methods.</p>
+<p>25 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_List_AddButton">Fnd_List_AddButton</a></li>
@@ -139,6 +142,7 @@
 <li><a href="#Fnd_List_OnStartup">Fnd_List_OnStartup</a></li>
 <li><a href="#Fnd_List_RecordLoaded">Fnd_List_RecordLoaded</a></li>
 <li><a href="#Fnd_List_SaveListItems">Fnd_List_SaveListItems</a></li>
+<li><a href="#Fnd_List_SortList">Fnd_List_SortList</a></li>
 <li><a href="#Fnd_List_UpdateItemsList">Fnd_List_UpdateItemsList</a></li>
 <li><a href="#Fnd_List_UpdateStructureLists">Fnd_List_UpdateStructureLists</a></li>
 <li><a href="#Fnd_List_UseTypeAhead">Fnd_List_UseTypeAhead</a></li>
@@ -163,6 +167,7 @@
 <h2><a href="#Fnd_List_AddItem">Fnd_List_AddItem</a></h2>
 <p class="syntax"><code>Fnd_List_AddItem (command name; method name)</code></p>
 <p>Adds a command to the Command Dialog.</p>
+<p>The method you name must be shared (&quot;Shared by components and host database&quot;): Foundation runs it from the component, which cannot see a method that is not.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -336,6 +341,18 @@
 <p>Assumes the proper [Fnd_List] record is loaded.</p>
 <p>Called from the Fnd_List_Editor and ListsCreateSystemLists2 methods.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_List_SortList">
+<h2><a href="#Fnd_List_SortList">Fnd_List_SortList</a></h2>
+<p class="syntax"><code>Fnd_List_SortList (order)</code></p>
+<p>Sorts the commands in the command dialog by name. Call it from the hook that adds them (Fnd_Hook_Shell_Administration, Fnd_Hook_Shell_Print or Fnd_Hook_Shell_SpecialFunctions). Pass &quot;asc&quot; for A to Z, &quot;desc&quot; for Z to A, or &quot;none&quot; to show them in the order they were added, which is the default.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>order</code></td><td>Text</td><td>in</td><td>&quot;asc&quot;, &quot;desc&quot; or &quot;none&quot;</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_List_UpdateItemsList">

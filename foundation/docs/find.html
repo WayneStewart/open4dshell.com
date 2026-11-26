@@ -48,6 +48,7 @@
 		<li><a href="/docs/cmpt.html">Fnd_Cmpt</a></li>
 		<li><a href="/docs/data.html">Fnd_Data</a></li>
 		<li><a href="/docs/date.html">Fnd_Date</a></li>
+		<li><a href="/docs/dev.html">Fnd_Dev</a></li>
 		<li><a href="/docs/dict.html">Fnd_Dict</a></li>
 		<li><a href="/docs/dlg.html">Fnd_Dlg</a></li>
 		<li><a href="/docs/ext.html">Fnd_Ext</a></li>
@@ -76,6 +77,7 @@
 		<li><a href="/docs/sqno.html">Fnd_SqNo</a></li>
 		<li><a href="/docs/svg.html">Fnd_SVG</a></li>
 		<li><a href="/docs/tbl.html">Fnd_Tbl</a></li>
+		<li><a href="/docs/test.html">Fnd_Test</a></li>
 		<li><a href="/docs/text.html">Fnd_Text</a></li>
 		<li><a href="/docs/tlbr.html">Fnd_Tlbr</a></li>
 		<li><a href="/docs/vs.html">Fnd_VS</a></li>
@@ -145,6 +147,7 @@
 <h2><a href="#Fnd_Find_AddCustom">Fnd_Find_AddCustom</a></h2>
 <p class="syntax"><code>Fnd_Find_AddCustom (label; method name{; position})</code></p>
 <p>Adds a custom field to the search dialog.</p>
+<p>The method you name must be shared (&quot;Shared by components and host database&quot;): Foundation runs it from the component, which cannot see a method that is not.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -173,6 +176,7 @@
 <p class="syntax"><code>Fnd_Find_AddItem (position; label; method{; -&gt;field{; type}})</code></p>
 <p>Called by the protected &quot;Fnd_Find_Add&quot; routines to add stuff to the collections on Fnd.Find.</p>
 <p>If the label is blank, the field name will be used.</p>
+<p>The method you name must be shared (&quot;Shared by components and host database&quot;): Foundation runs it from the component, which cannot see a method that is not.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
@@ -376,6 +380,7 @@
 <h2><a href="#Fnd_Find_SetEditorButton">Fnd_Find_SetEditorButton</a></h2>
 <p class="syntax"><code>Fnd_Find_SetEditorButton (label{; method})</code></p>
 <p>Allows the developer to hide or modify the Query Editor button.</p>
+<p>The method you name must be shared (&quot;Shared by components and host database&quot;): Foundation runs it from the component, which cannot see a method that is not.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>

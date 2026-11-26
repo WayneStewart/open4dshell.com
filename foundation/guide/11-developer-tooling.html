@@ -70,14 +70,32 @@
 
 <p>This chapter is for the person working on <strong>Foundation itself</strong>, not on a host. Nothing in it is called by a host, and nothing in it is part of the published API. It documents the <em>Foundation Construction Set</em>, the <code>Fnd_FCS</code> methods that compile-check, test, document, build and version-adapt the component, together with the two developer folders they live in and the third-party modules Foundation's development depends on.</p>
 <h2 id="what-fndfcs-is-and-what-it-is-not">What <code>Fnd_FCS</code> is, and what it is not</h2>
-<p><code>FCS</code> stands for <em>Foundation Construction Set</em>, a name Dave Batton used for the development-only methods in 2005 (<code>Fnd_FCS_ResizeDesignWindows</code> still carries his comment: &quot;this routine is not included in any of the components&quot;). In Foundation 6 the set is larger and the rule has changed in one respect: the methods <strong>do</strong> ship inside the built component, because <code>Fnd_FCS_BuildComponent</code> excludes nothing. They are <code>invisible</code> and, with one exception noted below, unshared, so a host never sees them. Being unreachable from a host is the property that matters; being absent from the bundle is not.</p>
-<p>Three rules govern the set, all ruled on 23 August 2026 and recorded in AgentNotes/Reference/Fnd_FCS-Classification.md (<code>AgentNotes/Reference/Fnd_FCS-Classification.md</code>):</p>
+<p><code>FCS</code> stands for <em>Foundation Construction Set</em>, a name Dave Batton used for the development-only methods in 2005 (<code>Fnd_FCS_ResizeDesignWindows</code> still carries his comment: &quot;this routine is not included in any of the components&quot;). In Foundation 6 the set is larger and the rule has changed in one respect: the methods <strong>do</strong> ship inside the built component, because <code>Fnd_FCS_BuildComponent</code> excludes nothing. They are <code>invisible</code>, or unshared, so a host never sees them. The few that a developer can use in their own database are exposed through shared <code>Fnd_Dev_</code> wrappers, the Foundation Developer's Toolkit, which work on that database; see <em>In a database that uses Foundation</em> below.</p>
+<p>Three rules govern the set, ruled on 23 August 2026 and recorded in AgentNotes/Reference/Fnd_FCS-Classification.md (<code>AgentNotes/Reference/Fnd_FCS-Classification.md</code>); the first was revised on 25 November 2026:</p>
 <ol>
-<li><strong><code>Fnd_FCS</code> is never published.</strong> No <code>Fnd_FCS_*</code> method is shared, so none is callable from a host. If a host ever needs something the set does, the owning module gets an <code>Fnd_XXX_*</code> wrapper and <em>that</em> is shared.</li>
+<li><strong>A <code>Fnd_FCS</code> method is never shared.</strong> One that is useful in a host's own development is exposed through a shared <code>Fnd_Dev_</code> wrapper (the Foundation Developer's Toolkit), which works on the calling database: the <code>Fnd_FCS</code> method passes <code>*</code> wherever a command would otherwise reach Foundation's own folders, methods or running mode, which changes nothing when Foundation runs it on itself. (None was shared until November 2026; on 2026-11-25 the host-facing ones moved behind <code>Fnd_Dev</code>.)</li>
 <li><strong>A Foundation method may call into <code>Fnd_FCS</code>.</strong> Both are internal to the component, so <code>Fnd_Pswd_Init</code> reading <code>Fnd_FCS_VersionCapabilities</code> is fine. The earlier and vaguer rule, &quot;nothing outside FCS may call into it&quot;, is superseded.</li>
 <li><strong>Interpreted only.</strong> Every method that changes source, reloads the project or runs arbitrary code tests <code>Is compiled mode</code> first and does nothing in a compiled build.</li>
 </ol>
-<p>The one apparent exception to rule 1 is <code>Fnd_FCS_Info</code>, which is shared because all thirty-three <code>Fnd_&lt;Module&gt;_Info</code> methods are, and <code>Fnd_Gen_ComponentInfo</code> reaches each by building the name. It answers <code>&quot;version&quot;</code>, <code>&quot;name&quot;</code>, <code>&quot;devSync&quot;</code>, <code>&quot;min4DVersion&quot;</code>, <code>&quot;dependencies&quot;</code> and <code>&quot;manifest&quot;</code>, and nothing else.</p>
+<p><code>Fnd_FCS_Info</code> is shared for a different reason: all thirty-three <code>Fnd_&lt;Module&gt;_Info</code> methods are, and <code>Fnd_Gen_ComponentInfo</code> reaches each by building the name. It answers <code>&quot;version&quot;</code>, <code>&quot;name&quot;</code>, <code>&quot;devSync&quot;</code>, <code>&quot;min4DVersion&quot;</code>, <code>&quot;dependencies&quot;</code> and <code>&quot;manifest&quot;</code>, and nothing else.</p>
+<h2 id="in-a-database-that-uses-foundation">In a database that uses Foundation</h2>
+<p>The six shared <code>Fnd_Dev</code> methods, the Foundation Developer's Toolkit, are for the developer of a database that has Foundation in its <code>Components</code> folder. Run from that database, each works on it, not on Foundation, and each does nothing useful in a compiled database.</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Method</th><th scope="col">What it does in your database</th></tr></thead>
+<tbody>
+<tr><td><code>Fnd_Dev_SchedStart</code></td><td>Starts the compile-check watcher described below. Its request and result files are in your database's <code>Resources</code> folder.</td></tr>
+<tr><td><code>Fnd_Dev_SchedStop</code></td><td>Asks the watcher to stop.</td></tr>
+<tr><td><code>Fnd_Dev_CompilerCheck</code></td><td>A syntax check of your project. It puts the summary on the pasteboard and shows it in an alert.</td></tr>
+<tr><td><code>Fnd_Dev_WriteDocumentation</code></td><td>Your methods' tooltips, and a page for each in <code>Documentation/Methods</code>, read from their header comments. Takes an optional options object (<code>methodName</code>, <code>tooltip</code>, <code>excludePrivate</code>, <code>silent</code>, <code>inline</code>), for example <code>Fnd_Dev_WriteDocumentation({methodName: &quot;Inv_&quot;; silent: True})</code>.</td></tr>
+<tr><td><code>Fnd_Dev_WriteClassDocumentation</code></td><td>A page for each of your classes in <code>Documentation/Classes</code>.</td></tr>
+<tr><td><code>Fnd_Dev_ResizeDesignWindows</code></td><td>Sets every open Method and Form window to the same size and position.</td></tr>
+</tbody>
+</table>
+</div>
+<p>To have the watcher whenever you open the database interpreted, call <code>Fnd_Dev_SchedStart</code> from your <code>On Startup</code> database method; it does nothing in a compiled database, and Foundation's quit does not wait for it. Add <code>Resources/schedulerRequest.json</code> and <code>Resources/schedulerResult.json</code> to your <code>.gitignore</code>. A request of <code>{}</code> is a compile check of your project.</p>
+<p>The <code>test</code> action runs your own test methods when you name them with <code>method</code> or <code>methods</code>, for example <code>{&quot;action&quot;: &quot;test&quot;, &quot;methods&quot;: [&quot;Inv_TestPricing&quot;]}</code>. Mark each one <em>Shared by components and host database</em> so Foundation can call it, record assertions with <code>Fnd_Test_Assert($ok_b; $message_t)</code> and close with <code>Fnd_Test_End</code>. A <code>filter</code>, or an empty request, matches Foundation's own methods only.</p>
+<p>The documentation writers read the header format Foundation's own methods use (<code>// Project Method:</code>, <code>// Access:</code>, <code>// Parameters:</code>, <code>// Returns:</code>, <code>// Created by</code>; see <em>The documentation writers</em> below and <code>CONTRIBUTING.md</code>, <em>Writing a method</em>). A method whose header is written differently is documented with little more than its name.</p>
 <h2 id="two-folders">Two folders</h2>
 <p>The methods sit in two Explorer folders, and the split is deliberate.</p>
 <div class="table-wrap">
@@ -124,7 +142,7 @@ Resources/schedulerResult.json      4D writes this</code></pre>
 </div>
 <p>Every result begins with the object <code>Fnd_FCS_RequestEcho</code> builds: the 4D version that answered (<code>v4D</code>), when the watcher took the request (<code>requestedAt</code>) and, where the client supplied them, <code>expectedVersion</code> with a <code>versionMatch</code> verdict and <code>requestAgeSeconds</code>. Send <code>expectedVersion</code> on every request. With several 4D versions open on the same project, whichever watcher polls first takes the request, and <code>versionMatch: false</code> is the only way to know it was the wrong one.</p>
 <p>A result file is written on <strong>every</strong> path. <code>Fnd_FCS_CompilerCheckOnErr</code> and <code>Fnd_FCS_TestRunnerOnErr</code> are the error handlers installed around the compile and around each test, and <code>Fnd_FCS_WriteFailedResult</code> writes a payload with <code>errorCount: -1</code> when the compiler was never reached, so a polling client is never left waiting for a file that will not appear.</p>
-<p><code>Fnd_FCS_CompilerCheck</code> also runs interactively: execute it from the Explorer and the summary goes to the pasteboard (indented JSON, or concise with Option or Alt held) and to an alert. <code>Fnd_FCS_SchedStop</code> asks the watcher to stop; it notices on its next tick.</p>
+<p><code>Fnd_FCS_CompilerCheck</code> also runs interactively, and a host does so through <code>Fnd_Dev_CompilerCheck</code>: execute it from the Explorer and the summary goes to the pasteboard (indented JSON, or concise with Option or Alt held) and to an alert. <code>Fnd_FCS_SchedStop</code> (a host calls <code>Fnd_Dev_SchedStop</code>) asks the watcher to stop; it notices on its next tick.</p>
 <p>Four hazards, learned the hard way and written down in AgentNotes/Reference/Scheduler-Port-Guide.md (<code>AgentNotes/Reference/Scheduler-Port-Guide.md</code>):</p>
 <ul>
 <li><code>RELOAD PROJECT</code> is not thread-safe, so nothing here is preemptive, and it does not reload components: editing a component the project hosts needs a restart of both.</li>
@@ -136,6 +154,23 @@ Resources/schedulerResult.json      4D writes this</code></pre>
 <h2 id="tests">Tests</h2>
 <p>Unit tests are <code>Test_Fnd_&lt;Module&gt;</code>, one or two per module, in the <code>Fnd_Test</code> folder (<code>CONTRIBUTING.md</code>, <em>Tests</em>). They record assertions through <code>Fnd_Test_Assert($ok_b; $message_t)</code> and close with <code>Fnd_Test_End</code>, writing to the <code>Fnd_Test</code> log and tallying in <code>Storage.test</code>, which is what the runner reports. A test runs identically from the Explorer and under the scheduler, because nothing in the harness is interactive.</p>
 <p><code>Fnd_FCS</code> carries a second, portable pair, <code>Fnd_FCS_TestAssert</code> and <code>Fnd_FCS_TestEnd</code>. They keep the same <code>Storage.test</code> contract, so <code>Fnd_FCS_TestRunner</code> reads either, but write their own <code>Fnd_FCS_Test</code> log and reach <code>Fnd_Log</code> only by name, through <code>EXECUTE METHOD</code>, so the folder compiles in a project without it. They exist because DevSync pairs folders by name and a folder whose harness lives in another folder is not a unit. Foundation's own tests keep calling <code>Fnd_Test_Assert</code>; the portable pair earns its place only where the folder is synced.</p>
+<h2 id="assumption-checks">Assumption checks</h2>
+<p><code>Fnd_Gen_Assert($condition_b; $message_t)</code> checks something the code relies on and returns the condition unchanged, so the same call guards the code that needs it:</p>
+<pre><code>If (Fnd_Gen_Assert($customer_e#Null; &quot;No customer for order &quot;+String($order_e.ID)))
+	// work that needs the customer
+End if</code></pre>
+<p>A true condition does nothing else. A false one is handled by where the code is running:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col">Situation</th><th scope="col">What happens</th></tr></thead>
+<tbody>
+<tr><td>A test run is open</td><td>recorded through <code>Fnd_Test_Assert</code>, prefixed with the calling method's name, and reported by the <code>test</code> action</td></tr>
+<tr><td>Foundation is interpreted</td><td><code>TRACE</code>, so the debugger opens one frame below the call</td></tr>
+<tr><td>Otherwise</td><td><code>Fnd_Gen_BugAlert</code>: a log entry and a ten-second notification</td></tr>
+</tbody>
+</table>
+</div>
+<p>The method is shared and stays in deployed code. A built Foundation is compiled even inside an interpreted database, and <code>TRACE</code> does nothing in compiled code, so there the failure comes as a notification, not the debugger. It is modelled on Dani Beaubien's <code>DEV_ASSERT</code> from CodeAnalysis.</p>
 <h2 id="the-documentation-writers">The documentation writers</h2>
 <p><strong><code>Fnd_FCS_WriteDocumentation</code></strong> reads the boxed header of every project method and writes two things from it: the method's comment, set with <code>METHOD SET COMMENTS</code> so the code editor's tooltip shows the call syntax and parameters, and a Markdown page in <code>Documentation/Methods/&lt;method&gt;.md</code>. It keys on the literal header tokens listed in <code>CONTRIBUTING.md</code> (<em>Writing a method</em>): <code>// Project Method:</code>, <code>// Access:</code>, <code>// Parameters:</code>, <code>// Returns:</code>, <code>// Created by</code>. A header that departs from them documents nothing.</p>
 <p>It takes an options object or the older positional form:</p>

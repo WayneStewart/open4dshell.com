@@ -199,6 +199,21 @@ End case</code></pre>
 </table>
 </div>
 <p>The selection the list shows is an entity selection in <code>Form.listData</code>; Find, Sort, Show Subset and the rest replace it and the list follows. Foundation's classic current selection is kept in step at the moments it matters, which is what <code>Fnd_Out_SynchroniseSelection</code> is for when you need it yourself.</p>
+<h2 id="client-server-keeping-the-list-fast">Client-server: keeping the list fast</h2>
+<p>On a single-user machine or a fast local network you are unlikely to notice any of this. It matters over a slower link, a WAN or a VPN, where every request to the server costs a round trip. The list is built to ask the server for as little as possible; a few choices in your hook decide how well that works.</p>
+<ul>
+<li><strong>Field columns cost only what is shown.</strong> The list fetches records 80 at a time and asks only for the fields in its visible columns. A field column the user has hidden costs nothing, whether a plain field or one reached through a relation (<code>contact.City</code>), so offering many columns is safe.</li>
+<li><strong>A formula column is calculated for every row drawn, even when hidden.</strong> Hiding a formula column does not stop 4D evaluating it. Leave a formula column out of the standard columns unless it is meant to be seen, and let the user add it from View Options.</li>
+<li><strong>A function in a column should not run on the server.</strong> A column such as <code>contact.reversedFullName()</code> calls an entity class function for every row drawn. An ordinary data model function runs on the server, so each row costs two round trips: one to load the related record and one to call the function. In FPS that came to 822 requests for the Contact column against 12 for the invoices themselves, over five pages. Declare the function <code>local</code>, so it runs on the client:</li>
+</ul>
+<pre><code>  local Function reversedFullName()-&gt;$result_t : Text
+  	$result_t:=This.LastName+&quot;, &quot;+This.FirstName</code></pre>
+<p>or make it a computed attribute (<code>Function get reversedFullName</code>), which the server works out and returns with the other fields. Computed attributes are not offered as candidates yet; add one with <code>Fnd_Out_AddField</code>.</p>
+<ul>
+<li><strong>Row-style rules are cheap.</strong> A rule adds the fields its condition reads to each 80-row request and nothing more. <code>Fnd_Hook_Out_RowStyle</code> runs for every visible row on every redraw, so the advice on functions applies to anything it calls.</li>
+<li><strong>Searches need no special care.</strong> A search result is read 80 rows at a time with the list's columns, like the full list.</li>
+</ul>
+<p>There is nothing to set up. Each list names its own optimisation context, one per table, so the server remembers which fields that table's list reads from one opening to the next. To see the traffic for yourself, call <code>ds.startRequestLog</code> on a remote client, use the list, then read <code>ds.getRequestLog()</code>.</p>
 <h2 id="known-limits-in-the-beta">Known limits in the beta</h2>
 <ul>
 <li>Clicking a column header does not sort; use Sort.</li>
