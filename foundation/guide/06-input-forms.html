@@ -46,7 +46,8 @@
 			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
 			<li><a href="/guide/10-logging.html">10. Logging</a></li>
 			<li><a href="/guide/11-developer-tooling.html">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
-			<li><a href="/guide/upgrading.html">12. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/12-saving-records-and-dialog.html">12. Saving records, and forms shown with DIALOG</a></li>
+			<li><a href="/guide/upgrading.html">13. Upgrading from Foundation 5</a></li>
 			<li><a href="/guide/contributing.html">Contributing</a></li>
 		</ul>
 	</section>
@@ -94,7 +95,7 @@
 </ul>
 </blockquote>
 <h2 id="2-classic-for-the-forms-own-record-orda-for-everything-else">2. Classic for the form's own record, ORDA for everything else</h2>
-<p>A form opened by <code>MODIFY SELECTION</code> or <code>MODIFY RECORD</code> has no <code>Form</code> object and no entity. The current record is what exists, so the form reads its own record classically (<code>[Invoices]InvoiceNumber</code>) and reaches related data with ORDA (<code>ds.LineItems.query(…)</code>). That is the rule here, narrower than &quot;never mix&quot;: <strong>classic for this record, ORDA for the rest.</strong> The record's parents count as part of this record: a parent display field is a classic field token loaded by <code>RELATE ONE</code> (section 4), while child lists and anything else queried are ORDA.</p>
+<p>A form opened by <code>MODIFY SELECTION</code> or <code>MODIFY RECORD</code> has no <code>Form</code> object and no entity. (Chapter 12 describes the optional <code>DIALOG</code> route, which gives an input form a <code>Form</code> object; what follows is the default.) The current record is what exists, so the form reads its own record classically (<code>[Invoices]InvoiceNumber</code>) and reaches related data with ORDA (<code>ds.LineItems.query(…)</code>). That is the rule here, narrower than &quot;never mix&quot;: <strong>classic for this record, ORDA for the rest.</strong> The record's parents count as part of this record: a parent display field is a classic field token loaded by <code>RELATE ONE</code> (section 4), while child lists and anything else queried are ORDA.</p>
 <p>State the form and its objects share lives on a <strong>process object named for your project</strong> (<code>FPS</code>, <code>ACME</code>), created by an init method that <code>Fnd_Hook_IO_DisplayRecord</code> and <code>Fnd_Hook_IO_DisplayTable</code> both call, so it exists before any form opens; application-wide state goes in <code>Storage.&lt;Project&gt;</code>. Choose the name once, from the project's name or a prefix the project already uses, since every listbox data source will carry it. Property names derive mechanically from the table name: drop underscores, lower-case the first letter, capitalise what followed each underscore, then one of four suffixes that match the listbox properties they bind. For the <code>LineItems</code> table:</p>
 <pre><code>FPS.lineItemsSelection       // the entity selection
 FPS.lineItemsCurrItem        // currentItemSource
@@ -272,6 +273,7 @@ End if</code></pre>
 End if</code></pre>
 <p>A table with no rules needs nothing here: <code>$allow_b</code> stays True.</p>
 <p>Watch the empty test on a text field: <code>If ([Contacts]EmailAddress=!00-00-00!)</code> compiles cleanly and throws &quot;A function was expected&quot; at runtime. The test is <code>=&quot;&quot;</code>. This hook sees the UI only; a rule that must hold however a record is written belongs where every path passes.</p>
+<p>Code that must run as the record is saved, as opposed to a check that may stop the save, goes in <code>Fnd_Hook_IO_OnValidate</code> (chapter 12). The form method needs no <code>On Validate</code> branch for it.</p>
 <h2 id="7-checking-a-form-and-building-more-than-two">7. Checking a form, and building more than two</h2>
 <p>Check <strong>every</strong> form for the invariants a compile check cannot see, one form or fifty:</p>
 <ul>

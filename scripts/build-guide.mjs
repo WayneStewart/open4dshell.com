@@ -40,7 +40,7 @@ const chapterFiles = readdirSync(join(f6, 'Guide')).filter((f) => /^\d\d-.*\.md$
 const sources = [
 	{ path: 'Guide/README.md', out: 'index.html', label: null },
 	...chapterFiles.map((f) => ({ path: `Guide/${f}`, out: pageName(f), label: null })),
-	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '12. Upgrading from Foundation 5' },
+	{ path: 'Release/UPGRADING.md', out: 'upgrading.html', label: '13. Upgrading from Foundation 5' },
 	{ path: 'CONTRIBUTING.md', out: 'contributing.html', label: 'Contributing' },
 ];
 for (const s of sources) {

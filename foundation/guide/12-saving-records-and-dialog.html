@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12. Saving records, and forms shown with DIALOG · Foundation Guide</title>
+<meta name="description" content="12. Saving records, and forms shown with DIALOG, from the Foundation 6 Developer Guide.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="masthead">
+	<a class="wordmark" href="/">Foundation</a>
+	<span class="edition">6</span>
+</header>
+
+<nav class="tabs" aria-label="Site">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/start/">Getting started</a></li>
+		<li><a href="/guide/" aria-current="page">Guide</a></li>
+		<li><a href="/docs/">Docs</a></li>
+		<li><a href="/download/">Download</a></li>
+		<li><a href="/licence/">Licence</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</nav>
+
+<div class="frame">
+
+<aside class="sidebar">
+	<section class="box">
+		<h2>Guide</h2>
+		<ul class="nav">
+			<li><a href="/guide/">Overview</a></li>
+			<li><a href="/guide/01-introduction.html">1. Introduction</a></li>
+			<li><a href="/guide/02-how-foundation-works.html">2. How Foundation works</a></li>
+			<li><a href="/guide/03-starting-fresh.html">3. Starting fresh</a></li>
+			<li><a href="/guide/04-hooks-and-host-methods.html">4. Hooks and host methods</a></li>
+			<li><a href="/guide/05-list-windows.html">5. List windows</a></li>
+			<li><a href="/guide/06-input-forms.html">6. Building a Foundation input form</a></li>
+			<li><a href="/guide/07-preferences.html">7. Preferences</a></li>
+			<li><a href="/guide/08-localisation.html">8. Localisation</a></li>
+			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
+			<li><a href="/guide/10-logging.html">10. Logging</a></li>
+			<li><a href="/guide/11-developer-tooling.html">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
+			<li><a href="/guide/12-saving-records-and-dialog.html" aria-current="page">12. Saving records, and forms shown with DIALOG</a></li>
+			<li><a href="/guide/upgrading.html">13. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/contributing.html">Contributing</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Reference</h2>
+		<ul class="nav">
+			<li><a href="/docs/">Developer Reference</a></li>
+		</ul>
+	</section>
+	<section class="box">
+		<h2>Support</h2>
+		<p><a href="https://github.com/open4dshell/Foundation-Product-Sales/issues">Issues</a>
+		in Foundation Product Sales (beta testers).</p>
+		<p>Email: see <a href="#contact">contact</a>.</p>
+	</section>
+</aside>
+
+<main class="panel">
+
+<h1>12. Saving records, and forms shown with DIALOG</h1>
+
+<p>Two things arrived together in Foundation 6.0, and both are optional:</p>
+<ul>
+<li><strong><code>Fnd_Hook_IO_OnValidate</code></strong>, one place for code that must run just before a record is saved from an input form;</li>
+<li><strong>the <code>DIALOG</code> route</strong>, a setting that has Foundation show an input form with <code>DIALOG</code> in place of <code>MODIFY RECORD</code> and <code>ADD RECORD</code>, which gives the form a <code>Form</code> object.</li>
+</ul>
+<p>A database that uses neither behaves as it did. This chapter says what each does, what changes when you turn the second one on, and how to find out where your own database stands before you decide. Chapter 6 covers building an input form; this one covers how it is opened and saved.</p>
+<h2 id="1-code-that-runs-before-a-save">1. Code that runs before a save</h2>
+<p>Until now, code that had to run as a record was saved lived in each form method, under <code>On Validate</code>. Foundation now calls a host hook at that moment instead:</p>
+<pre><code>// Fnd_Hook_IO_OnValidate ($table_ptr; $formName_t)
+
+Case of
+	: ($table_ptr=(-&gt;[Invoices]))
+		Case of
+			: ($formName_t=&quot;Input&quot;)
+				VALIDATE TRANSACTION
+		End case
+End case</code></pre>
+<p>That is the demo database's own: its invoice form works inside a transaction, and the hook validates it as the invoice is saved.</p>
+<p>Foundation calls the hook <strong>before every save it makes from an input form</strong>, whichever way the form was opened: from <code>On Validate</code> when the form was opened with <code>MODIFY RECORD</code> or <code>ADD RECORD</code>, and directly when it was opened with <code>DIALOG</code>. It passes the form's table and the form's name. Both parameters are optional, so a project form of your own, which Foundation does not open, can call the hook itself; <code>$table_ptr</code> is then a nil pointer.</p>
+<p>Four things to know:</p>
+<ul>
+<li><strong>The hook is optional.</strong> With no <code>Fnd_Hook_IO_OnValidate</code> in your database nothing is called, and a form that handles <code>On Validate</code> itself still does. The installer (chapter 3) creates the hook when you ask it to.</li>
+<li><strong>A form needs no <code>On Validate</code> branch of its own.</strong> A form that calls the hook from its own <code>On Validate</code> branch runs the hook twice, once from the form and once from Foundation.</li>
+<li><strong>The form still enables the event.</strong> When a form is opened with <code>MODIFY RECORD</code>, Foundation reaches the hook from <code>On Validate</code>, so the form must have that event turned on. It is one of the eight that chapter 6 asks every input form to enable.</li>
+<li><strong>The hook cannot refuse a save.</strong> By the time it runs the record is on its way. A check that may stop the save belongs in <code>Fnd_Hook_IO_InputFormButton</code> (chapter 6, section 6).</li>
+</ul>
+<h3 id="moving-the-code-you-already-have">Moving the code you already have</h3>
+<p><code>Fnd_Dev_ConvertOnValidate</code> does the move with you. Run it from the Execute Method dialog, interpreted. It finds each form method, object method and project method that handles <code>On Validate</code> without calling the hook, and steps through them one at a time. For each it shows the method as it is and, ready to edit, the hook and the method as they would be afterwards. Nothing is written until you choose Apply; the first Apply asks whether Foundation may change your database, and the originals are saved in <code>Resources/Foundation/OnValidate-Backups</code>.</p>
+<p>Read each proposal. Code under <code>On Validate</code> is often short, but it can depend on variables set elsewhere in the form method, and only you know whether it still makes sense in a method called from outside the form.</p>
+<h2 id="2-showing-a-form-with-dialog">2. Showing a form with DIALOG</h2>
+<p>A form opened by <code>MODIFY RECORD</code> has no <code>Form</code> object (chapter 6, section 2). Shown with <code>DIALOG</code> it has one, and so can use everything in 4D that is built on <code>Form</code>: bound expressions, form classes, data passed in and read back.</p>
+<p>Nothing opens this way until you turn it on. <code>Fnd_IO_UseDialog</code> does that at three levels:</p>
+<pre><code>Fnd_IO_UseDialog(True)                        // every input form in the database
+Fnd_IO_UseDialog(-&gt;[Contacts]; True)          // every input form of one table
+Fnd_IO_UseDialog(-&gt;[Contacts]; &quot;Input&quot;; True) // one form</code></pre>
+<p>Pass <code>False</code> to turn a level off. A form's own setting wins over its table's, and a table's over the database's, so you can turn the route on everywhere and keep one table on <code>MODIFY RECORD</code>, or the reverse. The settings hold for every process: call the method once at start-up, in <code>Fnd_Hook_Shell_Startup</code>. A nil table pointer means a project form, and form names are not case-sensitive.</p>
+<p>To ask which route a form takes:</p>
+<pre><code>$dialog_b:=Fnd_IO_UseDialog(-&gt;[Contacts]; &quot;Input&quot;)</code></pre>
+<p>The demo database turns the route on for its Contacts table only, as an example to read.</p>
+<h2 id="3-what-changes-under-dialog">3. What changes under DIALOG</h2>
+<p><code>MODIFY RECORD</code> does a good deal that <code>DIALOG</code> does not. Foundation makes up the difference for the form it supplies, <code>Fnd_IO_InputForm</code>, and anything that inherits from it:</p>
+<div class="table-wrap">
+<table class="provenance">
+<thead><tr><th scope="col"></th><th scope="col">With <code>MODIFY RECORD</code></th><th scope="col">With <code>DIALOG</code></th></tr></thead>
+<tbody>
+<tr><td>The <code>Form</code> object</td><td>none</td><td>present; one object serves the whole visit, so it survives moving between records</td></tr>
+<tr><td><code>On Validate</code></td><td>fires when the record is accepted</td><td><strong>never fires</strong></td></tr>
+<tr><td>Saving</td><td>4D saves the record</td><td>Foundation saves it, calling <code>Fnd_Hook_IO_OnValidate</code> first</td></tr>
+<tr><td>Cancel</td><td>4D discards the changes</td><td>Foundation unloads the record, which discards them</td></tr>
+<tr><td>First, Previous, Next, Last</td><td>4D's standard actions</td><td>the standard actions do nothing; Foundation's buttons close the form and show it again on the next record, so <code>On Load</code> still runs for each record</td></tr>
+<tr><td>The record</td><td>4D loads it</td><td>Foundation loads it before showing the form</td></tr>
+</tbody>
+</table>
+</div>
+<p>Foundation puts three values on <code>Form</code> for you: <code>Form.tableName</code>, <code>Form.processID</code> and <code>Form.listWindow</code>, the window of the list the record was opened from, or 0.</p>
+<p>Three consequences for your own forms:</p>
+<ul>
+<li><strong>Anything under <code>On Validate</code> stops running.</strong> Move it to the hook first (section 1). This is the one that matters.</li>
+<li><strong>A button of your own with a record-navigation standard action stops working.</strong> <code>firstRecord</code>, <code>previousRecord</code>, <code>nextRecord</code>, <code>lastRecord</code> and <code>deleteRecord</code> do nothing in a form shown with <code>DIALOG</code>. Foundation's own record buttons are taken care of.</li>
+<li><strong>A button of your own that accepts the form</strong> still saves: after the form closes, Foundation saves a record that is new or modified and calls the hook for it.</li>
+</ul>
+<h2 id="4-the-check-foundation-makes-for-you">4. The check Foundation makes for you</h2>
+<p>Turning the route on for a table or the whole database is safe to try, because Foundation does not take your word for it form by form. It reads the code of each form, and a form whose code <strong>handles <code>On Validate</code> without calling <code>Fnd_Hook_IO_OnValidate</code></strong> stays on <code>MODIFY RECORD</code>. So does a form it knows nothing about. Only a form it has cleared opens with <code>DIALOG</code>.</p>
+<p>Naming a form yourself, with the three-parameter call, overrules that check: the form opens with <code>DIALOG</code> whatever its code does. Use that form of the call only for a form you have converted.</p>
+<p>The reading needs your sources, so it happens in an interpreted database, the first time Foundation needs to know. The result is saved in <code>Resources/Foundation/Fnd_IO_FormRoutes.json</code>, and when it differs from what was saved before, Foundation reports the forms left on <code>MODIFY RECORD</code> and the project methods worth checking. It is saved only where <code>Resources/Foundation</code> already exists; the installer creates that folder. A compiled database cannot read its own sources, so it reads that file. Two things follow:</p>
+<ul>
+<li><strong>Ship the file.</strong> A compiled application without <code>Resources/Foundation/Fnd_IO_FormRoutes.json</code> has no cleared forms, and every form you turned on by table or database quietly stays on <code>MODIFY RECORD</code>.</li>
+<li><strong>Run interpreted once after changing forms</strong>, so the file is rewritten before you build.</li>
+</ul>
+<p>A database that never calls <code>Fnd_IO_UseDialog</code> never reads its forms at all.</p>
+<h2 id="5-finding-out-where-you-stand">5. Finding out where you stand</h2>
+<p>Before turning anything on, <code>Fnd_Dev_SanityCheck</code> tells you what would happen. It reads the sources on disk, so run it interpreted; it shows nothing on screen and returns an object:</p>
+<pre><code>$result_o:=Fnd_Dev_SanityCheck
+// $result_o.counts.error, .warning, .note
+// $result_o.findings: collection of {check; severity; where; message}</code></pre>
+<p>Among its checks, the ones that bear on this chapter report:</p>
+<ul>
+<li>a table form that handles <code>On Validate</code> without calling the hook, and so would stay on <code>MODIFY RECORD</code>;</li>
+<li>a form or object method that calls the hook from its own <code>On Validate</code> handling, and so would run it twice;</li>
+<li>an object of yours with a record-navigation standard action, as a warning when the route is on for that form and a note when it is not.</li>
+</ul>
+<p>The same sweep also checks each form file against 4D's form format and the events a form enables against the events its methods test; neither has anything to do with <code>DIALOG</code>, and both are worth having. The compile-check watcher (chapter 11) runs the same sweep when its request file names the action <code>sanity</code>.</p>
+<h2 id="6-should-you-turn-it-on">6. Should you turn it on?</h2>
+<p>There is no need to. <code>MODIFY RECORD</code> remains the default, and an existing database loses nothing by leaving the route off.</p>
+<p>Turn it on for a form when you want what <code>Form</code> gives you, and that form's save-time code is short enough to move with confidence. A table at a time is the sensible pace: convert its form, run the sanity check, turn the route on for that table, and use it.</p>
+<p>Leave it off, for now, for a form whose save does a great deal: one that validates several related records, or relies on state built up across the form method. Moving that code out of the form is a piece of work in its own right, and nothing obliges you to do it.</p>
+<p>What has been tried, as of 6.0, in the demo database on 4D 20 LTS, interpreted and compiled: saving, cancelling, the close box, new records, adding several records in a row, and moving between records. What has <strong>not</strong> been tried: the route on 4D 21, and mandatory fields and entry filters, which <code>MODIFY RECORD</code> enforces on accept. If your form depends on either of those, test it before relying on it.</p>
+
+</main>
+
+</div>
+
+<footer class="colophon">
+	<p>Copyright &copy; 1993–2008 Dave Batton<br>
+	Copyright &copy; 2008–2026 Walt Nelson<br>
+	Copyright &copy; 2026 Wayne Stewart</p>
+	<p>Released under the <a href="/licence/">MIT licence</a>.</p>
+	<p id="contact">Contact: <a href="mailto:wayne@4dtoday.com">wayne@4dtoday.com</a></p>
+</footer>
+
+</body>
+</html>

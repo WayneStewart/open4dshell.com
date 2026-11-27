@@ -46,7 +46,8 @@
 			<li><a href="/guide/09-licensing-your-application.html">9. Licensing your application</a></li>
 			<li><a href="/guide/10-logging.html">10. Logging</a></li>
 			<li><a href="/guide/11-developer-tooling.html">11. Developer tooling: Fnd_FCS and the Constants module</a></li>
-			<li><a href="/guide/upgrading.html">12. Upgrading from Foundation 5</a></li>
+			<li><a href="/guide/12-saving-records-and-dialog.html">12. Saving records, and forms shown with DIALOG</a></li>
+			<li><a href="/guide/upgrading.html">13. Upgrading from Foundation 5</a></li>
 			<li><a href="/guide/contributing.html">Contributing</a></li>
 		</ul>
 	</section>
@@ -102,6 +103,7 @@
 <tr><td><code>Fnd_Hook_IO_InputFormMethod</code></td><td>on every event of every input form</td><td>behaviour common to all your record windows</td></tr>
 <tr><td><code>Fnd_Hook_IO_OutputFormMethod</code></td><td>on every event of a classic output form</td><td>likewise for classic list forms</td></tr>
 <tr><td><code>Fnd_Hook_IO_InputFormButton</code></td><td>when an inherited button (Save, Cancel, First, Next…) is clicked, with the button name in lower case</td><td>validate before Save; return <strong>False</strong> to stop the default action</td></tr>
+<tr><td><code>Fnd_Hook_IO_OnValidate</code></td><td>just before Foundation saves a record from an input form, with the table and the form's name</td><td>what a form did under <code>On Validate</code>; it cannot refuse the save (chapter 12)</td></tr>
 <tr><td><code>Fnd_Hook_IO_SelectionChanged</code></td><td>whenever Foundation changes the current table's selection (find, sort, show all)</td><td>react to the new selection; <code>Fnd_Gen_CurrentTable</code> says which table</td></tr>
 <tr><td><code>Fnd_Hook_Rec_New</code></td><td>when the user asks for a new record, with a pointer to the table</td><td>return True to let Foundation create it, False to handle it yourself</td></tr>
 <tr><td><code>Fnd_Hook_Rec_Delete</code></td><td>before Foundation deletes; the <code>UserSet</code> set holds the records</td><td>return True for Foundation's warning and delete, False to handle it yourself</td></tr>
