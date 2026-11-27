@@ -111,6 +111,7 @@
 		<li><a href="#Fnd_IO_SetupToolbar">Fnd_IO_SetupToolbar</a></li>
 		<li><a href="#Fnd_IO_ToolbarIconGroup">Fnd_IO_ToolbarIconGroup</a></li>
 		<li><a href="#Fnd_IO_UpdateToolbar">Fnd_IO_UpdateToolbar</a></li>
+		<li><a href="#Fnd_IO_UseDialog">Fnd_IO_UseDialog</a></li>
 	</ul>
 	</section>
 </aside>
@@ -119,7 +120,7 @@
 
 <h1>Fnd_IO</h1>
 
-<p>23 shared methods.</p>
+<p>24 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_IO_AddMultipleRecords">Fnd_IO_AddMultipleRecords</a></li>
@@ -145,6 +146,7 @@
 <li><a href="#Fnd_IO_SetupToolbar">Fnd_IO_SetupToolbar</a></li>
 <li><a href="#Fnd_IO_ToolbarIconGroup">Fnd_IO_ToolbarIconGroup</a></li>
 <li><a href="#Fnd_IO_UpdateToolbar">Fnd_IO_UpdateToolbar</a></li>
+<li><a href="#Fnd_IO_UseDialog">Fnd_IO_UseDialog</a></li>
 </ul>
 
 <section class="method" id="Fnd_IO_AddMultipleRecords">
@@ -175,14 +177,14 @@
 
 <section class="method" id="Fnd_IO_DisplayRecord">
 <h2><a href="#Fnd_IO_DisplayRecord">Fnd_IO_DisplayRecord</a></h2>
-<p class="syntax"><code>Fnd_IO_DisplayRecord ({-&gt;table{; record number}{; ShowLockedMessage}})</code></p>
-<p>Displays the specified record of the table in a new process.  If no table is passed, then the current form's table is used (if available).  If no record number is passed, then the current record will be displayed.  Pass 4D's New record constant to create a new record.</p>
+<p class="syntax"><code>Fnd_IO_DisplayRecord ({-&gt;table{; record number}{; ShowLockedMessage}} | {options})</code></p>
+<p>Displays the specified record of the table in a new process.  If no table is passed, then the current form's table is used (if available).  If no record number is passed, then the current record will be displayed.  Pass 4D's New record constant to create a new record. Either pass the parameters one after another (a table pointer first), or pass one object holding them. Every property of the object is optional and behaves as the omitted parameter does.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
-<tr><td><code>inTable</code></td><td>Pointer</td><td>in</td><td>Pointer to the record's table (optional)</td></tr>
-<tr><td><code>inRecordNumber</code></td><td>Longint</td><td>in</td><td>Record number (optional)</td></tr>
-<tr><td><code>inShowlockedmessage</code></td><td>Boolean</td><td>in</td><td>Show Locked Message (optional)</td></tr>
+<tr><td><code>first</code></td><td>Variant</td><td>in</td><td>Pointer to the record's table, or an object (optional)</td></tr>
+<tr><td><code>inRecordNumber</code></td><td>Longint</td><td>in</td><td>Record number (optional, pointer form only)</td></tr>
+<tr><td><code>inShowlockedmessage</code></td><td>Boolean</td><td>in</td><td>Show Locked Message (optional, pointer form only)</td></tr>
 <tr><td><code>Result</code></td><td></td><td>out</td><td>Process number of the (new?) process displaying the record.</td></tr>
 </tbody>
 </table>
@@ -190,14 +192,15 @@
 
 <section class="method" id="Fnd_IO_DisplayRecord2">
 <h2><a href="#Fnd_IO_DisplayRecord2">Fnd_IO_DisplayRecord2</a></h2>
-<p class="syntax"><code>Fnd_IO_DisplayRecord2 (-&gt;table; record number{; calling process})</code></p>
-<p>Called from Fnd_IO_DisplayRecord to display an input form in a new window. If a calling process number is passed ($3) then that process is called if the record is saved.  In this case, Fnd_IO_AddRecordNumber_i will contain the record number of the modified record.</p>
+<p class="syntax"><code>Fnd_IO_DisplayRecord2 (-&gt;table; record number{; calling process{; ShowLockedMessage}} | options)</code></p>
+<p>Called from Fnd_IO_DisplayRecord to display an input form in a new window. If a calling process number is passed ($3) then that process is called if the record is saved.  In this case, Fnd_IO_AddRecordNumber_i will contain the record number of the modified record. Either pass the parameters one after another (a table pointer first), or pass one object holding them all.</p>
 <table class="params">
 <thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
 <tbody>
-<tr><td><code>pointerTableDisplay</code></td><td>Pointer</td><td>in</td><td>A pointer to the table to display</td></tr>
-<tr><td><code>recordNumber</code></td><td>Longint</td><td>in</td><td>Record number</td></tr>
-<tr><td><code>inCallingProcess</code></td><td>Longint</td><td>in</td><td>Number of the calling process (optional)</td></tr>
+<tr><td><code>first</code></td><td>Variant</td><td>in</td><td>A pointer to the table to display, or an object</td></tr>
+<tr><td><code>recordNumber</code></td><td>Longint</td><td>in</td><td>Record number (pointer form only)</td></tr>
+<tr><td><code>inCallingProcess</code></td><td>Longint</td><td>in</td><td>Number of the calling process (optional, pointer form only)</td></tr>
+<tr><td><code>inShowLockedMessage</code></td><td>Boolean</td><td>in</td><td>Show Locked Message (optional, pointer form only)</td></tr>
 </tbody>
 </table>
 </section>
@@ -288,7 +291,7 @@
 <h2><a href="#Fnd_IO_InputFormMethod">Fnd_IO_InputFormMethod</a></h2>
 <p class="syntax"><code>Fnd_IO_InputFormMethod</code></p>
 <p>Standard form method for input forms.</p>
-<p>Handles the window title and close box on an input form.</p>
+<p>Handles the window title and close box on an input form, and passes On Validate to the host's Fnd_Hook_IO_OnValidate, so the form needs no On Validate code of its own.</p>
 <p class="noparams">No parameters.</p>
 </section>
 
@@ -405,6 +408,22 @@
 <p class="syntax"><code>Fnd_IO_UpdateToolbar</code></p>
 <p>Enables and disables the toolbar buttons based on whether or not the window is frontmost, the selection of records, and the highlighted records.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_IO_UseDialog">
+<h2><a href="#Fnd_IO_UseDialog">Fnd_IO_UseDialog</a></h2>
+<p class="syntax"><code>Fnd_IO_UseDialog ({use?} | {-&gt;table {; use?}} | {-&gt;table; form name {; use?}}) --&gt; Boolean</code></p>
+<pre>Turns on, or asks about, opening input forms with DIALOG rather than with MODIFY RECORD and ADD RECORD. Nothing opens with DIALOG until you turn it on, for the whole database, for a table or for one form. The settings hold for every process, so set them once at startup, for instance in Fnd_Hook_Shell_Startup. Fnd_IO_UseDialog(True)                   turns it on (or off) for every form Fnd_IO_UseDialog(-&gt;[Table]; True)        for every form of that table Fnd_IO_UseDialog(-&gt;[Table]; &quot;Input&quot;; True)  for that one form Fnd_IO_UseDialog(-&gt;[Table]; &quot;Input&quot;)     True if that form opens with DIALOG Fnd_IO_UseDialog(-&gt;[Table])              the same, for the current input form name Fnd_IO_UseDialog                         the database-wide setting (False if never set) A form's own setting wins over its table's, and a table's over the database's. Turned on for a table or the database, a form still opens with MODIFY RECORD when Foundation finds that it handles On Validate without calling Fnd_Hook_IO_OnValidate, or cannot tell; turned on for the form itself, it opens with DIALOG regardless.</pre>
+<p>A nil table pointer means a project form. Form names are not case-sensitive.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>first</code></td><td>Variant</td><td>in</td><td>True or False (the database setting), or a table pointer (optional)</td></tr>
+<tr><td><code>second</code></td><td>Variant</td><td>in</td><td>True or False (the table setting), or a form name (optional)</td></tr>
+<tr><td><code>use</code></td><td>Boolean</td><td>in</td><td>True to open the form with DIALOG, False for MODIFY RECORD (optional)</td></tr>
+<tr><td><code>Result</code></td><td>Boolean</td><td>out</td><td>The value set, or True if the form opens with DIALOG</td></tr>
+</tbody>
+</table>
 </section>
 
 </main>

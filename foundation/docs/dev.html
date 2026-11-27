@@ -89,7 +89,9 @@
 	<h2>Fnd_Dev</h2>
 	<ul class="nav methods">
 		<li><a href="#Fnd_Dev_CompilerCheck">Fnd_Dev_CompilerCheck</a></li>
+		<li><a href="#Fnd_Dev_ConvertOnValidate">Fnd_Dev_ConvertOnValidate</a></li>
 		<li><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></li>
+		<li><a href="#Fnd_Dev_SanityCheck">Fnd_Dev_SanityCheck</a></li>
 		<li><a href="#Fnd_Dev_SchedStart">Fnd_Dev_SchedStart</a></li>
 		<li><a href="#Fnd_Dev_SchedStop">Fnd_Dev_SchedStop</a></li>
 		<li><a href="#Fnd_Dev_WriteClassDocumentation">Fnd_Dev_WriteClassDocumentation</a></li>
@@ -102,11 +104,13 @@
 
 <h1>Fnd_Dev</h1>
 
-<p>6 shared methods.</p>
+<p>8 shared methods.</p>
 
 <ul class="jump">
 <li><a href="#Fnd_Dev_CompilerCheck">Fnd_Dev_CompilerCheck</a></li>
+<li><a href="#Fnd_Dev_ConvertOnValidate">Fnd_Dev_ConvertOnValidate</a></li>
 <li><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></li>
+<li><a href="#Fnd_Dev_SanityCheck">Fnd_Dev_SanityCheck</a></li>
 <li><a href="#Fnd_Dev_SchedStart">Fnd_Dev_SchedStart</a></li>
 <li><a href="#Fnd_Dev_SchedStop">Fnd_Dev_SchedStop</a></li>
 <li><a href="#Fnd_Dev_WriteClassDocumentation">Fnd_Dev_WriteClassDocumentation</a></li>
@@ -122,12 +126,35 @@
 <p class="noparams">No parameters.</p>
 </section>
 
+<section class="method" id="Fnd_Dev_ConvertOnValidate">
+<h2><a href="#Fnd_Dev_ConvertOnValidate">Fnd_Dev_ConvertOnValidate</a></h2>
+<p class="syntax"><code>Fnd_Dev_ConvertOnValidate</code></p>
+<p>Opens a window that helps you move the code your forms run on On Validate into Fnd_Hook_IO_OnValidate, so the forms can open with DIALOG. It steps through each form method, object method and project method that handles On Validate without calling the hook, one at a time, showing the method as it is and, ready to edit, the hook and the method as they would be afterwards. Nothing is written until you click Apply; the first Apply asks whether Foundation may change your database. Originals are saved in Resources/Foundation/OnValidate-Backups when that folder's parent exists.</p>
+<p>Run it from the Execute Method dialog. Interpreted mode only, with the sources on disk.</p>
+<p class="noparams">No parameters.</p>
+</section>
+
 <section class="method" id="Fnd_Dev_ResizeDesignWindows">
 <h2><a href="#Fnd_Dev_ResizeDesignWindows">Fnd_Dev_ResizeDesignWindows</a></h2>
 <p class="syntax"><code>Fnd_Dev_ResizeDesignWindows</code></p>
 <p>Resizes any open Method, Form or Explorer windows in your database's design environment. Used to resize the windows while developing.</p>
 <p>To use it, open the windows you want resized, switch to the User environment and select this method from the Execute dialog.</p>
 <p class="noparams">No parameters.</p>
+</section>
+
+<section class="method" id="Fnd_Dev_SanityCheck">
+<h2><a href="#Fnd_Dev_SanityCheck">Fnd_Dev_SanityCheck</a></h2>
+<p class="syntax"><code>Fnd_Dev_SanityCheck --&gt; Object</code></p>
+<p>Sweeps your forms for what the compiler cannot see, and returns what it found: each form against 4D's forms schema, the events each form and object enables against the events its methods test, and, in table forms, what stops working when the form opens with DIALOG. Reads the sources on disk, so run it interpreted. Nothing is shown on screen.</p>
+<pre><code>$result_o:=Fnd_Dev_SanityCheck
+$result_o.counts.error, .warning, .note; $result_o.findings[0].message</code></pre>
+<p>The compile-check watcher runs the same sweep on {&quot;action&quot;: &quot;sanity&quot;}.</p>
+<table class="params">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Direction</th><th scope="col">Description</th></tr></thead>
+<tbody>
+<tr><td><code>Result</code></td><td>Object</td><td>out</td><td>findings (collection of {check; severity (&quot;error&quot;, &quot;warning&quot; or      &quot;note&quot;); where; message}), counts ({error; warning; note}), checks (names run),      forms, methods (numbers read) and ms (time taken)</td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="method" id="Fnd_Dev_SchedStart">
